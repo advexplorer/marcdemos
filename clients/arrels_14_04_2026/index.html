@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARRELS — Dina Casajuana | Perruqueria i Estètica Igualada</title>
+  <meta name="description" content="Perruqueria unisex i estètica professional a Igualada. Coloració balayage, depilació làser mèdica, pressoteràpia i pentinats de núvia. Dina Casajuana." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #080E0B;
+      --primary:   #3D5A47;
+      --secondary: #C4A882;
+      --accent:    #7EB49A;
+      --text:      #EEE9E0;
+      --glass-bg:  rgba(61, 90, 71, 0.12);
+      --glass-border: rgba(126, 180, 154, 0.18);
+      --glass-shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: rgba(8, 14, 11, 0.7);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid var(--glass-border);
+      transition: padding 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--secondary);
+      color: var(--secondary) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 2px;
+      opacity: 1 !important;
+      transition: background 0.25s, color 0.25s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--secondary) !important;
+      color: var(--bg) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: rgba(8, 14, 11, 0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      flex-direction: column;
+      padding: 1.5rem 2rem 2rem;
+      gap: 1.2rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(126,180,154,0.1);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ─── SECTION WRAPPER ─── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 30%, rgba(61,90,71,0.38) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(196,168,130,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 15% 70%, rgba(126,180,154,0.10) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .hero-orb-1 {
+      width: 420px;
+      height: 420px;
+      background: rgba(61,90,71,0.25);
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: float1 8s ease-in-out infinite;
+    }
+
+    .hero-orb-2 {
+      width: 260px;
+      height: 260px;
+      background: rgba(126,180,154,0.12);
+      bottom: 60px;
+      right: 8%;
+      animation: float2 10s ease-in-out infinite;
+    }
+
+    .hero-orb-3 {
+      width: 200px;
+      height: 200px;
+      background: rgba(196,168,130,0.08);
+      bottom: 100px;
+      left: 8%;
+      animation: float1 12s ease-in-out infinite reverse;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-24px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(126,180,154,0.3);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      background: rgba(126,180,154,0.06);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      color: rgba(238,233,224,0.72);
+      max-width: 560px;
+      margin: 0 auto 2.8rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: linear-gradient(135deg, var(--primary), #2e4438);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid rgba(61,90,71,0.6);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(126,180,154,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(61,90,71,0.4); }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: transparent;
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid rgba(196,168,130,0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(196,168,130,0.08);
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .hero-phones {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: rgba(238,233,224,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-phones a {
+      color: rgba(238,233,224,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-phones a:hover { color: var(--accent); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.4;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.01% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── SOBRE NOSALTRES ─── */
+    #sobre {
+      padding: 7rem 0;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .sobre-text p {
+      color: rgba(238,233,224,0.72);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+
+    .sobre-text p:last-child { margin-bottom: 0; }
+
+    .sobre-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+      opacity: 0.6;
+    }
+
+    .sobre-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .sobre-card-subtitle {
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .sobre-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(126,180,154,0.12);
+      border: 1px solid rgba(126,180,154,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .stat-text {
+      font-size: 0.88rem;
+      color: rgba(238,233,224,0.7);
+      line-height: 1.4;
+    }
+
+    .stat-text strong {
+      color: var(--text);
+      font-weight: 500;
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    /* ─── SERVEIS ─── */
+    #serveis {
+      padding: 7rem 0;
+      position: relative;
+    }
+
+    #serveis::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(61,90,71,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .serveis-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .serveis-header .divider {
+      margin: 1.5rem auto 0;
+    }
+
+    .serveis-tabs {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: rgba(238,233,224,0.6);
+      padding: 0.6rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--glass-bg);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .servei-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servei-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(126,180,154,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .servei-card:hover {
+      border-color: rgba(126,180,154,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(126,180,154,0.08);
+    }
+
+    .servei-card:hover::after { opacity: 1; }
+
+    .servei-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(61,90,71,0.4), rgba(126,180,154,0.15));
+      border: 1px solid rgba(126,180,154,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .servei-category {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .servei-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .servei-desc {
+      font-size: 0.85rem;
+      color: rgba(238,233,224,0.58);
+      line-height: 1.65;
+    }
+
+    /* ─── PER QUÈ ARRELS ─── */
+    #perque {
+      padding: 7rem 0;
+    }
+
+    .perque-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .perque-reasons {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .reason-item {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .reason-item:hover {
+      border-color: rgba(196,168,130,0.3);
+      transform: translateX(4px);
+    }
+
+    .reason-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2rem;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .reason-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .reason-content p {
+      font-size: 0.88rem;
+      color: rgba(238,233,224,0.6);
+      line-height: 1.65;
+    }
+
+    .perque-visual {
+      position: relative;
+    }
+
+    .perque-box {
+      background: linear-gradient(135deg, rgba(61,90,71,0.2), rgba(126,180,154,0.08));
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .perque-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--secondary), transparent);
+      opacity: 0.5;
+    }
+
+    .perque-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .perque-quote em { color: var(--secondary); font-style: normal; }
+
+    .perque-author {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .perque-deco {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(196,168,130,0.08);
+    }
+
+    .perque-deco::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(126,180,154,0.06);
+    }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 7rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(61,90,71,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .cta-title em {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(238,233,224,0.62);
+      margin-bottom: 2.8rem;
+      line-height: 1.7;
+    }
+
+    .cta-phones {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .phone-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.7rem 1.4rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      transition: all 0.25s;
+    }
+
+    .phone-chip:hover {
+      background: rgba(126,180,154,0.15);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .phone-chip-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(126,180,154,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 3rem 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--secondary);
+      letter-spacing: 0.15em;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-brand .logo-sub {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: rgba(238,233,224,0.6);
+    }
+
+    .footer-info-item a {
+      color: rgba(238,233,224,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-info-item a:hover { color: var(--accent); }
+
+    .footer-tags {
+      max-width: 280px;
+    }
+
+    .footer-tags p {
+      font-size: 0.75rem;
+      color: rgba(238,233,224,0.35);
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(126,180,154,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(238,233,224,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.4;
+      display: inline-block;
+      margin: 0 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .perque-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .perque-visual { order: -1; }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 1.8rem;
+      }
+
+      .footer-tags { max-width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .cta-phones { flex-direction: column; align-items: center; }
+    }
+
+    /* ─── ORNAMENT ─── */
+    .ornament {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--secondary);
+      opacity: 0.5;
+      vertical-align: middle;
+      margin: 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">ARRELS<span>·</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#perque">Per Què?</a></li>
+      <li><a href="#cta" class="nav-cta">Reserva</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#sobre" class="mobile-link">Nosaltres</a>
+    <a href="#serveis" class="mobile-link">Serveis</a>
+    <a href="#perque" class="mobile-link">Per Què Arrels?</a>
+    <a href="#cta" class="mobile-link">Reserva una Cita</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Perruqueria &amp; Estètica · Igualada</div>
+      <h1 class="hero-title">
+        La teva bellesa,<br/><em>des de les arrels</em>
+      </h1>
+      <p class="hero-subtitle">
+        Perruqueria unisex i estètica professional a Igualada. Amb la Dina, estàs en bones mans — i ho notaràs des del primer moment.
+      </p>
+      <div class="hero-buttons">
+        <a href="#cta" class="btn-primary">Reserva la teva cita</a>
+        <a href="#serveis" class="btn-ghost">Descobreix els serveis</a>
+      </div>
+      <p class="hero-phones">
+        <a href="tel:938045413">938 045 413</a>
+        <span class="ornament"></span>
+        <a href="tel:630661833">630 661 833</a>
+      </p>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSALTRES -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-text fade-up">
+          <span class="section-tag">Sobre nosaltres</span>
+          <h2 class="section-title">Curant des de<br/><em>la base</em></h2>
+          <div class="divider"></div>
+          <p>
+            ARRELS no és només un nom. És una manera d'entendre la bellesa: curant des de la base, treballant amb tècnica i amb dedicació, i acompanyant cada persona perquè es trobi millor amb ella mateixa. La Dina Casajuana va fundar aquest espai amb una idea clara: oferir un servei professional de veritat, en un ambient acollidor on tothom s'hi senti còmode.
+          </p>
+          <p>
+            Amb anys d'experiència en perruqueria i estètica, la Dina domina tècniques de coloració avançada —balayage, henna, fantasy color—, tractaments capil·lars i serveis d'estètica que van molt més enllà del que trobes en un centre convencional. Depilació làser mèdica, pressoteràpia, pentinats de núvia… aquí trobaràs tot el que necessites, fet amb criteri i cura.
+          </p>
+          <p>
+            Al carrer de Sant Agustí 2, al cor d'Igualada, t'espera un espai on la professionalitat i la proximitat van de la mà. Cada cita és una conversa, cada servei és un resultat pensat per a tu. Perquè les arrels importa com les cuides.
+          </p>
+        </div>
+
+        <div class="sobre-card fade-up fade-up-delay-2">
+          <div class="sobre-card-title">Dina Casajuana</div>
+          <div class="sobre-card-subtitle">Fundadora &amp; Especialista</div>
+          <div class="sobre-stats">
+            <div class="stat-item">
+              <div class="stat-icon">✦</div>
+              <div class="stat-text">
+                <strong>Coloració d'alt nivell</strong>
+                Balayage, henna, fantasy color i molt més
+              </div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">◈</div>
+              <div class="stat-text">
+                <strong>Làser mèdic certificat</strong>
+                Tecnologia d'última generació, resultats permanents
+              </div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">◎</div>
+              <div class="stat-text">
+                <strong>Atenció totalment personalitzada</strong>
+                La Dina t'atén directament, des del primer fins a l'últim moment
+              </div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">⬡</div>
+              <div class="stat-text">
+                <strong>Carrer de Sant Agustí 2, Igualada</strong>
+                Al cor de la ciutat, fàcil d'arribar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section id="serveis">
+    <div class="container">
+      <div class="serveis-header fade-up">
+        <span class="section-tag">El nostre catàleg</span>
+        <h2 class="section-title">Tot el que necessites,<br/><em>sota el mateix sostre</em></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="serveis-grid">
+
+        <div class="servei-card fade-up">
+          <div class="servei-icon">✂</div>
+          <div class="servei-category">Perruqueria</div>
+          <div class="servei-name">Tall i Acabat</div>
+          <p class="servei-desc">Tall personalitzat adaptat a la teva forma de cara, textura del cabell i estil de vida.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-1">
+          <div class="servei-icon">◑</div>
+          <div class="servei-category">Perruqueria</div>
+          <div class="servei-name">Coloració Balayage</div>
+          <p class="servei-desc">La tècnica estrella per aconseguir un degradat natural i lluminós que sembla fet pel sol.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-2">
+          <div class="servei-icon">⬤</div>
+          <div class="servei-category">Perruqueria</div>
+          <div class="servei-name">Coloració Henna</div>
+          <p class="servei-desc">Coloració natural i respectuosa amb el cuir cabellut. Resultat ric i lluminós sense amoníac.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-3">
+          <div class="servei-icon">◈</div>
+          <div class="servei-category">Perruqueria</div>
+          <div class="servei-name">Fantasy Color</div>
+          <p class="servei-desc">Colors vius, pastel, degradats de disseny. Expressa't sense límits amb la teva imatge.</p>
+        </div>
+
+        <div class="servei-card fade-up">
+          <div class="servei-icon">✦</div>
+          <div class="servei-category">Perruqueria</div>
+          <div class="servei-name">Tractaments Capil·lars</div>
+          <p class="servei-desc">Nutrició, hidratació i reparació profunda per a un cabell fort, brillant i sa.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-1">
+          <div class="servei-icon">◎</div>
+          <div class="servei-category">Estètica</div>
+          <div class="servei-name">Depilació Làser Mèdica</div>
+          <p class="servei-desc">Tecnologia làser d'última generació per a una depilació permanent i segura, amb resultats definitius.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-2">
+          <div class="servei-icon">⬡</div>
+          <div class="servei-category">Estètica</div>
+          <div class="servei-name">Pressoteràpia</div>
+          <p class="servei-desc">Tractament de drenatge limfàtic per activar la circulació, reduir la retenció i sentir-se lleugera.</p>
+        </div>
+
+        <div class="servei-card fade-up fade-up-delay-3">
+          <div class="servei-icon">♛</div>
+          <div class="servei-category">Ocasions Especials</div>
+          <div class="servei-name">Pentinats de Núvia</div>
+          <p class="servei-desc">El teu dia mereix un pentinat que estigui a l'altura. Creació única, dissenyada per a tu.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PER QUÈ ARRELS -->
+  <section id="perque">
+    <div class="container">
+      <div class="perque-inner">
+        <div>
+          <span class="section-tag fade-up">Per Què Arrels?</span>
+          <h2 class="section-title fade-up fade-up-delay-1">Tres raons que<br/><em>marquen la diferència</em></h2>
+          <div class="divider fade-up fade-up-delay-2"></div>
+
+          <div class="perque-reasons">
+            <div class="reason-item fade-up">
+              <div class="reason-num">1</div>
+              <div class="reason-content">
+                <h3>Tècnica d'alt nivell, sense intermediaris</h3>
+                <p>La Dina és qui t'atén, qui t'escolta i qui treballa. Sense delegacions, sense sorpreses.</p>
+              </div>
+            </div>
+
+            <div class="reason-item fade-up fade-up-delay-1">
+              <div class="reason-num">2</div>
+              <div class="reason-content">
+                <h3>Perruqueria i estètica sota el mateix sostre</h3>
+                <p>Tot coordinat, tot pensat per a tu. Sense anar d'un lloc a un altre per tenir la millor versió de tu mateixa.</p>
+              </div>
+            </div>
+
+            <div class="reason-item fade-up fade-up-delay-2">
+              <div class="reason-num">3</div>
+              <div class="reason-content">
+                <h3>Et coneixem, recordem i cuidem</h3>
+                <p>Cada client és diferent. Aquí no ets un número a l'agenda — ets una persona amb les teves preferències i necessitats.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="perque-visual fade-up fade-up-delay-2">
+          <div class="perque-box">
+            <div class="perque-quote">
+              "Cada cita és una <em>conversa</em>. Cada servei, un resultat pensat per a tu."
+            </div>
+            <div class="perque-author">— Dina Casajuana, Fundadora d'Arrels</div>
+            <div class="perque-deco"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <span class="section-tag fade-up">Comença avui</span>
+        <h2 class="cta-title fade-up fade-up-delay-1">
+          Reserva<br/><em>la teva cita</em>
+        </h2>
+        <p class="cta-sub fade-up fade-up-delay-2">
+          Truca'ns o escriu-nos i et diem la primera disponibilitat.
+        </p>
+        <div class="fade-up fade-up-delay-3">
+          <a href="#cta" class="btn-primary" style="font-size:0.9rem; padding: 1rem 2.8rem;">Reserva la teva cita</a>
+        </div>
+        <div class="cta-phones fade-up fade-up-delay-4">
+          <a href="tel:938045413" class="phone-chip">
+            <div class="phone-chip-icon">📞</div>
+            938 045 413
+          </a>
+          <a href="tel:630661833" class="phone-chip">
+            <div class="phone-chip-icon">📱</div>
+            630 661 833
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-text">ARRELS</span>
+          <span class="logo-sub">Dina Casajuana</span>
+        </div>
+
+        <div class="footer-info">
+          <div class="footer-info-item">
+            <span>📍</span>
+            <span>Carrer de Sant Agustí 2, Igualada</span>
+          </div>
+          <div class="footer-info-item">
+            <span>📞</span>
+            <a href="tel:938045413">938 045 413</a>
+          </div>
+          <div class="footer-info-item">
+            <span>📱</span>
+            <a href="tel:630661833">630 661 833</a>
+          </div>
+        </div>
+
+        <div class="footer-tags">
+          <p>
+            Perruqueria unisex · Coloració · Balayage · Henna · Fantasy Color
+            · Depilació làser mèdica · Pressoteràpia · Pentinats de núvia
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 ARRELS — Dina Casajuana<span class="footer-dot"></span>Tots els drets reservats</p>
+        <p>Igualada, Catalunya</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TRACKING PIXEL -->
+  <img src="https://track.marcdemos.com/track/web/arrels-demo-2026" width="1" height="1" style="display:none" />
+
+  <script>
+    // ─── HAMBURGER MENU ───
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ─── INTERSECTION OBSERVER (fade-up) ───
+    const fadeEls = document.querySelectorAll('.fade-up');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ─── NAV SCROLL EFFECT ───
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.padding = '0.75rem 2rem';
+      } else {
+        nav.style.padding = '1.1rem 2rem';
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
