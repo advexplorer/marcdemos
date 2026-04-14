@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARRELS — Dina Casajuana | Perruqueria i Estètica Igualada</title>
-  <meta name="description" content="Perruqueria unisex i estètica professional a Igualada. Coloració balayage, depilació làser mèdica, pressoteràpia i pentinats de núvia. Dina Casajuana." />
+  <meta name="description" content="Perruqueria unisex i estètica professional a Igualada. Coloració balayage, henna vegetal, fantasy colors, depilació làser mèdica, pressoteràpia i pentinats de núvia. Dina Casajuana." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after {
@@ -17,14 +17,14 @@
     }
 
     :root {
-      --bg:        #080E0B;
-      --primary:   #3D5A47;
-      --secondary: #C4A882;
-      --accent:    #7EB49A;
-      --text:      #EEE9E0;
-      --glass-bg:  rgba(61, 90, 71, 0.12);
+      --bg:           #080E0B;
+      --primary:      #3D5A47;
+      --secondary:    #C4A882;
+      --accent:       #7EB49A;
+      --text:         #EEE9E0;
+      --glass-bg:     rgba(61, 90, 71, 0.12);
       --glass-border: rgba(126, 180, 154, 0.18);
-      --glass-shadow: rgba(0, 0, 0, 0.45);
+      --sep:          rgba(126, 180, 154, 0.25);
     }
 
     html {
@@ -41,23 +41,25 @@
       overflow-x: hidden;
     }
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
-    /* ─── NOISE OVERLAY ─── */
+    /* NOISE */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.6;
+      opacity: 1;
     }
 
-    /* ─── NAVBAR ─── */
+    /* ────────────────────────────────
+       NAV
+    ──────────────────────────────── */
     nav {
       position: fixed;
       top: 0;
@@ -67,10 +69,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.1rem 2rem;
-      background: rgba(8, 14, 11, 0.7);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      padding: 1.1rem 2.5rem;
+      background: rgba(8, 14, 11, 0.72);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
       border-bottom: 1px solid var(--glass-border);
       transition: padding 0.3s ease;
     }
@@ -78,51 +80,59 @@
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      font-size: 1.5rem;
-      letter-spacing: 0.2em;
+      font-size: 1.4rem;
+      letter-spacing: 0.28em;
       color: var(--secondary);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .nav-logo span {
-      color: var(--accent);
+    .nav-logo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.6;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
       color: var(--text);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 400;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      opacity: 0.75;
+      opacity: 0.65;
       transition: opacity 0.25s, color 0.25s;
     }
 
-    .nav-links a:hover {
-      opacity: 1;
-      color: var(--accent);
-    }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
 
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--secondary);
+    .nav-phone {
+      font-size: 0.8rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: none !important;
       color: var(--secondary) !important;
-      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(196,168,130,0.3);
+      padding: 0.4rem 1rem;
       border-radius: 2px;
       opacity: 1 !important;
-      transition: background 0.25s, color 0.25s !important;
+      transition: background 0.25s, border-color 0.25s !important;
     }
 
-    .nav-cta:hover {
-      background: var(--secondary) !important;
-      color: var(--bg) !important;
+    .nav-phone:hover {
+      background: rgba(196,168,130,0.1) !important;
+      border-color: var(--secondary) !important;
     }
 
     /* Hamburger */
@@ -138,10 +148,10 @@
 
     .hamburger span {
       display: block;
-      width: 24px;
+      width: 22px;
       height: 1.5px;
       background: var(--text);
-      transition: all 0.3s;
+      transition: all 0.28s;
     }
 
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -151,16 +161,16 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 61px;
+      top: 60px;
       left: 0;
       right: 0;
       z-index: 99;
       background: rgba(8, 14, 11, 0.97);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--glass-border);
       flex-direction: column;
-      padding: 1.5rem 2rem 2rem;
-      gap: 1.2rem;
+      padding: 1.8rem 2rem 2.2rem;
+      gap: 1.1rem;
     }
 
     .mobile-menu.open { display: flex; }
@@ -168,250 +178,35 @@
     .mobile-menu a {
       color: var(--text);
       text-decoration: none;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.75;
       padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(126,180,154,0.1);
+      border-bottom: 1px solid rgba(126,180,154,0.08);
     }
 
-    .mobile-menu a:last-child { border-bottom: none; }
-
-    /* ─── SECTION WRAPPER ─── */
-    section {
-      position: relative;
-      z-index: 1;
+    .mobile-menu a:last-child {
+      border-bottom: none;
+      color: var(--secondary);
+      opacity: 1;
     }
+
+    /* ────────────────────────────────
+       UTILITIES
+    ──────────────────────────────── */
+    section { position: relative; z-index: 1; }
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7rem 1.5rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 30%, rgba(61,90,71,0.38) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(196,168,130,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 35% 25% at 15% 70%, rgba(126,180,154,0.10) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-    }
-
-    .hero-orb-1 {
-      width: 420px;
-      height: 420px;
-      background: rgba(61,90,71,0.25);
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: float1 8s ease-in-out infinite;
-    }
-
-    .hero-orb-2 {
-      width: 260px;
-      height: 260px;
-      background: rgba(126,180,154,0.12);
-      bottom: 60px;
-      right: 8%;
-      animation: float2 10s ease-in-out infinite;
-    }
-
-    .hero-orb-3 {
-      width: 200px;
-      height: 200px;
-      background: rgba(196,168,130,0.08);
-      bottom: 100px;
-      left: 8%;
-      animation: float1 12s ease-in-out infinite reverse;
-    }
-
-    @keyframes float1 {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-24px); }
-    }
-    @keyframes float2 {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 760px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(126,180,154,0.3);
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-      background: rgba(126,180,154,0.06);
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1.08;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      margin-bottom: 1.4rem;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--secondary);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-      color: rgba(238,233,224,0.72);
-      max-width: 560px;
-      margin: 0 auto 2.8rem;
-      font-weight: 300;
-      line-height: 1.75;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      background: linear-gradient(135deg, var(--primary), #2e4438);
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      border: 1px solid rgba(61,90,71,0.6);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(126,180,154,0.15), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(61,90,71,0.4); }
-
-    .btn-ghost {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      background: transparent;
-      color: var(--secondary);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      border: 1px solid rgba(196,168,130,0.35);
-      transition: all 0.3s ease;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(196,168,130,0.08);
-      border-color: var(--secondary);
-      transform: translateY(-2px);
-    }
-
-    .hero-phones {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-      color: rgba(238,233,224,0.45);
-      letter-spacing: 0.05em;
-    }
-
-    .hero-phones a {
-      color: rgba(238,233,224,0.55);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .hero-phones a:hover { color: var(--accent); }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      opacity: 0.4;
-    }
-
-    .scroll-indicator span {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollDown 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollDown {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      50.01% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    /* ─── SOBRE NOSALTRES ─── */
-    #sobre {
-      padding: 7rem 0;
+      padding: 0 2rem;
     }
 
     .section-tag {
       display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 1rem;
@@ -420,8 +215,8 @@
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      line-height: 1.12;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.1;
       color: var(--text);
       margin-bottom: 0.5rem;
     }
@@ -432,24 +227,264 @@
     }
 
     .divider {
-      width: 48px;
+      width: 44px;
       height: 1px;
-      background: linear-gradient(to right, var(--accent), transparent);
-      margin: 1.5rem 0 2.5rem;
+      background: linear-gradient(to right, var(--sep), transparent);
+      margin: 1.4rem 0 2.5rem;
+    }
+
+    .sep-line {
+      width: 100%;
+      height: 1px;
+      background: var(--sep);
+      opacity: 1;
+    }
+
+    /* ────────────────────────────────
+       HERO
+    ──────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background ambiance */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 75% 60% at 50% 35%, rgba(61,90,71,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 35% at 82% 75%, rgba(196,168,130,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 28% at 15% 65%, rgba(126,180,154,0.09) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: orbFloat 9s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 480px; height: 480px;
+      background: rgba(61,90,71,0.22);
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      animation-duration: 8s;
+    }
+
+    .orb-2 {
+      width: 280px; height: 280px;
+      background: rgba(126,180,154,0.1);
+      bottom: 80px; right: 6%;
+      animation-duration: 11s;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 220px; height: 220px;
+      background: rgba(196,168,130,0.07);
+      bottom: 120px; left: 6%;
+      animation-duration: 13s;
+      animation-delay: -7s;
+      animation-direction: reverse;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-22px); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(126,180,154,0.28);
+      padding: 0.35rem 1.1rem;
+      border-radius: 100px;
+      background: rgba(126,180,154,0.05);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(4.5rem, 14vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, #3D5A47 0%, #7EB49A 50%, #5a8a70 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+      color: rgba(238,233,224,0.82);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-firma {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      opacity: 0.8;
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-cta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(238,233,224,0.4);
+    }
+
+    .hero-phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1rem 2.8rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #2e4438 100%);
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+      border: 1px solid rgba(61,90,71,0.6);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-phone-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(126,180,154,0.18), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .hero-phone-btn:hover::before { opacity: 1; }
+
+    .hero-phone-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(61,90,71,0.45);
+    }
+
+    .hero-phone-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(126,180,154,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .hero-secondary-phone {
+      font-size: 0.78rem;
+      color: rgba(238,233,224,0.38);
+      letter-spacing: 0.06em;
+    }
+
+    .hero-secondary-phone a {
+      color: rgba(238,233,224,0.48);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-secondary-phone a:hover { color: var(--accent); }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.35;
+    }
+
+    .scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%    { transform: scaleY(0); transform-origin: top; }
+      50%   { transform: scaleY(1); transform-origin: top; }
+      50.01%{ transform: scaleY(1); transform-origin: bottom; }
+      100%  { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ────────────────────────────────
+       SOBRE NOSALTRES
+    ──────────────────────────────── */
+    #sobre {
+      padding: 8rem 0;
     }
 
     .sobre-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
       align-items: start;
     }
 
     .sobre-text p {
-      color: rgba(238,233,224,0.72);
+      color: rgba(238,233,224,0.7);
       font-size: 1rem;
-      line-height: 1.85;
-      margin-bottom: 1.4rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
     }
 
     .sobre-text p:last-child { margin-bottom: 0; }
@@ -457,7 +492,7 @@
     .sobre-card {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
+      border-radius: 14px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       padding: 2.5rem;
@@ -468,82 +503,81 @@
     .sobre-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--accent), transparent);
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
-    .sobre-card-title {
+    .sobre-card-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 400;
       color: var(--secondary);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
 
-    .sobre-card-subtitle {
-      font-size: 0.78rem;
+    .sobre-card-role {
+      font-size: 0.72rem;
       color: var(--accent);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
     }
 
-    .sobre-stats {
+    .sobre-feats {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.4rem;
     }
 
-    .stat-item {
+    .feat-item {
       display: flex;
-      align-items: center;
       gap: 1rem;
+      align-items: flex-start;
     }
 
-    .stat-icon {
-      width: 36px;
-      height: 36px;
+    .feat-icon {
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
-      background: rgba(126,180,154,0.12);
-      border: 1px solid rgba(126,180,154,0.2);
+      background: rgba(126,180,154,0.1);
+      border: 1px solid rgba(126,180,154,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.85rem;
       flex-shrink: 0;
-      font-size: 0.9rem;
+      color: var(--accent);
     }
 
-    .stat-text {
-      font-size: 0.88rem;
-      color: rgba(238,233,224,0.7);
-      line-height: 1.4;
+    .feat-text {
+      font-size: 0.86rem;
+      color: rgba(238,233,224,0.65);
+      line-height: 1.5;
     }
 
-    .stat-text strong {
+    .feat-text strong {
       color: var(--text);
       font-weight: 500;
       display: block;
       font-size: 0.9rem;
+      margin-bottom: 0.1rem;
     }
 
-    /* ─── SERVEIS ─── */
+    /* ────────────────────────────────
+       SERVEIS
+    ──────────────────────────────── */
     #serveis {
-      padding: 7rem 0;
+      padding: 8rem 0;
       position: relative;
     }
 
     #serveis::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(61,90,71,0.12) 0%, transparent 70%);
+      inset: 0;
+      background: radial-gradient(ellipse 65% 50% at 85% 50%, rgba(61,90,71,0.1) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -553,117 +587,104 @@
     }
 
     .serveis-header .divider {
-      margin: 1.5rem auto 0;
-    }
-
-    .serveis-tabs {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: rgba(238,233,224,0.6);
-      padding: 0.6rem 1.4rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--glass-bg);
-      border-color: var(--accent);
-      color: var(--accent);
+      margin: 1.4rem auto 0;
     }
 
     .serveis-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.1rem;
     }
 
     .servei-card {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 10px;
+      border-radius: 12px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 1.8rem;
-      transition: all 0.3s ease;
+      padding: 1.8rem 1.8rem 1.6rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
     }
 
-    .servei-card::after {
+    .servei-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(126,180,154,0.05) 0%, transparent 60%);
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--glass-border), transparent);
       opacity: 0;
       transition: opacity 0.3s;
     }
 
     .servei-card:hover {
-      border-color: rgba(126,180,154,0.35);
+      border-color: rgba(126,180,154,0.32);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(126,180,154,0.08);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.38);
     }
 
-    .servei-card:hover::after { opacity: 1; }
+    .servei-card:hover::before { opacity: 1; }
 
-    .servei-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(61,90,71,0.4), rgba(126,180,154,0.15));
-      border: 1px solid rgba(126,180,154,0.2);
-      display: flex;
+    .servei-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+      gap: 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      border-radius: 100px;
       margin-bottom: 1.2rem;
     }
 
-    .servei-category {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
+    .badge-perruqueria {
+      background: rgba(61,90,71,0.28);
+      color: #7EB49A;
+      border: 1px solid rgba(61,90,71,0.5);
+    }
+
+    .badge-estetica {
+      background: rgba(196,168,130,0.15);
+      color: #C4A882;
+      border: 1px solid rgba(196,168,130,0.35);
     }
 
     .servei-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 400;
       color: var(--text);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
       line-height: 1.2;
     }
 
     .servei-desc {
-      font-size: 0.85rem;
-      color: rgba(238,233,224,0.58);
+      font-size: 0.84rem;
+      color: rgba(238,233,224,0.55);
       line-height: 1.65;
     }
 
-    /* ─── PER QUÈ ARRELS ─── */
+    .servei-price {
+      display: inline-block;
+      margin-top: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--secondary);
+      letter-spacing: 0.06em;
+      opacity: 0.8;
+    }
+
+    /* ────────────────────────────────
+       PER QUÈ ARRELS
+    ──────────────────────────────── */
     #perque {
-      padding: 7rem 0;
+      padding: 8rem 0;
     }
 
     .perque-inner {
       display: grid;
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 5rem;
       align-items: center;
     }
@@ -671,14 +692,14 @@
     .perque-reasons {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .reason-item {
       display: flex;
       gap: 1.4rem;
       align-items: flex-start;
-      padding: 1.5rem;
+      padding: 1.4rem 1.6rem;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 10px;
@@ -687,33 +708,33 @@
     }
 
     .reason-item:hover {
-      border-color: rgba(196,168,130,0.3);
+      border-color: rgba(196,168,130,0.28);
       transform: translateX(4px);
     }
 
     .reason-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 300;
       color: var(--secondary);
       line-height: 1;
       flex-shrink: 0;
-      width: 2rem;
+      width: 1.8rem;
       text-align: center;
-      opacity: 0.7;
+      opacity: 0.65;
     }
 
     .reason-content h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.3rem;
     }
 
     .reason-content p {
-      font-size: 0.88rem;
-      color: rgba(238,233,224,0.6);
+      font-size: 0.86rem;
+      color: rgba(238,233,224,0.58);
       line-height: 1.65;
     }
 
@@ -722,10 +743,10 @@
     }
 
     .perque-box {
-      background: linear-gradient(135deg, rgba(61,90,71,0.2), rgba(126,180,154,0.08));
+      background: linear-gradient(135deg, rgba(61,90,71,0.18), rgba(126,180,154,0.07));
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 3rem 2.5rem;
+      border-radius: 18px;
+      padding: 3.5rem 2.8rem;
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -737,7 +758,7 @@
       top: 0; left: 0; right: 0;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--secondary), transparent);
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     .perque-quote {
@@ -746,125 +767,356 @@
       font-style: italic;
       font-weight: 300;
       color: var(--text);
-      line-height: 1.4;
+      line-height: 1.45;
       margin-bottom: 2rem;
     }
 
-    .perque-quote em { color: var(--secondary); font-style: normal; }
+    .perque-quote em {
+      color: var(--secondary);
+      font-style: normal;
+    }
 
     .perque-author {
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
     }
 
-    .perque-deco {
+    /* decorative rings */
+    .perque-ring {
       position: absolute;
-      bottom: -40px;
-      right: -40px;
-      width: 180px;
-      height: 180px;
       border-radius: 50%;
-      border: 1px solid rgba(196,168,130,0.08);
+      pointer-events: none;
     }
 
-    .perque-deco::before {
+    .perque-ring-1 {
+      width: 200px; height: 200px;
+      border: 1px solid rgba(196,168,130,0.07);
+      bottom: -60px; right: -60px;
+    }
+
+    .perque-ring-2 {
+      width: 130px; height: 130px;
+      border: 1px solid rgba(126,180,154,0.05);
+      bottom: -25px; right: -25px;
+    }
+
+    /* ────────────────────────────────
+       RESSENYES
+    ──────────────────────────────── */
+    #ressenyes {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    #ressenyes::before {
       content: '';
       position: absolute;
-      inset: 20px;
-      border-radius: 50%;
-      border: 1px solid rgba(126,180,154,0.06);
+      inset: 0;
+      background: radial-gradient(ellipse 55% 45% at 50% 50%, rgba(61,90,71,0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    /* ─── CTA ─── */
-    #cta {
-      padding: 7rem 0;
+    .ressenyes-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .rating-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4rem;
+      margin: 2rem 0 0.8rem;
+    }
+
+    .rating-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1;
+    }
+
+    .rating-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-start;
+    }
+
+    .stars-row {
+      display: flex;
+      gap: 3px;
+    }
+
+    .star {
+      width: 18px;
+      height: 18px;
+      position: relative;
+    }
+
+    .star svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .star-full svg { fill: #C4A882; }
+    .star-partial svg { fill: url(#starGrad); }
+    .star-empty svg { fill: rgba(196,168,130,0.2); }
+
+    .rating-count {
+      font-size: 0.78rem;
+      color: rgba(238,233,224,0.45);
+      letter-spacing: 0.08em;
+    }
+
+    .rating-source {
+      font-size: 0.68rem;
+      color: rgba(238,233,224,0.35);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ressenyes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .resseny-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .resseny-card:hover {
+      border-color: rgba(196,168,130,0.28);
+      transform: translateY(-3px);
+    }
+
+    .resseny-card-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .resseny-star {
+      font-size: 0.75rem;
+      color: #C4A882;
+    }
+
+    .resseny-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(238,233,224,0.82);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+
+    .resseny-author {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .resseny-card::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      color: var(--primary);
+      opacity: 0.25;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      font-size: 0.72rem;
+      color: rgba(238,233,224,0.35);
+      letter-spacing: 0.1em;
+    }
+
+    .google-g {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ────────────────────────────────
+       CONTACTE / CTA
+    ──────────────────────────────── */
+    #contacte {
+      padding: 8rem 0;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    #cta::before {
+    #contacte::before {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(61,90,71,0.22) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(61,90,71,0.2) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .cta-inner {
+    .contacte-inner {
       position: relative;
       z-index: 1;
       max-width: 640px;
       margin: 0 auto;
     }
 
-    .cta-title {
+    .contacte-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      line-height: 1.1;
+      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      line-height: 1.08;
       color: var(--text);
       margin-bottom: 1rem;
     }
 
-    .cta-title em {
+    .contacte-title em {
       font-style: italic;
       color: var(--secondary);
     }
 
-    .cta-sub {
-      font-size: 1rem;
-      color: rgba(238,233,224,0.62);
-      margin-bottom: 2.8rem;
-      line-height: 1.7;
+    .contacte-sub {
+      font-size: 0.98rem;
+      color: rgba(238,233,224,0.58);
+      line-height: 1.75;
+      margin-bottom: 3rem;
     }
 
-    .cta-phones {
+    .phone-main-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 3.2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #2a3d30 100%);
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+      border: 1px solid rgba(61,90,71,0.6);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+    }
+
+    .phone-main-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(126,180,154,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .phone-main-btn:hover::before { opacity: 1; }
+
+    .phone-main-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 44px rgba(61,90,71,0.5);
+    }
+
+    .phone-icon-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(126,180,154,0.18);
       display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .contacte-alt {
+      font-size: 0.78rem;
+      color: rgba(238,233,224,0.35);
+      letter-spacing: 0.06em;
+      margin-bottom: 3rem;
+    }
+
+    .contacte-alt a {
+      color: rgba(238,233,224,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contacte-alt a:hover { color: var(--accent); }
+
+    .contacte-info-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
-      flex-wrap: wrap;
       margin-top: 2rem;
     }
 
-    .phone-chip {
+    .info-chip {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.7rem 1.4rem;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 100px;
+      font-size: 0.8rem;
+      color: rgba(238,233,224,0.6);
+    }
+
+    .info-chip a {
+      color: rgba(238,233,224,0.6);
       text-decoration: none;
-      color: var(--text);
-      font-size: 0.88rem;
-      transition: all 0.25s;
+      transition: color 0.2s;
     }
 
-    .phone-chip:hover {
-      background: rgba(126,180,154,0.15);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
+    .info-chip a:hover { color: var(--accent); }
 
-    .phone-chip-icon {
-      width: 20px;
-      height: 20px;
+    .info-chip-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: rgba(126,180,154,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
+      background: var(--accent);
+      opacity: 0.45;
+      flex-shrink: 0;
     }
 
-    /* ─── FOOTER ─── */
+    /* ────────────────────────────────
+       FOOTER
+    ──────────────────────────────── */
     footer {
       border-top: 1px solid var(--glass-border);
-      padding: 3rem 0 2rem;
+      padding: 3.5rem 0 2rem;
       position: relative;
       z-index: 1;
     }
@@ -872,74 +1124,70 @@
     .footer-inner {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 2.5rem;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 2.5rem;
     }
 
-    .footer-brand .logo-text {
+    .footer-brand-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 400;
       color: var(--secondary);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       display: block;
       margin-bottom: 0.3rem;
     }
 
-    .footer-brand .logo-sub {
-      font-size: 0.72rem;
+    .footer-brand-sub {
+      font-size: 0.7rem;
       color: var(--accent);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
-    .footer-info {
+    .footer-info-col {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
-    .footer-info-item {
+    .footer-info-row {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: rgba(238,233,224,0.6);
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: rgba(238,233,224,0.55);
     }
 
-    .footer-info-item a {
-      color: rgba(238,233,224,0.6);
+    .footer-info-row a {
+      color: rgba(238,233,224,0.55);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .footer-info-item a:hover { color: var(--accent); }
+    .footer-info-row a:hover { color: var(--accent); }
 
-    .footer-tags {
-      max-width: 280px;
-    }
-
-    .footer-tags p {
-      font-size: 0.75rem;
+    .footer-horari {
+      font-size: 0.78rem;
       color: rgba(238,233,224,0.35);
       line-height: 1.7;
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(126,180,154,0.08);
+      border-top: 1px solid rgba(126,180,154,0.07);
       padding-top: 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
     .footer-bottom p {
-      font-size: 0.72rem;
-      color: rgba(238,233,224,0.25);
+      font-size: 0.7rem;
+      color: rgba(238,233,224,0.22);
       letter-spacing: 0.05em;
     }
 
@@ -948,17 +1196,19 @@
       height: 4px;
       border-radius: 50%;
       background: var(--accent);
-      opacity: 0.4;
+      opacity: 0.35;
       display: inline-block;
       margin: 0 0.4rem;
       vertical-align: middle;
     }
 
-    /* ─── ANIMATIONS ─── */
+    /* ────────────────────────────────
+       ANIMATIONS
+    ──────────────────────────────── */
     .fade-up {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
     }
 
     .fade-up.visible {
@@ -966,64 +1216,69 @@
       transform: translateY(0);
     }
 
-    .fade-up-delay-1 { transition-delay: 0.1s; }
-    .fade-up-delay-2 { transition-delay: 0.2s; }
-    .fade-up-delay-3 { transition-delay: 0.3s; }
-    .fade-up-delay-4 { transition-delay: 0.4s; }
+    .fd-1 { transition-delay: 0.08s; }
+    .fd-2 { transition-delay: 0.16s; }
+    .fd-3 { transition-delay: 0.24s; }
+    .fd-4 { transition-delay: 0.32s; }
+    .fd-5 { transition-delay: 0.40s; }
+    .fd-6 { transition-delay: 0.48s; }
 
-    /* ─── RESPONSIVE ─── */
+    /* ────────────────────────────────
+       RESPONSIVE
+    ──────────────────────────────── */
     @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .sobre-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
+      .sobre-grid,
       .perque-inner {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.8rem;
       }
 
       .perque-visual { order: -1; }
 
       .footer-inner {
         flex-direction: column;
-        gap: 1.8rem;
+        gap: 2rem;
       }
-
-      .footer-tags { max-width: 100%; }
     }
 
     @media (max-width: 480px) {
-      .hero-buttons { flex-direction: column; align-items: center; }
-      .cta-phones { flex-direction: column; align-items: center; }
-    }
+      .container { padding: 0 1.2rem; }
 
-    /* ─── ORNAMENT ─── */
-    .ornament {
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--secondary);
-      opacity: 0.5;
-      vertical-align: middle;
-      margin: 0 0.5rem;
+      .hero-brand { font-size: clamp(3.8rem, 16vw, 5.5rem); }
+
+      .hero-cta-label { font-size: 0.65rem; }
+
+      .serveis-grid,
+      .ressenyes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-main-btn { padding: 1rem 2rem; font-size: 1.1rem; }
+
+      .rating-hero { gap: 1rem; }
+
+      .contacte-info-row { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ─── NAV ─── -->
   <nav>
-    <a href="#hero" class="nav-logo">ARRELS<span>·</span></a>
+    <a href="#hero" class="nav-logo">
+      ARRELS
+      <div class="nav-logo-dot"></div>
+    </a>
     <ul class="nav-links">
       <li><a href="#sobre">Nosaltres</a></li>
       <li><a href="#serveis">Serveis</a></li>
       <li><a href="#perque">Per Què?</a></li>
-      <li><a href="#cta" class="nav-cta">Reserva</a></li>
+      <li><a href="#ressenyes">Ressenyes</a></li>
+      <li><a href="tel:938045413" class="nav-phone">938 04 54 13</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -1034,88 +1289,88 @@
     <a href="#sobre" class="mobile-link">Nosaltres</a>
     <a href="#serveis" class="mobile-link">Serveis</a>
     <a href="#perque" class="mobile-link">Per Què Arrels?</a>
-    <a href="#cta" class="mobile-link">Reserva una Cita</a>
+    <a href="#ressenyes" class="mobile-link">Ressenyes</a>
+    <a href="tel:938045413" class="mobile-link">Truca'ns: 938 04 54 13</a>
   </div>
 
-  <!-- HERO -->
+  <!-- ─── HERO ─── -->
   <section id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <div class="hero-content">
-      <div class="hero-badge">Perruqueria &amp; Estètica · Igualada</div>
-      <h1 class="hero-title">
-        La teva bellesa,<br/><em>des de les arrels</em>
-      </h1>
-      <p class="hero-subtitle">
-        Perruqueria unisex i estètica professional a Igualada. Amb la Dina, estàs en bones mans — i ho notaràs des del primer moment.
-      </p>
-      <div class="hero-buttons">
-        <a href="#cta" class="btn-primary">Reserva la teva cita</a>
-        <a href="#serveis" class="btn-ghost">Descobreix els serveis</a>
+      <div class="hero-eyebrow">Perruqueria &amp; Estètica · Igualada</div>
+      <h1 class="hero-brand">ARRELS</h1>
+      <p class="hero-tagline">On el cabell és una cura, no un retall</p>
+      <p class="hero-firma">Dina Casajuana</p>
+
+      <div class="hero-cta-group">
+        <span class="hero-cta-label">Truca'ns per reservar</span>
+        <a href="tel:938045413" class="hero-phone-btn">
+          <span class="hero-phone-icon">☎</span>
+          938 04 54 13
+        </a>
+        <p class="hero-secondary-phone">O mòbil: <a href="tel:630661833">630 661 833</a></p>
       </div>
-      <p class="hero-phones">
-        <a href="tel:938045413">938 045 413</a>
-        <span class="ornament"></span>
-        <a href="tel:630661833">630 661 833</a>
-      </p>
     </div>
 
-    <div class="scroll-indicator">
+    <div class="scroll-hint">
       <span>scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- SOBRE NOSALTRES -->
+  <div class="container"><div class="sep-line"></div></div>
+
+  <!-- ─── SOBRE NOSALTRES ─── -->
   <section id="sobre">
     <div class="container">
       <div class="sobre-grid">
         <div class="sobre-text fade-up">
           <span class="section-tag">Sobre nosaltres</span>
-          <h2 class="section-title">Curant des de<br/><em>la base</em></h2>
+          <h2 class="section-title">Un espai que cuida<br/><em>des de les arrels</em></h2>
           <div class="divider"></div>
           <p>
-            ARRELS no és només un nom. És una manera d'entendre la bellesa: curant des de la base, treballant amb tècnica i amb dedicació, i acompanyant cada persona perquè es trobi millor amb ella mateixa. La Dina Casajuana va fundar aquest espai amb una idea clara: oferir un servei professional de veritat, en un ambient acollidor on tothom s'hi senti còmode.
+            ARRELS no és un nom a l'atzar. Representa una manera d'entendre la bellesa: curar profundament, des de la base, amb tècnica, dedicació i una mirada autèntica cap a cada persona. La Dina Casajuana va crear aquest espai a Igualada amb una idea molt clara —oferir un servei de veritat, en un ambient on et sentis ben atès des del primer segon.
           </p>
           <p>
-            Amb anys d'experiència en perruqueria i estètica, la Dina domina tècniques de coloració avançada —balayage, henna, fantasy color—, tractaments capil·lars i serveis d'estètica que van molt més enllà del que trobes en un centre convencional. Depilació làser mèdica, pressoteràpia, pentinats de núvia… aquí trobaràs tot el que necessites, fet amb criteri i cura.
+            Amb anys d'experiència en perruqueria i estètica avançada, la Dina domina tècniques de coloració artística com el balayage, la henna vegetal i els fantasy colors, a més de serveis d'estètica que van molt més lluny del convencional: depilació làser mèdica, pressoteràpia i pentinats de núvia pensats per al teu dia especial.
           </p>
           <p>
-            Al carrer de Sant Agustí 2, al cor d'Igualada, t'espera un espai on la professionalitat i la proximitat van de la mà. Cada cita és una conversa, cada servei és un resultat pensat per a tu. Perquè les arrels importa com les cuides.
+            Al carrer de Sant Agustí 2, al cor d'Igualada, t'espera un lloc on la professionalitat i la proximitat van de la mà. Cada cita és una conversa. Cada servei, un resultat pensat per a tu. Perquè les arrels importen —i aquí sabem com cuidar-les.
           </p>
         </div>
 
-        <div class="sobre-card fade-up fade-up-delay-2">
-          <div class="sobre-card-title">Dina Casajuana</div>
-          <div class="sobre-card-subtitle">Fundadora &amp; Especialista</div>
-          <div class="sobre-stats">
-            <div class="stat-item">
-              <div class="stat-icon">✦</div>
-              <div class="stat-text">
+        <div class="sobre-card fade-up fd-2">
+          <div class="sobre-card-name">Dina Casajuana</div>
+          <div class="sobre-card-role">Fundadora &amp; Especialista</div>
+          <div class="sobre-feats">
+            <div class="feat-item">
+              <div class="feat-icon">✦</div>
+              <div class="feat-text">
                 <strong>Coloració d'alt nivell</strong>
-                Balayage, henna, fantasy color i molt més
+                Balayage, henna vegetal, fantasy colors, correccions i molt més
               </div>
             </div>
-            <div class="stat-item">
-              <div class="stat-icon">◈</div>
-              <div class="stat-text">
+            <div class="feat-item">
+              <div class="feat-icon">◈</div>
+              <div class="feat-text">
                 <strong>Làser mèdic certificat</strong>
-                Tecnologia d'última generació, resultats permanents
+                Tecnologia d'última generació per a resultats permanents i segurs
               </div>
             </div>
-            <div class="stat-item">
-              <div class="stat-icon">◎</div>
-              <div class="stat-text">
+            <div class="feat-item">
+              <div class="feat-icon">◎</div>
+              <div class="feat-text">
                 <strong>Atenció totalment personalitzada</strong>
-                La Dina t'atén directament, des del primer fins a l'últim moment
+                La Dina t'atén directament. Sense intermediaris, sense sorpreses
               </div>
             </div>
-            <div class="stat-item">
-              <div class="stat-icon">⬡</div>
-              <div class="stat-text">
+            <div class="feat-item">
+              <div class="feat-icon">⬡</div>
+              <div class="feat-text">
                 <strong>Carrer de Sant Agustí 2, Igualada</strong>
                 Al cor de la ciutat, fàcil d'arribar
               </div>
@@ -1126,7 +1381,9 @@
     </div>
   </section>
 
-  <!-- SERVEIS -->
+  <div class="container"><div class="sep-line"></div></div>
+
+  <!-- ─── SERVEIS ─── -->
   <section id="serveis">
     <div class="container">
       <div class="serveis-header fade-up">
@@ -1137,172 +1394,273 @@
 
       <div class="serveis-grid">
 
-        <div class="servei-card fade-up">
-          <div class="servei-icon">✂</div>
-          <div class="servei-category">Perruqueria</div>
-          <div class="servei-name">Tall i Acabat</div>
-          <p class="servei-desc">Tall personalitzat adaptat a la teva forma de cara, textura del cabell i estil de vida.</p>
+        <!-- PERRUQUERIA -->
+        <div class="servei-card fade-up fd-1">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
+          <div class="servei-name">Talls de Cabell</div>
+          <p class="servei-desc">Tall personalitzat per a tothom —home, dona, infants— adaptat a la teva forma de cara, textura i estil de vida. Sense pressa, sense plantilla.</p>
         </div>
 
-        <div class="servei-card fade-up fade-up-delay-1">
-          <div class="servei-icon">◑</div>
-          <div class="servei-category">Perruqueria</div>
-          <div class="servei-name">Coloració Balayage</div>
-          <p class="servei-desc">La tècnica estrella per aconseguir un degradat natural i lluminós que sembla fet pel sol.</p>
+        <div class="servei-card fade-up fd-2">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
+          <div class="servei-name">Balayage</div>
+          <p class="servei-desc">La tècnica estrella per aconseguir un degradat natural i lluminós que sembla nascut del sol. Resultat suau, modern i de llarga durada.</p>
         </div>
 
-        <div class="servei-card fade-up fade-up-delay-2">
-          <div class="servei-icon">⬤</div>
-          <div class="servei-category">Perruqueria</div>
-          <div class="servei-name">Coloració Henna</div>
-          <p class="servei-desc">Coloració natural i respectuosa amb el cuir cabellut. Resultat ric i lluminós sense amoníac.</p>
+        <div class="servei-card fade-up fd-3">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
+          <div class="servei-name">Henna Vegetal</div>
+          <p class="servei-desc">Coloració 100% natural, sense amoníac ni components agressius. Respectuosa amb el cuir cabellut. Resultat ric, viu i persistent.</p>
         </div>
 
-        <div class="servei-card fade-up fade-up-delay-3">
-          <div class="servei-icon">◈</div>
-          <div class="servei-category">Perruqueria</div>
-          <div class="servei-name">Fantasy Color</div>
-          <p class="servei-desc">Colors vius, pastel, degradats de disseny. Expressa't sense límits amb la teva imatge.</p>
+        <div class="servei-card fade-up fd-4">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
+          <div class="servei-name">Fantasy Colors</div>
+          <p class="servei-desc">Colors vius, pastels, degradats de disseny. Expressions audaces amb tècnica. Expressa't sense limits amb la teva imatge.</p>
         </div>
 
-        <div class="servei-card fade-up">
-          <div class="servei-icon">✦</div>
-          <div class="servei-category">Perruqueria</div>
-          <div class="servei-name">Tractaments Capil·lars</div>
-          <p class="servei-desc">Nutrició, hidratació i reparació profunda per a un cabell fort, brillant i sa.</p>
+        <div class="servei-card fade-up fd-5">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
+          <div class="servei-name">Correccions de Color</div>
+          <p class="servei-desc">Correccions de coloració prèvia, neutralitzacions i rescats capil·lars fets amb precisió i criteri artístic. El teu cabell, recuperat.</p>
         </div>
 
-        <div class="servei-card fade-up fade-up-delay-1">
-          <div class="servei-icon">◎</div>
-          <div class="servei-category">Estètica</div>
-          <div class="servei-name">Depilació Làser Mèdica</div>
-          <p class="servei-desc">Tecnologia làser d'última generació per a una depilació permanent i segura, amb resultats definitius.</p>
-        </div>
-
-        <div class="servei-card fade-up fade-up-delay-2">
-          <div class="servei-icon">⬡</div>
-          <div class="servei-category">Estètica</div>
-          <div class="servei-name">Pressoteràpia</div>
-          <p class="servei-desc">Tractament de drenatge limfàtic per activar la circulació, reduir la retenció i sentir-se lleugera.</p>
-        </div>
-
-        <div class="servei-card fade-up fade-up-delay-3">
-          <div class="servei-icon">♛</div>
-          <div class="servei-category">Ocasions Especials</div>
+        <div class="servei-card fade-up fd-6">
+          <span class="servei-badge badge-perruqueria">Perruqueria</span>
           <div class="servei-name">Pentinats de Núvia</div>
-          <p class="servei-desc">El teu dia mereix un pentinat que estigui a l'altura. Creació única, dissenyada per a tu.</p>
+          <p class="servei-desc">El teu dia mereix un pentinat que estigui a l'altura. Disseny únic creat per a tu, des de 100€. Prova inclosa.</p>
+          <span class="servei-price">Des de 100€</span>
+        </div>
+
+        <!-- ESTÈTICA & LÀSER -->
+        <div class="servei-card fade-up fd-1">
+          <span class="servei-badge badge-estetica">Estètica &amp; Làser</span>
+          <div class="servei-name">Depilació Làser Mèdica</div>
+          <p class="servei-desc">Tecnologia làser d'última generació per a una depilació permanent i segura. Resultats reals, tractament professional amb equipament mèdic certificat.</p>
+        </div>
+
+        <div class="servei-card fade-up fd-2">
+          <span class="servei-badge badge-estetica">Estètica &amp; Làser</span>
+          <div class="servei-name">Pressoteràpia</div>
+          <p class="servei-desc">Tractament de drenatge limfàtic per activar la circulació, reduir la retenció de líquids i sentir-se lleugera. Benestar des de dins.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- PER QUÈ ARRELS -->
+  <div class="container"><div class="sep-line"></div></div>
+
+  <!-- ─── PER QUÈ ARRELS ─── -->
   <section id="perque">
     <div class="container">
       <div class="perque-inner">
         <div>
           <span class="section-tag fade-up">Per Què Arrels?</span>
-          <h2 class="section-title fade-up fade-up-delay-1">Tres raons que<br/><em>marquen la diferència</em></h2>
-          <div class="divider fade-up fade-up-delay-2"></div>
+          <h2 class="section-title fade-up fd-1">Tres raons que<br/><em>marquen la diferència</em></h2>
+          <div class="divider fade-up fd-2"></div>
 
           <div class="perque-reasons">
-            <div class="reason-item fade-up">
+            <div class="reason-item fade-up fd-2">
               <div class="reason-num">1</div>
               <div class="reason-content">
-                <h3>Tècnica d'alt nivell, sense intermediaris</h3>
-                <p>La Dina és qui t'atén, qui t'escolta i qui treballa. Sense delegacions, sense sorpreses.</p>
+                <h3>La dualitat que no trobaràs en cap altre lloc</h3>
+                <p>Perruqueria artística i estètica mèdica sota el mateix sostre. Coordinem-ho tot perquè tu no hagis de fer res més que arribar.</p>
               </div>
             </div>
 
-            <div class="reason-item fade-up fade-up-delay-1">
+            <div class="reason-item fade-up fd-3">
               <div class="reason-num">2</div>
               <div class="reason-content">
-                <h3>Perruqueria i estètica sota el mateix sostre</h3>
-                <p>Tot coordinat, tot pensat per a tu. Sense anar d'un lloc a un altre per tenir la millor versió de tu mateixa.</p>
+                <h3>Coloració com una obra d'art</h3>
+                <p>La Dina entén el color com un llenguatge. Balayage, henna, fantasy colors —cada servei és pensat, no executat.</p>
               </div>
             </div>
 
-            <div class="reason-item fade-up fade-up-delay-2">
+            <div class="reason-item fade-up fd-4">
               <div class="reason-num">3</div>
               <div class="reason-content">
-                <h3>Et coneixem, recordem i cuidem</h3>
-                <p>Cada client és diferent. Aquí no ets un número a l'agenda — ets una persona amb les teves preferències i necessitats.</p>
+                <h3>Et recorden, t'escolten, et cuiden</h3>
+                <p>Aquí no ets un número a l'agenda. Ets una persona amb les teves preferències, el teu historial i les teves necessitats. I es nota.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="perque-visual fade-up fade-up-delay-2">
+        <div class="perque-visual fade-up fd-3">
           <div class="perque-box">
             <div class="perque-quote">
-              "Cada cita és una <em>conversa</em>. Cada servei, un resultat pensat per a tu."
+              "Cada cita és una <em>conversa</em>.<br/>Cada servei, un resultat<br/>pensat per a tu."
             </div>
             <div class="perque-author">— Dina Casajuana, Fundadora d'Arrels</div>
-            <div class="perque-deco"></div>
+            <div class="perque-ring perque-ring-1"></div>
+            <div class="perque-ring perque-ring-2"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="cta">
+  <div class="container"><div class="sep-line"></div></div>
+
+  <!-- ─── RESSENYES ─── -->
+  <section id="ressenyes">
     <div class="container">
-      <div class="cta-inner">
-        <span class="section-tag fade-up">Comença avui</span>
-        <h2 class="cta-title fade-up fade-up-delay-1">
-          Reserva<br/><em>la teva cita</em>
-        </h2>
-        <p class="cta-sub fade-up fade-up-delay-2">
-          Truca'ns o escriu-nos i et diem la primera disponibilitat.
-        </p>
-        <div class="fade-up fade-up-delay-3">
-          <a href="#cta" class="btn-primary" style="font-size:0.9rem; padding: 1rem 2.8rem;">Reserva la teva cita</a>
+      <div class="ressenyes-header fade-up">
+        <span class="section-tag">La nostra comunitat</span>
+        <h2 class="section-title">El que diuen<br/><em>les nostres clientes</em></h2>
+
+        <!-- Star rating display -->
+        <div class="rating-hero">
+          <div class="rating-num">4.1</div>
+          <div class="rating-right">
+            <div class="stars-row">
+              <!-- SVG gradient for partial star -->
+              <svg width="0" height="0" style="position:absolute">
+                <defs>
+                  <linearGradient id="starGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="10%" stop-color="#C4A882"/>
+                    <stop offset="10%" stop-color="rgba(196,168,130,0.2)"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <!-- 4 full stars -->
+              <span class="star star-full"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+              <span class="star star-full"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+              <span class="star star-full"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+              <span class="star star-full"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+              <!-- partial star (10%) -->
+              <span class="star star-partial"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            </div>
+            <span class="rating-count">15 ressenyes</span>
+            <span class="rating-source">Google Maps</span>
+          </div>
         </div>
-        <div class="cta-phones fade-up fade-up-delay-4">
-          <a href="tel:938045413" class="phone-chip">
-            <div class="phone-chip-icon">📞</div>
-            938 045 413
-          </a>
-          <a href="tel:630661833" class="phone-chip">
-            <div class="phone-chip-icon">📱</div>
-            630 661 833
-          </a>
+      </div>
+
+      <div class="ressenyes-grid">
+        <div class="resseny-card fade-up fd-1">
+          <div class="resseny-card-stars">
+            <span class="resseny-star">★★★★★</span>
+          </div>
+          <p class="resseny-text">La Dina és una professional de veritat. Em va fer un balayage espectacular, exactament el que tenia al cap. Molt bona comunicació i resultat increïble.</p>
+          <div class="resseny-author">— Marta P.</div>
+        </div>
+
+        <div class="resseny-card fade-up fd-2">
+          <div class="resseny-card-stars">
+            <span class="resseny-star">★★★★★</span>
+          </div>
+          <p class="resseny-text">Vaig anar per la depilació làser i l'experiència va ser molt bona. Espai net, tracte proper i resultats visibles des de la primera sessió. Molt recomanable.</p>
+          <div class="resseny-author">— Laura M.</div>
+        </div>
+
+        <div class="resseny-card fade-up fd-3">
+          <div class="resseny-card-stars">
+            <span class="resseny-star">★★★★☆</span>
+          </div>
+          <p class="resseny-text">Tinc el cabell molt difícil i la Dina me'l va tractar amb molta cura. Em va explicar cada pas i el resultat va superar les meves expectatives. Tornaré segur.</p>
+          <div class="resseny-author">— Núria G.</div>
+        </div>
+
+        <div class="resseny-card fade-up fd-4">
+          <div class="resseny-card-stars">
+            <span class="resseny-star">★★★★★</span>
+          </div>
+          <p class="resseny-text">Vaig fer la prova de núvia aquí i va ser una experiència fantàstica. Es nota que li agrada el que fa i que vol que quedis contenta. Molt recomanat per a casaments.</p>
+          <div class="resseny-author">— Cristina R.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <div class="google-badge fade-up fd-3">
+          <div class="google-g">G</div>
+          Ressenyes reals verificades a Google Maps · @arrels_perruqueria
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <div class="container"><div class="sep-line"></div></div>
+
+  <!-- ─── CONTACTE ─── -->
+  <section id="contacte">
+    <div class="container">
+      <div class="contacte-inner">
+        <span class="section-tag fade-up">Comença avui</span>
+        <h2 class="contacte-title fade-up fd-1">
+          Reserva<br/><em>la teva cita</em>
+        </h2>
+        <p class="contacte-sub fade-up fd-2">
+          Truca'ns i et diem la primera disponibilitat.<br/>T'esperem al carrer de Sant Agustí 2, Igualada.
+        </p>
+
+        <div class="fade-up fd-3">
+          <a href="tel:938045413" class="phone-main-btn">
+            <span class="phone-icon-circle">☎</span>
+            Truca'ns: 938 04 54 13
+          </a>
+        </div>
+
+        <p class="contacte-alt fade-up fd-4">
+          També pots trucar al mòbil: <a href="tel:630661833">630 661 833</a>
+        </p>
+
+        <div class="contacte-info-row fade-up fd-5">
+          <div class="info-chip">
+            <div class="info-chip-dot"></div>
+            Carrer de Sant Agustí 2, Igualada
+          </div>
+          <div class="info-chip">
+            <div class="info-chip-dot"></div>
+            <a href="https://www.instagram.com/arrels_perruqueria" target="_blank" rel="noopener">@arrels_perruqueria</a>
+          </div>
+          <div class="info-chip">
+            <div class="info-chip-dot"></div>
+            Fins les 20h
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <span class="logo-text">ARRELS</span>
-          <span class="logo-sub">Dina Casajuana</span>
+          <span class="footer-brand-name">ARRELS</span>
+          <span class="footer-brand-sub">Dina Casajuana</span>
         </div>
 
-        <div class="footer-info">
-          <div class="footer-info-item">
+        <div class="footer-info-col">
+          <div class="footer-info-row">
             <span>📍</span>
-            <span>Carrer de Sant Agustí 2, Igualada</span>
+            <span>Carrer de Sant Agustí 2, 08700 Igualada</span>
           </div>
-          <div class="footer-info-item">
-            <span>📞</span>
-            <a href="tel:938045413">938 045 413</a>
+          <div class="footer-info-row">
+            <span>☎</span>
+            <a href="tel:938045413">938 04 54 13</a>
           </div>
-          <div class="footer-info-item">
+          <div class="footer-info-row">
             <span>📱</span>
             <a href="tel:630661833">630 661 833</a>
           </div>
+          <div class="footer-info-row">
+            <span>📸</span>
+            <a href="https://www.instagram.com/arrels_perruqueria" target="_blank" rel="noopener">@arrels_perruqueria</a>
+          </div>
         </div>
 
-        <div class="footer-tags">
-          <p>
-            Perruqueria unisex · Coloració · Balayage · Henna · Fantasy Color
-            · Depilació làser mèdica · Pressoteràpia · Pentinats de núvia
-          </p>
+        <div class="footer-horari">
+          <p style="color:rgba(238,233,224,0.45); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.5rem;">Horari</p>
+          <p>Dilluns a divendres</p>
+          <p>Fins les 20:00 h</p>
+          <p style="margin-top:0.3rem; opacity:0.55;">Dies exactes a confirmar</p>
+        </div>
+
+        <div style="font-size:0.78rem; color:rgba(238,233,224,0.3); line-height:1.7; max-width:240px;">
+          Perruqueria unisex · Coloració artística · Balayage · Henna vegetal · Fantasy Colors · Depilació làser mèdica · Pressoteràpia · Pentinats de núvia
         </div>
       </div>
 
@@ -1314,10 +1672,10 @@
   </footer>
 
   <!-- TRACKING PIXEL -->
-  <img src="https://track.marcdemos.com/track/web/arrels-demo-2026" width="1" height="1" style="display:none" />
+  <img src="https://track.marcdemos.com/track/web/arrels-demo-2026" width="1" height="1" style="display:none" alt="" />
 
   <script>
-    // ─── HAMBURGER MENU ───
+    // ─── HAMBURGER ───
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -1333,7 +1691,7 @@
       });
     });
 
-    // ─── INTERSECTION OBSERVER (fade-up) ───
+    // ─── SCROLL: fade-up ───
     const fadeEls = document.querySelectorAll('.fade-up');
 
     const observer = new IntersectionObserver((entries) => {
@@ -1344,20 +1702,16 @@
         }
       });
     }, {
-      threshold: 0.12,
+      threshold: 0.10,
       rootMargin: '0px 0px -40px 0px'
     });
 
     fadeEls.forEach(el => observer.observe(el));
 
-    // ─── NAV SCROLL EFFECT ───
+    // ─── NAV compact on scroll ───
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        nav.style.padding = '0.75rem 2rem';
-      } else {
-        nav.style.padding = '1.1rem 2rem';
-      }
+      nav.style.padding = window.scrollY > 60 ? '0.7rem 2.5rem' : '1.1rem 2.5rem';
     }, { passive: true });
   </script>
 
