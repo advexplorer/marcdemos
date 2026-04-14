@@ -114,11 +114,13 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 0 40px;
       background: linear-gradient(160deg, var(--bg-warm) 0%, var(--bg) 60%);
       max-width: none;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
 
     #hero::before {
@@ -130,7 +132,7 @@
       pointer-events: none;
     }
 
-    .hero-inner { max-width: 700px; }
+    .hero-inner { max-width: 700px; margin: 0 auto; }
 
     .hero-badge {
       display: inline-block;
@@ -157,11 +159,11 @@
       font-size: 18px;
       color: var(--muted);
       max-width: 500px;
-      margin-bottom: 40px;
+      margin: 0 auto 40px;
       line-height: 1.7;
     }
 
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
     .btn {
       display: inline-flex;
