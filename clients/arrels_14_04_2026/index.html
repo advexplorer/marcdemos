@@ -135,6 +135,38 @@
       border-color: var(--secondary) !important;
     }
 
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 3px;
+      border: 1px solid rgba(126,180,154,0.18);
+      margin-right: 8px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(238,233,224,0.5);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+    }
+
     /* Hamburger */
     .hamburger {
       display: none;
@@ -1274,23 +1306,27 @@
       <div class="nav-logo-dot"></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#sobre">Nosaltres</a></li>
-      <li><a href="#serveis">Serveis</a></li>
-      <li><a href="#perque">Per Què?</a></li>
-      <li><a href="#ressenyes">Ressenyes</a></li>
+      <li><a href="#sobre" data-i18n="nav.nosaltres">Nosaltres</a></li>
+      <li><a href="#serveis" data-i18n="nav.serveis">Serveis</a></li>
+      <li><a href="#perque" data-i18n="nav.perque">Per Què?</a></li>
+      <li><a href="#ressenyes" data-i18n="nav.ressenyes">Ressenyes</a></li>
       <li><a href="tel:938045413" class="nav-phone">938 04 54 13</a></li>
     </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ca" onclick="setLang('ca')">CA</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#sobre" class="mobile-link">Nosaltres</a>
-    <a href="#serveis" class="mobile-link">Serveis</a>
-    <a href="#perque" class="mobile-link">Per Què Arrels?</a>
-    <a href="#ressenyes" class="mobile-link">Ressenyes</a>
-    <a href="tel:938045413" class="mobile-link">Truca'ns: 938 04 54 13</a>
+    <a href="#sobre" class="mobile-link" data-i18n="mobile.nosaltres">Nosaltres</a>
+    <a href="#serveis" class="mobile-link" data-i18n="mobile.serveis">Serveis</a>
+    <a href="#perque" class="mobile-link" data-i18n="mobile.perque">Per Què Arrels?</a>
+    <a href="#ressenyes" class="mobile-link" data-i18n="mobile.ressenyes">Ressenyes</a>
+    <a href="tel:938045413" class="mobile-link" data-i18n="mobile.trucar">Truca'ns: 938 04 54 13</a>
   </div>
 
   <!-- ─── HERO ─── -->
@@ -1301,18 +1337,18 @@
     <div class="orb orb-3"></div>
 
     <div class="hero-content">
-      <div class="hero-eyebrow">Perruqueria &amp; Estètica · Igualada</div>
+      <div class="hero-eyebrow" data-i18n="hero.eyebrow">Perruqueria &amp; Estètica · Igualada</div>
       <h1 class="hero-brand">ARRELS</h1>
-      <p class="hero-tagline">On el cabell és una cura, no un retall</p>
+      <p class="hero-tagline" data-i18n="hero.tagline">On el cabell és una cura, no un retall</p>
       <p class="hero-firma">Dina Casajuana</p>
 
       <div class="hero-cta-group">
-        <span class="hero-cta-label">Truca'ns per reservar</span>
+        <span class="hero-cta-label" data-i18n="hero.cta.label">Truca'ns per reservar</span>
         <a href="tel:938045413" class="hero-phone-btn">
           <span class="hero-phone-icon">☎</span>
           938 04 54 13
         </a>
-        <p class="hero-secondary-phone">O mòbil: <a href="tel:630661833">630 661 833</a></p>
+        <p class="hero-secondary-phone" data-i18n="hero.secondary.phone">O mòbil: <a href="tel:630661833">630 661 833</a></p>
       </div>
     </div>
 
@@ -1329,48 +1365,48 @@
     <div class="container">
       <div class="sobre-grid">
         <div class="sobre-text fade-up">
-          <span class="section-tag">Sobre nosaltres</span>
-          <h2 class="section-title">Un espai que cuida<br/><em>des de les arrels</em></h2>
+          <span class="section-tag" data-i18n="sobre.tag">Sobre nosaltres</span>
+          <h2 class="section-title" data-i18n="sobre.title">Un espai que cuida<br/><em>des de les arrels</em></h2>
           <div class="divider"></div>
-          <p>
+          <p data-i18n="sobre.p1">
             ARRELS no és un nom a l'atzar. Representa una manera d'entendre la bellesa: curar profundament, des de la base, amb tècnica, dedicació i una mirada autèntica cap a cada persona. La Dina Casajuana va crear aquest espai a Igualada amb una idea molt clara —oferir un servei de veritat, en un ambient on et sentis ben atès des del primer segon.
           </p>
-          <p>
+          <p data-i18n="sobre.p2">
             Amb anys d'experiència en perruqueria i estètica avançada, la Dina domina tècniques de coloració artística com el balayage, la henna vegetal i els fantasy colors, a més de serveis d'estètica que van molt més lluny del convencional: depilació làser mèdica, pressoteràpia i pentinats de núvia pensats per al teu dia especial.
           </p>
-          <p>
+          <p data-i18n="sobre.p3">
             Al carrer de Sant Agustí 2, al cor d'Igualada, t'espera un lloc on la professionalitat i la proximitat van de la mà. Cada cita és una conversa. Cada servei, un resultat pensat per a tu. Perquè les arrels importen —i aquí sabem com cuidar-les.
           </p>
         </div>
 
         <div class="sobre-card fade-up fd-2">
           <div class="sobre-card-name">Dina Casajuana</div>
-          <div class="sobre-card-role">Fundadora &amp; Especialista</div>
+          <div class="sobre-card-role" data-i18n="sobre.card.role">Fundadora &amp; Especialista</div>
           <div class="sobre-feats">
             <div class="feat-item">
               <div class="feat-icon">✦</div>
-              <div class="feat-text">
+              <div class="feat-text" data-i18n="sobre.feat1">
                 <strong>Coloració d'alt nivell</strong>
                 Balayage, henna vegetal, fantasy colors, correccions i molt més
               </div>
             </div>
             <div class="feat-item">
               <div class="feat-icon">◈</div>
-              <div class="feat-text">
+              <div class="feat-text" data-i18n="sobre.feat2">
                 <strong>Làser mèdic certificat</strong>
                 Tecnologia d'última generació per a resultats permanents i segurs
               </div>
             </div>
             <div class="feat-item">
               <div class="feat-icon">◎</div>
-              <div class="feat-text">
+              <div class="feat-text" data-i18n="sobre.feat3">
                 <strong>Atenció totalment personalitzada</strong>
                 La Dina t'atén directament. Sense intermediaris, sense sorpreses
               </div>
             </div>
             <div class="feat-item">
               <div class="feat-icon">⬡</div>
-              <div class="feat-text">
+              <div class="feat-text" data-i18n="sobre.feat4">
                 <strong>Carrer de Sant Agustí 2, Igualada</strong>
                 Al cor de la ciutat, fàcil d'arribar
               </div>
@@ -1387,8 +1423,8 @@
   <section id="serveis">
     <div class="container">
       <div class="serveis-header fade-up">
-        <span class="section-tag">El nostre catàleg</span>
-        <h2 class="section-title">Tot el que necessites,<br/><em>sota el mateix sostre</em></h2>
+        <span class="section-tag" data-i18n="serveis.tag">El nostre catàleg</span>
+        <h2 class="section-title" data-i18n="serveis.title">Tot el que necessites,<br/><em>sota el mateix sostre</em></h2>
         <div class="divider"></div>
       </div>
 
@@ -1396,53 +1432,53 @@
 
         <!-- PERRUQUERIA -->
         <div class="servei-card fade-up fd-1">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Talls de Cabell</div>
-          <p class="servei-desc">Tall personalitzat per a tothom —home, dona, infants— adaptat a la teva forma de cara, textura i estil de vida. Sense pressa, sense plantilla.</p>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.tall.nom">Talls de Cabell</div>
+          <p class="servei-desc" data-i18n="serv.tall.desc">Tall personalitzat per a tothom —home, dona, infants— adaptat a la teva forma de cara, textura i estil de vida. Sense pressa, sense plantilla.</p>
         </div>
 
         <div class="servei-card fade-up fd-2">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Balayage</div>
-          <p class="servei-desc">La tècnica estrella per aconseguir un degradat natural i lluminós que sembla nascut del sol. Resultat suau, modern i de llarga durada.</p>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.balayage.nom">Balayage</div>
+          <p class="servei-desc" data-i18n="serv.balayage.desc">La tècnica estrella per aconseguir un degradat natural i lluminós que sembla nascut del sol. Resultat suau, modern i de llarga durada.</p>
         </div>
 
         <div class="servei-card fade-up fd-3">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Henna Vegetal</div>
-          <p class="servei-desc">Coloració 100% natural, sense amoníac ni components agressius. Respectuosa amb el cuir cabellut. Resultat ric, viu i persistent.</p>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.henna.nom">Henna Vegetal</div>
+          <p class="servei-desc" data-i18n="serv.henna.desc">Coloració 100% natural, sense amoníac ni components agressius. Respectuosa amb el cuir cabellut. Resultat ric, viu i persistent.</p>
         </div>
 
         <div class="servei-card fade-up fd-4">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Fantasy Colors</div>
-          <p class="servei-desc">Colors vius, pastels, degradats de disseny. Expressions audaces amb tècnica. Expressa't sense limits amb la teva imatge.</p>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.fantasy.nom">Fantasy Colors</div>
+          <p class="servei-desc" data-i18n="serv.fantasy.desc">Colors vius, pastels, degradats de disseny. Expressions audaces amb tècnica. Expressa't sense limits amb la teva imatge.</p>
         </div>
 
         <div class="servei-card fade-up fd-5">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Correccions de Color</div>
-          <p class="servei-desc">Correccions de coloració prèvia, neutralitzacions i rescats capil·lars fets amb precisió i criteri artístic. El teu cabell, recuperat.</p>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.correccions.nom">Correccions de Color</div>
+          <p class="servei-desc" data-i18n="serv.correccions.desc">Correccions de coloració prèvia, neutralitzacions i rescats capil·lars fets amb precisió i criteri artístic. El teu cabell, recuperat.</p>
         </div>
 
         <div class="servei-card fade-up fd-6">
-          <span class="servei-badge badge-perruqueria">Perruqueria</span>
-          <div class="servei-name">Pentinats de Núvia</div>
-          <p class="servei-desc">El teu dia mereix un pentinat que estigui a l'altura. Disseny únic creat per a tu, des de 100€. Prova inclosa.</p>
-          <span class="servei-price">Des de 100€</span>
+          <span class="servei-badge badge-perruqueria" data-i18n="badge.perruqueria">Perruqueria</span>
+          <div class="servei-name" data-i18n="serv.nuvia.nom">Pentinats de Núvia</div>
+          <p class="servei-desc" data-i18n="serv.nuvia.desc">El teu dia mereix un pentinat que estigui a l'altura. Disseny únic creat per a tu, des de 100€. Prova inclosa.</p>
+          <span class="servei-price" data-i18n="serv.nuvia.preu">Des de 100€</span>
         </div>
 
         <!-- ESTÈTICA & LÀSER -->
         <div class="servei-card fade-up fd-1">
-          <span class="servei-badge badge-estetica">Estètica &amp; Làser</span>
-          <div class="servei-name">Depilació Làser Mèdica</div>
-          <p class="servei-desc">Tecnologia làser d'última generació per a una depilació permanent i segura. Resultats reals, tractament professional amb equipament mèdic certificat.</p>
+          <span class="servei-badge badge-estetica" data-i18n="badge.estetica">Estètica &amp; Làser</span>
+          <div class="servei-name" data-i18n="serv.laser.nom">Depilació Làser Mèdica</div>
+          <p class="servei-desc" data-i18n="serv.laser.desc">Tecnologia làser d'última generació per a una depilació permanent i segura. Resultats reals, tractament professional amb equipament mèdic certificat.</p>
         </div>
 
         <div class="servei-card fade-up fd-2">
-          <span class="servei-badge badge-estetica">Estètica &amp; Làser</span>
-          <div class="servei-name">Pressoteràpia</div>
-          <p class="servei-desc">Tractament de drenatge limfàtic per activar la circulació, reduir la retenció de líquids i sentir-se lleugera. Benestar des de dins.</p>
+          <span class="servei-badge badge-estetica" data-i18n="badge.estetica">Estètica &amp; Làser</span>
+          <div class="servei-name" data-i18n="serv.presso.nom">Pressoteràpia</div>
+          <p class="servei-desc" data-i18n="serv.presso.desc">Tractament de drenatge limfàtic per activar la circulació, reduir la retenció de líquids i sentir-se lleugera. Benestar des de dins.</p>
         </div>
 
       </div>
@@ -1456,32 +1492,32 @@
     <div class="container">
       <div class="perque-inner">
         <div>
-          <span class="section-tag fade-up">Per Què Arrels?</span>
-          <h2 class="section-title fade-up fd-1">Tres raons que<br/><em>marquen la diferència</em></h2>
+          <span class="section-tag fade-up" data-i18n="perque.tag">Per Què Arrels?</span>
+          <h2 class="section-title fade-up fd-1" data-i18n="perque.title">Tres raons que<br/><em>marquen la diferència</em></h2>
           <div class="divider fade-up fd-2"></div>
 
           <div class="perque-reasons">
             <div class="reason-item fade-up fd-2">
               <div class="reason-num">1</div>
               <div class="reason-content">
-                <h3>La dualitat que no trobaràs en cap altre lloc</h3>
-                <p>Perruqueria artística i estètica mèdica sota el mateix sostre. Coordinem-ho tot perquè tu no hagis de fer res més que arribar.</p>
+                <h3 data-i18n="perque.r1.title">La dualitat que no trobaràs en cap altre lloc</h3>
+                <p data-i18n="perque.r1.desc">Perruqueria artística i estètica mèdica sota el mateix sostre. Coordinem-ho tot perquè tu no hagis de fer res més que arribar.</p>
               </div>
             </div>
 
             <div class="reason-item fade-up fd-3">
               <div class="reason-num">2</div>
               <div class="reason-content">
-                <h3>Coloració com una obra d'art</h3>
-                <p>La Dina entén el color com un llenguatge. Balayage, henna, fantasy colors —cada servei és pensat, no executat.</p>
+                <h3 data-i18n="perque.r2.title">Coloració com una obra d'art</h3>
+                <p data-i18n="perque.r2.desc">La Dina entén el color com un llenguatge. Balayage, henna, fantasy colors —cada servei és pensat, no executat.</p>
               </div>
             </div>
 
             <div class="reason-item fade-up fd-4">
               <div class="reason-num">3</div>
               <div class="reason-content">
-                <h3>Et recorden, t'escolten, et cuiden</h3>
-                <p>Aquí no ets un número a l'agenda. Ets una persona amb les teves preferències, el teu historial i les teves necessitats. I es nota.</p>
+                <h3 data-i18n="perque.r3.title">Et recorden, t'escolten, et cuiden</h3>
+                <p data-i18n="perque.r3.desc">Aquí no ets un número a l'agenda. Ets una persona amb les teves preferències, el teu historial i les teves necessitats. I es nota.</p>
               </div>
             </div>
           </div>
@@ -1489,10 +1525,10 @@
 
         <div class="perque-visual fade-up fd-3">
           <div class="perque-box">
-            <div class="perque-quote">
+            <div class="perque-quote" data-i18n="perque.quote">
               "Cada cita és una <em>conversa</em>.<br/>Cada servei, un resultat<br/>pensat per a tu."
             </div>
-            <div class="perque-author">— Dina Casajuana, Fundadora d'Arrels</div>
+            <div class="perque-author" data-i18n="perque.author">— Dina Casajuana, Fundadora d'Arrels</div>
             <div class="perque-ring perque-ring-1"></div>
             <div class="perque-ring perque-ring-2"></div>
           </div>
@@ -1507,8 +1543,8 @@
   <section id="ressenyes">
     <div class="container">
       <div class="ressenyes-header fade-up">
-        <span class="section-tag">La nostra comunitat</span>
-        <h2 class="section-title">El que diuen<br/><em>les nostres clientes</em></h2>
+        <span class="section-tag" data-i18n="ressenyes.tag">La nostra comunitat</span>
+        <h2 class="section-title" data-i18n="ressenyes.title">El que diuen<br/><em>les nostres clientes</em></h2>
 
         <!-- Star rating display -->
         <div class="rating-hero">
@@ -1532,7 +1568,7 @@
               <!-- partial star (10%) -->
               <span class="star star-partial"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
             </div>
-            <span class="rating-count">15 ressenyes</span>
+            <span class="rating-count" data-i18n="ressenyes.count">15 ressenyes</span>
             <span class="rating-source">Google Maps</span>
           </div>
         </div>
@@ -1543,7 +1579,7 @@
           <div class="resseny-card-stars">
             <span class="resseny-star">★★★★★</span>
           </div>
-          <p class="resseny-text">La Dina és una professional de veritat. Em va fer un balayage espectacular, exactament el que tenia al cap. Molt bona comunicació i resultat increïble.</p>
+          <p class="resseny-text" data-i18n="rev1.text">La Dina és una professional de veritat. Em va fer un balayage espectacular, exactament el que tenia al cap. Molt bona comunicació i resultat increïble.</p>
           <div class="resseny-author">— Marta P.</div>
         </div>
 
@@ -1551,7 +1587,7 @@
           <div class="resseny-card-stars">
             <span class="resseny-star">★★★★★</span>
           </div>
-          <p class="resseny-text">Vaig anar per la depilació làser i l'experiència va ser molt bona. Espai net, tracte proper i resultats visibles des de la primera sessió. Molt recomanable.</p>
+          <p class="resseny-text" data-i18n="rev2.text">Vaig anar per la depilació làser i l'experiència va ser molt bona. Espai net, tracte proper i resultats visibles des de la primera sessió. Molt recomanable.</p>
           <div class="resseny-author">— Laura M.</div>
         </div>
 
@@ -1559,7 +1595,7 @@
           <div class="resseny-card-stars">
             <span class="resseny-star">★★★★☆</span>
           </div>
-          <p class="resseny-text">Tinc el cabell molt difícil i la Dina me'l va tractar amb molta cura. Em va explicar cada pas i el resultat va superar les meves expectatives. Tornaré segur.</p>
+          <p class="resseny-text" data-i18n="rev3.text">Tinc el cabell molt difícil i la Dina me'l va tractar amb molta cura. Em va explicar cada pas i el resultat va superar les meves expectatives. Tornaré segur.</p>
           <div class="resseny-author">— Núria G.</div>
         </div>
 
@@ -1567,7 +1603,7 @@
           <div class="resseny-card-stars">
             <span class="resseny-star">★★★★★</span>
           </div>
-          <p class="resseny-text">Vaig fer la prova de núvia aquí i va ser una experiència fantàstica. Es nota que li agrada el que fa i que vol que quedis contenta. Molt recomanat per a casaments.</p>
+          <p class="resseny-text" data-i18n="rev4.text">Vaig fer la prova de núvia aquí i va ser una experiència fantàstica. Es nota que li agrada el que fa i que vol que quedis contenta. Molt recomanat per a casaments.</p>
           <div class="resseny-author">— Cristina R.</div>
         </div>
       </div>
@@ -1575,7 +1611,7 @@
       <div style="text-align:center">
         <div class="google-badge fade-up fd-3">
           <div class="google-g">G</div>
-          Ressenyes reals verificades a Google Maps · @arrels_perruqueria
+          <span data-i18n="ressenyes.badge">Ressenyes reals verificades a Google Maps · @arrels_perruqueria</span>
         </div>
       </div>
     </div>
@@ -1587,22 +1623,22 @@
   <section id="contacte">
     <div class="container">
       <div class="contacte-inner">
-        <span class="section-tag fade-up">Comença avui</span>
-        <h2 class="contacte-title fade-up fd-1">
+        <span class="section-tag fade-up" data-i18n="contacte.tag">Comença avui</span>
+        <h2 class="contacte-title fade-up fd-1" data-i18n="contacte.title">
           Reserva<br/><em>la teva cita</em>
         </h2>
-        <p class="contacte-sub fade-up fd-2">
+        <p class="contacte-sub fade-up fd-2" data-i18n="contacte.sub">
           Truca'ns i et diem la primera disponibilitat.<br/>T'esperem al carrer de Sant Agustí 2, Igualada.
         </p>
 
         <div class="fade-up fd-3">
-          <a href="tel:938045413" class="phone-main-btn">
+          <a href="tel:938045413" class="phone-main-btn" data-i18n="contacte.btn">
             <span class="phone-icon-circle">☎</span>
             Truca'ns: 938 04 54 13
           </a>
         </div>
 
-        <p class="contacte-alt fade-up fd-4">
+        <p class="contacte-alt fade-up fd-4" data-i18n="contacte.alt">
           També pots trucar al mòbil: <a href="tel:630661833">630 661 833</a>
         </p>
 
@@ -1617,7 +1653,7 @@
           </div>
           <div class="info-chip">
             <div class="info-chip-dot"></div>
-            Fins les 20h
+            <span data-i18n="contacte.horari">Fins les 20h</span>
           </div>
         </div>
       </div>
@@ -1653,19 +1689,19 @@
         </div>
 
         <div class="footer-horari">
-          <p style="color:rgba(238,233,224,0.45); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.5rem;">Horari</p>
-          <p>Dilluns a divendres</p>
-          <p>Fins les 20:00 h</p>
-          <p style="margin-top:0.3rem; opacity:0.55;">Dies exactes a confirmar</p>
+          <p style="color:rgba(238,233,224,0.45); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.5rem;" data-i18n="footer.horari.label">Horari</p>
+          <p data-i18n="footer.horari.dies">Dilluns a divendres</p>
+          <p data-i18n="footer.horari.hora">Fins les 20:00 h</p>
+          <p style="margin-top:0.3rem; opacity:0.55;" data-i18n="footer.horari.nota">Dies exactes a confirmar</p>
         </div>
 
-        <div style="font-size:0.78rem; color:rgba(238,233,224,0.3); line-height:1.7; max-width:240px;">
+        <div style="font-size:0.78rem; color:rgba(238,233,224,0.3); line-height:1.7; max-width:240px;" data-i18n="footer.serveis">
           Perruqueria unisex · Coloració artística · Balayage · Henna vegetal · Fantasy Colors · Depilació làser mèdica · Pressoteràpia · Pentinats de núvia
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 ARRELS — Dina Casajuana<span class="footer-dot"></span>Tots els drets reservats</p>
+        <p data-i18n="footer.copy">© 2026 ARRELS — Dina Casajuana<span class="footer-dot"></span>Tots els drets reservats</p>
         <p>Igualada, Catalunya</p>
       </div>
     </div>
@@ -1675,6 +1711,180 @@
   <img src="https://track.marcdemos.com/track/web/arrels-demo-2026" width="1" height="1" style="display:none" alt="" />
 
   <script>
+    // ─── LANGUAGE TOGGLE ───
+    const T = {
+      ca: {
+        'nav.nosaltres': 'Nosaltres',
+        'nav.serveis': 'Serveis',
+        'nav.perque': 'Per Què?',
+        'nav.ressenyes': 'Ressenyes',
+        'mobile.nosaltres': 'Nosaltres',
+        'mobile.serveis': 'Serveis',
+        'mobile.perque': 'Per Què Arrels?',
+        'mobile.ressenyes': 'Ressenyes',
+        'mobile.trucar': "Truca'ns: 938 04 54 13",
+        'hero.eyebrow': 'Perruqueria &amp; Estètica · Igualada',
+        'hero.tagline': 'On el cabell és una cura, no un retall',
+        'hero.cta.label': "Truca'ns per reservar",
+        'hero.secondary.phone': 'O mòbil: <a href="tel:630661833">630 661 833</a>',
+        'sobre.tag': 'Sobre nosaltres',
+        'sobre.title': 'Un espai que cuida<br/><em>des de les arrels</em>',
+        'sobre.p1': "ARRELS no és un nom a l'atzar. Representa una manera d'entendre la bellesa: curar profundament, des de la base, amb tècnica, dedicació i una mirada autèntica cap a cada persona. La Dina Casajuana va crear aquest espai a Igualada amb una idea molt clara —oferir un servei de veritat, en un ambient on et sentis ben atès des del primer segon.",
+        'sobre.p2': "Amb anys d'experiència en perruqueria i estètica avançada, la Dina domina tècniques de coloració artística com el balayage, la henna vegetal i els fantasy colors, a més de serveis d'estètica que van molt més lluny del convencional: depilació làser mèdica, pressoteràpia i pentinats de núvia pensats per al teu dia especial.",
+        'sobre.p3': "Al carrer de Sant Agustí 2, al cor d'Igualada, t'espera un lloc on la professionalitat i la proximitat van de la mà. Cada cita és una conversa. Cada servei, un resultat pensat per a tu. Perquè les arrels importen —i aquí sabem com cuidar-les.",
+        'sobre.card.role': 'Fundadora &amp; Especialista',
+        'sobre.feat1': '<strong>Coloració d\'alt nivell</strong> Balayage, henna vegetal, fantasy colors, correccions i molt més',
+        'sobre.feat2': '<strong>Làser mèdic certificat</strong> Tecnologia d\'última generació per a resultats permanents i segurs',
+        'sobre.feat3': '<strong>Atenció totalment personalitzada</strong> La Dina t\'atén directament. Sense intermediaris, sense sorpreses',
+        'sobre.feat4': '<strong>Carrer de Sant Agustí 2, Igualada</strong> Al cor de la ciutat, fàcil d\'arribar',
+        'serveis.tag': 'El nostre catàleg',
+        'serveis.title': 'Tot el que necessites,<br/><em>sota el mateix sostre</em>',
+        'badge.perruqueria': 'Perruqueria',
+        'badge.estetica': 'Estètica &amp; Làser',
+        'serv.tall.nom': 'Talls de Cabell',
+        'serv.tall.desc': 'Tall personalitzat per a tothom —home, dona, infants— adaptat a la teva forma de cara, textura i estil de vida. Sense pressa, sense plantilla.',
+        'serv.balayage.nom': 'Balayage',
+        'serv.balayage.desc': 'La tècnica estrella per aconseguir un degradat natural i lluminós que sembla nascut del sol. Resultat suau, modern i de llarga durada.',
+        'serv.henna.nom': 'Henna Vegetal',
+        'serv.henna.desc': 'Coloració 100% natural, sense amoníac ni components agressius. Respectuosa amb el cuir cabellut. Resultat ric, viu i persistent.',
+        'serv.fantasy.nom': 'Fantasy Colors',
+        'serv.fantasy.desc': "Colors vius, pastels, degradats de disseny. Expressions audaces amb tècnica. Expressa't sense limits amb la teva imatge.",
+        'serv.correccions.nom': 'Correccions de Color',
+        'serv.correccions.desc': 'Correccions de coloració prèvia, neutralitzacions i rescats capil·lars fets amb precisió i criteri artístic. El teu cabell, recuperat.',
+        'serv.nuvia.nom': 'Pentinats de Núvia',
+        'serv.nuvia.desc': "El teu dia mereix un pentinat que estigui a l'altura. Disseny únic creat per a tu, des de 100€. Prova inclosa.",
+        'serv.nuvia.preu': 'Des de 100€',
+        'serv.laser.nom': 'Depilació Làser Mèdica',
+        'serv.laser.desc': "Tecnologia làser d'última generació per a una depilació permanent i segura. Resultats reals, tractament professional amb equipament mèdic certificat.",
+        'serv.presso.nom': 'Pressoteràpia',
+        'serv.presso.desc': 'Tractament de drenatge limfàtic per activar la circulació, reduir la retenció de líquids i sentir-se lleugera. Benestar des de dins.',
+        'perque.tag': 'Per Què Arrels?',
+        'perque.title': 'Tres raons que<br/><em>marquen la diferència</em>',
+        'perque.r1.title': 'La dualitat que no trobaràs en cap altre lloc',
+        'perque.r1.desc': "Perruqueria artística i estètica mèdica sota el mateix sostre. Coordinem-ho tot perquè tu no hagis de fer res més que arribar.",
+        'perque.r2.title': "Coloració com una obra d'art",
+        'perque.r2.desc': 'La Dina entén el color com un llenguatge. Balayage, henna, fantasy colors —cada servei és pensat, no executat.',
+        'perque.r3.title': "Et recorden, t'escolten, et cuiden",
+        'perque.r3.desc': "Aquí no ets un número a l'agenda. Ets una persona amb les teves preferències, el teu historial i les teves necessitats. I es nota.",
+        'perque.quote': '"Cada cita és una <em>conversa</em>.<br/>Cada servei, un resultat<br/>pensat per a tu."',
+        'perque.author': "— Dina Casajuana, Fundadora d'Arrels",
+        'ressenyes.tag': 'La nostra comunitat',
+        'ressenyes.title': 'El que diuen<br/><em>les nostres clientes</em>',
+        'ressenyes.count': '15 ressenyes',
+        'rev1.text': 'La Dina és una professional de veritat. Em va fer un balayage espectacular, exactament el que tenia al cap. Molt bona comunicació i resultat increïble.',
+        'rev2.text': "Vaig anar per la depilació làser i l'experiència va ser molt bona. Espai net, tracte proper i resultats visibles des de la primera sessió. Molt recomanable.",
+        'rev3.text': "Tinc el cabell molt difícil i la Dina me'l va tractar amb molta cura. Em va explicar cada pas i el resultat va superar les meves expectatives. Tornaré segur.",
+        'rev4.text': 'Vaig fer la prova de núvia aquí i va ser una experiència fantàstica. Es nota que li agrada el que fa i que vol que quedis contenta. Molt recomanat per a casaments.',
+        'ressenyes.badge': 'Ressenyes reals verificades a Google Maps · @arrels_perruqueria',
+        'contacte.tag': 'Comença avui',
+        'contacte.title': 'Reserva<br/><em>la teva cita</em>',
+        'contacte.sub': "Truca'ns i et diem la primera disponibilitat.<br/>T'esperem al carrer de Sant Agustí 2, Igualada.",
+        'contacte.btn': '<span class="phone-icon-circle">☎</span> Truca\'ns: 938 04 54 13',
+        'contacte.alt': 'També pots trucar al mòbil: <a href="tel:630661833">630 661 833</a>',
+        'contacte.horari': 'Fins les 20h',
+        'footer.horari.label': 'Horari',
+        'footer.horari.dies': 'Dilluns a divendres',
+        'footer.horari.hora': 'Fins les 20:00 h',
+        'footer.horari.nota': 'Dies exactes a confirmar',
+        'footer.serveis': 'Perruqueria unisex · Coloració artística · Balayage · Henna vegetal · Fantasy Colors · Depilació làser mèdica · Pressoteràpia · Pentinats de núvia',
+        'footer.copy': '© 2026 ARRELS — Dina Casajuana<span class="footer-dot"></span>Tots els drets reservats',
+      },
+      es: {
+        'nav.nosaltres': 'Nosotros',
+        'nav.serveis': 'Servicios',
+        'nav.perque': '¿Por qué?',
+        'nav.ressenyes': 'Reseñas',
+        'mobile.nosaltres': 'Nosotros',
+        'mobile.serveis': 'Servicios',
+        'mobile.perque': '¿Por qué Arrels?',
+        'mobile.ressenyes': 'Reseñas',
+        'mobile.trucar': 'Llámanos: 938 04 54 13',
+        'hero.eyebrow': 'Peluquería &amp; Estética · Igualada',
+        'hero.tagline': 'Donde el cabello es un cuidado, no un corte',
+        'hero.cta.label': 'Llámanos para reservar',
+        'hero.secondary.phone': 'O móvil: <a href="tel:630661833">630 661 833</a>',
+        'sobre.tag': 'Sobre nosotros',
+        'sobre.title': 'Un espacio que cuida<br/><em>desde las raíces</em>',
+        'sobre.p1': 'ARRELS no es un nombre al azar. Representa una manera de entender la belleza: cuidar profundamente, desde la base, con técnica, dedicación y una mirada auténtica hacia cada persona. Dina Casajuana creó este espacio en Igualada con una idea muy clara —ofrecer un servicio de verdad, en un ambiente donde te sientas bien atendida desde el primer segundo.',
+        'sobre.p2': 'Con años de experiencia en peluquería y estética avanzada, Dina domina técnicas de coloración artística como el balayage, la henna vegetal y los fantasy colors, además de servicios de estética que van mucho más allá de lo convencional: depilación láser médica, presoterapia y peinados de novia pensados para tu día especial.',
+        'sobre.p3': 'En la calle Sant Agustí 2, en el corazón de Igualada, te espera un lugar donde profesionalidad y cercanía van de la mano. Cada cita es una conversación. Cada servicio, un resultado pensado para ti. Porque las raíces importan —y aquí sabemos cómo cuidarlas.',
+        'sobre.card.role': 'Fundadora &amp; Especialista',
+        'sobre.feat1': '<strong>Coloración de alto nivel</strong> Balayage, henna vegetal, fantasy colors, correcciones y mucho más',
+        'sobre.feat2': '<strong>Láser médico certificado</strong> Tecnología de última generación para resultados permanentes y seguros',
+        'sobre.feat3': '<strong>Atención totalmente personalizada</strong> Dina te atiende directamente. Sin intermediarios, sin sorpresas',
+        'sobre.feat4': '<strong>Calle Sant Agustí 2, Igualada</strong> En el corazón de la ciudad, fácil de llegar',
+        'serveis.tag': 'Nuestro catálogo',
+        'serveis.title': 'Todo lo que necesitas,<br/><em>bajo el mismo techo</em>',
+        'badge.perruqueria': 'Peluquería',
+        'badge.estetica': 'Estética &amp; Láser',
+        'serv.tall.nom': 'Cortes de Cabello',
+        'serv.tall.desc': 'Corte personalizado para todos —hombre, mujer, niños— adaptado a tu forma de cara, textura y estilo de vida. Sin prisas, sin plantilla.',
+        'serv.balayage.nom': 'Balayage',
+        'serv.balayage.desc': 'La técnica estrella para conseguir un degradado natural y luminoso que parece nacido del sol. Resultado suave, moderno y de larga duración.',
+        'serv.henna.nom': 'Henna Vegetal',
+        'serv.henna.desc': 'Coloración 100% natural, sin amoníaco ni componentes agresivos. Respetuosa con el cuero cabelludo. Resultado rico, vivo y persistente.',
+        'serv.fantasy.nom': 'Fantasy Colors',
+        'serv.fantasy.desc': 'Colores vivos, pasteles, degradados de diseño. Expresiones audaces con técnica. Exprésate sin límites con tu imagen.',
+        'serv.correccions.nom': 'Correcciones de Color',
+        'serv.correccions.desc': 'Correcciones de coloración previa, neutralizaciones y rescates capilares hechos con precisión y criterio artístico. Tu cabello, recuperado.',
+        'serv.nuvia.nom': 'Peinados de Novia',
+        'serv.nuvia.desc': 'Tu día merece un peinado que esté a la altura. Diseño único creado para ti, desde 100€. Prueba incluida.',
+        'serv.nuvia.preu': 'Desde 100€',
+        'serv.laser.nom': 'Depilación Láser Médica',
+        'serv.laser.desc': 'Tecnología láser de última generación para una depilación permanente y segura. Resultados reales, tratamiento profesional con equipamiento médico certificado.',
+        'serv.presso.nom': 'Presoterapia',
+        'serv.presso.desc': 'Tratamiento de drenaje linfático para activar la circulación, reducir la retención de líquidos y sentirse ligera. Bienestar desde dentro.',
+        'perque.tag': '¿Por qué Arrels?',
+        'perque.title': 'Tres razones que<br/><em>marcan la diferencia</em>',
+        'perque.r1.title': 'La dualidad que no encontrarás en ningún otro lugar',
+        'perque.r1.desc': 'Peluquería artística y estética médica bajo el mismo techo. Lo coordinamos todo para que tú no tengas que hacer nada más que llegar.',
+        'perque.r2.title': 'Coloración como una obra de arte',
+        'perque.r2.desc': 'Dina entiende el color como un lenguaje. Balayage, henna, fantasy colors —cada servicio es pensado, no ejecutado.',
+        'perque.r3.title': 'Te recuerdan, te escuchan, te cuidan',
+        'perque.r3.desc': 'Aquí no eres un número en la agenda. Eres una persona con tus preferencias, tu historial y tus necesidades. Y se nota.',
+        'perque.quote': '"Cada cita es una <em>conversación</em>.<br/>Cada servicio, un resultado<br/>pensado para ti."',
+        'perque.author': '— Dina Casajuana, Fundadora de Arrels',
+        'ressenyes.tag': 'Nuestra comunidad',
+        'ressenyes.title': 'Lo que dicen<br/><em>nuestras clientas</em>',
+        'ressenyes.count': '15 reseñas',
+        'rev1.text': 'Dina es una profesional de verdad. Me hizo un balayage espectacular, exactamente lo que tenía en mente. Muy buena comunicación y resultado increíble.',
+        'rev2.text': 'Fui por la depilación láser y la experiencia fue muy buena. Espacio limpio, trato cercano y resultados visibles desde la primera sesión. Muy recomendable.',
+        'rev3.text': 'Tengo el cabello muy difícil y Dina me lo trató con mucho cuidado. Me explicó cada paso y el resultado superó mis expectativas. Volveré seguro.',
+        'rev4.text': 'Hice la prueba de novia aquí y fue una experiencia fantástica. Se nota que le gusta lo que hace y que quiere que quedes contenta. Muy recomendado para bodas.',
+        'ressenyes.badge': 'Reseñas reales verificadas en Google Maps · @arrels_perruqueria',
+        'contacte.tag': 'Empieza hoy',
+        'contacte.title': 'Reserva<br/><em>tu cita</em>',
+        'contacte.sub': 'Llámanos y te decimos la primera disponibilidad.<br/>Te esperamos en la calle Sant Agustí 2, Igualada.',
+        'contacte.btn': '<span class="phone-icon-circle">☎</span> Llámanos: 938 04 54 13',
+        'contacte.alt': 'También puedes llamar al móvil: <a href="tel:630661833">630 661 833</a>',
+        'contacte.horari': 'Hasta las 20h',
+        'footer.horari.label': 'Horario',
+        'footer.horari.dies': 'Lunes a viernes',
+        'footer.horari.hora': 'Hasta las 20:00 h',
+        'footer.horari.nota': 'Días exactos a confirmar',
+        'footer.serveis': 'Peluquería unisex · Coloración artística · Balayage · Henna vegetal · Fantasy Colors · Depilación láser médica · Presoterapia · Peinados de novia',
+        'footer.copy': '© 2026 ARRELS — Dina Casajuana<span class="footer-dot"></span>Todos los derechos reservados',
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const val = T[lang]?.[key];
+        if (!val) return;
+        el.innerHTML = val;
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      localStorage.setItem('lang-arrels', lang);
+    }
+
+    // Init language
+    const savedLang = localStorage.getItem('lang-arrels') || 'ca';
+    setLang(savedLang);
+
     // ─── HAMBURGER ───
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
