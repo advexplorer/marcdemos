@@ -1,9 +1,684 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Demos — marcdemos.com</title></head>
-<body style="background:#0a0a0f;color:#fff;font-family:Inter,sans-serif;padding:40px">
-<h1>Demos</h1>
-<ul>
-<li><a href="clients/cafeteria_soler_13_04_2026/" style="color:#C4622D">Cafeteria Soler</a></li>
-<li><a href="clients/arrels_14_04_2026/" style="color:#7EB49A">ARRELS Dina Casajuana</a></li>
-</ul>
-</body></html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{ md } — Webs per a negocis locals</title>
+  <meta name="description" content="Fem una demo real del teu negoci. La veus primer, pagues si t'agrada.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0f0c0a;
+      --bg-warm:      #1a1007;
+      --amber:        #C4622D;
+      --amber-dim:    rgba(196,98,45,0.15);
+      --amber-border: rgba(196,98,45,0.3);
+      --cream:        #F2EBE0;
+      --muted:        #a89880;
+      --dim:          #5a4a3a;
+      --green:        #25D366;
+      --radius:       12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: Georgia, serif; font-weight: 400; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(15,12,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(196,98,45,0.1);
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: var(--amber);
+      letter-spacing: 2px;
+    }
+    .logo span { color: var(--cream); font-family: Arial, sans-serif; font-size: 15px; font-weight: 300; }
+
+    .lang-toggle { display: flex; gap: 4px; }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--dim);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 40px; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--cream);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    /* ── ANIMATE ── */
+    .animate {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .animate.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      background: linear-gradient(160deg, var(--bg-warm) 0%, var(--bg) 60%);
+      max-width: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(196,98,45,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 700px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5.5vw, 64px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-title em { color: var(--amber); font-style: italic; }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .btn-whatsapp { background: var(--green); color: #fff; }
+    .btn-email    { background: var(--amber); color: #fff; }
+
+    /* ── COM FUNCIONA ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .step-card:hover { border-color: var(--amber-border); }
+
+    .step-icon { font-size: 32px; margin-bottom: 16px; }
+
+    .step-num {
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .step-highlight {
+      font-size: 12px;
+      color: var(--amber);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ── QUÈ INCLOU ── */
+    #que-inclou { background: rgba(255,255,255,0.01); }
+
+    .inclou-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .inclou-col {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .inclou-col-title {
+      font-size: 13px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .inclou-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .inclou-list li {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .inclou-list li::before { content: '✓'; color: var(--amber); flex-shrink: 0; }
+    .inclou-list li.plus::before { content: '+'; color: var(--dim); }
+
+    .inclou-list li strong { color: var(--cream); }
+
+    .inclou-list li.parla { color: var(--amber); font-style: italic; }
+    .inclou-list li.parla::before { content: '→'; color: var(--amber); }
+
+    /* ── FILOSOFIA ── */
+    .filosofia-block {
+      border-left: 3px solid var(--amber);
+      padding: 28px 36px;
+      background: var(--amber-dim);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-top: 48px;
+    }
+
+    .filosofia-quote {
+      font-family: Georgia, serif;
+      font-size: clamp(17px, 2.5vw, 22px);
+      color: var(--cream);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── DEMOS ── */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .demo-card {
+      background: var(--bg-warm);
+      border: 1px solid rgba(196,98,45,0.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .demo-card:hover { border-color: var(--amber); transform: translateY(-3px); }
+
+    .demo-card.placeholder {
+      border-style: dashed;
+      border-color: rgba(255,255,255,0.08);
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .demo-card.placeholder:hover { transform: none; border-color: rgba(255,255,255,0.08); }
+
+    .demo-sector {
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .demo-name {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .demo-link {
+      font-size: 13px;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+    .demo-card:hover .demo-link { gap: 8px; }
+
+    .placeholder-icon { font-size: 28px; color: var(--dim); }
+    .placeholder-text { font-size: 13px; color: var(--dim); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080604;
+      border-top: 1px solid rgba(196,98,45,0.15);
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-left .logo { font-size: 22px; }
+
+    .footer-tagline {
+      font-size: 12px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    .footer-ctas { display: flex; gap: 12px; }
+
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .demos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      section { padding: 72px 20px; }
+      #hero { padding: 100px 20px 60px; min-height: auto; }
+      .hero-ctas { flex-direction: column; }
+      .btn { justify-content: center; }
+      .inclou-grid { grid-template-columns: 1fr; }
+      .filosofia-block { padding: 20px 20px 20px 24px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .demos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">{ <span>md</span> }</div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ca" onclick="setLang('ca')">CA</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner animate">
+      <div class="hero-badge">✦ Demo gratuïta · Sense compromís ✦</div>
+      <h1 class="hero-title">
+        <span data-i18n="hero_title_1">La teva web,</span><br>
+        <em data-i18n="hero_title_2">sense riscos.</em>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">
+        Fem una demo real del teu negoci — la veus primer, pagues si t'agrada.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/34646148461" class="btn btn-whatsapp" target="_blank">
+          💬 <span data-i18n="cta_whatsapp">WhatsApp</span>
+        </a>
+        <a href="mailto:marc@marcdemos.com" class="btn btn-email">
+          ✉️ <span data-i18n="cta_email">Escriu-nos</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COM FUNCIONA -->
+  <section id="com-funciona">
+    <div class="animate">
+      <p class="section-label" data-i18n="steps_label">Com funciona</p>
+      <h2 class="section-title" data-i18n="steps_title">Senzill, ràpid i sense riscos</h2>
+      <p class="section-sub" data-i18n="steps_sub">Del primer contacte a la web publicada, t'acompanyem en cada pas.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card animate" style="transition-delay:0.05s">
+        <div class="step-icon">🔍</div>
+        <div class="step-num">01</div>
+        <div class="step-title" data-i18n="step1_title">Trobem el negoci</div>
+        <div class="step-desc" data-i18n="step1_desc">Busquem negocis locals sense web i estudiem el teu sector.</div>
+      </div>
+      <div class="step-card animate" style="transition-delay:0.15s">
+        <div class="step-icon">🎨</div>
+        <div class="step-num">02</div>
+        <div class="step-title" data-i18n="step2_title">Fem la demo</div>
+        <div class="step-desc" data-i18n="step2_desc">Disseny adaptat al teu sector, sense cap cost ni compromís.</div>
+      </div>
+      <div class="step-card animate" style="transition-delay:0.25s">
+        <div class="step-icon">💬</div>
+        <div class="step-num">03</div>
+        <div class="step-title" data-i18n="step3_title">Ajustem junts</div>
+        <div class="step-desc" data-i18n="step3_desc">Canvis fins que sigui exactament el que necessites.</div>
+        <div class="step-highlight" data-i18n="step3_highlight">Feedback continu inclòs</div>
+      </div>
+      <div class="step-card animate" style="transition-delay:0.35s">
+        <div class="step-icon">🚀</div>
+        <div class="step-num">04</div>
+        <div class="step-title" data-i18n="step4_title">Publiquem</div>
+        <div class="step-desc" data-i18n="step4_desc">Domini, hosting i posada en marxa inclosos.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÈ INCLOU + FILOSOFIA -->
+  <section id="que-inclou">
+    <div class="animate">
+      <p class="section-label" data-i18n="inclou_label">Què inclou</p>
+      <h2 class="section-title" data-i18n="inclou_title">Tot el que necessites, res de sobrer</h2>
+    </div>
+    <div class="inclou-grid animate">
+      <div class="inclou-col">
+        <div class="inclou-col-title" data-i18n="inclou_base_title">Sempre inclòs</div>
+        <ul class="inclou-list">
+          <li data-i18n="inclou_1">Disseny adaptat al teu sector</li>
+          <li data-i18n="inclou_2">Mòbil i escriptori (responsive)</li>
+          <li data-i18n="inclou_3">Multiidioma CA / ES</li>
+          <li data-i18n="inclou_4">Google Maps integrat</li>
+          <li data-i18n="inclou_5">Formulari de contacte</li>
+          <li><strong data-i18n="inclou_6">Canvis fins que sigui perfecta</strong></li>
+        </ul>
+      </div>
+      <div class="inclou-col">
+        <div class="inclou-col-title" data-i18n="inclou_extra_title">Si necessites més</div>
+        <ul class="inclou-list">
+          <li class="plus" data-i18n="extra_1">Reserves en línia</li>
+          <li class="plus" data-i18n="extra_2">Carta / menú digital</li>
+          <li class="plus" data-i18n="extra_3">Blog</li>
+          <li class="plus" data-i18n="extra_4">Galeria de fotos avançada</li>
+          <li class="parla" data-i18n="extra_parla">Qualsevol cosa que necessitis — parlem-ho</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="filosofia-block animate">
+      <p class="filosofia-quote" data-i18n="filosofia_quote">
+        "No entreguem una web i marxem. Treballem amb tu fins que sigui exactament el que necessites — i si més endavant vols afegir alguna cosa, estem aquí."
+      </p>
+    </div>
+  </section>
+
+  <!-- DEMOS FETES -->
+  <section id="demos">
+    <div class="animate">
+      <p class="section-label" data-i18n="demos_label">Demos fetes</p>
+      <h2 class="section-title" data-i18n="demos_title">Negocis que ja han vist la seva demo</h2>
+      <p class="section-sub" data-i18n="demos_sub">Cada demo és real, personalitzada i feta en menys d'una setmana.</p>
+    </div>
+    <div class="demos-grid">
+      <a href="https://advexplorer.github.io/granja-webs/clients/cafeteria_soler_13_04_2026/" target="_blank" class="demo-card animate" style="transition-delay:0.05s">
+        <div class="demo-sector" data-i18n="demo1_sector">Bar / Restaurant</div>
+        <div class="demo-name">Antiga Cafeteria Soler</div>
+        <div class="demo-link"><span data-i18n="demo_see">Veure demo</span> →</div>
+      </a>
+      <a href="https://advexplorer.github.io/granja-webs/clients/arrels_14_04_2026/" target="_blank" class="demo-card animate" style="transition-delay:0.15s">
+        <div class="demo-sector" data-i18n="demo2_sector">Perruqueria</div>
+        <div class="demo-name">ARRELS Dina Casajuana</div>
+        <div class="demo-link"><span data-i18n="demo_see">Veure demo</span> →</div>
+      </a>
+      <div class="demo-card placeholder animate" style="transition-delay:0.25s">
+        <div class="placeholder-icon">+</div>
+        <div class="placeholder-text" data-i18n="demo_placeholder">El teu negoci aquí</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="logo">{ <span>md</span> }</div>
+      <div class="footer-tagline" data-i18n="footer_tagline">Webs per a negocis locals</div>
+    </div>
+    <div class="footer-ctas">
+      <a href="https://wa.me/34646148461" class="btn btn-whatsapp btn-sm" target="_blank">
+        💬 WhatsApp
+      </a>
+      <a href="mailto:marc@marcdemos.com" class="btn btn-email btn-sm">
+        ✉️ marc@marcdemos.com
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const T = {
+      ca: {
+        hero_title_1:    "La teva web,",
+        hero_title_2:    "sense riscos.",
+        hero_sub:        "Fem una demo real del teu negoci — la veus primer, pagues si t'agrada.",
+        cta_whatsapp:    "WhatsApp",
+        cta_email:       "Escriu-nos",
+
+        steps_label:     "Com funciona",
+        steps_title:     "Senzill, ràpid i sense riscos",
+        steps_sub:       "Del primer contacte a la web publicada, t'acompanyem en cada pas.",
+        step1_title:     "Trobem el negoci",
+        step1_desc:      "Busquem negocis locals sense web i estudiem el teu sector.",
+        step2_title:     "Fem la demo",
+        step2_desc:      "Disseny adaptat al teu sector, sense cap cost ni compromís.",
+        step3_title:     "Ajustem junts",
+        step3_desc:      "Canvis fins que sigui exactament el que necessites.",
+        step3_highlight: "Feedback continu inclòs",
+        step4_title:     "Publiquem",
+        step4_desc:      "Domini, hosting i posada en marxa inclosos.",
+
+        inclou_label:       "Què inclou",
+        inclou_title:       "Tot el que necessites, res de sobrer",
+        inclou_base_title:  "Sempre inclòs",
+        inclou_1:           "Disseny adaptat al teu sector",
+        inclou_2:           "Mòbil i escriptori (responsive)",
+        inclou_3:           "Multiidioma CA / ES",
+        inclou_4:           "Google Maps integrat",
+        inclou_5:           "Formulari de contacte",
+        inclou_6:           "Canvis fins que sigui perfecta",
+        inclou_extra_title: "Si necessites més",
+        extra_1:            "Reserves en línia",
+        extra_2:            "Carta / menú digital",
+        extra_3:            "Blog",
+        extra_4:            "Galeria de fotos avançada",
+        extra_parla:        "Qualsevol cosa que necessitis — parlem-ho",
+
+        filosofia_quote: '"No entreguem una web i marxem. Treballem amb tu fins que sigui exactament el que necessites — i si més endavant vols afegir alguna cosa, estem aquí."',
+
+        demos_label:      "Demos fetes",
+        demos_title:      "Negocis que ja han vist la seva demo",
+        demos_sub:        "Cada demo és real, personalitzada i feta en menys d'una setmana.",
+        demo1_sector:     "Bar / Restaurant",
+        demo2_sector:     "Perruqueria",
+        demo_see:         "Veure demo",
+        demo_placeholder: "El teu negoci aquí",
+
+        footer_tagline: "Webs per a negocis locals",
+      },
+
+      es: {
+        hero_title_1:    "Tu web,",
+        hero_title_2:    "sin riesgos.",
+        hero_sub:        "Hacemos una demo real de tu negocio — la ves primero, pagas si te gusta.",
+        cta_whatsapp:    "WhatsApp",
+        cta_email:       "Escríbenos",
+
+        steps_label:     "Cómo funciona",
+        steps_title:     "Sencillo, rápido y sin riesgos",
+        steps_sub:       "Del primer contacto a la web publicada, te acompañamos en cada paso.",
+        step1_title:     "Encontramos el negocio",
+        step1_desc:      "Buscamos negocios locales sin web y estudiamos tu sector.",
+        step2_title:     "Hacemos la demo",
+        step2_desc:      "Diseño adaptado a tu sector, sin ningún coste ni compromiso.",
+        step3_title:     "Ajustamos juntos",
+        step3_desc:      "Cambios hasta que sea exactamente lo que necesitas.",
+        step3_highlight: "Feedback continuo incluido",
+        step4_title:     "Publicamos",
+        step4_desc:      "Dominio, hosting y puesta en marcha incluidos.",
+
+        inclou_label:       "Qué incluye",
+        inclou_title:       "Todo lo que necesitas, nada de sobra",
+        inclou_base_title:  "Siempre incluido",
+        inclou_1:           "Diseño adaptado a tu sector",
+        inclou_2:           "Móvil y escritorio (responsive)",
+        inclou_3:           "Multiidioma CA / ES",
+        inclou_4:           "Google Maps integrado",
+        inclou_5:           "Formulario de contacto",
+        inclou_6:           "Cambios hasta que sea perfecta",
+        inclou_extra_title: "Si necesitas más",
+        extra_1:            "Reservas online",
+        extra_2:            "Carta / menú digital",
+        extra_3:            "Blog",
+        extra_4:            "Galería de fotos avanzada",
+        extra_parla:        "Cualquier cosa que necesites — hablamos",
+
+        filosofia_quote: '"No entregamos una web y nos vamos. Trabajamos contigo hasta que sea exactamente lo que necesitas — y si más adelante quieres añadir algo, aquí estamos."',
+
+        demos_label:      "Demos realizadas",
+        demos_title:      "Negocios que ya han visto su demo",
+        demos_sub:        "Cada demo es real, personalizada y hecha en menos de una semana.",
+        demo1_sector:     "Bar / Restaurante",
+        demo2_sector:     "Peluquería",
+        demo_see:         "Ver demo",
+        demo_placeholder: "Tu negocio aquí",
+
+        footer_tagline: "Webs para negocios locales",
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang-marcdemos', lang);
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (T[lang]?.[key] !== undefined) el.innerHTML = T[lang][key];
+      });
+    }
+
+    // Init lang
+    const savedLang = localStorage.getItem('lang-marcdemos') || 'ca';
+    setLang(savedLang);
+
+    // Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+    // Hero is visible immediately
+    document.querySelector('#hero .animate')?.classList.add('visible');
+  </script>
+</body>
+</html>
