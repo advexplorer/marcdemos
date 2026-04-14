@@ -1923,6 +1923,20 @@
       localStorage.setItem('lang-soler', lang);
     }
 
+    // Demo expiry
+    const DEMO_EXPIRES = new Date('2026-04-18T23:59:59');
+    if (new Date() > DEMO_EXPIRES) {
+      document.body.innerHTML = `
+        <div style="min-height:100vh;background:#0F0C0A;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;text-align:center;padding:24px;">
+          <div>
+            <div style="font-family:Georgia,serif;font-size:28px;color:#C4622D;letter-spacing:4px;margin-bottom:24px;">{ <span style="color:#F2EBE0;font-size:22px;font-weight:300;letter-spacing:2px;">md</span> }</div>
+            <h2 style="color:#F2EBE0;font-size:22px;font-weight:400;margin:0 0 12px;">La demo ha caducat</h2>
+            <p style="color:#7A6B5D;font-size:15px;margin:0 0 28px;">El període de visualització d'aquesta demo ha finalitzat.<br>Si t'interessa continuar, posa't en contacte amb nosaltres.</p>
+            <a href="tel:+34646148461" style="display:inline-block;background:#C4622D;color:#fff;text-decoration:none;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;">📞 +34 646 148 461</a>
+          </div>
+        </div>`;
+    }
+
     // Init language
     const savedLang = localStorage.getItem('lang-soler') || 'ca';
     setLang(savedLang);
