@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antiga Cafeteria Soler — Igualada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:           #0F0C0A;
+      --bg-mid:       #141009;
+      --bg-card:      #18120D;
+      --primary:      #C4622D;
+      --secondary:    #B8902A;
+      --accent:       #F0A500;
+      --barca-blue:   #004D98;
+      --barca-red:    #A50044;
+      --text:         #F2EBE0;
+      --text-muted:   #B8A898;
+      --text-dim:     #7A6B5D;
+      --glass-bg:     rgba(196, 98, 45, 0.07);
+      --glass-border: rgba(196, 98, 45, 0.18);
+      --radius:       14px;
+      --radius-lg:    22px;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 28px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 12, 10, 0.80);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(196, 98, 45, 0.10);
+      transition: background var(--transition);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text) !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.76rem !important;
+      font-weight: 600 !important;
+      transition: opacity var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 3px;
+      border: 1px solid rgba(196,98,45,0.18);
+      margin-right: 8px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(15, 12, 10, 0.97);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(196, 98, 45, 0.12);
+      padding: 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(196, 98, 45, 0.07);
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--accent); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 65% at 50% 25%, rgba(196,98,45,0.20) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 15% 85%, rgba(184,144,42,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 85% 75%, rgba(240,165,0,0.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Grain texture */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      padding: 7px 20px;
+      border: 1px solid rgba(240, 165, 0, 0.22);
+      border-radius: 50px;
+      background: rgba(240, 165, 0, 0.06);
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2.2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.65); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7.5vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      line-height: 1.78;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      box-shadow: 0 4px 24px rgba(196, 98, 45, 0.30);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(196, 98, 45, 0.45);
+      opacity: 0.93;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1px solid rgba(242, 235, 224, 0.20);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(240, 165, 0, 0.40);
+      background: rgba(240, 165, 0, 0.06);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.70rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.78;
+      font-weight: 300;
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(196,98,45,0.15) 30%, rgba(240,165,0,0.20) 50%, rgba(196,98,45,0.15) 70%, transparent 100%);
+      margin: 0;
+    }
+
+    /* ============================================================
+       SOBRE NOSOTROS
+    ============================================================ */
+    #sobre {
+      background: var(--bg-mid);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre-content {}
+
+    .sobre-paragraphs {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sobre-paragraphs p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      font-weight: 300;
+    }
+    .sobre-paragraphs p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .sobre-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sobre-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.6;
+    }
+
+    .sobre-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .sobre-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .sobre-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .sobre-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(240, 165, 0, 0.08);
+      border: 1px solid rgba(240, 165, 0, 0.20);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 36px;
+    }
+
+    /* ============================================================
+       CARTA
+    ============================================================ */
+    #carta {
+      background: var(--bg);
+    }
+
+    .carta-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .carta-header .section-lead {
+      margin: 0 auto;
+    }
+
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 72px;
+    }
+
+    .plato-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(196, 98, 45, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .plato-card:hover {
+      border-color: rgba(196, 98, 45, 0.30);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.30);
+    }
+    .plato-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .plato-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .plato-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .plato-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .plato-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+    .plato-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(240, 165, 0, 0.22);
+      border-radius: 50px;
+      padding: 3px 12px;
+    }
+
+    /* Menú del día */
+    .menu-dia {
+      background: linear-gradient(135deg, rgba(196,98,45,0.10) 0%, rgba(184,144,42,0.08) 100%);
+      border: 1px solid rgba(196, 98, 45, 0.22);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-dia::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
+    }
+
+    .menu-dia-label {
+      font-size: 0.70rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .menu-dia-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    .menu-options {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .menu-option {
+      background: rgba(15, 12, 10, 0.60);
+      border: 1px solid rgba(196, 98, 45, 0.20);
+      border-radius: var(--radius);
+      padding: 24px 36px;
+      min-width: 220px;
+    }
+    .menu-option-day {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .menu-option-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .menu-option-price sup {
+      font-size: 1.2rem;
+    }
+    .menu-option-detail {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .menu-dia-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       SECCIÓN BARÇA
+    ============================================================ */
+    #barca {
+      background: var(--bg-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #barca::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(0, 77, 152, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 50%, rgba(165, 0, 68, 0.06) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .barca-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .barca-content {}
+
+    .barca-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 77, 152, 0.12);
+      border: 1px solid rgba(0, 77, 152, 0.25);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6EB3FF;
+      margin-bottom: 28px;
+    }
+    .barca-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
+      flex-shrink: 0;
+    }
+
+    .barca-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .barca-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, #6EB3FF 0%, #FF6B8A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .barca-paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .barca-paragraphs p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.80;
+      font-weight: 300;
+    }
+    .barca-paragraphs p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .barca-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .barca-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.30);
+      border: 1px solid rgba(110, 179, 255, 0.18);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .barca-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .barca-big-card {
+      background: linear-gradient(135deg, rgba(0,77,152,0.12) 0%, rgba(165,0,68,0.10) 100%);
+      border: 1px solid rgba(0, 77, 152, 0.20);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .barca-big-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--barca-blue), var(--barca-red), var(--barca-blue));
+    }
+
+    .barca-big-card-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .barca-big-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .barca-big-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+
+    .barca-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .barca-mini-card {
+      background: rgba(15, 12, 10, 0.60);
+      border: 1px solid rgba(0, 77, 152, 0.15);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: border-color var(--transition);
+    }
+    .barca-mini-card:hover {
+      border-color: rgba(110, 179, 255, 0.30);
+    }
+    .barca-mini-card-emoji {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .barca-mini-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .barca-mini-card p {
+      font-size: 0.80rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       POR QUÉ ELEGIRNOS
+    ============================================================ */
+    #porque {
+      background: var(--bg);
+    }
+
+    .porque-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .porque-header .section-lead {
+      margin: 0 auto;
+    }
+
+    .porque-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .porque-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(196, 98, 45, 0.10);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .porque-card:hover {
+      border-color: rgba(196, 98, 45, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .porque-icon {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .porque-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .porque-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.70;
+    }
+
+    /* CTA strip */
+    .cta-strip {
+      background: linear-gradient(135deg, rgba(196,98,45,0.12) 0%, rgba(184,144,42,0.09) 100%);
+      border: 1px solid rgba(196, 98, 45, 0.20);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .cta-strip p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+    .cta-strip-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #0A0806;
+      border-top: 1px solid rgba(196, 98, 45, 0.12);
+      padding: 72px 24px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand {}
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .footer-brand-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.70;
+      max-width: 300px;
+    }
+
+    .footer-stars {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .footer-stars-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .stars {
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .footer-horario {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .horario-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.84rem;
+    }
+    .horario-day {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .horario-time {
+      color: var(--text);
+      font-weight: 500;
+      text-align: right;
+    }
+    .horario-row.closed .horario-day,
+    .horario-row.closed .horario-time {
+      color: var(--text-dim);
+    }
+    .horario-row.closed .horario-time {
+      color: #E05555;
+      font-weight: 400;
+    }
+    .horario-sep {
+      width: 100%;
+      height: 1px;
+      background: rgba(196, 98, 45, 0.10);
+      margin: 4px 0;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .footer-contact-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .footer-contact-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .footer-contact-text a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-contact-text a:hover {
+      color: var(--accent);
+    }
+
+    .footer-services {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-service-tag {
+      font-size: 0.70rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      background: rgba(196, 98, 45, 0.06);
+      border: 1px solid rgba(196, 98, 45, 0.12);
+      border-radius: 50px;
+      padding: 4px 12px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(196, 98, 45, 0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-bottom-copy {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    .footer-bottom-copy span {
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      section { padding: 80px 20px; }
+
+      .sobre-grid,
+      .barca-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .menu-dia { padding: 40px 28px; }
+      .cta-strip { padding: 44px 28px; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-stats { gap: 32px; }
+
+      .barca-mini-cards { grid-template-columns: 1fr; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .menu-options { flex-direction: column; align-items: center; }
+      .menu-option { width: 100%; max-width: 300px; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .cta-strip-actions { flex-direction: column; align-items: center; }
+      .platos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      Antiga Cafeteria Soler
+      <span class="nav-logo-sub">Igualada</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#sobre" data-i18n="nav.nosaltres">Nosaltres</a></li>
+      <li><a href="#carta" data-i18n="nav.carta">Carta</a></li>
+      <li><a href="#barca" data-i18n="nav.ambient">Ambient</a></li>
+      <li><a href="#porque" data-i18n="nav.perque">Per què?</a></li>
+      <li><a href="tel:938037533" class="nav-cta" data-i18n="nav.reservar">Reservar taula</a></li>
+    </ul>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ca" onclick="setLang('ca')">CA</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#sobre" data-i18n="mobile.nosaltres">Nosaltres</a>
+    <a href="#carta" data-i18n="mobile.carta">La carta</a>
+    <a href="#barca" data-i18n="mobile.ambient">Ambient futbol</a>
+    <a href="#porque" data-i18n="mobile.perque">Per què triar-nos?</a>
+    <a href="tel:938037533" data-i18n="mobile.trucar">📞 Trucar — 938 037 533</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal">Avinguda de Barcelona 23 · Igualada</div>
+
+      <h1 class="hero-title reveal reveal-delay-1" data-i18n="hero.title">
+        El bar de sempre,<br><em>el bar de tothom</em>
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2" data-i18n="hero.sub">
+        Cuina de mercat, tracte proper i una terrassa on el barri es troba.
+        El lloc on sempre hi ha bona taula, bona companyia i el futbol en pantalla.
+      </p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="tel:938037533" class="btn-primary" data-i18n="hero.cta1">
+          📞 Reserva la teva taula
+        </a>
+        <a href="#carta" class="btn-secondary" data-i18n="hero.cta2">
+          Veure la carta
+        </a>
+      </div>
+
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="hero-stat">
+          <span class="hero-stat-num">✦</span>
+          <span class="hero-stat-label" data-i18n="hero.stat1">De tota la vida</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">812</span>
+          <span class="hero-stat-label" data-i18n="hero.stat2">Ressenyes Google</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">4.2★</span>
+          <span class="hero-stat-label" data-i18n="hero.stat3">Valoració mitjana</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       SOBRE NOSOTROS
+  ============================================================ -->
+  <section id="sobre">
+    <div class="section-inner">
+      <div class="sobre-grid">
+
+        <div class="sobre-content">
+          <div class="section-label reveal" data-i18n="sobre.label">La nostra història</div>
+          <h2 class="section-title reveal reveal-delay-1" data-i18n="sobre.title">
+            Quan alguna cosa funciona,<br><em>es cuida, no es canvia</em>
+          </h2>
+
+          <div class="sobre-paragraphs reveal reveal-delay-2">
+            <p data-i18n="sobre.p1">
+              La Cafeteria Soler és un d'aquells llocs que no necessiten presentació.
+              Un <strong>bar de barri de debò</strong>: on la gent es coneix, on el cafè del matí sap igual que sempre,
+              i on la cuina parla per si sola. L'Avinguda de Barcelona 23 ha vist passar generacions, i aquí seguim.
+            </p>
+            <p data-i18n="sobre.p2">
+              Fa poc més d'un any, una família amb moltes ganes i molt respecte va agafar el relleu.
+              El nom es va quedar, el caràcter també. Perquè quan alguna cosa funciona de debò —quan la gent entra
+              i se sent a casa— no cal canviar-la, <strong>cal cuidar-la</strong>. Això és exactament el que hem fet.
+            </p>
+            <p data-i18n="sobre.p3">
+              Avui combinem el millor de la cuina de mercat amb aquell ambient acollidor que ens defineix.
+              Menú del dia amb producte fresc, racions per compartir, terrassa exterior i un equip que posa el cor
+              en cada plat. <strong>Més de 800 veïns</strong> ens donen la seva confiança a Google, i això
+              ens enorgulleix cada dia.
+            </p>
+          </div>
+        </div>
+
+        <div class="sobre-visual">
+          <div class="sobre-card reveal reveal-delay-1">
+            <span class="sobre-card-icon">🏡</span>
+            <h4 data-i18n="sobre.card1.title">Bar de barri de debò</h4>
+            <p data-i18n="sobre.card1.desc">Sense pretensions. Aquí la gent es coneix, es saluda, i torna. El cafè sap igual que sempre.</p>
+          </div>
+          <div class="sobre-card reveal reveal-delay-2">
+            <span class="sobre-card-icon">🍳</span>
+            <h4 data-i18n="sobre.card2.title">Cuina de mercat</h4>
+            <p data-i18n="sobre.card2.desc">Producte fresc cada dia. Elaboracions casolanes, quantitats generoses, preu honest. El de sempre, el que importa.</p>
+          </div>
+          <div class="sobre-card reveal reveal-delay-3">
+            <span class="sobre-card-icon">🌿</span>
+            <h4 data-i18n="sobre.card3.title">Tradició amb relleu</h4>
+            <p data-i18n="sobre.card3.desc">Nova família, mateix esperit. Respecte per allò que ja funcionava, ganes de continuar fent-ho bé.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       CARTA
+  ============================================================ -->
+  <section id="carta">
+    <div class="section-inner">
+
+      <div class="carta-header">
+        <div class="section-label reveal" data-i18n="carta.label">La carta</div>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="carta.title">El que fem bé,<br><em>ho fem molt bé</em></h2>
+        <p class="section-lead reveal reveal-delay-2" data-i18n="carta.lead">
+          Plats de mercat, elaboracions casolanes i racions que valen la pena.
+          Per compartir, per repetir.
+        </p>
+      </div>
+
+      <div class="platos-grid">
+
+        <div class="plato-card reveal">
+          <span class="plato-emoji">🥐</span>
+          <div class="plato-name" data-i18n="carta.p1.nom">Croquetes de Foie</div>
+          <p class="plato-desc" data-i18n="carta.p1.desc">Cremoses per dins, daurades per fora. Fetes cada dia amb foie de qualitat — de les que et demanen la recepta.</p>
+          <span class="plato-tag" data-i18n="carta.p1.tag">Especialitat de la casa</span>
+        </div>
+
+        <div class="plato-card reveal reveal-delay-1">
+          <span class="plato-emoji">🥩</span>
+          <div class="plato-name" data-i18n="carta.p2.nom">Secret al Chimichurri</div>
+          <p class="plato-desc" data-i18n="carta.p2.desc">Tall sucós a la planxa banyat en chimichurri casolà. Un clàssic nostre que mai falta a la carta.</p>
+          <span class="plato-tag" data-i18n="carta.p2.tag">Clàssic</span>
+        </div>
+
+        <div class="plato-card reveal reveal-delay-2">
+          <span class="plato-emoji">🐙</span>
+          <div class="plato-name" data-i18n="carta.p3.nom">Pop a la Gallega</div>
+          <p class="plato-desc" data-i18n="carta.p3.desc">Amb pebre vermell, oli d'oliva i aquell punt de sal que ho arrodoneix tot. Directe al plat, sense floritures.</p>
+          <span class="plato-tag" data-i18n="carta.p3.tag">De temporada</span>
+        </div>
+
+        <div class="plato-card reveal reveal-delay-1">
+          <span class="plato-emoji">🥔</span>
+          <div class="plato-name" data-i18n="carta.p4.nom">Patates Braves</div>
+          <p class="plato-desc" data-i18n="carta.p4.desc">Cruixents, amb salsa de la casa. Les de tota la vida, com han de ser. Sense més explicacions.</p>
+          <span class="plato-tag" data-i18n="carta.p4.tag">Per compartir</span>
+        </div>
+
+        <div class="plato-card reveal reveal-delay-2">
+          <span class="plato-emoji">🧅</span>
+          <div class="plato-name" data-i18n="carta.p5.nom">Torreznos</div>
+          <p class="plato-desc" data-i18n="carta.p5.desc">Escorça perfecta, textura ideal. Dels que fan silenci a la taula. Els primers no duren gens.</p>
+          <span class="plato-tag" data-i18n="carta.p5.tag">Irresistibles</span>
+        </div>
+
+        <div class="plato-card reveal reveal-delay-3">
+          <span class="plato-emoji">☕</span>
+          <div class="plato-name" data-i18n="carta.p6.nom">Esmorzars i Berenars</div>
+          <p class="plato-desc" data-i18n="carta.p6.desc">Obrim a les 7:30. El cafè del matí, com sempre. Perquè el dia comença millor quan hi ha un bon lloc on fer-ho.</p>
+          <span class="plato-tag" data-i18n="carta.p6.tag">Des de les 7:30</span>
+        </div>
+
+      </div>
+
+      <!-- Menú del día -->
+      <div class="menu-dia reveal">
+        <div class="menu-dia-label" data-i18n="menu.label">Menú del Dia</div>
+        <h3 class="menu-dia-title" data-i18n="menu.title">El menú que porta anys<br>omplint el local</h3>
+        <div class="menu-options">
+          <div class="menu-option">
+            <div class="menu-option-day" data-i18n="menu.setmana">Entre setmana</div>
+            <div class="menu-option-price">11<sup>–12€</sup></div>
+            <div class="menu-option-detail" data-i18n="menu.setmana.detail">Primer plat + segon<br>+ postres o cafè</div>
+          </div>
+          <div class="menu-option">
+            <div class="menu-option-day" data-i18n="menu.cap">Cap de setmana</div>
+            <div class="menu-option-price">16<sup>€</sup></div>
+            <div class="menu-option-detail" data-i18n="menu.cap.detail">Menú especial<br>amb opcions ampliades</div>
+          </div>
+        </div>
+        <p class="menu-dia-sub" data-i18n="menu.sub">Producte fresc · Quantitats generoses · Preu honest</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       SECCIÓN BARÇA
+  ============================================================ -->
+  <section id="barca">
+    <div class="section-inner">
+      <div class="barca-grid">
+
+        <div class="barca-content">
+          <div class="barca-badge reveal" data-i18n="futbol.badge">
+            <span class="barca-badge-dot"></span>
+            El punt de trobada del barri
+          </div>
+
+          <h2 class="barca-title reveal reveal-delay-1" data-i18n="futbol.title">
+            Nits que el barri<br><em>mai oblida</em>
+          </h2>
+
+          <div class="barca-paragraphs reveal reveal-delay-2">
+            <p data-i18n="futbol.p1">
+              Hi ha llocs on es veu el futbol, i hi ha llocs on es <strong>viu el futbol</strong>.
+              L'Antiga Cafeteria Soler és el segon. La pantalla gran, l'ambient calent i la gent
+              del barri reunida — una energia que no es pot fabricar.
+            </p>
+            <p data-i18n="futbol.p2">
+              Champions, clàssics, finals. No importa l'hora, no importa si és entre setmana.
+              Quan hi ha partit, <strong>Igualada té un punt de trobada</strong>. La ubicació del Soler fa
+              que el barri acabi aquí: celebrar o patir junts converteix qualsevol nit de futbol
+              en alguna cosa que es recorda.
+            </p>
+            <p data-i18n="futbol.p3">
+              Més que un bar de futbol: un tros del barri on la gent s'uneix, comparteix i crea
+              comunitat. Ronda de canyes, els mateixos de sempre, i el partit a la pantalla gran. <strong>Tan senzill
+              com això, tan bo com això.</strong>
+            </p>
+          </div>
+
+          <div class="barca-tags reveal reveal-delay-3">
+            <span class="barca-tag" data-i18n="futbol.tag1">⚽ Pantalla gran</span>
+            <span class="barca-tag">🏆 Champions</span>
+            <span class="barca-tag" data-i18n="futbol.tag3">🍺 Ambient de barri</span>
+            <span class="barca-tag" data-i18n="futbol.tag4">🎉 Tots els partits</span>
+            <span class="barca-tag" data-i18n="futbol.tag5">👥 Punt de trobada</span>
+          </div>
+        </div>
+
+        <div class="barca-visual">
+          <div class="barca-big-card reveal">
+            <span class="barca-big-card-emoji">📺</span>
+            <h3 data-i18n="futbol.big.title">Tots els partits a la pantalla gran</h3>
+            <p data-i18n="futbol.big.desc">
+              La lliga, la Champions, els clàssics. Pantalla gran, so, i un ambient que es nota des de la porta.
+              El punt de trobada del barri quan hi ha partit.
+            </p>
+          </div>
+
+          <div class="barca-mini-cards">
+            <div class="barca-mini-card reveal reveal-delay-1">
+              <span class="barca-mini-card-emoji">🕯️</span>
+              <h4 data-i18n="futbol.mini1.title">Nits màgiques</h4>
+              <p data-i18n="futbol.mini1.desc">Remontades, gols al 90, nits de Champions. Hi ha moments que només es viuen bé en companyia.</p>
+            </div>
+            <div class="barca-mini-card reveal reveal-delay-2">
+              <span class="barca-mini-card-emoji">🤝</span>
+              <h4 data-i18n="futbol.mini2.title">Comunitat de barri</h4>
+              <p data-i18n="futbol.mini2.desc">Cares conegudes, noves amistats. El futbol uneix, i el Soler és on això passa a Igualada.</p>
+            </div>
+            <div class="barca-mini-card reveal reveal-delay-3">
+              <span class="barca-mini-card-emoji">🍻</span>
+              <h4 data-i18n="futbol.mini3.title">Bona companyia</h4>
+              <p data-i18n="futbol.mini3.desc">Canyes, racions i el partit a la pantalla. El pla perfecte de qualsevol nit de futbol.</p>
+            </div>
+            <div class="barca-mini-card reveal reveal-delay-4">
+              <span class="barca-mini-card-emoji">🎯</span>
+              <h4 data-i18n="futbol.mini4.title">Sempre hi ha lloc</h4>
+              <p data-i18n="futbol.mini4.desc">Vine amb qui vulguis. Reserva si el partit és gran — els clàssics s'omplen ràpid.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       POR QUÉ ELEGIRNOS
+  ============================================================ -->
+  <section id="porque">
+    <div class="section-inner">
+
+      <div class="porque-header">
+        <div class="section-label reveal" data-i18n="perque.label">Per què nosaltres?</div>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="perque.title">Raons de sobres <em>per tornar</em></h2>
+        <p class="section-lead reveal reveal-delay-2" data-i18n="perque.lead">
+          Anys i anys de confiança no es construeixen d'un dia per l'altre.
+          Es construeixen plat a plat, visita a visita.
+        </p>
+      </div>
+
+      <div class="porque-grid">
+
+        <div class="porque-card reveal">
+          <span class="porque-icon">🏡</span>
+          <h3 data-i18n="perque.c1.title">Un bar de barri de debò</h3>
+          <p data-i18n="perque.c1.desc">
+            Sense pretensions ni artificis. Aquí menges bé, et tracten bé i surts amb ganes de repetir.
+            Això val més que qualsevol tendència.
+          </p>
+        </div>
+
+        <div class="porque-card reveal reveal-delay-1">
+          <span class="porque-icon">🛒</span>
+          <h3 data-i18n="perque.c2.title">Cuina de mercat a preu just</h3>
+          <p data-i18n="perque.c2.desc">
+            Producte fresc cada dia, elaboracions casolanes i menús que no et fan mirar dos cops el compte.
+            Qualitat sense que dolgui la butxaca.
+          </p>
+        </div>
+
+        <div class="porque-card reveal reveal-delay-2">
+          <span class="porque-icon">🕰️</span>
+          <h3 data-i18n="perque.c3.title">Per a cada moment del dia</h3>
+          <p data-i18n="perque.c3.desc">
+            Esmorzar des de les 7:30, menú, tapes, sopar. Terrassa exterior, sala o repartiment a domicili.
+            Com ho necessitis, quan ho necessitis.
+          </p>
+        </div>
+
+        <div class="porque-card reveal reveal-delay-1">
+          <span class="porque-icon">🌟</span>
+          <h3 data-i18n="perque.c4.title">Més de 800 ressenyes positives</h3>
+          <p data-i18n="perque.c4.desc">
+            812 veïns i veïnes que confien en nosaltres. 4.2 estrelles a Google.
+            La reputació no es compra, es guanya. Visita a visita.
+          </p>
+        </div>
+
+        <div class="porque-card reveal reveal-delay-2">
+          <span class="porque-icon">🏠</span>
+          <h3 data-i18n="perque.c5.title">Un bar de tota la vida</h3>
+          <p data-i18n="perque.c5.desc">
+            Igualada ha canviat molt. La Cafeteria Soler també, però sempre cap a millor.
+            La constància té la seva recompensa.
+          </p>
+        </div>
+
+        <div class="porque-card reveal reveal-delay-3">
+          <span class="porque-icon">⚽</span>
+          <h3 data-i18n="perque.c6.title">Futbol a la pantalla gran</h3>
+          <p data-i18n="perque.c6.desc">
+            Tots els partits, bona pantalla, ambient de barri. El Soler és on el veïnat es junta quan hi ha partit.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA strip -->
+      <div class="cta-strip reveal">
+        <h2 data-i18n="cta.title">Reservem taula?</h2>
+        <p data-i18n="cta.desc">Truca'ns i et guardem el lloc. També fem comandes a domicili.</p>
+        <div class="cta-strip-actions">
+          <a href="tel:938037533" class="btn-primary">📞 938 037 533</a>
+          <a href="mailto:antiguacafeteriasoler@gmail.com" class="btn-secondary" data-i18n="cta.email">Escriu-nos</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-name">Antiga Cafeteria Soler</div>
+          <div class="footer-brand-sub" data-i18n="footer.sub">Igualada · El bar de sempre</div>
+          <p class="footer-brand-desc" data-i18n="footer.desc">
+            El bar de tots. Cuina de mercat, tracte proper i el futbol
+            sempre a la pantalla. El cor de l'Avinguda de Barcelona.
+          </p>
+          <div class="footer-stars">
+            <span class="stars">★★★★☆</span>
+            <span class="footer-stars-text" data-i18n="footer.stars">4.2 · 812 ressenyes a Google</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title" data-i18n="footer.horari">Horari</div>
+          <div class="footer-horario">
+            <div class="horario-row">
+              <span class="horario-day" data-i18n="horari.dt">Dimarts – Dimecres</span>
+              <span class="horario-time">7:30 – 23:00</span>
+            </div>
+            <div class="horario-sep"></div>
+            <div class="horario-row">
+              <span class="horario-day" data-i18n="horari.dj">Dijous – Dissabte</span>
+              <span class="horario-time">7:30 – 00:30</span>
+            </div>
+            <div class="horario-row">
+              <span class="horario-day" data-i18n="horari.dv">Divendres (tancament)</span>
+              <span class="horario-time" data-i18n="horari.dv.time">fins a la 01:30</span>
+            </div>
+            <div class="horario-sep"></div>
+            <div class="horario-row">
+              <span class="horario-day" data-i18n="horari.dg">Diumenge</span>
+              <span class="horario-time">7:30 – 23:00</span>
+            </div>
+            <div class="horario-sep"></div>
+            <div class="horario-row closed">
+              <span class="horario-day" data-i18n="horari.dl">Dilluns</span>
+              <span class="horario-time" data-i18n="horari.tancat">Tancat</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title" data-i18n="footer.contacte">Contacte</div>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📍</span>
+              <span class="footer-contact-text">Avinguda de Barcelona 23<br>Igualada</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📞</span>
+              <span class="footer-contact-text">
+                <a href="tel:938037533">938 037 533</a>
+              </span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">✉️</span>
+              <span class="footer-contact-text">
+                <a href="mailto:antiguacafeteriasoler@gmail.com">antiguacafeteriasoler@gmail.com</a>
+              </span>
+            </div>
+          </div>
+          <div class="footer-services">
+            <span class="footer-service-tag" data-i18n="serv.terrassa">Terrassa exterior</span>
+            <span class="footer-service-tag">Takeaway</span>
+            <span class="footer-service-tag" data-i18n="serv.domicili">Domicili</span>
+            <span class="footer-service-tag" data-i18n="serv.reserves">Reserves tel.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-bottom-copy">
+          © 2026 <span>Antiga Cafeteria Soler</span>. Igualada.
+        </span>
+        <span class="footer-bottom-copy" data-i18n="footer.amor">Fet amb estima per al barri.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JS
+  ============================================================ -->
+  <script>
+    // ============================================================
+    // LANGUAGE TOGGLE
+    // ============================================================
+    const T = {
+      ca: {
+        'nav.nosaltres': 'Nosaltres',
+        'nav.carta': 'Carta',
+        'nav.ambient': 'Ambient',
+        'nav.perque': 'Per què?',
+        'nav.reservar': 'Reservar taula',
+        'mobile.nosaltres': 'Nosaltres',
+        'mobile.carta': 'La carta',
+        'mobile.ambient': 'Ambient futbol',
+        'mobile.perque': 'Per què triar-nos?',
+        'mobile.trucar': '📞 Trucar — 938 037 533',
+        'hero.title': 'El bar de sempre,<br><em>el bar de tothom</em>',
+        'hero.sub': 'Cuina de mercat, tracte proper i una terrassa on el barri es troba. El lloc on sempre hi ha bona taula, bona companyia i el futbol en pantalla.',
+        'hero.cta1': '📞 Reserva la teva taula',
+        'hero.cta2': 'Veure la carta',
+        'hero.stat1': 'De tota la vida',
+        'hero.stat2': 'Ressenyes Google',
+        'hero.stat3': 'Valoració mitjana',
+        'sobre.label': 'La nostra història',
+        'sobre.title': 'Quan alguna cosa funciona,<br><em>es cuida, no es canvia</em>',
+        'sobre.p1': 'La Cafeteria Soler és un d\'aquells llocs que no necessiten presentació. Un <strong>bar de barri de debò</strong>: on la gent es coneix, on el cafè del matí sap igual que sempre, i on la cuina parla per si sola. L\'Avinguda de Barcelona 23 ha vist passar generacions, i aquí seguim.',
+        'sobre.p2': 'Fa poc més d\'un any, una família amb moltes ganes i molt respecte va agafar el relleu. El nom es va quedar, el caràcter també. Perquè quan alguna cosa funciona de debò —quan la gent entra i se sent a casa— no cal canviar-la, <strong>cal cuidar-la</strong>. Això és exactament el que hem fet.',
+        'sobre.p3': 'Avui combinem el millor de la cuina de mercat amb aquell ambient acollidor que ens defineix. Menú del dia amb producte fresc, racions per compartir, terrassa exterior i un equip que posa el cor en cada plat. <strong>Més de 800 veïns</strong> ens donen la seva confiança a Google, i això ens enorgulleix cada dia.',
+        'sobre.card1.title': 'Bar de barri de debò',
+        'sobre.card1.desc': 'Sense pretensions. Aquí la gent es coneix, es saluda, i torna. El cafè sap igual que sempre.',
+        'sobre.card2.title': 'Cuina de mercat',
+        'sobre.card2.desc': 'Producte fresc cada dia. Elaboracions casolanes, quantitats generoses, preu honest. El de sempre, el que importa.',
+        'sobre.card3.title': 'Tradició amb relleu',
+        'sobre.card3.desc': 'Nova família, mateix esperit. Respecte per allò que ja funcionava, ganes de continuar fent-ho bé.',
+        'carta.label': 'La carta',
+        'carta.title': 'El que fem bé,<br><em>ho fem molt bé</em>',
+        'carta.lead': 'Plats de mercat, elaboracions casolanes i racions que valen la pena. Per compartir, per repetir.',
+        'carta.p1.nom': 'Croquetes de Foie',
+        'carta.p1.desc': 'Cremoses per dins, daurades per fora. Fetes cada dia amb foie de qualitat — de les que et demanen la recepta.',
+        'carta.p1.tag': 'Especialitat de la casa',
+        'carta.p2.nom': 'Secret al Chimichurri',
+        'carta.p2.desc': 'Tall sucós a la planxa banyat en chimichurri casolà. Un clàssic nostre que mai falta a la carta.',
+        'carta.p2.tag': 'Clàssic',
+        'carta.p3.nom': 'Pop a la Gallega',
+        'carta.p3.desc': 'Amb pebre vermell, oli d\'oliva i aquell punt de sal que ho arrodoneix tot. Directe al plat, sense floritures.',
+        'carta.p3.tag': 'De temporada',
+        'carta.p4.nom': 'Patates Braves',
+        'carta.p4.desc': 'Cruixents, amb salsa de la casa. Les de tota la vida, com han de ser. Sense més explicacions.',
+        'carta.p4.tag': 'Per compartir',
+        'carta.p5.nom': 'Torreznos',
+        'carta.p5.desc': 'Escorça perfecta, textura ideal. Dels que fan silenci a la taula. Els primers no duren gens.',
+        'carta.p5.tag': 'Irresistibles',
+        'carta.p6.nom': 'Esmorzars i Berenars',
+        'carta.p6.desc': 'Obrim a les 7:30. El cafè del matí, com sempre. Perquè el dia comença millor quan hi ha un bon lloc on fer-ho.',
+        'carta.p6.tag': 'Des de les 7:30',
+        'menu.label': 'Menú del Dia',
+        'menu.title': 'El menú que porta anys<br>omplint el local',
+        'menu.setmana': 'Entre setmana',
+        'menu.setmana.detail': 'Primer plat + segon<br>+ postres o cafè',
+        'menu.cap': 'Cap de setmana',
+        'menu.cap.detail': 'Menú especial<br>amb opcions ampliades',
+        'menu.sub': 'Producte fresc · Quantitats generoses · Preu honest',
+        'futbol.badge': '<span class="barca-badge-dot"></span>El punt de trobada del barri',
+        'futbol.title': 'Nits que el barri<br><em>mai oblida</em>',
+        'futbol.p1': 'Hi ha llocs on es veu el futbol, i hi ha llocs on es <strong>viu el futbol</strong>. L\'Antiga Cafeteria Soler és el segon. La pantalla gran, l\'ambient calent i la gent del barri reunida — una energia que no es pot fabricar.',
+        'futbol.p2': 'Champions, clàssics, finals. No importa l\'hora, no importa si és entre setmana. Quan hi ha partit, <strong>Igualada té un punt de trobada</strong>. La ubicació del Soler fa que el barri acabi aquí: celebrar o patir junts converteix qualsevol nit de futbol en alguna cosa que es recorda.',
+        'futbol.p3': 'Més que un bar de futbol: un tros del barri on la gent s\'uneix, comparteix i crea comunitat. Ronda de canyes, els mateixos de sempre, i el partit a la pantalla gran. <strong>Tan senzill com això, tan bo com això.</strong>',
+        'futbol.tag1': '⚽ Pantalla gran',
+        'futbol.tag3': '🍺 Ambient de barri',
+        'futbol.tag4': '🎉 Tots els partits',
+        'futbol.tag5': '👥 Punt de trobada',
+        'futbol.big.title': 'Tots els partits a la pantalla gran',
+        'futbol.big.desc': 'La lliga, la Champions, els clàssics. Pantalla gran, so, i un ambient que es nota des de la porta. El punt de trobada del barri quan hi ha partit.',
+        'futbol.mini1.title': 'Nits màgiques',
+        'futbol.mini1.desc': 'Remontades, gols al 90, nits de Champions. Hi ha moments que només es viuen bé en companyia.',
+        'futbol.mini2.title': 'Comunitat de barri',
+        'futbol.mini2.desc': 'Cares conegudes, noves amistats. El futbol uneix, i el Soler és on això passa a Igualada.',
+        'futbol.mini3.title': 'Bona companyia',
+        'futbol.mini3.desc': 'Canyes, racions i el partit a la pantalla. El pla perfecte de qualsevol nit de futbol.',
+        'futbol.mini4.title': 'Sempre hi ha lloc',
+        'futbol.mini4.desc': 'Vine amb qui vulguis. Reserva si el partit és gran — els clàssics s\'omplen ràpid.',
+        'perque.label': 'Per què nosaltres?',
+        'perque.title': 'Raons de sobres <em>per tornar</em>',
+        'perque.lead': 'Anys i anys de confiança no es construeixen d\'un dia per l\'altre. Es construeixen plat a plat, visita a visita.',
+        'perque.c1.title': 'Un bar de barri de debò',
+        'perque.c1.desc': 'Sense pretensions ni artificis. Aquí menges bé, et tracten bé i surts amb ganes de repetir. Això val més que qualsevol tendència.',
+        'perque.c2.title': 'Cuina de mercat a preu just',
+        'perque.c2.desc': 'Producte fresc cada dia, elaboracions casolanes i menús que no et fan mirar dos cops el compte. Qualitat sense que dolgui la butxaca.',
+        'perque.c3.title': 'Per a cada moment del dia',
+        'perque.c3.desc': 'Esmorzar des de les 7:30, menú, tapes, sopar. Terrassa exterior, sala o repartiment a domicili. Com ho necessitis, quan ho necessitis.',
+        'perque.c4.title': 'Més de 800 ressenyes positives',
+        'perque.c4.desc': '812 veïns i veïnes que confien en nosaltres. 4.2 estrelles a Google. La reputació no es compra, es guanya. Visita a visita.',
+        'perque.c5.title': 'Un bar de tota la vida',
+        'perque.c5.desc': 'Igualada ha canviat molt. La Cafeteria Soler també, però sempre cap a millor. La constància té la seva recompensa.',
+        'perque.c6.title': 'Futbol a la pantalla gran',
+        'perque.c6.desc': 'Tots els partits, bona pantalla, ambient de barri. El Soler és on el veïnat es junta quan hi ha partit.',
+        'cta.title': 'Reservem taula?',
+        'cta.desc': 'Truca\'ns i et guardem el lloc. També fem comandes a domicili.',
+        'cta.email': 'Escriu-nos',
+        'footer.sub': 'Igualada · El bar de sempre',
+        'footer.desc': 'El bar de tots. Cuina de mercat, tracte proper i el futbol sempre a la pantalla. El cor de l\'Avinguda de Barcelona.',
+        'footer.stars': '4.2 · 812 ressenyes a Google',
+        'footer.horari': 'Horari',
+        'horari.dt': 'Dimarts – Dimecres',
+        'horari.dj': 'Dijous – Dissabte',
+        'horari.dv': 'Divendres (tancament)',
+        'horari.dv.time': 'fins a la 01:30',
+        'horari.dg': 'Diumenge',
+        'horari.dl': 'Dilluns',
+        'horari.tancat': 'Tancat',
+        'footer.contacte': 'Contacte',
+        'serv.terrassa': 'Terrassa exterior',
+        'serv.domicili': 'Domicili',
+        'serv.reserves': 'Reserves tel.',
+        'footer.amor': 'Fet amb estima per al barri.',
+      },
+      es: {
+        'nav.nosaltres': 'Nosotros',
+        'nav.carta': 'Carta',
+        'nav.ambient': 'Ambiente',
+        'nav.perque': '¿Por qué?',
+        'nav.reservar': 'Reservar mesa',
+        'mobile.nosaltres': 'Nosotros',
+        'mobile.carta': 'La carta',
+        'mobile.ambient': 'Ambiente fútbol',
+        'mobile.perque': '¿Por qué elegirnos?',
+        'mobile.trucar': '📞 Llamar — 938 037 533',
+        'hero.title': 'El bar de siempre,<br><em>el bar de todos</em>',
+        'hero.sub': 'Cocina de mercado, trato cercano y una terraza donde el barrio se encuentra. El lugar donde siempre hay buena mesa, buena compañía y el fútbol en pantalla.',
+        'hero.cta1': '📞 Reserva tu mesa',
+        'hero.cta2': 'Ver la carta',
+        'hero.stat1': 'De toda la vida',
+        'hero.stat2': 'Reseñas Google',
+        'hero.stat3': 'Valoración media',
+        'sobre.label': 'Nuestra historia',
+        'sobre.title': 'Cuando algo funciona,<br><em>se cuida, no se cambia</em>',
+        'sobre.p1': 'La Cafeteria Soler es uno de esos sitios que no necesitan presentación. Un <strong>bar de barrio de los de verdad</strong>: donde se conoce la gente, donde el café de la mañana sabe igual que siempre, y donde la cocina habla por sí sola. Avinguda de Barcelona 23 ha visto pasar generaciones, y aquí seguimos.',
+        'sobre.p2': 'Hace poco más de un año, una familia con muchas ganas y mucho respeto tomó el relevo. El nombre se quedó, el carácter también. Porque cuando algo funciona de verdad —cuando la gente entra y se siente en casa— no hay que cambiarlo, <strong>hay que cuidarlo</strong>. Eso es exactamente lo que hemos hecho.',
+        'sobre.p3': 'Hoy combinamos lo mejor de la cocina de mercado con ese ambiente acogedor que nos define. Menú del día con producto fresco, raciones para compartir, terraza exterior y un equipo que pone el corazón en cada plato. <strong>Más de 800 vecinos</strong> nos dan su confianza en Google, y eso nos enorgullece cada día.',
+        'sobre.card1.title': 'Bar de barrio de verdad',
+        'sobre.card1.desc': 'Sin pretensiones. Aquí la gente se conoce, se saluda, y vuelve. El café sabe igual que siempre.',
+        'sobre.card2.title': 'Cocina de mercado',
+        'sobre.card2.desc': 'Producto fresco cada día. Elaboraciones caseras, cantidades generosas, precio honesto. Lo de siempre, lo que importa.',
+        'sobre.card3.title': 'Tradición con relevo',
+        'sobre.card3.desc': 'Nueva familia, mismo espíritu. Respeto por lo que ya funcionaba, ganas de seguir haciéndolo bien.',
+        'carta.label': 'La carta',
+        'carta.title': 'Lo que hacemos bien,<br><em>lo hacemos muy bien</em>',
+        'carta.lead': 'Platos de mercado, elaboraciones caseras y raciones que merecen la pena. Para compartir, para repetir.',
+        'carta.p1.nom': 'Croquetas de Foie',
+        'carta.p1.desc': 'Cremosas por dentro, doradas por fuera. Hechas a diario con foie de calidad — de las que te piden la receta.',
+        'carta.p1.tag': 'Especialidad de la casa',
+        'carta.p2.nom': 'Secreto al Chimichurri',
+        'carta.p2.desc': 'Corte jugoso a la plancha bañado en chimichurri casero. Un clásico nuestro que nunca falta en la carta.',
+        'carta.p2.tag': 'Clásico',
+        'carta.p3.nom': 'Pulpo a la Gallega',
+        'carta.p3.desc': 'Con pimentón, aceite de oliva y ese punto de sal que lo redondea todo. Directo al plato, sin florituras.',
+        'carta.p3.tag': 'De temporada',
+        'carta.p4.nom': 'Patatas Bravas',
+        'carta.p4.desc': 'Crujientes, con salsa de la casa. Las de toda la vida, como tienen que ser. Sin más explicaciones.',
+        'carta.p4.tag': 'Para compartir',
+        'carta.p5.nom': 'Torreznos',
+        'carta.p5.desc': 'Corteza perfecta, textura ideal. De los que hacen silencio en la mesa. Los primeros no duran nada.',
+        'carta.p5.tag': 'Irresistibles',
+        'carta.p6.nom': 'Desayunos y Meriendas',
+        'carta.p6.desc': 'Abrimos a las 7:30. El café de la mañana, como siempre. Porque el día empieza mejor cuando hay un buen sitio donde empezarlo.',
+        'carta.p6.tag': 'Desde las 7:30',
+        'menu.label': 'Menú del Día',
+        'menu.title': 'El menú que lleva años<br>llenando el local',
+        'menu.setmana': 'Entre semana',
+        'menu.setmana.detail': 'Primer plato + segundo<br>+ postre o café',
+        'menu.cap': 'Fin de semana',
+        'menu.cap.detail': 'Menú especial<br>con opciones ampliadas',
+        'menu.sub': 'Producto fresco · Cantidades generosas · Precio honesto',
+        'futbol.badge': '<span class="barca-badge-dot"></span>El punto de encuentro del barrio',
+        'futbol.title': 'Noches que el barrio<br><em>nunca olvida</em>',
+        'futbol.p1': 'Hay sitios donde se ve el fútbol, y hay sitios donde se <strong>vive el fútbol</strong>. La Antiga Cafeteria Soler es lo segundo. La pantalla grande, el ambiente caliente y la gente del barrio reunida — una energía que no se puede fabricar.',
+        'futbol.p2': 'Champions, clásicos, finales. Da igual la hora, da igual si es entre semana. Cuando hay partido, <strong>Igualada tiene un punto de encuentro</strong>. La ubicación del Soler hace que el barrio acabe aquí: celebrar o sufrir juntos convierte cualquier noche de fútbol en algo que se recuerda.',
+        'futbol.p3': 'Más que un bar de fútbol: un trozo del barrio donde la gente se une, comparte y crea comunidad. Ronda de cañas, los mismos de siempre, y el partido en pantalla grande. <strong>Así de sencillo, así de bueno.</strong>',
+        'futbol.tag1': '⚽ Pantalla grande',
+        'futbol.tag3': '🍺 Ambiente de barrio',
+        'futbol.tag4': '🎉 Todos los partidos',
+        'futbol.tag5': '👥 Punto de encuentro',
+        'futbol.big.title': 'Todos los partidos en pantalla grande',
+        'futbol.big.desc': 'La liga, la Champions, los clásicos. Pantalla grande, sonido, y un ambiente que se nota desde la puerta. El punto de encuentro del barrio cuando hay partido.',
+        'futbol.mini1.title': 'Noches mágicas',
+        'futbol.mini1.desc': 'Remontadas, goles en el 90, noches de Champions. Hay momentos que solo se viven bien en compañía.',
+        'futbol.mini2.title': 'Comunidad de barrio',
+        'futbol.mini2.desc': 'Caras conocidas, nuevas amistades. El fútbol une, y el Soler es donde eso pasa en Igualada.',
+        'futbol.mini3.title': 'Buena compañía',
+        'futbol.mini3.desc': 'Cañas, raciones y el partido en pantalla. El plan perfecto de cualquier noche de fútbol.',
+        'futbol.mini4.title': 'Siempre hay sitio',
+        'futbol.mini4.desc': 'Ven con quien quieras. Reserva si el partido es grande — los clásicos llenan rápido.',
+        'perque.label': '¿Por qué nosotros?',
+        'perque.title': 'Razones de sobra <em>para volver</em>',
+        'perque.lead': 'Años y años de confianza no se construyen de la noche a la mañana. Se construyen plato a plato, visita a visita.',
+        'perque.c1.title': 'Un bar de barrio de verdad',
+        'perque.c1.desc': 'Sin pretensiones ni artificios. Aquí comes bien, te tratan bien y sales con ganas de repetir. Eso vale más que cualquier tendencia.',
+        'perque.c2.title': 'Cocina de mercado a precio justo',
+        'perque.c2.desc': 'Producto fresco cada día, elaboraciones caseras y menús que no te hacen mirar dos veces la cuenta. Calidad sin que duela el bolsillo.',
+        'perque.c3.title': 'Para cada momento del día',
+        'perque.c3.desc': 'Desayuno desde las 7:30, menú, tapas, cena. Terraza exterior, sala o reparto a domicilio. Como lo necesites, cuando lo necesites.',
+        'perque.c4.title': 'Más de 800 reseñas positivas',
+        'perque.c4.desc': '812 vecinos y vecinas que confían en nosotros. 4.2 estrellas en Google. La reputación no se compra, se gana. Visita a visita.',
+        'perque.c5.title': 'Un bar de toda la vida',
+        'perque.c5.desc': 'Igualada ha cambiado mucho. La Cafeteria Soler también, pero siempre hacia mejor. La constancia tiene su recompensa.',
+        'perque.c6.title': 'Fútbol en pantalla grande',
+        'perque.c6.desc': 'Todos los partidos, buena pantalla, ambiente de barrio. El Soler es donde el vecindario se junta cuando hay partido.',
+        'cta.title': '¿Reservamos mesa?',
+        'cta.desc': 'Llámanos y te guardamos el sitio. También hacemos pedidos a domicilio.',
+        'cta.email': 'Escríbenos',
+        'footer.sub': 'Igualada · El bar de siempre',
+        'footer.desc': 'El bar de todos. Cocina de mercado, trato cercano y el fútbol siempre en pantalla. El corazón de Avinguda de Barcelona.',
+        'footer.stars': '4.2 · 812 reseñas en Google',
+        'footer.horari': 'Horario',
+        'horari.dt': 'Martes – Miércoles',
+        'horari.dj': 'Jueves – Sábado',
+        'horari.dv': 'Viernes (cierre)',
+        'horari.dv.time': 'hasta 01:30',
+        'horari.dg': 'Domingo',
+        'horari.dl': 'Lunes',
+        'horari.tancat': 'Cerrado',
+        'footer.contacte': 'Contacto',
+        'serv.terrassa': 'Terraza exterior',
+        'serv.domicili': 'Domicilio',
+        'serv.reserves': 'Reservas tel.',
+        'footer.amor': 'Hecho con cariño para el barrio.',
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const val = T[lang]?.[key];
+        if (!val) return;
+        el.innerHTML = val;
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      localStorage.setItem('lang-soler', lang);
+    }
+
+    // Init language
+    const savedLang = localStorage.getItem('lang-soler') || 'ca';
+    setLang(savedLang);
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Reveal hero on load
+    document.querySelectorAll('#hero .reveal').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+  </script>
+
+</body>
+</html>
