@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfils Perruquers — Igualada</title>
+  <meta name="description" content="Perruqueria d'alta gamma a Igualada. Tall i estil, color i mèxes, tractaments capil·lars, pentinats i recollits, alisats i barba. Al Passeig Mossèn Jacint Verdaguer, 67." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & ROOT
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:           #0D0D0D;
+      --bg-mid:       #111111;
+      --bg-card:      #161616;
+      --bg-card-hover:#1C1C1C;
+      --gold:         #C9A96E;
+      --gold-light:   #E8D5C0;
+      --gold-dim:     rgba(201, 169, 110, 0.18);
+      --gold-border:  rgba(201, 169, 110, 0.28);
+      --text:         #F5F0EB;
+      --text-muted:   #B0A89A;
+      --text-dim:     #6B6B6B;
+      --sep:          rgba(201, 169, 110, 0.15);
+      --radius:       2px;
+      --transition:   0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.72;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Thin gold scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* Subtle film grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.07s; }
+    .reveal-delay-2 { transition-delay: 0.14s; }
+    .reveal-delay-3 { transition-delay: 0.21s; }
+    .reveal-delay-4 { transition-delay: 0.28s; }
+    .reveal-delay-5 { transition-delay: 0.35s; }
+    .reveal-delay-6 { transition-delay: 0.42s; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 68px;
+      background: rgba(13, 13, 13, 0.78);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+      transition: background var(--transition);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.25rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-center a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .nav-center a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      padding: 3px;
+      border: 1px solid var(--gold-border);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(245,240,235,0.45);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 5px 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-transform: uppercase;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(201, 169, 110, 0.1);
+      color: var(--gold);
+    }
+
+    .nav-phone-link {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      padding: 0.42rem 1.1rem;
+      border-radius: var(--radius);
+      transition: background var(--transition), border-color var(--transition);
+      white-space: nowrap;
+    }
+    .nav-phone-link:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--gold-light);
+      transition: all 0.28s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 199;
+      background: rgba(13, 13, 13, 0.97);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--gold-border);
+      flex-direction: column;
+      padding: 2rem 2.5rem 2.5rem;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.07);
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .mobile-menu a:hover { opacity: 1; color: var(--gold); }
+    .mobile-menu a:last-child { border-bottom: none; opacity: 1; color: var(--gold); }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2.2rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+      opacity: 0.85;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .gold-line {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin: 1.6rem 0 2.8rem;
+    }
+
+    .sep-full {
+      width: 100%;
+      height: 1px;
+      background: var(--sep);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-ambiance {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 30%, rgba(201, 169, 110, 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(201, 169, 110, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 18% 68%, rgba(232, 213, 192, 0.04) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Thin vertical lines — editorial grid hint */
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-grid-lines::before,
+    .hero-grid-lines::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.07) 30%, rgba(201,169,110,0.07) 70%, transparent);
+    }
+    .hero-grid-lines::before { left: 33.333%; }
+    .hero-grid-lines::after  { right: 33.333%; }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    .hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      line-height: 1.04;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-heading .gold-word {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      max-width: 440px;
+      margin: 0 auto 3.2rem;
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #0D0D0D;
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-dim);
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.25; }
+      50%       { opacity: 0.8; }
+    }
+
+    /* ============================================================
+       STATS BAND
+    ============================================================ */
+    #stats-band {
+      padding: 0;
+      border-top: 1px solid var(--sep);
+      border-bottom: 1px solid var(--sep);
+      background: rgba(201, 169, 110, 0.03);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-right: 1px solid var(--sep);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       SERVEIS
+    ============================================================ */
+    #serveis {
+      padding: 7rem 0 7rem;
+    }
+
+    .services-header {
+      max-width: 560px;
+      margin-bottom: 4rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--sep);
+      border: 1px solid var(--sep);
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      padding: 2.4rem 2rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover {
+      background: var(--bg-card-hover);
+    }
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.6rem;
+      transition: width var(--transition);
+    }
+    .service-card:hover .service-icon { width: 48px; }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.4rem;
+    }
+
+    .service-cta {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+    .service-card:hover .service-cta { opacity: 1; }
+
+    /* ============================================================
+       INSTAGRAM / TREBALLS
+    ============================================================ */
+    #treballs {
+      padding: 7rem 0;
+      background: var(--bg-mid);
+      border-top: 1px solid var(--sep);
+      border-bottom: 1px solid var(--sep);
+    }
+
+    .treballs-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+    }
+
+    .treballs-header-left { max-width: 500px; }
+
+    .ig-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .ig-link:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+    .ig-link svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .ig-thumb {
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .ig-thumb-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .ig-thumb:hover .ig-thumb-bg {
+      transform: scale(1.06);
+    }
+
+    /* Varied elegant gradients as photo placeholders */
+    .ig-1 .ig-thumb-bg { background: linear-gradient(135deg, #1a1208 0%, #2e2010 50%, #1a1510 100%); }
+    .ig-2 .ig-thumb-bg { background: linear-gradient(165deg, #0f0f0f 0%, #221a0e 60%, #1a1208 100%); }
+    .ig-3 .ig-thumb-bg { background: linear-gradient(120deg, #181410 0%, #2a1e0c 50%, #111111 100%); }
+    .ig-4 .ig-thumb-bg { background: linear-gradient(155deg, #0d0d0d 0%, #1e1a10 55%, #2e2518 100%); }
+    .ig-5 .ig-thumb-bg { background: linear-gradient(145deg, #1c1610 0%, #261c0a 50%, #141010 100%); }
+    .ig-6 .ig-thumb-bg { background: linear-gradient(125deg, #1a1208 0%, #0f0f0f 45%, #201808 100%); }
+    .ig-7 .ig-thumb-bg { background: linear-gradient(140deg, #111111 0%, #1e1810 55%, #28200e 100%); }
+    .ig-8 .ig-thumb-bg { background: linear-gradient(160deg, #201a0c 0%, #0d0d0d 50%, #1a1510 100%); }
+
+    .ig-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .ig-thumb:hover .ig-thumb-overlay { opacity: 1; }
+
+    .ig-thumb-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Gold accent mark on each thumb */
+    .ig-thumb-mark {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.45;
+    }
+
+    /* Decorative cross hair on hover */
+    .ig-thumb-overlay-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+    .ig-thumb-overlay-icon::before,
+    .ig-thumb-overlay-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+    }
+    .ig-thumb-overlay-icon::before {
+      width: 1px; height: 100%;
+      left: 50%; top: 0;
+      transform: translateX(-50%);
+    }
+    .ig-thumb-overlay-icon::after {
+      height: 1px; width: 100%;
+      top: 50%; left: 0;
+      transform: translateY(-50%);
+    }
+
+    .ig-footer {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .ig-stat-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .ig-stat-text strong {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       EL SALÓ
+    ============================================================ */
+    #salo {
+      padding: 7.5rem 0;
+    }
+
+    .salo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .salo-visual {
+      position: relative;
+      height: 480px;
+    }
+
+    .salo-frame {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #181410 0%, #1e1a10 40%, #141010 100%);
+      overflow: hidden;
+    }
+
+    /* Interior luxury ambiance illustration */
+    .salo-frame-inner {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 20% at 20% 80%, rgba(201,169,110,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 25% 15% at 82% 20%, rgba(232,213,192,0.05) 0%, transparent 50%);
+    }
+
+    /* Thin line architectural details */
+    .salo-frame::before {
+      content: '';
+      position: absolute;
+      bottom: 30%;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.2), transparent);
+    }
+    .salo-frame::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.1) 30%, rgba(201,169,110,0.1) 70%, transparent);
+    }
+
+    .salo-frame-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.8rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* Gold corner accents */
+    .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    .corner-tl { top: 16px; left: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .corner-tr { top: 16px; right: 16px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+    .corner-bl { bottom: 16px; left: 16px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .corner-br { bottom: 16px; right: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+    .salo-frame-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(201, 169, 110, 0.07);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .salo-text .section-tag { margin-bottom: 1rem; }
+    .salo-text .section-title { margin-bottom: 1rem; }
+
+    .salo-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      margin-bottom: 1.6rem;
+    }
+
+    .salo-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--sep);
+    }
+
+    .salo-address-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gold);
+    }
+
+    .salo-address strong {
+      display: block;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.15rem;
+    }
+
+    /* ============================================================
+       RESERVA & CONTACTE
+    ============================================================ */
+    #reserva {
+      padding: 7.5rem 0;
+      background: var(--bg-mid);
+      border-top: 1px solid var(--sep);
+    }
+
+    .reserva-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .reserva-left {}
+
+    .phone-display {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      line-height: 1;
+      margin-bottom: 1rem;
+      transition: color var(--transition);
+    }
+    .phone-display:hover { color: var(--gold-light); }
+
+    .phone-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 2.4rem;
+    }
+
+    .reserva-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Hours */
+    .hours-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      padding: 2rem 2.2rem;
+    }
+
+    .hours-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.6rem;
+      opacity: 0.85;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(201, 169, 110, 0.06);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+
+    .hours-table td {
+      padding: 0.68rem 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hours-table td:first-child {
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      width: 55%;
+    }
+
+    .hours-table td.closed {
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .hours-table td.open-time {
+      color: var(--gold);
+    }
+
+    .hours-note {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       INSTAGRAM MARQUEE STRIP
+    ============================================================ */
+    #marquee-strip {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--sep);
+      border-bottom: 1px solid var(--sep);
+      overflow: hidden;
+      background: rgba(201, 169, 110, 0.02);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3.5rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 0 3rem;
+      border-top: 1px solid var(--sep);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.8rem;
+      line-height: 1.5;
+    }
+
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.25s;
+    }
+    .footer-ig:hover { opacity: 1; }
+    .footer-ig svg {
+      width: 13px; height: 13px;
+      fill: none; stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 1.4rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-list li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .footer-list li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-list li a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.06);
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .footer-star {
+      color: var(--gold);
+      font-size: 0.75rem;
+    }
+
+    .footer-rating {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .salo-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .salo-visual { height: 300px; }
+      .reserva-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .ig-grid { grid-template-columns: repeat(4, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.4rem; }
+
+      .nav-center { display: none; }
+      .nav-phone-link { display: none; }
+      .hamburger { display: flex; }
+
+      .container { padding: 0 1.4rem; }
+
+      #hero { padding: 7rem 1.4rem 5rem; }
+      .hero-heading { font-size: clamp(3rem, 11vw, 5rem); }
+
+      .stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .stat-item { padding: 1.8rem 0.8rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .treballs-header { flex-direction: column; align-items: flex-start; }
+      .ig-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .salo-visual { height: 260px; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+      .reserva-cta-group { flex-direction: column; }
+      .btn-primary, .btn-ghost { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--sep); padding: 1.5rem; }
+      .stat-item:last-child { border-bottom: none; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">Perfils Perruquers</a>
+
+    <ul class="nav-center">
+      <li><a href="#serveis" data-ca="Serveis" data-es="Servicios">Serveis</a></li>
+      <li><a href="#treballs" data-ca="Els nostres treballs" data-es="Nuestros trabajos">Els nostres treballs</a></li>
+      <li><a href="#salo" data-ca="El Saló" data-es="El Salón">El Saló</a></li>
+      <li><a href="#reserva" data-ca="Reserva" data-es="Reserva">Reserva</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="tel:938041418" class="nav-phone-link">938 04 14 18</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#serveis" data-ca="Serveis" data-es="Servicios">Serveis</a>
+    <a href="#treballs" data-ca="Els nostres treballs" data-es="Nuestros trabajos">Els nostres treballs</a>
+    <a href="#salo" data-ca="El Saló" data-es="El Salón">El Saló</a>
+    <a href="#reserva" data-ca="Reserva" data-es="Reserva">Reserva</a>
+    <a href="tel:938041418">938 04 14 18</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-ambiance"></div>
+    <div class="hero-grid-lines"></div>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal">
+        <span data-ca="Igualada · Passeig Verdaguer" data-es="Igualada · Paseo Verdaguer">Igualada · Passeig Verdaguer</span>
+      </div>
+
+      <h1 class="hero-heading reveal reveal-delay-1">
+        <span data-ca="On el cabell" data-es="Donde el cabello">On el cabell</span><br>
+        <em class="gold-word" data-ca="és art." data-es="es arte.">és art.</em>
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2" data-ca="Perruqueria d'alta gamma al cor d'Igualada. Perquè cada tall és una decisió, i cada client mereix el millor." data-es="Peluquería de alta gama en el corazón de Igualada. Porque cada corte es una decisión, y cada cliente merece lo mejor.">
+        Perruqueria d'alta gamma al cor d'Igualada. Perquè cada tall és una decisió, i cada client mereix el millor.
+      </p>
+
+      <div class="hero-cta-row reveal reveal-delay-3">
+        <a href="tel:938041418" class="btn-primary" data-ca="Reserva la teva cita" data-es="Reserva tu cita">Reserva la teva cita</a>
+        <a href="#serveis" class="btn-ghost" data-ca="Veure serveis" data-es="Ver servicios">Veure serveis</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS BAND
+  ============================================================ -->
+  <div id="stats-band">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <div class="stat-number">4.7<em>★</em></div>
+          <div class="stat-label" data-ca="Valoració Google" data-es="Valoración Google">Valoració Google</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number"><em>88</em></div>
+          <div class="stat-label" data-ca="Ressenyes verificades" data-es="Reseñas verificadas">Ressenyes verificades</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number"><em>1.5k</em></div>
+          <div class="stat-label" data-ca="Seguidors Instagram" data-es="Seguidores Instagram">Seguidors Instagram</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SERVEIS
+  ============================================================ -->
+  <section id="serveis">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-tag reveal" data-ca="El nostre treball" data-es="Nuestro trabajo">El nostre treball</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          <span data-ca="Serveis " data-es="Servicios ">Serveis </span><em data-ca="d'excepció" data-es="de excepción">d'excepció</em>
+        </h2>
+        <div class="gold-line reveal reveal-delay-2"></div>
+        <p class="reveal reveal-delay-2" style="font-size:0.9rem;color:var(--text-muted);max-width:440px;" data-ca="Cada servei és pensat per a cada persona. Consulteu disponibilitat i assessorament personalitzat sense compromís." data-es="Cada servicio está pensado para cada persona. Consultad disponibilidad y asesoramiento personalizado sin compromiso.">
+          Cada servei és pensat per a cada persona. Consulteu disponibilitat i assessorament personalitzat sense compromís.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Tall i estil -->
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Tall i Estil" data-es="Corte y Estilo">Tall i Estil</div>
+          <p class="service-desc" data-ca="Del clàssic a l'avantguarda. Treballem cada tall amb precisió milimètrica, adaptant la forma al teu rostre i personalitat." data-es="De lo clásico a la vanguardia. Trabajamos cada corte con precisión milimétrica, adaptando la forma a tu rostro y personalidad.">
+            Del clàssic a l'avantguarda. Treballem cada tall amb precisió milimètrica, adaptant la forma al teu rostre i personalitat.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+
+        <!-- Color i mèxes -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Color i Mèxes" data-es="Color y Mechas">Color i Mèxes</div>
+          <p class="service-desc" data-ca="Coloració professional amb productes d'alta gamma. Balayage, mecxes, tècniques de llum i ombra. Resultat natural o impacte màxim." data-es="Coloración profesional con productos de alta gama. Balayage, mechas, técnicas de luz y sombra. Resultado natural o impacto máximo.">
+            Coloració professional amb productes d'alta gamma. Balayage, mecxes, tècniques de llum i ombra. Resultat natural o impacte màxim.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+
+        <!-- Tractaments -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Tractaments Capil·lars" data-es="Tratamientos Capilares">Tractaments Capil·lars</div>
+          <p class="service-desc" data-ca="Hidratació profunda, nutrició i reparació. Protocols d'alta cosmètica per restaurar la vitalitat i la lluminositat de cada cabell." data-es="Hidratación profunda, nutrición y reparación. Protocolos de alta cosmética para restaurar la vitalidad y la luminosidad de cada cabello.">
+            Hidratació profunda, nutrició i reparació. Protocols d'alta cosmètica per restaurar la vitalitat i la lluminositat de cada cabell.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+
+        <!-- Pentinats -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Pentinats i Recollits" data-es="Peinados y Recogidos">Pentinats i Recollits</div>
+          <p class="service-desc" data-ca="Per al dia especial que mereix quedar gravat. Núvies, cerimònies i events. Cada recollida és una obra pensada per a tu." data-es="Para el día especial que merece quedar grabado. Novias, ceremonias y eventos. Cada recogido es una obra pensada para ti.">
+            Per al dia especial que mereix quedar gravat. Núvies, cerimònies i events. Cada recollida és una obra pensada per a tu.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+
+        <!-- Alisats -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Alisats" data-es="Alisados">Alisats</div>
+          <p class="service-desc" data-ca="Tractaments d'allisat professionals: queratina, japonès i tècniques definitives. Resultats duradors amb màxim respecte per la fibra capil·lar." data-es="Tratamientos de alisado profesionales: keratina, japonés y técnicas definitivas. Resultados duraderos con máximo respeto por la fibra capilar.">
+            Tractaments d'allisat professionals: queratina, japonès i tècniques definitives. Resultats duradors amb màxim respecte per la fibra capil·lar.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+
+        <!-- Barba -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon"></div>
+          <div class="service-name" data-ca="Barba" data-es="Barba">Barba</div>
+          <p class="service-desc" data-ca="Perfilat, retall i afaitat clàssic amb navalla. El ritual masculí per excel·lència, executat amb la cura que et mereixes." data-es="Perfilado, recorte y afeitado clásico con navaja. El ritual masculino por excelencia, ejecutado con el cuidado que mereces.">
+            Perfilat, retall i afaitat clàssic amb navalla. El ritual masculí per excel·lència, executat amb la cura que et mereixes.
+          </p>
+          <div class="service-cta" data-ca="Consulteu preu →" data-es="Consultad precio →">Consulteu preu →</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSTAGRAM / TREBALLS
+  ============================================================ -->
+  <section id="treballs">
+    <div class="container">
+      <div class="treballs-header">
+        <div class="treballs-header-left">
+          <div class="section-tag reveal" data-ca="Instagram · @perfilsperruquers" data-es="Instagram · @perfilsperruquers">Instagram · @perfilsperruquers</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            <em data-ca="Els nostres" data-es="Nuestros">Els nostres</em>
+            <span data-ca=" treballs" data-es=" trabajos"> treballs</span>
+          </h2>
+          <div class="gold-line reveal reveal-delay-2"></div>
+        </div>
+        <a href="https://www.instagram.com/perfilsperruquers" target="_blank" class="ig-link reveal">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-ca="Segueix-nos" data-es="Síguenos">Segueix-nos</span>
+        </a>
+      </div>
+
+      <div class="ig-grid">
+        <div class="ig-thumb ig-1 reveal">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-2 reveal reveal-delay-1">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-3 reveal reveal-delay-2">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-4 reveal reveal-delay-3">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-5 reveal reveal-delay-1">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-6 reveal reveal-delay-2">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-7 reveal reveal-delay-3">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+        <div class="ig-thumb ig-8 reveal reveal-delay-4">
+          <div class="ig-thumb-bg"></div>
+          <div class="ig-thumb-inner"></div>
+          <div class="ig-thumb-mark"></div>
+          <div class="ig-thumb-overlay"><div class="ig-thumb-overlay-icon"></div></div>
+        </div>
+      </div>
+
+      <div class="ig-footer reveal">
+        <p class="ig-stat-text" data-ca="Més de <strong>1.500 seguidors</strong> que ja ens coneixen." data-es="Más de <strong>1.500 seguidores</strong> que ya nos conocen.">
+          Més de <strong>1.500 seguidors</strong> que ja ens coneixen.
+        </p>
+        <a href="https://www.instagram.com/perfilsperruquers" target="_blank" class="ig-link">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-ca="Veure tots els treballs" data-es="Ver todos los trabajos">Veure tots els treballs</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EL SALÓ
+  ============================================================ -->
+  <section id="salo">
+    <div class="container">
+      <div class="salo-grid">
+
+        <div class="salo-visual reveal">
+          <div class="salo-frame">
+            <div class="salo-frame-inner"></div>
+            <div class="salo-frame-number">P</div>
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            <div class="salo-frame-label" data-ca="Perfils Perruquers · Igualada" data-es="Perfils Perruquers · Igualada">Perfils Perruquers · Igualada</div>
+          </div>
+        </div>
+
+        <div class="salo-text">
+          <div class="section-tag reveal" data-ca="Sobre nosaltres" data-es="Sobre nosotros">Sobre nosaltres</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            <em data-ca="El Saló" data-es="El Salón">El Saló</em>
+          </h2>
+          <div class="gold-line reveal reveal-delay-2"></div>
+
+          <p class="salo-body reveal reveal-delay-2" data-ca="Ubicat al Passeig Mossèn Jacint Verdaguer d'Igualada, Perfils Perruquers és un espai on l'estil i la cura es troben. Des de fa anys, el teu referent en perruqueria a la comarca de l'Anoia." data-es="Ubicado en el Paseo Mossèn Jacint Verdaguer de Igualada, Perfils Perruquers es un espacio donde el estilo y el cuidado se encuentran. Desde hace años, tu referente en peluquería en la comarca de l'Anoia.">
+            Ubicat al Passeig Mossèn Jacint Verdaguer d'Igualada, Perfils Perruquers és un espai on l'estil i la cura es troben. Des de fa anys, el teu referent en perruqueria a la comarca de l'Anoia.
+          </p>
+
+          <p class="salo-body reveal reveal-delay-3" data-ca="Un equip apassionat, formats en les últimes tècniques i tendències, amb un sol objectiu: que sortis de cada visita sentint-te la millor versió de tu mateix." data-es="Un equipo apasionado, formados en las últimas técnicas y tendencias, con un solo objetivo: que salgas de cada visita sintiéndote la mejor versión de ti mismo.">
+            Un equip apassionat, formats en les últimes tècniques i tendències, amb un sol objectiu: que sortis de cada visita sentint-te la millor versió de tu mateix.
+          </p>
+
+          <div class="salo-address reveal reveal-delay-4">
+            <svg class="salo-address-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            <div>
+              <strong data-ca="Adreça" data-es="Dirección">Adreça</strong>
+              <span>Pg. Mossèn Jacint Verdaguer, 67<br>08700 Igualada</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE STRIP
+  ============================================================ -->
+  <div id="marquee-strip">
+    <div class="marquee-track">
+      <!-- Duplicated for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Tall i Estil" data-es="Corte y Estilo">Tall i Estil</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Color i Mèxes" data-es="Color y Mechas">Color i Mèxes</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Tractaments Capil·lars" data-es="Tratamientos Capilares">Tractaments Capil·lars</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Pentinats i Recollits" data-es="Peinados y Recogidos">Pentinats i Recollits</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Alisats" data-es="Alisados">Alisats</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Barba" data-es="Barba">Barba</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="4.7★ Google" data-es="4.7★ Google">4.7★ Google</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Igualada · Anoia" data-es="Igualada · Anoia">Igualada · Anoia</span></span>
+      <!-- Duplicate -->
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Tall i Estil" data-es="Corte y Estilo">Tall i Estil</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Color i Mèxes" data-es="Color y Mechas">Color i Mèxes</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Tractaments Capil·lars" data-es="Tratamientos Capilares">Tractaments Capil·lars</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Pentinats i Recollits" data-es="Peinados y Recogidos">Pentinats i Recollits</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Alisats" data-es="Alisados">Alisats</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Barba" data-es="Barba">Barba</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="4.7★ Google" data-es="4.7★ Google">4.7★ Google</span></span>
+      <span class="marquee-item"><span class="marquee-dot"></span><span data-ca="Igualada · Anoia" data-es="Igualada · Anoia">Igualada · Anoia</span></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       RESERVA & CONTACTE
+  ============================================================ -->
+  <section id="reserva">
+    <div class="container">
+      <div class="reserva-grid">
+        <div class="reserva-left">
+          <div class="section-tag reveal" data-ca="Contacte i Reserva" data-es="Contacto y Reserva">Contacte i Reserva</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            <span data-ca="Estem " data-es="Estamos ">Estem </span><em data-ca="aquí per a tu" data-es="aquí para ti">aquí per a tu</em>
+          </h2>
+          <div class="gold-line reveal reveal-delay-2"></div>
+
+          <p class="reveal reveal-delay-2" style="font-size:0.88rem;color:var(--text-muted);margin-bottom:2rem;" data-ca="Truca'ns per reservar cita o per a qualsevol consulta. T'assessorarem sense compromís." data-es="Llámanos para reservar cita o para cualquier consulta. Te asesoraremos sin compromiso.">
+            Truca'ns per reservar cita o per a qualsevol consulta. T'assessorarem sense compromís.
+          </p>
+
+          <a href="tel:938041418" class="phone-display reveal reveal-delay-3">938 04 14 18</a>
+          <div class="phone-label reveal reveal-delay-3" data-ca="Telèfon · Dimarts a Dissabte" data-es="Teléfono · Martes a Sábado">Telèfon · Dimarts a Dissabte</div>
+
+          <div class="reserva-cta-group reveal reveal-delay-4">
+            <a href="tel:938041418" class="btn-primary" data-ca="Truca'ns ara" data-es="Llámanos ahora">Truca'ns ara</a>
+            <a href="https://www.instagram.com/perfilsperruquers" target="_blank" class="btn-ghost" data-ca="Escriu a Instagram" data-es="Escribe por Instagram">Escriu a Instagram</a>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="hours-card">
+            <div class="hours-title" data-ca="Horari d'obertura" data-es="Horario de apertura">Horari d'obertura</div>
+            <table class="hours-table">
+              <tbody>
+                <tr>
+                  <td data-ca="Dimarts — Divendres" data-es="Martes — Viernes">Dimarts — Divendres</td>
+                  <td class="open-time">08:00 – 19:00</td>
+                </tr>
+                <tr>
+                  <td data-ca="Dissabte" data-es="Sábado">Dissabte</td>
+                  <td class="open-time">07:00 – 15:00</td>
+                </tr>
+                <tr>
+                  <td data-ca="Diumenge" data-es="Domingo">Diumenge</td>
+                  <td class="closed" data-ca="Tancat" data-es="Cerrado">Tancat</td>
+                </tr>
+                <tr>
+                  <td data-ca="Dilluns" data-es="Lunes">Dilluns</td>
+                  <td class="closed" data-ca="Tancat" data-es="Cerrado">Tancat</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="hours-note" data-ca="Es recomana reserva prèvia. Truqueu per a disponibilitat immediata." data-es="Se recomienda reserva previa. Llamad para disponibilidad inmediata.">
+              Es recomana reserva prèvia. Truqueu per a disponibilitat immediata.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <span class="footer-logo">Perfils Perruquers</span>
+          <p class="footer-tagline" data-ca="On el cabell és art.<br>El teu referent a Igualada." data-es="Donde el cabello es arte.<br>Tu referente en Igualada.">On el cabell és art.<br>El teu referent a Igualada.</p>
+          <a href="https://www.instagram.com/perfilsperruquers" target="_blank" class="footer-ig">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @perfilsperruquers
+          </a>
+        </div>
+
+        <div>
+          <div class="footer-col-title" data-ca="Serveis" data-es="Servicios">Serveis</div>
+          <ul class="footer-list">
+            <li data-ca="Tall i Estil" data-es="Corte y Estilo">Tall i Estil</li>
+            <li data-ca="Color i Mèxes" data-es="Color y Mechas">Color i Mèxes</li>
+            <li data-ca="Tractaments Capil·lars" data-es="Tratamientos Capilares">Tractaments Capil·lars</li>
+            <li data-ca="Pentinats i Recollits" data-es="Peinados y Recogidos">Pentinats i Recollits</li>
+            <li data-ca="Alisats" data-es="Alisados">Alisats</li>
+            <li data-ca="Barba" data-es="Barba">Barba</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title" data-ca="On som" data-es="Dónde estamos">On som</div>
+          <ul class="footer-list">
+            <li>Pg. Mossèn Jacint Verdaguer, 67</li>
+            <li>08700 Igualada</li>
+            <li><a href="tel:938041418">938 04 14 18</a></li>
+            <li style="margin-top:0.5rem;" data-ca="Dimarts–Div: 8:00–19:00" data-es="Martes–Vie: 8:00–19:00">Dimarts–Div: 8:00–19:00</li>
+            <li data-ca="Dissabte: 7:00–15:00" data-es="Sábado: 7:00–15:00">Dissabte: 7:00–15:00</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy" data-ca="© 2026 Perfils Perruquers · Igualada" data-es="© 2026 Perfils Perruquers · Igualada">© 2026 Perfils Perruquers · Igualada</div>
+        <div class="footer-bottom-right">
+          <span class="footer-star">★★★★★</span>
+          <span class="footer-rating" data-ca="4.7 · 88 ressenyes Google" data-es="4.7 · 88 reseñas Google">4.7 · 88 ressenyes Google</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JS
+  ============================================================ -->
+  <script>
+    /* ── Lang toggle ── */
+    let currentLang = 'ca';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update all data-ca / data-es text nodes
+      document.querySelectorAll('[data-ca]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text !== null) {
+          // Use innerHTML for elements that may contain <strong> etc.
+          el.innerHTML = text;
+        }
+      });
+
+      // Update lang buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    /* ── Scroll reveal ── */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ── Nav background on scroll ── */
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      navEl.style.background = window.scrollY > 60
+        ? 'rgba(13, 13, 13, 0.97)'
+        : 'rgba(13, 13, 13, 0.78)';
+    }, { passive: true });
+
+    /* ── Hamburger ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    /* ── Smooth scroll for anchor links ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

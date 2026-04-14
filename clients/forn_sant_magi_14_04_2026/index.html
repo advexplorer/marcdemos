@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forn de Pa Sant Magí — Igualada</title>
+  <meta name="description" content="Forn artesanal a Igualada. Pa de pagès, bolleria i magdalenes fetes cada dia amb ingredients de proximitat i tradició familiar. Carrer de Sant Magí, 9." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:           #1A1008;
+      --bg-mid:       #211408;
+      --bg-card:      #261808;
+      --primary:      #D4874E;
+      --secondary:    #F7C877;
+      --accent:       #F2E8D9;
+      --brown:        #8B5E3C;
+      --espresso:     #2C1A0E;
+      --text:         #F2E8D9;
+      --text-muted:   #C4A882;
+      --text-dim:     #8B7055;
+      --glass-bg:     rgba(212, 135, 78, 0.07);
+      --glass-border: rgba(212, 135, 78, 0.18);
+      --sep:          rgba(212, 135, 78, 0.22);
+      --radius:       14px;
+      --radius-lg:    22px;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--brown); border-radius: 4px; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
+
+    /* ============================================================
+       CONTAINER
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .section-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      margin: 1.2rem 0;
+    }
+    .divider-center {
+      margin: 1.2rem auto;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 66px;
+      background: rgba(26, 16, 8, 0.82);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      border-bottom: 1px solid rgba(212, 135, 78, 0.10);
+      transition: background var(--transition);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--secondary); }
+
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 3px;
+      border: 1px solid rgba(212,135,78,0.18);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 66px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: rgba(26, 16, 8, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 135, 78, 0.12);
+      padding: 20px 28px 28px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(212,135,78,0.08);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--secondary); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 120px 28px 80px;
+    }
+
+    /* Radial warm glow */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(212,135,78,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 50% 90%, rgba(247,200,119,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Geometric wheat pattern */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 48px,
+          rgba(212,135,78,0.022) 48px,
+          rgba(212,135,78,0.022) 49px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 48px,
+          rgba(212,135,78,0.015) 48px,
+          rgba(212,135,78,0.015) 49px
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(212,135,78,0.28);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 2.2rem;
+      background: rgba(212,135,78,0.06);
+    }
+
+    .hero-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin: 1.8rem auto 2.8rem;
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      margin: 1.8rem auto;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--primary), #C07040);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 50px;
+      transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 24px rgba(212,135,78,0.30);
+    }
+    .hero-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(212,135,78,0.42);
+    }
+
+    .hero-cta-arrow {
+      transition: transform var(--transition);
+    }
+    .hero-cta:hover .hero-cta-arrow {
+      transform: translateX(4px);
+    }
+
+    .hero-stars {
+      margin-top: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .hero-stars-icons {
+      display: flex;
+      gap: 3px;
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .hero-stars-text {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    .hero-stars-text strong {
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       PRODUCTES
+    ============================================================ */
+    #productes {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    #productes::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 40% at 15% 50%, rgba(44,26,14,0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .productes-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .productes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .producte-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212,135,78,0.12);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.8rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+
+    .producte-card:hover {
+      border-color: rgba(212,135,78,0.30);
+      transform: translateY(-5px);
+      box-shadow: 0 18px 52px rgba(0,0,0,0.32);
+    }
+
+    .producte-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .producte-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Warm glow top-right corner on each card */
+    .producte-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,135,78,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .producte-emoji {
+      font-size: 2.4rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .producte-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .producte-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+
+    .producte-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      border: 1px solid rgba(247,200,119,0.22);
+      border-radius: 50px;
+      padding: 3px 12px;
+    }
+
+    /* ============================================================
+       PER QUE NOSALTRES — values section
+    ============================================================ */
+    #valors {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 50%, var(--bg) 100%);
+      position: relative;
+    }
+
+    #valors::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(212,135,78,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .valors-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .valors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .valors-grid { grid-template-columns: 1fr; }
+    }
+
+    .valor-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2.8rem 2.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .valor-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212,135,78,0.30);
+    }
+
+    .valor-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primary), transparent);
+      opacity: 0.5;
+    }
+
+    .valor-icon-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(212,135,78,0.10);
+      border: 1px solid rgba(212,135,78,0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      margin: 0 auto 1.6rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .valor-card:hover .valor-icon-wrap {
+      background: rgba(212,135,78,0.18);
+      transform: scale(1.06);
+    }
+
+    .valor-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .valor-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       HORARIS I CONTACTE
+    ============================================================ */
+    #contacte {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .contacte-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .contacte-grid { grid-template-columns: 1fr; }
+    }
+
+    .contacte-header {
+      margin-bottom: 3rem;
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(212,135,78,0.08);
+      transition: background var(--transition);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table tr:hover { background: rgba(212,135,78,0.04); }
+
+    .hours-table td {
+      padding: 0.9rem 0.6rem;
+      font-size: 0.88rem;
+    }
+
+    .hours-table td:first-child {
+      color: var(--text-muted);
+      font-weight: 400;
+      width: 55%;
+    }
+
+    .hours-table td:last-child {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hours-closed {
+      color: var(--text-dim) !important;
+      font-style: italic;
+      font-weight: 300 !important;
+    }
+
+    /* Contact info cards */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+
+    .contact-item:hover {
+      border-color: rgba(212,135,78,0.30);
+      background: rgba(212,135,78,0.10);
+      transform: translateX(4px);
+    }
+
+    .contact-item-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(212,135,78,0.12);
+      border: 1px solid rgba(212,135,78,0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-item-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.1rem;
+    }
+
+    .contact-item-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Map / address visual block */
+    .map-block {
+      background: var(--bg-card);
+      border: 1px solid rgba(212,135,78,0.12);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .map-placeholder {
+      height: 220px;
+      background: linear-gradient(135deg, var(--espresso) 0%, #1E1005 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      border-bottom: 1px solid rgba(212,135,78,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid lines for map aesthetic */
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,135,78,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,135,78,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .map-pin {
+      font-size: 2.5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(212,135,78,0.5));
+    }
+
+    .map-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-address {
+      padding: 1.2rem 1.4rem;
+    }
+
+    .map-address-line {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .map-address-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .map-address-link:hover { opacity: 0.75; }
+
+    /* ============================================================
+       RATINGS STRIP
+    ============================================================ */
+    #ratings {
+      padding: 5rem 0;
+      background: var(--bg-mid);
+      border-top: 1px solid rgba(212,135,78,0.08);
+      border-bottom: 1px solid rgba(212,135,78,0.08);
+    }
+
+    .ratings-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .rating-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .rating-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1;
+    }
+
+    .rating-stat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .rating-sep {
+      width: 1px;
+      height: 60px;
+      background: rgba(212,135,78,0.18);
+    }
+
+    @media (max-width: 600px) { .rating-sep { display: none; } }
+
+    .rating-stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 0.2rem;
+    }
+
+    .rating-star { color: var(--secondary); font-size: 1rem; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(212,135,78,0.10);
+      padding: 4rem 0 2.5rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(212,135,78,0.08);
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .footer-brand-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-top: 0.2rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 0.8rem;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-link:hover { color: var(--secondary); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .footer-love {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    /* ============================================================
+       SECTION PADDING UTILITY
+    ============================================================ */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      Forn de Pa Sant Magí
+      <span class="nav-logo-sub" data-ca="Igualada, des de sempre" data-es="Igualada, desde siempre">Igualada, des de sempre</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#productes" data-ca="Productes" data-es="Productos">Productes</a></li>
+        <li><a href="#valors" data-ca="El nostre forn" data-es="Nuestro horno">El nostre forn</a></li>
+        <li><a href="#contacte" data-ca="Horaris" data-es="Horarios">Horaris</a></li>
+        <li><a href="tel:621229973" style="color:var(--secondary);font-size:0.8rem;letter-spacing:0.04em;">621 22 99 73</a></li>
+      </ul>
+
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-ca" onclick="setLang('ca')">CA</button>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#productes" onclick="closeMobileMenu()" data-ca="Productes" data-es="Productos">Productes</a>
+    <a href="#valors" onclick="closeMobileMenu()" data-ca="El nostre forn" data-es="Nuestro horno">El nostre forn</a>
+    <a href="#contacte" onclick="closeMobileMenu()" data-ca="Horaris i Contacte" data-es="Horarios y Contacto">Horaris i Contacte</a>
+    <a href="tel:621229973">621 22 99 73</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        <span data-ca="Forn artesanal · Igualada" data-es="Horno artesanal · Igualada">Forn artesanal · Igualada</span>
+      </div>
+
+      <h1 class="hero-title reveal reveal-delay-1">
+        Forn de Pa
+        <span>Sant Magí</span>
+      </h1>
+
+      <div class="hero-divider reveal reveal-delay-2"></div>
+
+      <p class="hero-tagline reveal reveal-delay-2"
+         data-ca="El pa de sempre, amb l'ànima d'Igualada"
+         data-es="El pan de siempre, con el alma de Igualada">
+        El pa de sempre, amb l'ànima d'Igualada
+      </p>
+
+      <a href="#productes" class="hero-cta reveal reveal-delay-3">
+        <span data-ca="Descobreix el nostre pa" data-es="Descubre nuestro pan">Descobreix el nostre pa</span>
+        <span class="hero-cta-arrow">→</span>
+      </a>
+
+      <div class="hero-stars reveal reveal-delay-4">
+        <div class="hero-stars-icons">★★★★★</div>
+        <div class="hero-stars-text">
+          <strong>4.8</strong>
+          <span data-ca=" · 92 ressenyes a Google Maps" data-es=" · 92 reseñas en Google Maps"> · 92 ressenyes a Google Maps</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RATINGS STRIP
+  ============================================================ -->
+  <section id="ratings">
+    <div class="container">
+      <div class="ratings-inner">
+        <div class="rating-stat reveal">
+          <div class="rating-stars-row">★★★★★</div>
+          <div class="rating-stat-num">4.8</div>
+          <div class="rating-stat-label" data-ca="Valoració Google" data-es="Valoración Google">Valoració Google</div>
+        </div>
+
+        <div class="rating-sep"></div>
+
+        <div class="rating-stat reveal reveal-delay-1">
+          <div class="rating-stat-num">92</div>
+          <div class="rating-stat-label" data-ca="Ressenyes verificades" data-es="Reseñas verificadas">Ressenyes verificades</div>
+        </div>
+
+        <div class="rating-sep"></div>
+
+        <div class="rating-stat reveal reveal-delay-2">
+          <div class="rating-stat-num">+20</div>
+          <div class="rating-stat-label" data-ca="Anys de tradició" data-es="Años de tradición">Anys de tradició</div>
+        </div>
+
+        <div class="rating-sep"></div>
+
+        <div class="rating-stat reveal reveal-delay-3">
+          <div class="rating-stat-num">100%</div>
+          <div class="rating-stat-label" data-ca="Fet cada dia" data-es="Hecho cada día">Fet cada dia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCTES
+  ============================================================ -->
+  <section id="productes">
+    <div class="container">
+      <div class="productes-header">
+        <span class="section-eyebrow reveal"
+              data-ca="Els nostres productes"
+              data-es="Nuestros productos">Els nostres productes</span>
+        <h2 class="section-title reveal reveal-delay-1"
+            data-ca="Pa i bolleria fets avui"
+            data-es="Pan y bollería hechos hoy">Pa i bolleria fets avui</h2>
+        <div class="divider divider-center reveal reveal-delay-2"></div>
+        <p class="section-lead reveal reveal-delay-2" style="margin:0 auto;"
+           data-ca="Cada matí el nostre forn s'omple de pa artesanal i bolleria feta amb farina de proximitat. Tot elaborat de manera tradicional, sense afegits artificials."
+           data-es="Cada mañana nuestro horno se llena de pan artesanal y bollería hecha con harina de proximidad. Todo elaborado de manera tradicional, sin aditivos artificiales.">
+          Cada matí el nostre forn s'omple de pa artesanal i bolleria feta amb farina de proximitat. Tot elaborat de manera tradicional, sense afegits artificials.
+        </p>
+      </div>
+
+      <div class="productes-grid">
+        <!-- Pa artesanal -->
+        <div class="producte-card reveal">
+          <span class="producte-emoji">🍞</span>
+          <div class="producte-name" data-ca="Pa Artesanal" data-es="Pan Artesanal">Pa Artesanal</div>
+          <p class="producte-desc"
+             data-ca="Pa de fermentació lenta, amb crosta cruixent i molla esponjosa. La nostra recepta de tota la vida, perfeccionada cada dia."
+             data-es="Pan de fermentación lenta, con corteza crujiente y miga esponjosa. Nuestra receta de siempre, perfeccionada cada día.">
+            Pa de fermentació lenta, amb crosta cruixent i molla esponjosa. La nostra recepta de tota la vida, perfeccionada cada dia.
+          </p>
+          <span class="producte-tag" data-ca="Clàssic" data-es="Clásico">Clàssic</span>
+        </div>
+
+        <!-- Pa de pagès -->
+        <div class="producte-card reveal reveal-delay-1">
+          <span class="producte-emoji">🌾</span>
+          <div class="producte-name" data-ca="Pa de Pagès" data-es="Pan de Campo">Pa de Pagès</div>
+          <p class="producte-desc"
+             data-ca="Pa rústic de mida gran, amb una molla densa i saborosa. Ideal per tallar i acompanyar qualsevol àpat."
+             data-es="Pan rústico de gran tamaño, con una miga densa y sabrosa. Ideal para cortar y acompañar cualquier comida.">
+            Pa rústic de mida gran, amb una molla densa i saborosa. Ideal per tallar i acompanyar qualsevol àpat.
+          </p>
+          <span class="producte-tag" data-ca="Tradicional" data-es="Tradicional">Tradicional</span>
+        </div>
+
+        <!-- Bolleria -->
+        <div class="producte-card reveal reveal-delay-2">
+          <span class="producte-emoji">🥐</span>
+          <div class="producte-name" data-ca="Bolleria del Dia" data-es="Bollería del Día">Bolleria del Dia</div>
+          <p class="producte-desc"
+             data-ca="Croissants, napolitanes i ensaïmades fetes cada matí. Mantega de qualitat i massa lleugerament fullosa que es desfà a la boca."
+             data-es="Croissants, napolitanas y ensaimadas hechas cada mañana. Mantequilla de calidad y masa ligeramente hojaldrada que se deshace en la boca.">
+            Croissants, napolitanes i ensaïmades fetes cada matí. Mantega de qualitat i massa lleugerament fullosa que es desfà a la boca.
+          </p>
+          <span class="producte-tag" data-ca="Fet avui" data-es="Hecho hoy">Fet avui</span>
+        </div>
+
+        <!-- Magdalenes -->
+        <div class="producte-card reveal reveal-delay-3">
+          <span class="producte-emoji">🧁</span>
+          <div class="producte-name" data-ca="Magdalenes Casolanes" data-es="Magdalenas Caseras">Magdalenes Casolanes</div>
+          <p class="producte-desc"
+             data-ca="Les millors magdalenes de la comarca, esponjoses i aromàtiques. Fetes amb ou fresc i llimona, sense cap conservant."
+             data-es="Las mejores magdalenas de la comarca, esponjosas y aromáticas. Hechas con huevo fresco y limón, sin ningún conservante.">
+            Les millors magdalenes de la comarca, esponjoses i aromàtiques. Fetes amb ou fresc i llimona, sense cap conservant.
+          </p>
+          <span class="producte-tag" data-ca="Sense conservants" data-es="Sin conservantes">Sense conservants</span>
+        </div>
+
+        <!-- Farines de proximitat -->
+        <div class="producte-card reveal reveal-delay-4">
+          <span class="producte-emoji">🌿</span>
+          <div class="producte-name" data-ca="Farines de Proximitat" data-es="Harinas de Proximidad">Farines de Proximitat</div>
+          <p class="producte-desc"
+             data-ca="Treballem amb farines locals de molins de la comarca. Blat de qualitat, varietats integrals i espelta. Sabor autentic des de l'origen."
+             data-es="Trabajamos con harinas locales de molinos de la comarca. Trigo de calidad, variedades integrales y espelta. Sabor auténtico desde el origen.">
+            Treballem amb farines locals de molins de la comarca. Blat de qualitat, varietats integrals i espelta. Sabor autentic des de l'origen.
+          </p>
+          <span class="producte-tag" data-ca="Km 0" data-es="Km 0">Km 0</span>
+        </div>
+
+        <!-- Pa de motlle -->
+        <div class="producte-card reveal reveal-delay-5">
+          <span class="producte-emoji">🥪</span>
+          <div class="producte-name" data-ca="Pa de Motlle" data-es="Pan de Molde">Pa de Motlle</div>
+          <p class="producte-desc"
+             data-ca="Pa de motlle artesanal, suau i consistent. Sense conservants ni additius. Perfecte per a entrepans i torrades de tot el dia."
+             data-es="Pan de molde artesanal, suave y consistente. Sin conservantes ni aditivos. Perfecto para sándwiches y tostadas de todo el día.">
+            Pa de motlle artesanal, suau i consistent. Sense conservants ni additius. Perfecte per a entrepans i torrades de tot el dia.
+          </p>
+          <span class="producte-tag" data-ca="Sense additius" data-es="Sin aditivos">Sense additius</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VALORS — Per que nosaltres
+  ============================================================ -->
+  <section id="valors">
+    <div class="container">
+      <div class="valors-header">
+        <span class="section-eyebrow reveal"
+              data-ca="Per què nosaltres"
+              data-es="Por qué nosotros">Per què nosaltres</span>
+        <h2 class="section-title reveal reveal-delay-1"
+            data-ca="L'art del pa artesanal"
+            data-es="El arte del pan artesanal">L'art del pa artesanal</h2>
+        <div class="divider divider-center reveal reveal-delay-2"></div>
+        <p class="section-lead reveal reveal-delay-2" style="margin:0 auto;text-align:center;"
+           data-ca="Al Forn de Pa Sant Magí creiem que el pa bo neix de tres coses: bons ingredients, temps i passió. Res més."
+           data-es="En el Forn de Pa Sant Magí creemos que el buen pan nace de tres cosas: buenos ingredientes, tiempo y pasión. Nada más.">
+          Al Forn de Pa Sant Magí creiem que el pa bo neix de tres coses: bons ingredients, temps i passió. Res més.
+        </p>
+      </div>
+
+      <div class="valors-grid">
+        <div class="valor-card reveal">
+          <div class="valor-icon-wrap">🔥</div>
+          <h3 class="valor-title" data-ca="Forn de Llenya" data-es="Horno de Leña">Forn de Llenya</h3>
+          <p class="valor-text"
+             data-ca="El nostre forn de llenya dóna al pa un aroma i una crosta que cap maquina industrials pot replicar. Cada fornada és única."
+             data-es="Nuestro horno de leña le da al pan un aroma y una corteza que ninguna máquina industrial puede replicar. Cada hornada es única.">
+            El nostre forn de llenya dóna al pa un aroma i una crosta que cap maquina industrial pot replicar. Cada fornada és única.
+          </p>
+        </div>
+
+        <div class="valor-card reveal reveal-delay-1">
+          <div class="valor-icon-wrap">🌾</div>
+          <h3 class="valor-title" data-ca="Ingredients Locals" data-es="Ingredientes Locales">Ingredients Locals</h3>
+          <p class="valor-text"
+             data-ca="Seleccionem la farina de molins de la comarca i treballem amb proveïdors de proximitat. Qualitat controlada des del camp fins al taulell."
+             data-es="Seleccionamos la harina de molinos de la comarca y trabajamos con proveedores de proximidad. Calidad controlada desde el campo hasta el mostrador.">
+            Seleccionem la farina de molins de la comarca i treballem amb proveïdors de proximitat. Qualitat controlada des del camp fins al taulell.
+          </p>
+        </div>
+
+        <div class="valor-card reveal reveal-delay-2">
+          <div class="valor-icon-wrap">🤝</div>
+          <h3 class="valor-title" data-ca="Tradició Familiar" data-es="Tradición Familiar">Tradició Familiar</h3>
+          <p class="valor-text"
+             data-ca="Portem generacions fent pa al barri de Sant Magí. La nostra família és part d'Igualada i Igualada és part de nosaltres."
+             data-es="Llevamos generaciones haciendo pan en el barrio de Sant Magí. Nuestra familia es parte de Igualada e Igualada es parte de nosotros.">
+            Portem generacions fent pa al barri de Sant Magí. La nostra família és part d'Igualada i Igualada és part de nosaltres.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HORARIS I CONTACTE
+  ============================================================ -->
+  <section id="contacte">
+    <div class="container">
+      <div class="contacte-header reveal">
+        <span class="section-eyebrow"
+              data-ca="On trobar-nos"
+              data-es="Dónde encontrarnos">On trobar-nos</span>
+        <h2 class="section-title"
+            data-ca="Horaris i Contacte"
+            data-es="Horarios y Contacto">Horaris i Contacte</h2>
+        <div class="divider"></div>
+        <p class="section-lead"
+           data-ca="Vine a buscar el teu pa fresc cada matí. Et trobaràs la porta oberta i l'olor de pa acabat de fer."
+           data-es="Ven a buscar tu pan fresco cada mañana. Encontrarás la puerta abierta y el olor a pan recién hecho.">
+          Vine a buscar el teu pa fresc cada matí. Et trobaràs la porta oberta i l'olor de pa acabat de fer.
+        </p>
+      </div>
+
+      <div class="contacte-grid">
+        <!-- Left: hours + contact -->
+        <div>
+          <table class="hours-table reveal">
+            <tbody>
+              <tr>
+                <td data-ca="Dilluns – Divendres" data-es="Lunes – Viernes">Dilluns – Divendres</td>
+                <td>8:00–14:00 &amp; 17:00–21:00</td>
+              </tr>
+              <tr>
+                <td data-ca="Dissabte" data-es="Sábado">Dissabte</td>
+                <td>8:00–14:00</td>
+              </tr>
+              <tr>
+                <td data-ca="Diumenge" data-es="Domingo">Diumenge</td>
+                <td class="hours-closed" data-ca="Tancat" data-es="Cerrado">Tancat</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="contact-info">
+            <a href="tel:621229973" class="contact-item reveal reveal-delay-1">
+              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-text">
+                <span class="contact-item-label" data-ca="Telèfon" data-es="Teléfono">Telèfon</span>
+                <span class="contact-item-value">621 22 99 73</span>
+              </div>
+            </a>
+
+            <a href="https://www.instagram.com/sant_magi_9" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-2">
+              <div class="contact-item-icon">📸</div>
+              <div class="contact-item-text">
+                <span class="contact-item-label">Instagram</span>
+                <span class="contact-item-value">@sant_magi_9</span>
+              </div>
+            </a>
+
+            <a href="https://www.facebook.com/FornSantMagi9" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-3">
+              <div class="contact-item-icon">👥</div>
+              <div class="contact-item-text">
+                <span class="contact-item-label">Facebook</span>
+                <span class="contact-item-value">Forn Sant Magi 9</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: map visual + address -->
+        <div class="map-block reveal reveal-delay-2">
+          <div class="map-placeholder">
+            <div class="map-pin">📍</div>
+            <div class="map-label">Carrer de Sant Magí, 9</div>
+          </div>
+          <div class="map-address">
+            <p class="map-address-line">Carrer de Sant Magí, 9<br>08700 Igualada, Barcelona</p>
+            <a href="https://maps.google.com/?q=Carrer+de+Sant+Magi+9+Igualada" target="_blank" rel="noopener" class="map-address-link"
+               data-ca="Obrir a Google Maps →" data-es="Abrir en Google Maps →">
+              Obrir a Google Maps →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Forn de Pa Sant Magí</div>
+          <div class="footer-brand-sub" data-ca="Forn artesanal · Igualada" data-es="Horno artesanal · Igualada">Forn artesanal · Igualada</div>
+          <p class="footer-tagline"
+             data-ca="El pa de sempre, amb l'ànima d'Igualada"
+             data-es="El pan de siempre, con el alma de Igualada">
+            El pa de sempre, amb l'ànima d'Igualada
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://www.instagram.com/sant_magi_9" target="_blank" rel="noopener" class="footer-link">
+            <span>📸</span> @sant_magi_9
+          </a>
+          <a href="tel:621229973" class="footer-link">
+            <span>📞</span> 621 22 99 73
+          </a>
+          <a href="https://maps.google.com/?q=Carrer+de+Sant+Magi+9+Igualada" target="_blank" rel="noopener" class="footer-link">
+            <span>📍</span> Carrer de Sant Magí, 9 · Igualada
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy"
+              data-ca="© 2024 Forn de Pa Sant Magí. Tots els drets reservats."
+              data-es="© 2024 Forn de Pa Sant Magí. Todos los derechos reservados.">
+          © 2024 Forn de Pa Sant Magí. Tots els drets reservats.
+        </span>
+        <span class="footer-love"
+              data-ca="Fet amb ❤️ a Igualada"
+              data-es="Hecho con ❤️ en Igualada">
+          Fet amb ❤️ a Igualada
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ─── BILINGUAL TOGGLE ─── */
+    let currentLang = 'ca';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-ca]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+
+      document.getElementById('btn-ca').classList.toggle('active', lang === 'ca');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    }
+
+    /* ─── HAMBURGER MENU ─── */
+    function toggleMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu');
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('open');
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ─── NAV SCROLL EFFECT ─── */
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(26, 16, 8, 0.96)';
+        nav.style.borderBottomColor = 'rgba(212, 135, 78, 0.18)';
+      } else {
+        nav.style.background = 'rgba(26, 16, 8, 0.82)';
+        nav.style.borderBottomColor = 'rgba(212, 135, 78, 0.10)';
+      }
+    }, { passive: true });
+
+    /* ─── SMOOTH SCROLL for internal links ─── */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          closeMobileMenu();
+        }
+      });
+    });
+
+    /* ─── INIT: trigger reveal on hero elements immediately ─── */
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('#hero .reveal').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 100);
+    });
+  </script>
+</body>
+</html>

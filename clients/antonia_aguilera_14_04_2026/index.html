@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antònia Aguilera Garcia — Perruqueria Igualada</title>
+  <meta name="description" content="Perruqueria especialitzada en cabell rinxolat a Igualada. Extensions, permanents, trenats i tall en sec. Antònia Aguilera Garcia, C/ Gardònies 22." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --terracotta:   #C97D5B;
+      --cream:        #F5ECD7;
+      --cream-dark:   #EDE0C4;
+      --tan:          #B8956A;
+      --blush:        #E8C4B8;
+      --brown:        #3D2B1F;
+      --brown-mid:    #5A3E2E;
+      --brown-light:  #7A5643;
+      --text:         #3D2B1F;
+      --text-muted:   #7A5643;
+      --text-light:   #A88B78;
+      --glass-bg:     rgba(201,125,91,0.08);
+      --glass-border: rgba(201,125,91,0.18);
+      --sep:          rgba(184,149,106,0.25);
+      --radius:       4px;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 4px; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(245, 236, 215, 0.88);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-bottom: 1px solid var(--glass-border);
+      transition: padding 0.3s ease, background 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.0rem;
+      color: var(--terracotta);
+      letter-spacing: 0.02em;
+      display: block;
+      font-weight: 500;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--brown-mid);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.25s, color 0.25s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--terracotta); }
+
+    .nav-phone {
+      font-size: 0.8rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.06em !important;
+      text-transform: none !important;
+      color: var(--terracotta) !important;
+      border: 1px solid rgba(201,125,91,0.35) !important;
+      padding: 0.38rem 1rem;
+      border-radius: var(--radius);
+      opacity: 1 !important;
+      transition: background 0.25s, border-color 0.25s !important;
+    }
+
+    .nav-phone:hover {
+      background: rgba(201,125,91,0.1) !important;
+      border-color: var(--terracotta) !important;
+    }
+
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(61,43,31,0.06);
+      border-radius: 8px;
+      padding: 3px;
+      border: 1px solid rgba(184,149,106,0.22);
+      margin-right: 8px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(61,43,31,0.45);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .lang-btn.active {
+      background: var(--terracotta);
+      color: var(--cream);
+    }
+    .lang-btn:hover:not(.active) {
+      background: rgba(61,43,31,0.07);
+      color: var(--brown);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--brown);
+      transition: all 0.28s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 63px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: rgba(245, 236, 215, 0.97);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+      flex-direction: column;
+      padding: 1.8rem 2rem 2.2rem;
+      gap: 1rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      color: var(--brown-mid);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(184,149,106,0.12);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+      color: var(--terracotta);
+      opacity: 1;
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.66rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, var(--tan), transparent);
+      margin: 1.4rem 0 2.5rem;
+    }
+
+    .sep-line {
+      width: 100%;
+      height: 1px;
+      background: var(--sep);
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: var(--cream);
+    }
+
+    .btn-primary:hover {
+      background: var(--brown-mid);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--terracotta);
+      border: 1px solid rgba(201,125,91,0.45);
+    }
+
+    .btn-outline:hover {
+      background: rgba(201,125,91,0.08);
+      border-color: var(--terracotta);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 30%, rgba(201,125,91,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 38% at 80% 80%, rgba(232,196,184,0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 15% 70%, rgba(184,149,106,0.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Decorative botanical lines */
+    .hero-ornament {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(560px, 90vw);
+      height: min(560px, 90vw);
+      border-radius: 50%;
+      border: 1px solid rgba(201,125,91,0.10);
+      pointer-events: none;
+    }
+    .hero-ornament::before {
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,125,91,0.06);
+    }
+
+    .hero-inner { position: relative; max-width: 760px; }
+
+    .hero-pretitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      line-height: 1.03;
+      color: var(--brown);
+      margin-bottom: 1.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 3.5vw, 1.75rem);
+      color: var(--tan);
+      margin-bottom: 2.4rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.2s ease-in-out infinite;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, var(--tan), transparent);
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(5px); }
+    }
+
+    /* ============================================================
+       RINXOLS SECTION (Curly Hair Specialist)
+    ============================================================ */
+    #rinxols {
+      padding: 7rem 2rem;
+      background: var(--brown);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rinxols-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201,125,91,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 40% at 85% 30%, rgba(184,149,106,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .rinxols-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .rinxols-left .section-tag { color: var(--blush); }
+
+    .rinxols-left .section-title { color: var(--cream); }
+    .rinxols-left .section-title em { color: var(--terracotta); }
+
+    .rinxols-left .divider {
+      background: linear-gradient(to right, var(--blush), transparent);
+    }
+
+    .rinxols-lead {
+      font-size: 1.05rem;
+      color: rgba(245,236,215,0.75);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .curly-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(201,125,91,0.15);
+      border: 1px solid rgba(201,125,91,0.3);
+      border-radius: 2rem;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    .curly-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.75); }
+    }
+
+    .rinxols-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .rinxols-feature {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      padding: 1.6rem;
+      background: rgba(245,236,215,0.04);
+      border: 1px solid rgba(245,236,215,0.08);
+      border-radius: var(--radius);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .rinxols-feature:hover {
+      background: rgba(201,125,91,0.10);
+      border-color: rgba(201,125,91,0.22);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: rgba(201,125,91,0.15);
+      border: 1px solid rgba(201,125,91,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .feature-body h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.01em;
+    }
+
+    .feature-body p {
+      font-size: 0.87rem;
+      color: rgba(245,236,215,0.6);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       SERVEIS
+    ============================================================ */
+    #serveis {
+      padding: 7rem 2rem;
+      background: var(--cream);
+    }
+
+    .serveis-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 4rem;
+    }
+
+    .serveis-header .divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .servei-card {
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(184,149,106,0.18);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servei-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--terracotta), var(--blush));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .servei-card:hover {
+      background: rgba(255,255,255,0.90);
+      border-color: rgba(201,125,91,0.28);
+      transform: translateY(-3px);
+    }
+
+    .servei-card:hover::before { opacity: 1; }
+
+    .servei-card.featured {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--cream);
+    }
+
+    .servei-card.featured::before { opacity: 1; background: rgba(255,255,255,0.3); }
+
+    .servei-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .servei-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+
+    .servei-card.featured .servei-name { color: var(--cream); }
+
+    .servei-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .servei-card.featured .servei-desc { color: rgba(245,236,215,0.8); }
+
+    .servei-price {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      border-top: 1px solid rgba(184,149,106,0.18);
+      padding-top: 0.85rem;
+      margin-top: auto;
+    }
+
+    .servei-card.featured .servei-price {
+      color: rgba(245,236,215,0.8);
+      border-color: rgba(245,236,215,0.2);
+    }
+
+    /* ============================================================
+       ESTUDI / ABOUT
+    ============================================================ */
+    #estudi {
+      padding: 7rem 2rem;
+      background: var(--cream-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .estudi-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 50% at 90% 50%, rgba(232,196,184,0.35) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 10% 60%, rgba(201,125,91,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .estudi-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .estudi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--brown);
+      line-height: 1.35;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .estudi-quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.2em;
+      bottom: 0.2em;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--terracotta), var(--blush));
+      border-radius: 2px;
+    }
+
+    .estudi-quote cite {
+      display: block;
+      font-family: 'Dancing Script', cursive;
+      font-style: normal;
+      font-size: 1rem;
+      color: var(--terracotta);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .estudi-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .estudi-values {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .estudi-value {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.87rem;
+      color: var(--brown-mid);
+      font-weight: 400;
+    }
+
+    .estudi-value-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       CITA I CONTACTE
+    ============================================================ */
+    #contacte {
+      padding: 7rem 2rem;
+      background: var(--cream);
+    }
+
+    .contacte-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 4.5rem;
+    }
+
+    .contacte-header .divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contacte-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Phone CTA card */
+    .phone-card {
+      background: var(--brown);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(201,125,91,0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .phone-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 1.2rem;
+      opacity: 0.75;
+      display: block;
+    }
+
+    .phone-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.8rem;
+      display: block;
+      position: relative;
+    }
+
+    .phone-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: var(--blush);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .phone-card .btn-primary {
+      background: var(--terracotta);
+      color: var(--cream);
+      width: 100%;
+      text-align: center;
+    }
+
+    .phone-card .btn-primary:hover {
+      background: var(--tan);
+    }
+
+    /* Info card */
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-block h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--brown);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .info-block h4 span {
+      font-size: 1.1rem;
+    }
+
+    .info-block p,
+    .info-block address {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-style: normal;
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(184,149,106,0.12);
+    }
+
+    .hours-table tr:last-child { border-bottom: none; }
+
+    .hours-table td {
+      padding: 0.5rem 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    .hours-table td:first-child {
+      font-weight: 400;
+      color: var(--brown-mid);
+      min-width: 140px;
+    }
+
+    .hours-table td.closed {
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--brown);
+      padding: 4rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 15% 50%, rgba(201,125,91,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245,236,215,0.08);
+    }
+
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-brand-tag {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.15rem;
+      color: var(--terracotta);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.83rem;
+      color: rgba(245,236,215,0.45);
+      line-height: 1.7;
+    }
+
+    .footer-col h5 {
+      font-size: 0.66rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .footer-col p,
+    .footer-col address {
+      font-size: 0.84rem;
+      color: rgba(245,236,215,0.5);
+      line-height: 1.75;
+      font-style: normal;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(245,236,215,0.28);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .rinxols-grid,
+      .estudi-inner,
+      .contacte-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .serveis-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.4rem; }
+      .serveis-grid { grid-template-columns: 1fr; }
+
+      #hero,
+      #rinxols,
+      #serveis,
+      #estudi,
+      #contacte {
+        padding: 5rem 1.4rem;
+      }
+
+      footer { padding: 3rem 1.4rem 2rem; }
+
+      .phone-card { padding: 2.2rem 1.6rem; }
+      .rinxols-feature { padding: 1.2rem; gap: 1rem; }
+    }
+
+    /* ============================================================
+       LANGUAGE HIDDEN
+    ============================================================ */
+    [data-lang="es"] { display: none; }
+    body.lang-es [data-lang="ca"] { display: none; }
+    body.lang-es [data-lang="es"] { display: initial; }
+    /* For block-level elements */
+    body.lang-es [data-lang-block="ca"] { display: none; }
+    [data-lang-block="es"] { display: none; }
+    body.lang-es [data-lang-block="es"] { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      Antònia Aguilera
+      <span data-lang="ca">perruqueria</span>
+      <span data-lang="es">peluquería</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#rinxols" data-lang="ca">Rinxols</a><a href="#rinxols" data-lang="es">Rizado</a></li>
+      <li><a href="#serveis" data-lang="ca">Serveis</a><a href="#serveis" data-lang="es">Servicios</a></li>
+      <li><a href="#estudi" data-lang="ca">L'estudi</a><a href="#estudi" data-lang="es">El estudio</a></li>
+      <li>
+        <a href="tel:938049254" class="nav-phone">938 049 254</a>
+      </li>
+    </ul>
+
+    <div style="display:flex; align-items:center; gap: 0.5rem;">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('ca')" id="btn-ca">CA</button>
+        <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#rinxols" onclick="closeMobile()" data-lang="ca">Rinxols</a>
+    <a href="#rinxols" onclick="closeMobile()" data-lang="es">Rizado</a>
+    <a href="#serveis" onclick="closeMobile()" data-lang="ca">Serveis</a>
+    <a href="#serveis" onclick="closeMobile()" data-lang="es">Servicios</a>
+    <a href="#estudi" onclick="closeMobile()" data-lang="ca">L'estudi</a>
+    <a href="#estudi" onclick="closeMobile()" data-lang="es">El estudio</a>
+    <a href="tel:938049254" onclick="closeMobile()">938 049 254</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ornament"></div>
+
+    <div class="hero-inner">
+      <p class="hero-pretitle reveal" data-lang="ca">benvinguda al teu espai</p>
+      <p class="hero-pretitle reveal" data-lang="es">bienvenida a tu espacio</p>
+
+      <h1 class="hero-title reveal reveal-delay-1">
+        <span data-lang="ca">L'art de cuidar<br><em>el teu cabell</em></span>
+        <span data-lang="es">El arte de cuidar<br><em>tu cabello</em></span>
+      </h1>
+
+      <p class="hero-tagline reveal reveal-delay-2">
+        <span data-lang="ca">especialista en rinxols · Igualada</span>
+        <span data-lang="es">especialista en rizado · Igualada</span>
+      </p>
+
+      <p class="hero-subtitle reveal reveal-delay-3">
+        <span data-lang="ca">Perruqueria especialitzada a C/ Gardònies 22, Igualada. Extensions, permanents, trenats i molt més — amb la cura que cada cabell es mereix.</span>
+        <span data-lang="es">Peluquería especializada en C/ Gardònies 22, Igualada. Extensiones, permanentes, trenzados y mucho más — con el cuidado que cada cabello merece.</span>
+      </p>
+
+      <div class="hero-ctas reveal reveal-delay-4">
+        <a href="#contacte" class="btn btn-primary">
+          <span data-lang="ca">Demana la teva cita</span>
+          <span data-lang="es">Pide tu cita</span>
+        </a>
+        <a href="#rinxols" class="btn btn-outline">
+          <span data-lang="ca">Especialitat rinxols</span>
+          <span data-lang="es">Especialidad rizado</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span data-lang="ca">descobreix</span>
+      <span data-lang="es">descubre</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RINXOLS — Curly Hair Specialist
+  ============================================================ -->
+  <section id="rinxols">
+    <div class="rinxols-bg"></div>
+    <div class="container">
+      <div class="rinxols-grid">
+
+        <div class="rinxols-left">
+          <span class="section-tag reveal" data-lang="ca">Especialitat exclusiva</span>
+          <span class="section-tag reveal" data-lang="es">Especialidad exclusiva</span>
+
+          <h2 class="section-title reveal reveal-delay-1">
+            <span data-lang="ca">Els rinxols<br>mereixen un<br><em>tracte especial</em></span>
+            <span data-lang="es">Los rizos<br>merecen un<br><em>trato especial</em></span>
+          </h2>
+
+          <div class="divider reveal reveal-delay-2"></div>
+
+          <p class="rinxols-lead reveal reveal-delay-2">
+            <span data-lang="ca">No tots els perruquers entenen el cabell rinxolat. Antònia és una de les poquíssimes especialistes de la zona formades en el mètode Curly Girl — una tècnica pensada específicament per potenciar i respectar la textura natural dels teus rinxols.</span>
+            <span data-lang="es">No todos los peluqueros entienden el cabello rizado. Antònia es una de las poquísimas especialistas de la zona formadas en el método Curly Girl — una técnica pensada específicamente para potenciar y respetar la textura natural de tus rizos.</span>
+          </p>
+
+          <div class="reveal reveal-delay-3">
+            <span class="curly-badge">
+              <span class="curly-badge-dot"></span>
+              <span data-lang="ca">Curly Girl Method · Certificada</span>
+              <span data-lang="es">Curly Girl Method · Certificada</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="rinxols-features">
+          <div class="rinxols-feature reveal">
+            <div class="feature-icon">✂️</div>
+            <div class="feature-body">
+              <h4 data-lang="ca">Tall en sec</h4>
+              <h4 data-lang="es">Corte en seco</h4>
+              <p data-lang="ca">El cabell rinxolat s'ha de tallar en sec per veure com cau de veritat. Així s'eviten els errors de proporcions que passen quan el cabell es mulla.</p>
+              <p data-lang="es">El cabello rizado se debe cortar en seco para ver cómo cae de verdad. Así se evitan los errores de proporciones que ocurren cuando el cabello está mojado.</p>
+            </div>
+          </div>
+
+          <div class="rinxols-feature reveal reveal-delay-1">
+            <div class="feature-icon">💧</div>
+            <div class="feature-body">
+              <h4 data-lang="ca">Hidratació profunda</h4>
+              <h4 data-lang="es">Hidratación profunda</h4>
+              <p data-lang="ca">Els rinxols necessiten molta més hidratació que el cabell llis. Usem tractaments específics per a cada tipus de curl — des dels ondulats fins als més apretats.</p>
+              <p data-lang="es">Los rizos necesitan mucha más hidratación que el cabello liso. Usamos tratamientos específicos para cada tipo de curl — desde los ondulados hasta los más apretados.</p>
+            </div>
+          </div>
+
+          <div class="rinxols-feature reveal reveal-delay-2">
+            <div class="feature-icon">🌿</div>
+            <div class="feature-body">
+              <h4 data-lang="ca">Definició natural</h4>
+              <h4 data-lang="es">Definición natural</h4>
+              <p data-lang="ca">Treballem per potenciar el patró natural del teu cabell, sense forçar-lo. Cada cap és únic — i el tractament també ho ha de ser.</p>
+              <p data-lang="es">Trabajamos para potenciar el patrón natural de tu cabello, sin forzarlo. Cada cabeza es única — y el tratamiento también debe serlo.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVEIS
+  ============================================================ -->
+  <section id="serveis">
+    <div class="container">
+      <div class="serveis-header">
+        <span class="section-tag reveal" data-lang="ca">El que fem</span>
+        <span class="section-tag reveal" data-lang="es">Lo que hacemos</span>
+        <h2 class="section-title reveal reveal-delay-1">
+          <span data-lang="ca">Serveis &amp; <em>especialitats</em></span>
+          <span data-lang="es">Servicios &amp; <em>especialidades</em></span>
+        </h2>
+        <div class="divider reveal reveal-delay-2"></div>
+        <p style="font-size:0.9rem; color:var(--text-muted);" class="reveal reveal-delay-2">
+          <span data-lang="ca">Des d'un tall senzill fins a una transformació completa — t'acompanyem en tot el procés.</span>
+          <span data-lang="es">Desde un corte sencillo hasta una transformación completa — te acompañamos en todo el proceso.</span>
+        </p>
+      </div>
+
+      <div class="serveis-grid">
+
+        <!-- Featured: Cabell rinxolat -->
+        <div class="servei-card featured reveal">
+          <span class="servei-icon">〰️</span>
+          <div class="servei-name" data-lang="ca">Cabell Rinxolat</div>
+          <div class="servei-name" data-lang="es">Cabello Rizado</div>
+          <p class="servei-desc" data-lang="ca">Especialitat principal. Tall en sec, hidratació, definició i tractaments exclusius per a cabell ondulat i rinxolat.</p>
+          <p class="servei-desc" data-lang="es">Especialidad principal. Corte en seco, hidratación, definición y tratamientos exclusivos para cabello ondulado y rizado.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu · cita prèvia</div>
+          <div class="servei-price" data-lang="es">Consulta precio · cita previa</div>
+        </div>
+
+        <!-- Extensions -->
+        <div class="servei-card reveal reveal-delay-1">
+          <span class="servei-icon">✨</span>
+          <div class="servei-name" data-lang="ca">Extensions</div>
+          <div class="servei-name" data-lang="es">Extensiones</div>
+          <p class="servei-desc" data-lang="ca">Extensions de qualitat professional per afegir llargada i volum de manera natural i duradora.</p>
+          <p class="servei-desc" data-lang="es">Extensiones de calidad profesional para añadir longitud y volumen de manera natural y duradera.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu</div>
+          <div class="servei-price" data-lang="es">Consulta precio</div>
+        </div>
+
+        <!-- Permanents -->
+        <div class="servei-card reveal reveal-delay-2">
+          <span class="servei-icon">🔄</span>
+          <div class="servei-name" data-lang="ca">Permanents</div>
+          <div class="servei-name" data-lang="es">Permanentes</div>
+          <p class="servei-desc" data-lang="ca">Permanent clàssica i digital per crear rinxols o ondes duradores, adaptades a la salut del teu cabell.</p>
+          <p class="servei-desc" data-lang="es">Permanente clásica y digital para crear rizos u ondas duraderas, adaptadas a la salud de tu cabello.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu</div>
+          <div class="servei-price" data-lang="es">Consulta precio</div>
+        </div>
+
+        <!-- Trenats -->
+        <div class="servei-card reveal reveal-delay-3">
+          <span class="servei-icon">🎀</span>
+          <div class="servei-name" data-lang="ca">Trenats</div>
+          <div class="servei-name" data-lang="es">Trenzados</div>
+          <p class="servei-desc" data-lang="ca">Trenats artesans per a qualsevol ocasió — del dia a dia a les celebracions més especials.</p>
+          <p class="servei-desc" data-lang="es">Trenzados artesanales para cualquier ocasión — del día a día a las celebraciones más especiales.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu</div>
+          <div class="servei-price" data-lang="es">Consulta precio</div>
+        </div>
+
+        <!-- Talls -->
+        <div class="servei-card reveal reveal-delay-4">
+          <span class="servei-icon">✂️</span>
+          <div class="servei-name" data-lang="ca">Talls</div>
+          <div class="servei-name" data-lang="es">Cortes</div>
+          <p class="servei-desc" data-lang="ca">Talls personalitzats adaptats a la forma del teu rostre i al teu estil de vida. Sempre amb assessorament previ.</p>
+          <p class="servei-desc" data-lang="es">Cortes personalizados adaptados a la forma de tu rostro y a tu estilo de vida. Siempre con asesoramiento previo.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu</div>
+          <div class="servei-price" data-lang="es">Consulta precio</div>
+        </div>
+
+        <!-- Color -->
+        <div class="servei-card reveal reveal-delay-5">
+          <span class="servei-icon">🎨</span>
+          <div class="servei-name" data-lang="ca">Color</div>
+          <div class="servei-name" data-lang="es">Color</div>
+          <p class="servei-desc" data-lang="ca">Coloració, mèches, reflets i tractaments de color per a tots els tipus de cabell. Natural, vibrant o subtil.</p>
+          <p class="servei-desc" data-lang="es">Coloración, mechas, reflejos y tratamientos de color para todo tipo de cabello. Natural, vibrante o sutil.</p>
+          <div class="servei-price" data-lang="ca">Consulta preu</div>
+          <div class="servei-price" data-lang="es">Consulta precio</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ESTUDI / ABOUT
+  ============================================================ -->
+  <section id="estudi">
+    <div class="estudi-bg"></div>
+    <div class="container">
+      <div class="estudi-inner">
+
+        <div class="estudi-quote reveal">
+          <span data-lang="ca">"A Igualada, un espai tranquil on cada cabell és únic i cada persona mereix atenció plena."</span>
+          <span data-lang="es">"En Igualada, un espacio tranquilo donde cada cabello es único y cada persona merece atención plena."</span>
+          <cite>— Antònia Aguilera</cite>
+        </div>
+
+        <div>
+          <span class="section-tag reveal" data-lang="ca">El nostre estudi</span>
+          <span class="section-tag reveal" data-lang="es">Nuestro estudio</span>
+
+          <h2 class="section-title reveal reveal-delay-1">
+            <span data-lang="ca">Slow beauty.<br><em>Tracte artesà.</em></span>
+            <span data-lang="es">Slow beauty.<br><em>Trato artesanal.</em></span>
+          </h2>
+
+          <div class="divider reveal reveal-delay-2"></div>
+
+          <p class="estudi-text reveal reveal-delay-2" data-lang="ca">
+            La nostra filosofia és senzilla: pren-te el temps que necessites, escolta bé el client i fes una feina de qualitat. No hi ha pressa. Cada sessió és un moment de cura i benestar — no pas una cadena de producció.
+          </p>
+          <p class="estudi-text reveal reveal-delay-2" data-lang="es">
+            Nuestra filosofía es sencilla: tómate el tiempo que necesitas, escucha bien al cliente y haz un trabajo de calidad. Sin prisas. Cada sesión es un momento de cuidado y bienestar — no una cadena de producción.
+          </p>
+
+          <p class="estudi-text reveal reveal-delay-3" data-lang="ca">
+            A C/ Gardònies 22 d'Igualada trobaràs un ambient càlid i personal, lluny del soroll i les presses dels grans centres de bellesa. Aquí el temps s'atura una mica.
+          </p>
+          <p class="estudi-text reveal reveal-delay-3" data-lang="es">
+            En C/ Gardònies 22 de Igualada encontrarás un ambiente cálido y personal, lejos del ruido y las prisas de los grandes centros de belleza. Aquí el tiempo se detiene un poco.
+          </p>
+
+          <div class="estudi-values reveal reveal-delay-4">
+            <div class="estudi-value">
+              <span class="estudi-value-dot"></span>
+              <span data-lang="ca">Atenció personalitzada i sense pressa</span>
+              <span data-lang="es">Atención personalizada y sin prisa</span>
+            </div>
+            <div class="estudi-value">
+              <span class="estudi-value-dot"></span>
+              <span data-lang="ca">Productes de qualitat professional</span>
+              <span data-lang="es">Productos de calidad profesional</span>
+            </div>
+            <div class="estudi-value">
+              <span class="estudi-value-dot"></span>
+              <span data-lang="ca">Especialització en cabells difícils</span>
+              <span data-lang="es">Especialización en cabellos difíciles</span>
+            </div>
+            <div class="estudi-value">
+              <span class="estudi-value-dot"></span>
+              <span data-lang="ca">Ambient relaxat i de confiança</span>
+              <span data-lang="es">Ambiente relajado y de confianza</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CITA I CONTACTE
+  ============================================================ -->
+  <section id="contacte">
+    <div class="container">
+      <div class="contacte-header">
+        <span class="section-tag reveal" data-lang="ca">Reserva la teva visita</span>
+        <span class="section-tag reveal" data-lang="es">Reserva tu visita</span>
+        <h2 class="section-title reveal reveal-delay-1">
+          <span data-lang="ca">Vine a veure'ns<br><em>t'esperem</em></span>
+          <span data-lang="es">Ven a vernos,<br><em>te esperamos</em></span>
+        </h2>
+        <div class="divider reveal reveal-delay-2"></div>
+        <p style="font-size:0.9rem; color:var(--text-muted);" class="reveal reveal-delay-2">
+          <span data-lang="ca">Truca'ns per reservar hora o vine directament. Estem aquí per a tu.</span>
+          <span data-lang="es">Llámanos para reservar hora o ven directamente. Estamos aquí para ti.</span>
+        </p>
+      </div>
+
+      <div class="contacte-grid">
+
+        <div class="phone-card reveal">
+          <span class="phone-label" data-lang="ca">Truca'ns per reservar</span>
+          <span class="phone-label" data-lang="es">Llámanos para reservar</span>
+          <a href="tel:938049254" class="phone-number">938 049 254</a>
+          <span class="phone-tagline" data-lang="ca">estem aquí per a tu</span>
+          <span class="phone-tagline" data-lang="es">estamos aquí para ti</span>
+          <a href="tel:938049254" class="btn btn-primary">
+            <span data-lang="ca">Truca ara</span>
+            <span data-lang="es">Llama ahora</span>
+          </a>
+        </div>
+
+        <div class="info-card reveal reveal-delay-2">
+
+          <div class="info-block">
+            <h4><span>📍</span>
+              <span data-lang="ca">On som</span>
+              <span data-lang="es">Dónde estamos</span>
+            </h4>
+            <address>
+              C/ Gardònies 22<br>
+              08700 Igualada<br>
+              (Anoia)
+            </address>
+          </div>
+
+          <div class="info-block">
+            <h4><span>🕐</span>
+              <span data-lang="ca">Horaris</span>
+              <span data-lang="es">Horarios</span>
+            </h4>
+            <table class="hours-table">
+              <tr>
+                <td data-lang="ca">Dimarts – Divendres</td>
+                <td data-lang="es">Martes – Viernes</td>
+                <td>9:00 – 18:00</td>
+              </tr>
+              <tr>
+                <td data-lang="ca">Dissabte</td>
+                <td data-lang="es">Sábado</td>
+                <td>8:30 – 15:00</td>
+              </tr>
+              <tr>
+                <td data-lang="ca">Dilluns</td>
+                <td data-lang="es">Lunes</td>
+                <td class="closed" data-lang="ca">Tancat</td>
+                <td class="closed" data-lang="es">Cerrado</td>
+              </tr>
+              <tr>
+                <td data-lang="ca">Diumenge</td>
+                <td data-lang="es">Domingo</td>
+                <td class="closed" data-lang="ca">Tancat</td>
+                <td class="closed" data-lang="es">Cerrado</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="info-block">
+            <h4><span>📞</span>
+              <span data-lang="ca">Telèfon</span>
+              <span data-lang="es">Teléfono</span>
+            </h4>
+            <p><a href="tel:938049254" style="color:var(--terracotta); text-decoration:none; font-weight:500;">938 049 254</a></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-bg"></div>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Antònia Aguilera Garcia</div>
+          <span class="footer-brand-tag" data-lang="ca">especialista en rinxols</span>
+          <span class="footer-brand-tag" data-lang="es">especialista en rizado</span>
+          <p class="footer-brand-desc" data-lang="ca">Perruqueria artesana a Igualada. Un espai de cura, bellesa tranquila i atenció personalitzada. Especialitzades en cabell rinxolat des de fa anys.</p>
+          <p class="footer-brand-desc" data-lang="es">Peluquería artesanal en Igualada. Un espacio de cuidado, belleza tranquila y atención personalizada. Especializadas en cabello rizado desde hace años.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-lang="ca">Serveis</h5>
+          <h5 data-lang="es">Servicios</h5>
+          <p>
+            <span data-lang="ca">Cabell rinxolat<br>Extensions<br>Permanents<br>Trenats<br>Talls<br>Color</span>
+            <span data-lang="es">Cabello rizado<br>Extensiones<br>Permanentes<br>Trenzados<br>Cortes<br>Color</span>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-lang="ca">Horari</h5>
+          <h5 data-lang="es">Horario</h5>
+          <p>
+            <span data-lang="ca">Dt – Dv: 9:00 – 18:00<br>Ds: 8:30 – 15:00<br>Dl: tancat<br><br>C/ Gardònies 22<br>08700 Igualada<br><br>938 049 254</span>
+            <span data-lang="es">Ma – Vi: 9:00 – 18:00<br>Sá: 8:30 – 15:00<br>Lu: cerrado<br><br>C/ Gardònies 22<br>08700 Igualada<br><br>938 049 254</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Antònia Aguilera Garcia</span>
+        <span data-lang="ca">Perruqueria · Igualada</span>
+        <span data-lang="es">Peluquería · Igualada</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    /* ── Language Toggle ────────────────────────────── */
+    let currentLang = 'ca';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.body.classList.toggle('lang-es', lang === 'es');
+      document.getElementById('btn-ca').classList.toggle('active', lang === 'ca');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+    }
+
+    /* ── Mobile Menu ────────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    /* ── Scroll Reveal ──────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ── Nav scroll shrink ──────────────────────────── */
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navEl.style.padding = '0.7rem 2.5rem';
+        navEl.style.background = 'rgba(245, 236, 215, 0.95)';
+      } else {
+        navEl.style.padding = '1.1rem 2.5rem';
+        navEl.style.background = 'rgba(245, 236, 215, 0.88)';
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
