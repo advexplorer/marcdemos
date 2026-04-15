@@ -540,10 +540,11 @@
     }
 
     .producte-emoji {
-      font-size: 2.4rem;
+      width: 2.4rem;
+      height: 2.4rem;
       margin-bottom: 1.2rem;
       display: block;
-      line-height: 1;
+      color: var(--primary);
     }
 
     .producte-name {
@@ -644,9 +645,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.9rem;
       margin: 0 auto 1.6rem;
       transition: background var(--transition), transform var(--transition);
+      color: var(--primary);
+    }
+
+    .valor-icon-wrap svg {
+      width: 32px;
+      height: 32px;
     }
 
     .valor-card:hover .valor-icon-wrap {
@@ -764,8 +770,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
       flex-shrink: 0;
+      color: var(--primary);
+    }
+
+    .contact-item-icon svg {
+      width: 18px;
+      height: 18px;
     }
 
     .contact-item-text {
@@ -795,46 +806,6 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       position: relative;
-    }
-
-    .map-placeholder {
-      height: 220px;
-      background: linear-gradient(135deg, var(--espresso) 0%, #1E1005 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      border-bottom: 1px solid rgba(212,135,78,0.10);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Grid lines for map aesthetic */
-    .map-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(212,135,78,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,135,78,0.06) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .map-pin {
-      font-size: 2.5rem;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 0 12px rgba(212,135,78,0.5));
-    }
-
-    .map-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      font-style: italic;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 1;
     }
 
     .map-address {
@@ -979,6 +950,13 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color var(--transition);
+    }
+
+    .footer-link svg {
+      width: 15px;
+      height: 15px;
+      color: var(--primary);
+      flex-shrink: 0;
     }
 
     .footer-link:hover { color: var(--secondary); }
@@ -1146,7 +1124,13 @@
       <div class="productes-grid">
         <!-- Pa artesanal -->
         <div class="producte-card reveal">
-          <span class="producte-emoji">🍞</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11C3 7.13 7.03 4 12 4s9 3.13 9 7c0 2.21-1.4 4.17-3.5 5.37V18a1 1 0 0 1-1 1H7.5a1 1 0 0 1-1-1v-1.63C4.4 15.17 3 13.21 3 11z"/>
+              <line x1="6.5" y1="19" x2="17.5" y2="19"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Pa Artesanal" data-es="Pan Artesanal">Pa Artesanal</div>
           <p class="producte-desc"
              data-ca="Pa de fermentació lenta, amb crosta cruixent i molla esponjosa. La nostra recepta de tota la vida, perfeccionada cada dia."
@@ -1158,7 +1142,11 @@
 
         <!-- Pa de pagès -->
         <div class="producte-card reveal reveal-delay-1">
-          <span class="producte-emoji">🌾</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M8 6c0 0 1 2 4 2s4-2 4-2M7 10c0 0 1.5 2 5 2s5-2 5-2M6 14c0 0 2 2 6 2s6-2 6-2"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Pa de Pagès" data-es="Pan de Campo">Pa de Pagès</div>
           <p class="producte-desc"
              data-ca="Pa rústic de mida gran, amb una molla densa i saborosa. Ideal per tallar i acompanyar qualsevol àpat."
@@ -1170,7 +1158,12 @@
 
         <!-- Bolleria -->
         <div class="producte-card reveal reveal-delay-2">
-          <span class="producte-emoji">🥐</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 16c0-5 3-10 8-11 5 1 8 6 8 11-1 3-4 5-8 5s-7-2-8-5z"/>
+              <path d="M8 13c1-3 3-5 4-6"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Bolleria del Dia" data-es="Bollería del Día">Bolleria del Dia</div>
           <p class="producte-desc"
              data-ca="Croissants, napolitanes i ensaïmades fetes cada matí. Mantega de qualitat i massa lleugerament fullosa que es desfà a la boca."
@@ -1182,7 +1175,14 @@
 
         <!-- Magdalenes -->
         <div class="producte-card reveal reveal-delay-3">
-          <span class="producte-emoji">🧁</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 14h14l-1.5 6H6.5L5 14z"/>
+              <path d="M7.5 14C7 11 8 8 12 7c4 1 5 4 4.5 7"/>
+              <path d="M12 7V4"/>
+              <circle cx="12" cy="3.5" r="0.8"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Magdalenes Casolanes" data-es="Magdalenas Caseras">Magdalenes Casolanes</div>
           <p class="producte-desc"
              data-ca="Les millors magdalenes de la comarca, esponjoses i aromàtiques. Fetes amb ou fresc i llimona, sense cap conservant."
@@ -1194,7 +1194,13 @@
 
         <!-- Farines de proximitat -->
         <div class="producte-card reveal reveal-delay-4">
-          <span class="producte-emoji">🌿</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V12"/>
+              <path d="M12 12C12 8 8 5 4 6c0 4 3 7 8 6z"/>
+              <path d="M12 12C12 8 16 5 20 6c0 4-3 7-8 6z"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Farines de Proximitat" data-es="Harinas de Proximidad">Farines de Proximitat</div>
           <p class="producte-desc"
              data-ca="Treballem amb farines locals de molins de la comarca. Blat de qualitat, varietats integrals i espelta. Sabor autentic des de l'origen."
@@ -1206,7 +1212,13 @@
 
         <!-- Pa de motlle -->
         <div class="producte-card reveal reveal-delay-5">
-          <span class="producte-emoji">🥪</span>
+          <span class="producte-emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="8" width="18" height="10" rx="3"/>
+              <path d="M3 13h18"/>
+              <path d="M7 8V6a2 2 0 0 1 4 0M13 8V6a2 2 0 0 1 4 0"/>
+            </svg>
+          </span>
           <div class="producte-name" data-ca="Pa de Motlle" data-es="Pan de Molde">Pa de Motlle</div>
           <p class="producte-desc"
              data-ca="Pa de motlle artesanal, suau i consistent. Sense conservants ni additius. Perfecte per a entrepans i torrades de tot el dia."
@@ -1241,7 +1253,12 @@
 
       <div class="valors-grid">
         <div class="valor-card reveal">
-          <div class="valor-icon-wrap">🔥</div>
+          <div class="valor-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c0 4-4 6-4 10a4 4 0 0 0 8 0c0-4-4-6-4-10z"/>
+              <path d="M12 12c0 2-1.5 3-1.5 4.5a1.5 1.5 0 0 0 3 0C13.5 15 12 14 12 12z"/>
+            </svg>
+          </div>
           <h3 class="valor-title" data-ca="Forn de Llenya" data-es="Horno de Leña">Forn de Llenya</h3>
           <p class="valor-text"
              data-ca="El nostre forn de llenya dóna al pa un aroma i una crosta que cap maquina industrials pot replicar. Cada fornada és única."
@@ -1251,7 +1268,11 @@
         </div>
 
         <div class="valor-card reveal reveal-delay-1">
-          <div class="valor-icon-wrap">🌾</div>
+          <div class="valor-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M8 6c0 0 1 2 4 2s4-2 4-2M7 10c0 0 1.5 2 5 2s5-2 5-2M6 14c0 0 2 2 6 2s6-2 6-2"/>
+            </svg>
+          </div>
           <h3 class="valor-title" data-ca="Ingredients Locals" data-es="Ingredientes Locales">Ingredients Locals</h3>
           <p class="valor-text"
              data-ca="Seleccionem la farina de molins de la comarca i treballem amb proveïdors de proximitat. Qualitat controlada des del camp fins al taulell."
@@ -1261,7 +1282,11 @@
         </div>
 
         <div class="valor-card reveal reveal-delay-2">
-          <div class="valor-icon-wrap">🤝</div>
+          <div class="valor-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
           <h3 class="valor-title" data-ca="Tradició Familiar" data-es="Tradición Familiar">Tradició Familiar</h3>
           <p class="valor-text"
              data-ca="Portem generacions fent pa al barri de Sant Magí. La nostra família és part d'Igualada i Igualada és part de nosaltres."
@@ -1315,7 +1340,11 @@
 
           <div class="contact-info">
             <a href="tel:621229973" class="contact-item reveal reveal-delay-1">
-              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 11.5 19.79 19.79 0 0 1 1 2.96 2 2 0 0 1 2.96 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
               <div class="contact-item-text">
                 <span class="contact-item-label" data-ca="Telèfon" data-es="Teléfono">Telèfon</span>
                 <span class="contact-item-value">621 22 99 73</span>
@@ -1323,7 +1352,13 @@
             </a>
 
             <a href="https://www.instagram.com/sant_magi_9" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-2">
-              <div class="contact-item-icon">📸</div>
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
               <div class="contact-item-text">
                 <span class="contact-item-label">Instagram</span>
                 <span class="contact-item-value">@sant_magi_9</span>
@@ -1331,7 +1366,11 @@
             </a>
 
             <a href="https://www.facebook.com/FornSantMagi9" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-3">
-              <div class="contact-item-icon">👥</div>
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </div>
               <div class="contact-item-text">
                 <span class="contact-item-label">Facebook</span>
                 <span class="contact-item-value">Forn Sant Magi 9</span>
@@ -1340,17 +1379,35 @@
           </div>
         </div>
 
-        <!-- Right: map visual + address -->
+        <!-- Right: address block -->
         <div class="map-block reveal reveal-delay-2">
-          <div class="map-placeholder">
-            <div class="map-pin">📍</div>
-            <div class="map-label">Carrer de Sant Magí, 9</div>
-          </div>
-          <div class="map-address">
-            <p class="map-address-line">Carrer de Sant Magí, 9<br>08700 Igualada, Barcelona</p>
-            <a href="https://maps.google.com/?q=Carrer+de+Sant+Magi+9+Igualada" target="_blank" rel="noopener" class="map-address-link"
-               data-ca="Obrir a Google Maps →" data-es="Abrir en Google Maps →">
-              Obrir a Google Maps →
+          <div class="map-address" style="padding: 2.2rem 1.8rem; display: flex; flex-direction: column; gap: 1.4rem;">
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+              <div style="color: var(--primary); flex-shrink: 0; margin-top: 2px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.35rem;"
+                     data-ca="Adreça" data-es="Dirección">Adreça</div>
+                <p class="map-address-line" style="font-size:0.95rem;color:var(--text);line-height:1.6;">
+                  Carrer de Sant Magí, 9<br>08700 Igualada, Barcelona
+                </p>
+              </div>
+            </div>
+            <a href="https://www.google.com/maps/search/Forn+de+Pa+Sant+Magi+Igualada"
+               target="_blank" rel="noopener"
+               style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--primary),#C07040);color:#fff;text-decoration:none;font-family:'Lato',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;padding:12px 22px;border-radius:50px;transition:opacity 0.3s,transform 0.3s;box-shadow:0 4px 18px rgba(212,135,78,0.28);align-self:flex-start;"
+               onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'"
+               onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'"
+               data-ca="Obre a Google Maps" data-es="Abrir en Google Maps">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Obre a Google Maps
             </a>
           </div>
         </div>
@@ -1376,22 +1433,34 @@
 
         <div class="footer-links">
           <a href="https://www.instagram.com/sant_magi_9" target="_blank" rel="noopener" class="footer-link">
-            <span>📸</span> @sant_magi_9
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+            @sant_magi_9
           </a>
           <a href="tel:621229973" class="footer-link">
-            <span>📞</span> 621 22 99 73
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 11.5 19.79 19.79 0 0 1 1 2.96 2 2 0 0 1 2.96 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            621 22 99 73
           </a>
-          <a href="https://maps.google.com/?q=Carrer+de+Sant+Magi+9+Igualada" target="_blank" rel="noopener" class="footer-link">
-            <span>📍</span> Carrer de Sant Magí, 9 · Igualada
+          <a href="https://www.google.com/maps/search/Forn+de+Pa+Sant+Magi+Igualada" target="_blank" rel="noopener" class="footer-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Carrer de Sant Magí, 9 · Igualada
           </a>
         </div>
       </div>
 
       <div class="footer-bottom">
         <span class="footer-copy"
-              data-ca="© 2024 Forn de Pa Sant Magí. Tots els drets reservats."
-              data-es="© 2024 Forn de Pa Sant Magí. Todos los derechos reservados.">
-          © 2024 Forn de Pa Sant Magí. Tots els drets reservats.
+              data-ca="© 2025 Forn de Pa Sant Magí. Tots els drets reservats."
+              data-es="© 2025 Forn de Pa Sant Magí. Todos los derechos reservados.">
+          © 2025 Forn de Pa Sant Magí. Tots els drets reservats.
         </span>
         <span class="footer-love"
               data-ca="Fet amb ❤️ a Igualada"
