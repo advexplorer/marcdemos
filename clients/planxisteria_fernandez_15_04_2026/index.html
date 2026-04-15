@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planxisteria Fernández Arroyo — Piera, Anoia</title>
+  <meta name="description" content="Planxisteria i taller de vehicles a Piera. Planxisteria, pintura, mecànica, diagnosi electrònica i pre-ITV. Fernández Arroyo SL — feina ben feta des del primer dia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #1A1A1A;
+      --bg-alt:    #2C2C2C;
+      --accent:    #D0410A;
+      --accent-dim: rgba(208, 65, 10, 0.12);
+      --accent-border: rgba(208, 65, 10, 0.30);
+      --yellow:    #F5A623;
+      --yellow-dim: rgba(245, 166, 35, 0.12);
+      --text:      #E8E8E8;
+      --text-muted: #A0A0A0;
+      --text-dim:  #606060;
+      --border:    #3A3A3A;
+      --transition: 0.28s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── TIPOGRAFIA ── */
+    h1, h2, h3, h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    /* ── UTILITATS ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .accent { color: var(--accent); }
+    .yellow { color: var(--yellow); }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 3px 10px;
+      margin-bottom: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 26, 26, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: background var(--transition), opacity var(--transition);
+    }
+
+    .nav-cta:hover {
+      opacity: 0.88;
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 62px;
+    }
+
+    /* textura metall SVG subtil */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* línies diagonals industrials */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 38px,
+        rgba(208, 65, 10, 0.04) 38px,
+        rgba(208, 65, 10, 0.04) 40px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 2px;
+      background: var(--yellow);
+    }
+
+    .hero-eyebrow-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--yellow);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .hero-subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 44px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 13px 28px;
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    .btn-secondary svg {
+      flex-shrink: 0;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .hero-stat-num span {
+      color: var(--accent);
+    }
+
+    .hero-stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── SECCIÓ GENÈRICA ── */
+    section {
+      padding: 96px 0;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    /* ── SERVEIS ── */
+    #serveis {
+      background: var(--bg-alt);
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .servei-card {
+      background: var(--bg-alt);
+      padding: 36px 32px;
+      position: relative;
+      transition: background var(--transition);
+    }
+
+    .servei-card:hover {
+      background: #333;
+    }
+
+    .servei-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      color: var(--yellow);
+    }
+
+    .servei-num {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .servei-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .servei-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .servei-list {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .servei-list li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .servei-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .serveis-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .serveis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── PER QUÈ NOSALTRES ── */
+    #perque {
+      background: var(--bg);
+    }
+
+    .perque-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .perque-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .perque-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .perque-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .perque-check {
+      width: 22px;
+      height: 22px;
+      color: var(--yellow);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .perque-item-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .perque-item-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .perque-visual {
+      position: relative;
+    }
+
+    .perque-big-stat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 40px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .perque-big-stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .perque-big-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .perque-big-num span {
+      color: var(--accent);
+    }
+
+    .perque-big-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .perque-mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .perque-mini-stat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .perque-mini-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--yellow);
+      line-height: 1;
+    }
+
+    .perque-mini-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .perque-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    /* ── NOSALTRES ── */
+    #nosaltres {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nosaltres-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .nosaltres-text h2 {
+      margin-bottom: 24px;
+    }
+
+    .nosaltres-text p {
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+
+    .nosaltres-text p:last-of-type {
+      margin-bottom: 36px;
+    }
+
+    .nosaltres-signature {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nosaltres-avatar {
+      width: 52px;
+      height: 52px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nosaltres-avatar svg {
+      color: var(--text-muted);
+    }
+
+    .nosaltres-sig-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nosaltres-sig-role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .nosaltres-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .nosaltres-highlight {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nosaltres-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background: var(--accent-dim);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .nosaltres-highlight-icon {
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+
+    .nosaltres-highlight h4 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .nosaltres-highlight p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .nosaltres-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    /* ── TESTIMONIS ── */
+    #testimonis {
+      background: var(--bg);
+    }
+
+    .testimonis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .testimoni-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color var(--transition);
+    }
+
+    .testimoni-card:hover {
+      border-color: #4A4A4A;
+    }
+
+    .testimoni-stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .star {
+      color: var(--yellow);
+      font-size: 1rem;
+    }
+
+    .testimoni-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .testimoni-text::before {
+      content: '\201C';
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 0;
+      vertical-align: -0.5em;
+      margin-right: 4px;
+    }
+
+    .testimoni-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimoni-initials {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .testimoni-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .testimoni-loc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 860px) {
+      .testimonis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── CONTACTE ── */
+    #contacte {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .contacte-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contacte-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contacte-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contacte-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .contacte-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--yellow);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .contacte-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contacte-value {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .contacte-value a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .contacte-value a:hover {
+      color: var(--accent);
+    }
+
+    .tel-destacat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--yellow) !important;
+      letter-spacing: 0.04em;
+    }
+
+    .horari-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .horari-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+    }
+
+    .horari-dia {
+      color: var(--text-muted);
+    }
+
+    .horari-hores {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .horari-tancat {
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    /* Formulari */
+    .contacte-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 40px;
+    }
+
+    .contacte-form h3 {
+      font-size: 1.4rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color var(--transition);
+      appearance: none;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .btn-form {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 15px;
+      margin-top: 8px;
+      transition: opacity var(--transition);
+    }
+
+    .btn-form:hover {
+      opacity: 0.88;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* ── MAPA ── */
+    .mapa-wrapper {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      height: 240px;
+    }
+
+    .mapa-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: grayscale(80%) invert(90%) contrast(85%);
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .contacte-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contacte-form {
+        padding: 28px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--accent);
+      padding: 64px 0;
+    }
+
+    .cta-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+    }
+
+    .cta-banner p {
+      color: rgba(255,255,255,0.8);
+      margin-top: 6px;
+    }
+
+    .btn-cta-white {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 36px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity var(--transition);
+    }
+
+    .btn-cta-white:hover {
+      opacity: 0.9;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      border-top: 1px solid #222;
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-brand .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .footer-brand .footer-logo span {
+      color: var(--accent);
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-muted);
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid #222;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 640px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* ── SCROLL ANIM ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── STRIP SUPERIOR ── */
+    .top-strip {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 9px 0;
+    }
+
+    .top-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .top-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .top-strip-item svg {
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    .top-strip-item a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .top-strip-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .top-strip { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STRIP SUPERIOR -->
+  <div class="top-strip">
+    <div class="top-strip-inner">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <div class="top-strip-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+34938765432">938 765 432</a>
+        </div>
+        <div class="top-strip-sep"></div>
+        <div class="top-strip-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:planxisteriafernandez@hotmail.com">planxisteriafernandez@hotmail.com</a>
+        </div>
+      </div>
+      <div class="top-strip-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        Dl–Dv 8:00–13:00 i 15:00–19:00
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo"><span>Fernández</span> Arroyo</a>
+      <ul class="nav-links">
+        <li><a href="#serveis">Serveis</a></li>
+        <li><a href="#nosaltres">Nosaltres</a></li>
+        <li><a href="#testimonis">Opinions</a></li>
+        <li><a href="#contacte">Contacte</a></li>
+      </ul>
+      <a href="#contacte" class="nav-cta">Demana pressupost</a>
+      <button class="nav-mobile-toggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Planxisteria &amp; Taller — Piera, Anoia</span>
+        </div>
+
+        <h1>
+          <span class="accent">Planxisteria</span><br>
+          Fernández<br>
+          Arroyo
+        </h1>
+
+        <p class="hero-subtitle">El taller de confiança de la comarca</p>
+
+        <p class="hero-desc">
+          Reparació de xocs, pintura professional i mecànica general.
+          Sense sorpreses al pressupost, sense demores innecessàries.
+          Ho fem bé des del primer cargol.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contacte" class="btn-primary">Demana pressupost</a>
+          <a href="tel:+34938765432" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Truca ara
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">+20<span>anys</span></div>
+            <div class="hero-stat-label">d'experiència al taller</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">+1.200</div>
+            <div class="hero-stat-label">vehicles reparats</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">4,9<span>★</span></div>
+            <div class="hero-stat-label">valoració mitjana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section id="serveis">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="badge">Els nostres serveis</div>
+        <h2 class="section-title">Tot el que necessita<br>el teu vehicle</h2>
+        <p class="section-lead">Del petit cop al motor, tenim les mans i els eines per fer-ho bé. Sense externalitzar, tot aquí.</p>
+      </div>
+
+      <div class="serveis-grid">
+
+        <div class="servei-card reveal">
+          <div class="servei-num">01</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="20" height="14" rx="0"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><path d="M12 12v3"/><path d="M9 12h6"/>
+          </svg>
+          <h3>Planxisteria i carrosseria</h3>
+          <p>Reparació de danys estructurals i superficials. Deformacions, abolladures i qualsevol afectació de la carrosseria, amb resultat original de fàbrica.</p>
+          <ul class="servei-list">
+            <li>Deformació d'estructura</li>
+            <li>Abolladures i cops</li>
+            <li>Substitució de peces</li>
+            <li>Alineació de carrosseria</li>
+          </ul>
+        </div>
+
+        <div class="servei-card reveal">
+          <div class="servei-num">02</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+          </svg>
+          <h3>Pintura professional</h3>
+          <p>Cabina de pintura professional amb mesurament colorimètric per garantir el color exacte del fabricant. Acabat brillant, mat o satinant.</p>
+          <ul class="servei-list">
+            <li>Anàlisi colorimètrica</li>
+            <li>Preparació superfícies</li>
+            <li>Pintura cabina tancada</li>
+            <li>Vernís protector</li>
+          </ul>
+        </div>
+
+        <div class="servei-card reveal">
+          <div class="servei-num">03</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/>
+          </svg>
+          <h3>Mecànica general</h3>
+          <p>Revisions periòdiques, canvis d'oli, frens, embragatge, distribució i tot el que necessita el teu vehicle per circular amb seguretat.</p>
+          <ul class="servei-list">
+            <li>Revisions i manteniment</li>
+            <li>Sistema de frens</li>
+            <li>Distribució i embragatge</li>
+            <li>Suspensió i direcció</li>
+          </ul>
+        </div>
+
+        <div class="servei-card reveal">
+          <div class="servei-num">04</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <h3>Diagnosi electrònica</h3>
+          <p>Equip de diagnosi multimarca de darrera generació. Llegim, interpretem i resolem qualsevol avaria electrònica, des de sensors fins a centraletes.</p>
+          <ul class="servei-list">
+            <li>Escàner multimarca</li>
+            <li>Resetig llums avaria</li>
+            <li>Calibratge ADAS</li>
+            <li>Codificació unitats</li>
+          </ul>
+        </div>
+
+        <div class="servei-card reveal">
+          <div class="servei-num">05</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
+          </svg>
+          <h3>Reparació de xocs i cops</h3>
+          <p>Valoració ràpida i reparació integral de danys per col·lisió. Treballem amb totes les asseguradores i gestionem el sinistre des del primer moment.</p>
+          <ul class="servei-list">
+            <li>Peritació i valoració</li>
+            <li>Gestió d'assegurances</li>
+            <li>Vehicle de substitució*</li>
+            <li>Reparació certificada</li>
+          </ul>
+        </div>
+
+        <div class="servei-card reveal">
+          <div class="servei-num">06</div>
+          <svg class="servei-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          <h3>Pre-inspecció ITV</h3>
+          <p>Revisió completa del vehicle abans de passar la ITV per detectar qualsevol deficiència i evitar suspensions innecessàries. T'estalviem un viatge.</p>
+          <ul class="servei-list">
+            <li>Revisió llums i senyals</li>
+            <li>Verificació frens</li>
+            <li>Control emissions</li>
+            <li>Informe previ detallat</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PER QUÈ NOSALTRES -->
+  <section id="perque">
+    <div class="container">
+      <div class="perque-grid">
+        <div>
+          <div class="section-header reveal">
+            <div class="badge">Per què triar-nos</div>
+            <h2 class="section-title">Transparència i feina<br>ben feta. Punt.</h2>
+            <p class="section-lead">No fem miracles, fem les coses com cal. Pressupost clar, terminis reals i resultats que es veuen.</p>
+          </div>
+
+          <ul class="perque-list">
+            <li class="perque-item reveal">
+              <svg class="perque-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <div class="perque-item-title">Pressupost gratuït i sense compromís</div>
+                <div class="perque-item-desc">Valorem el teu vehicle sense cost i t'expliquem exactament el que cal fer i el que costará. Sense sorpreses.</div>
+              </div>
+            </li>
+            <li class="perque-item reveal">
+              <svg class="perque-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <div class="perque-item-title">Taller homologat i asseguradores</div>
+                <div class="perque-item-desc">Treballem amb totes les companyies d'assegurances i gestionem directament el teu sinistre. Tu no has de fer res.</div>
+              </div>
+            </li>
+            <li class="perque-item reveal">
+              <svg class="perque-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <div class="perque-item-title">Terminis realistes i comunicació constant</div>
+                <div class="perque-item-desc">Et diem quan estarà llest i t'avisem si alguna cosa canvia. Pots trucar quan vulguis per saber l'estat.</div>
+              </div>
+            </li>
+            <li class="perque-item reveal">
+              <svg class="perque-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <div class="perque-item-title">Recollida i entrega a domicili*</div>
+                <div class="perque-item-desc">Per a clients de la comarca d'Anoia, oferim servei de recollida i entrega del vehicle a casa teva o al treball.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="perque-visual reveal">
+          <div class="perque-big-stat">
+            <div class="perque-big-num">+20<span>&#x2715;</span></div>
+            <div class="perque-big-label">Anys reparant vehicles a la comarca de l'Anoia.<br>Tres generacions de la família Fernández al peu del canó.</div>
+          </div>
+          <div class="perque-mini-stats">
+            <div class="perque-mini-stat">
+              <div class="perque-mini-num">100%</div>
+              <div class="perque-mini-label">Peces de qualitat certificada</div>
+            </div>
+            <div class="perque-mini-stat">
+              <div class="perque-mini-num">2 anys</div>
+              <div class="perque-mini-label">Garantia en reparació de carrosseria</div>
+            </div>
+            <div class="perque-mini-stat">
+              <div class="perque-mini-num">48h</div>
+              <div class="perque-mini-label">Termini mitjà en reparacions lleus</div>
+            </div>
+            <div class="perque-mini-stat">
+              <div class="perque-mini-num">Totes</div>
+              <div class="perque-mini-label">Asseguradores acceptades</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSALTRES -->
+  <section id="nosaltres">
+    <div class="container">
+      <div class="nosaltres-grid">
+        <div class="nosaltres-text reveal">
+          <div class="badge">El taller</div>
+          <h2 class="section-title">Taller familiar<br>a Piera des de 2003</h2>
+          <p>El Manolo Fernández va obrir el taller fa més de vint anys amb una idea clara: fer la feina bé i tractar al client com ell voldria que el tractessin a ell. Avui, el seu fill Ivan s'ha incorporat al taller i junts segueixen amb la mateixa filosofia de sempre.</p>
+          <p>Estem a Sant Jaume Sesoliveres, al cor de Piera. Tenim clients que vénen de tota la comarca de l'Anoia — d'Igualada, de Capellades, de Masquefa — perquè saben que aquí no els enredarem ni els farem pagar el que no toca.</p>
+          <p>La reputació és el que ens ha fet créixer. I la reputació es guanya fent bé la feina, dia rere dia.</p>
+
+          <div class="nosaltres-signature">
+            <div class="nosaltres-avatar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="nosaltres-sig-name">Manolo &amp; Ivan Fernández Arroyo</div>
+              <div class="nosaltres-sig-role">Propietaris — Planxisteria Fernández Arroyo SL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nosaltres-visual">
+          <div class="nosaltres-highlight reveal">
+            <div class="nosaltres-highlight-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h4>Taller de barri, qualitat de concessionari</h4>
+            <p>Maquinària professional, pintura en cabina tancada i diagnosi electrònica d'última generació. Tot en un taller familiar on saps el nom del mecànic que toca el teu cotxe.</p>
+          </div>
+          <div class="nosaltres-highlight reveal">
+            <div class="nosaltres-highlight-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4>Garantia en totes les reparacions</h4>
+            <p>2 anys de garantia en treballs de carrosseria i pintura. 1 any en mecànica. Si no quedes satisfet, tornem a mirar fins que estigui perfecte.</p>
+          </div>
+          <div class="nosaltres-highlight reveal">
+            <div class="nosaltres-highlight-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h4>Clients fidels de tota la comarca</h4>
+            <p>Molts clients vénen a nosaltres per recomanació d'un familiar o amic. És la prova que estem fent les coses com cal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIS -->
+  <section id="testimonis">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="badge">Opinions de clients</div>
+        <h2 class="section-title">El que diu la gent<br>de Piera i la comarca</h2>
+        <p class="section-lead">Paraules dels nostres clients. Sense guió, sense filtre.</p>
+      </div>
+
+      <div class="testimonis-grid">
+
+        <div class="testimoni-card reveal">
+          <div class="testimoni-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimoni-text">Em van portar el cotxe per una abolladuta important al lateral. En tres dies el tenia com nou. El pressupost va ser exactament el que em van dir, ni un euro de més. I el color de la pintura encaixa perfectament. Molt contents.</p>
+          <div class="testimoni-author">
+            <div class="testimoni-initials">JM</div>
+            <div>
+              <div class="testimoni-name">Jordi Miralles</div>
+              <div class="testimoni-loc">Piera — Propietari Seat Arona</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card reveal">
+          <div class="testimoni-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimoni-text">Vaig tenir un accident a l'autopista i no sabia per on tirar. El Manolo es va encarregar de tot amb l'assegurança. Jo no vaig haver de trucar a ningú. En una setmana tenia el cotxe reparat i ells havien gestionat tot el papeleo.</p>
+          <div class="testimoni-author">
+            <div class="testimoni-initials">MR</div>
+            <div>
+              <div class="testimoni-name">Marta Ros</div>
+              <div class="testimoni-loc">Igualada — Propietària Volkswagen Golf</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card reveal">
+          <div class="testimoni-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimoni-text">Porto tots els cotxes de l'empresa aquí. Tinc una furgoneta i dos turismes i cada vegada que hi ha alguna cosa em gestionen tot sense complicacions. Tracte proper, feina seriosa i preus molt raonables per la qualitat que donen.</p>
+          <div class="testimoni-author">
+            <div class="testimoni-initials">PE</div>
+            <div>
+              <div class="testimoni-name">Pere Esteve</div>
+              <div class="testimoni-loc">Masquefa — Autònom (flota 3 vehicles)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner">
+        <div>
+          <h2>El teu vehicle t'espera.<br>Nosaltres també.</h2>
+          <p>Demana el teu pressupost gratuït ara. Responem el mateix dia.</p>
+        </div>
+        <a href="#contacte" class="btn-cta-white">Demana pressupost gratis</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTE -->
+  <section id="contacte">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="badge">Contacte</div>
+        <h2 class="section-title">Vine a veure'ns<br>o truca ara</h2>
+        <p class="section-lead">Estem a Piera. Fàcil d'arribar des d'Igualada, Capellades i Martorell per la C-15 i la A-2.</p>
+      </div>
+
+      <div class="contacte-grid">
+        <div>
+          <div class="contacte-info">
+            <div class="contacte-item reveal">
+              <svg class="contacte-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <div>
+                <div class="contacte-label">Telèfon</div>
+                <div class="contacte-value"><a href="tel:+34938765432" class="tel-destacat">938 765 432</a></div>
+              </div>
+            </div>
+            <div class="contacte-item reveal">
+              <svg class="contacte-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div>
+                <div class="contacte-label">Correu electrònic</div>
+                <div class="contacte-value"><a href="mailto:planxisteriafernandez@hotmail.com">planxisteriafernandez@hotmail.com</a></div>
+              </div>
+            </div>
+            <div class="contacte-item reveal">
+              <svg class="contacte-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <div class="contacte-label">Adreça</div>
+                <div class="contacte-value">Carrer de la Indústria, 14<br>08784 Piera (Sant Jaume Sesoliveres)<br>Anoia, Barcelona</div>
+              </div>
+            </div>
+            <div class="contacte-item reveal">
+              <svg class="contacte-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div>
+                <div class="contacte-label">Horaris</div>
+                <div class="contacte-value">
+                  <div class="horari-grid">
+                    <div class="horari-row">
+                      <span class="horari-dia">Dilluns – Divendres</span>
+                      <span class="horari-hores">8:00–13:00 · 15:00–19:00</span>
+                    </div>
+                    <div class="horari-row">
+                      <span class="horari-dia">Dissabte</span>
+                      <span class="horari-hores">9:00–13:00</span>
+                    </div>
+                    <div class="horari-row">
+                      <span class="horari-dia">Diumenge</span>
+                      <span class="horari-tancat">Tancat</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mapa-wrapper reveal">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.0!2d1.7876!3d41.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49000000000%3A0x0!2sPiera!5e0!3m2!1sca!2ses!4v1713000000000!5m2!1sca!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicació Planxisteria Fernández Arroyo — Piera"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="contacte-form reveal">
+          <h3>Sol·licita pressupost</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Nom i cognoms</label>
+                <input type="text" id="nom" name="nom" placeholder="Joan García" required />
+              </div>
+              <div class="form-group">
+                <label for="tel">Telèfon</label>
+                <input type="tel" id="tel" name="tel" placeholder="600 000 000" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Correu electrònic</label>
+              <input type="email" id="email" name="email" placeholder="correu@exemple.com" />
+            </div>
+            <div class="form-group">
+              <label for="vehicle">Vehicle</label>
+              <input type="text" id="vehicle" name="vehicle" placeholder="p.ex. Seat Ibiza 2019, gris" />
+            </div>
+            <div class="form-group">
+              <label for="servei">Tipus de servei</label>
+              <select id="servei" name="servei">
+                <option value="">Selecciona un servei...</option>
+                <option>Planxisteria i carrosseria</option>
+                <option>Pintura professional</option>
+                <option>Mecànica general</option>
+                <option>Diagnosi electrònica</option>
+                <option>Reparació de xoc / sinistre</option>
+                <option>Pre-inspecció ITV</option>
+                <option>Altres / No sé ben bé</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="missatge">Descriu la avaria o el que necessites</label>
+              <textarea id="missatge" name="missatge" placeholder="Explica'ns breument el que li passa al cotxe..."></textarea>
+            </div>
+            <button type="submit" class="btn-form">Enviar sol·licitud</button>
+            <p class="form-note">Responem en menys de 24h. Sense compromís.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo"><span>Fernández</span> Arroyo SL</a>
+          <p>Planxisteria i taller de vehicles a Piera, comarca de l'Anoia. Feina honesta, preus justos i tracte directe des de 2003.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Serveis</h4>
+          <ul class="footer-links">
+            <li><a href="#serveis">Planxisteria i carrosseria</a></li>
+            <li><a href="#serveis">Pintura professional</a></li>
+            <li><a href="#serveis">Mecànica general</a></li>
+            <li><a href="#serveis">Diagnosi electrònica</a></li>
+            <li><a href="#serveis">Reparació de xocs</a></li>
+            <li><a href="#serveis">Pre-inspecció ITV</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacte</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+34938765432">938 765 432</a></li>
+            <li><a href="mailto:planxisteriafernandez@hotmail.com">planxisteriafernandez@hotmail.com</a></li>
+            <li><a href="#contacte">C/ de la Indústria, 14 · Piera</a></li>
+            <li><a href="https://www.instagram.com/planxisteria_fernandez_arroyo_sl" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Planxisteria Fernández Arroyo SL — Tots els drets reservats</p>
+        <p>Piera · Anoia · Barcelona</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Nav scroll shadow ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.borderBottomColor = '#2A2A2A';
+      } else {
+        nav.style.borderBottomColor = 'var(--border)';
+      }
+    }, { passive: true });
+
+    // ── Formulari ──
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-form');
+      btn.textContent = 'Sol·licitud enviada ✓';
+      btn.style.background = '#2a7a2a';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar sol·licitud';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+
+    // ── Mobile nav toggle ──
+    const toggle = document.querySelector('.nav-mobile-toggle');
+    const links = document.querySelector('.nav-links');
+    let navOpen = false;
+    toggle.addEventListener('click', () => {
+      navOpen = !navOpen;
+      if (navOpen) {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '62px';
+        links.style.left = '0';
+        links.style.right = '0';
+        links.style.background = '#1A1A1A';
+        links.style.borderBottom = '1px solid #3A3A3A';
+        links.style.padding = '16px 24px 20px';
+        links.style.gap = '16px';
+      } else {
+        links.style.display = 'none';
+      }
+    });
+
+    // Tancar nav en clicar link
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          links.style.display = 'none';
+          navOpen = false;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
