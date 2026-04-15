@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perruqueria Anna Roldán — Calaf, Anoia</title>
+  <meta name="description" content="Perruqueria Anna Roldán a Calaf. Tall, coloració, tractaments i pentinats amb atenció personalitzada. Truca i demana cita." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --negre:        #1A1A1A;
+      --crema:        #F5EFE6;
+      --or:           #C9A97A;
+      --castany:      #7C5C4A;
+      --blanc:        #FFFFFF;
+      --crema-fosca:  #EDE4D6;
+      --or-light:     rgba(201,169,122,0.15);
+      --or-border:    rgba(201,169,122,0.30);
+      --text:         #1A1A1A;
+      --text-mut:     #7C5C4A;
+      --text-clar:    #A08870;
+      --sep:          rgba(201,169,122,0.20);
+      --radius:       10px;
+      --transition:   0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--crema);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--crema); }
+    ::-webkit-scrollbar-thumb { background: var(--or); border-radius: 4px; }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .rd1 { transition-delay: 0.06s; }
+    .rd2 { transition-delay: 0.13s; }
+    .rd3 { transition-delay: 0.20s; }
+    .rd4 { transition-delay: 0.27s; }
+    .rd5 { transition-delay: 0.34s; }
+
+    /* ============================================================
+       TIPOGRAFIA GLOBAL
+    ============================================================ */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--negre);
+    }
+
+    p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.70rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      color: var(--negre);
+      margin-bottom: 18px;
+      line-height: 1.22;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-mut);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* OR separator decoratiu */
+    .sep-or {
+      display: inline-block;
+      width: 48px;
+      height: 2px;
+      background: var(--or);
+      border-radius: 2px;
+      margin-bottom: 28px;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       BOTONS
+    ============================================================ */
+    .btn-primary {
+      display: inline-block;
+      background: var(--or);
+      color: var(--negre);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 34px;
+      border-radius: 10px;
+      border: 2px solid var(--or);
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--castany);
+      border-color: var(--castany);
+      color: var(--blanc);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124,92,74,0.22);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--negre);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 32px;
+      border-radius: 10px;
+      border: 2px solid var(--negre);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: var(--negre);
+      color: var(--blanc);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       NAVEGACIÓ
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+    }
+    .nav.scrolled {
+      background: rgba(245,239,230,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 24px rgba(26,26,26,0.07);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: var(--negre);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+    .nav-logo span {
+      display: block;
+      font-size: 0.60rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--negre);
+      text-decoration: none;
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--or);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--castany); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-block;
+      background: var(--or);
+      color: var(--negre);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover {
+      background: var(--castany);
+      color: var(--blanc);
+      transform: translateY(-1px);
+    }
+
+    /* Hamburger mòbil */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--negre);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta.desktop { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--crema);
+      padding-top: 80px;
+    }
+
+    /* Fons decoratiu — cercle difuminat */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -8%;
+      width: 55vw;
+      height: 55vw;
+      max-width: 700px;
+      max-height: 700px;
+      background: radial-gradient(circle, rgba(201,169,122,0.18) 0%, rgba(201,169,122,0.04) 60%, transparent 75%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 5%;
+      left: -5%;
+      width: 35vw;
+      height: 35vw;
+      max-width: 420px;
+      max-height: 420px;
+      background: radial-gradient(circle, rgba(124,92,74,0.09) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1.5px;
+      background: var(--or);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      color: var(--negre);
+      margin-bottom: 10px;
+    }
+    .hero-name .line2 {
+      color: var(--castany);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      font-style: italic;
+      color: var(--text-mut);
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-mut);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--sep);
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--or);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-mut);
+      margin-top: 5px;
+    }
+
+    /* Imatge hero — placeholder estilitzat */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .hero-img-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 12px 48px 12px 48px;
+      background: linear-gradient(145deg, var(--crema-fosca) 0%, #ddd4c4 50%, #c8baa8 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 32px 72px rgba(26,26,26,0.12);
+    }
+
+    /* Il·lustració SVG dins del frame */
+    .hero-img-frame svg.hero-illustration {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Targeta flotant */
+    .hero-float-card {
+      position: absolute;
+      bottom: -22px;
+      left: -28px;
+      background: var(--blanc);
+      border-radius: 12px;
+      padding: 18px 22px;
+      box-shadow: 0 16px 48px rgba(26,26,26,0.12);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 200px;
+    }
+    .float-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--or-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .float-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--or);
+      fill: none;
+      stroke-width: 1.8;
+    }
+    .float-text-top {
+      font-size: 0.68rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-clar);
+      font-weight: 400;
+    }
+    .float-text-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--negre);
+    }
+
+    /* Punts decoratius */
+    .hero-dots {
+      position: absolute;
+      top: -16px;
+      right: -20px;
+      display: grid;
+      grid-template-columns: repeat(4, 8px);
+      gap: 8px;
+    }
+    .hero-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--or);
+      opacity: 0.35;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .hero-img-wrap { max-width: 360px; margin: 0 auto; }
+      .hero-name { font-size: clamp(2.8rem, 8vw, 4.2rem); }
+      .hero-stats { gap: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .hero-float-card { left: 0; bottom: -16px; min-width: 180px; }
+    }
+
+    /* ============================================================
+       SERVEIS
+    ============================================================ */
+    .serveis {
+      padding: 110px 0;
+      background: var(--blanc);
+    }
+
+    .serveis-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .serveis-header .section-desc {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .servei-card {
+      background: var(--crema);
+      border-radius: 14px;
+      padding: 36px 30px;
+      border: 1px solid var(--sep);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .servei-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--or);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+      border-radius: 0 0 0 0;
+    }
+    .servei-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 52px rgba(26,26,26,0.09);
+      border-color: var(--or-border);
+    }
+    .servei-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .servei-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--or-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: background var(--transition);
+    }
+    .servei-card:hover .servei-icon {
+      background: rgba(201,169,122,0.25);
+    }
+    .servei-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--castany);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .servei-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      font-weight: 500;
+      color: var(--negre);
+      margin-bottom: 10px;
+    }
+    .servei-desc {
+      font-size: 0.92rem;
+      color: var(--text-mut);
+      line-height: 1.75;
+    }
+    .servei-preu {
+      margin-top: 22px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--or);
+    }
+
+    /* Targeta destacada (la del mig) */
+    .servei-card.featured {
+      background: var(--negre);
+      border-color: var(--negre);
+    }
+    .servei-card.featured .servei-nom,
+    .servei-card.featured .servei-desc {
+      color: var(--blanc);
+    }
+    .servei-card.featured .servei-desc {
+      opacity: 0.72;
+    }
+    .servei-card.featured .servei-icon {
+      background: rgba(201,169,122,0.15);
+    }
+    .servei-card.featured .servei-icon svg {
+      stroke: var(--or);
+    }
+    .servei-card.featured:hover {
+      border-color: var(--or);
+    }
+
+    @media (max-width: 900px) {
+      .serveis-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .serveis-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       SOBRE NOSALTRES
+    ============================================================ */
+    .sobre {
+      padding: 110px 0;
+      background: var(--crema);
+    }
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* Composició visual — esquerra */
+    .sobre-visual {
+      position: relative;
+    }
+    .sobre-frame-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 12px 48px 12px 12px;
+      background: linear-gradient(155deg, var(--crema-fosca) 0%, #d5c8b6 60%, #c3b49d 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(26,26,26,0.11);
+    }
+    .sobre-frame-main svg.sobre-illustration {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .sobre-frame-small {
+      position: absolute;
+      bottom: -24px;
+      right: -28px;
+      width: 48%;
+      aspect-ratio: 1/1;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e8ddd0, #d4c5b0);
+      box-shadow: 0 16px 40px rgba(26,26,26,0.12);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sobre-frame-small svg {
+      width: 64px;
+      height: 64px;
+      stroke: rgba(201,169,122,0.6);
+      fill: none;
+      stroke-width: 1;
+      stroke-linecap: round;
+    }
+    .sobre-badge {
+      position: absolute;
+      top: 24px;
+      left: -20px;
+      background: var(--or);
+      color: var(--negre);
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(201,169,122,0.35);
+    }
+    .sobre-badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .sobre-badge-text {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    /* Text — dreta */
+    .sobre-text {}
+    .sobre-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--negre);
+      line-height: 1.45;
+      margin-bottom: 30px;
+      padding-left: 24px;
+      border-left: 3px solid var(--or);
+    }
+    .sobre-body {
+      font-size: 0.97rem;
+      color: var(--text-mut);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .sobre-valors {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .valor-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .valor-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--or);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .valor-text {
+      font-size: 0.92rem;
+      color: var(--text-mut);
+    }
+    .valor-text strong {
+      color: var(--negre);
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      .sobre-inner { grid-template-columns: 1fr; gap: 56px; }
+      .sobre-visual { max-width: 400px; margin: 0 auto; }
+    }
+
+    /* ============================================================
+       PROCES / COM TREBALLEM
+    ============================================================ */
+    .proces {
+      padding: 110px 0;
+      background: var(--blanc);
+    }
+    .proces-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .proces-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .proces-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      position: relative;
+    }
+
+    /* Línia horitzontal connectora */
+    .proces-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: var(--sep);
+      z-index: 0;
+    }
+
+    .pas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .pas-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--crema);
+      border: 2px solid var(--or-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--or);
+      margin-bottom: 22px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .pas:hover .pas-num {
+      background: var(--or);
+      border-color: var(--or);
+      color: var(--negre);
+    }
+    .pas-titol {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--negre);
+      margin-bottom: 8px;
+    }
+    .pas-desc {
+      font-size: 0.87rem;
+      color: var(--text-mut);
+      line-height: 1.72;
+    }
+
+    @media (max-width: 760px) {
+      .proces-steps { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+      .proces-steps::before { display: none; }
+    }
+    @media (max-width: 420px) {
+      .proces-steps { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       TESTIMONIS
+    ============================================================ */
+    .testimonis {
+      padding: 110px 0;
+      background: var(--crema);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonis::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vw;
+      height: 70vw;
+      max-width: 800px;
+      max-height: 800px;
+      background: radial-gradient(circle, rgba(201,169,122,0.10) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .testimonis-header {
+      text-align: center;
+      margin-bottom: 64px;
+      position: relative;
+    }
+
+    .testimonis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .testimoni-card {
+      background: var(--blanc);
+      border-radius: 14px;
+      padding: 36px 30px;
+      border: 1px solid var(--sep);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .testimoni-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 48px rgba(26,26,26,0.09);
+    }
+
+    .testimoni-cometes {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--or);
+      opacity: 0.3;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .testimoni-text {
+      font-size: 0.95rem;
+      color: var(--text-mut);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .testimoni-autor {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .autor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--or-light);
+      border: 2px solid var(--or-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--castany);
+      flex-shrink: 0;
+    }
+    .autor-nom {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--negre);
+    }
+    .autor-lloc {
+      font-size: 0.78rem;
+      color: var(--text-clar);
+      margin-top: 2px;
+    }
+
+    .estrelles {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      display: flex;
+      gap: 3px;
+    }
+    .estrella {
+      color: var(--or);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 840px) {
+      .testimonis-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    }
+
+    /* ============================================================
+       GALERIA D'AMBIENTS
+    ============================================================ */
+    .galeria {
+      padding: 110px 0;
+      background: var(--blanc);
+    }
+    .galeria-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .galeria-item {
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--crema-fosca), #cfc0ab);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .galeria-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(26,26,26,0.14);
+    }
+    .galeria-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .galeria-item .g-inner {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .galeria-item.large .g-inner {
+      min-height: 420px;
+    }
+
+    /* SVG artístic per a cada element de galeria */
+    .galeria-item svg {
+      opacity: 0.5;
+      width: 64px;
+      height: 64px;
+    }
+
+    /* Overlay de text */
+    .g-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(26,26,26,0.55));
+      padding: 24px 18px 16px;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .galeria-item:hover .g-overlay { opacity: 1; }
+    .g-overlay-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blanc);
+    }
+
+    @media (max-width: 700px) {
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+      .galeria-item.large { grid-column: span 2; grid-row: span 1; }
+      .galeria-item.large .g-inner { min-height: 250px; }
+    }
+    @media (max-width: 420px) {
+      .galeria-grid { grid-template-columns: 1fr; }
+      .galeria-item.large { grid-column: span 1; }
+    }
+
+    /* ============================================================
+       HORARIS I CONTACTE
+    ============================================================ */
+    .contacte {
+      padding: 110px 0;
+      background: var(--negre);
+      position: relative;
+      overflow: hidden;
+    }
+    .contacte::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 50vw;
+      height: 50vw;
+      max-width: 600px;
+      background: radial-gradient(circle, rgba(201,169,122,0.07) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contacte-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      position: relative;
+    }
+
+    /* Columna esquerra — info */
+    .contacte-info .section-label { color: var(--or); }
+    .contacte-info .section-title { color: var(--blanc); }
+    .contacte-info .section-desc { color: rgba(255,255,255,0.55); }
+    .contacte-info .sep-or { opacity: 0.5; }
+
+    .contacte-dades {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .dada-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .dada-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(201,169,122,0.10);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(201,169,122,0.15);
+    }
+    .dada-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--or);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .dada-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .dada-valor {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+    .dada-valor a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .dada-valor a:hover { color: var(--or); }
+
+    /* Columna dreta — horaris */
+    .horaris-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,169,122,0.14);
+      border-radius: 16px;
+      padding: 40px 36px;
+    }
+    .horaris-titol {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--blanc);
+      margin-bottom: 10px;
+    }
+    .horaris-subtitol {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.40);
+      letter-spacing: 0.05em;
+      margin-bottom: 36px;
+    }
+
+    .horaris-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .horari-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .horari-row:last-child { border-bottom: none; }
+    .horari-dia {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+    }
+    .horari-hora {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--or);
+    }
+    .horari-hora.tancat {
+      color: rgba(255,255,255,0.25);
+      font-weight: 300;
+    }
+
+    .horaris-cta {
+      margin-top: 32px;
+      width: 100%;
+      text-align: center;
+      display: block;
+      background: var(--or);
+      color: var(--negre);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 20px;
+      border-radius: 10px;
+      border: none;
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .horaris-cta:hover {
+      background: var(--castany);
+      color: var(--blanc);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 860px) {
+      .contacte-inner { grid-template-columns: 1fr; gap: 52px; }
+    }
+
+    /* ============================================================
+       INSTAGRAM STRIP
+    ============================================================ */
+    .instagram-strip {
+      padding: 80px 0;
+      background: var(--crema);
+      text-align: center;
+    }
+    .ig-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 10px;
+    }
+    .ig-handle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--negre);
+      margin-bottom: 40px;
+    }
+    .ig-handle a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .ig-handle a:hover { color: var(--castany); }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .ig-item {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--crema-fosca), #cfbfaa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition), opacity var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+    .ig-item:hover { transform: scale(1.04); opacity: 0.85; }
+    .ig-item svg {
+      width: 32px;
+      height: 32px;
+      stroke: rgba(201,169,122,0.55);
+      fill: none;
+      stroke-width: 1.2;
+    }
+    .ig-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,26,26,0);
+      transition: background var(--transition);
+    }
+    .ig-item:hover::after {
+      background: rgba(26,26,26,0.15);
+    }
+
+    @media (max-width: 640px) {
+      .ig-grid { grid-template-columns: repeat(3, 1fr); }
+      .ig-item:nth-child(n+4) { display: none; }
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--negre);
+      padding: 48px 0 28px;
+      border-top: 1px solid rgba(201,169,122,0.10);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+    .footer-logo span {
+      color: var(--or);
+    }
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.38);
+      font-style: italic;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--or); }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(201,169,122,0.08);
+      border: 1px solid rgba(201,169,122,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .social-link:hover {
+      background: rgba(201,169,122,0.18);
+      border-color: var(--or);
+      transform: translateY(-2px);
+    }
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--or);
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-copy {
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-calaf {
+      font-size: 0.72rem;
+      color: rgba(201,169,122,0.40);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      .footer-inner { flex-direction: column; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ============================================================
+       DECORACIÓ SVG — TISERES FONS
+    ============================================================ */
+    .deco-scissors {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.045;
+    }
+
+    /* ============================================================
+       BANNER DEMO
+    ============================================================ */
+    .demo-banner {
+      background: var(--or);
+      padding: 10px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .demo-banner p {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--negre);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- BANNER DEMO -->
+  <div class="demo-banner">
+    <p>Demo web · Perruqueria Anna Roldán · Calaf</p>
+  </div>
+
+  <!-- ============================================================
+       NAVEGACIÓ
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#inici" class="nav-logo">
+          Anna Roldán
+          <span>Perruqueria · Calaf</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#serveis">Serveis</a></li>
+          <li><a href="#sobre">Sobre nosaltres</a></li>
+          <li><a href="#testimonis">Opinions</a></li>
+          <li><a href="#contacte">Contacte</a></li>
+        </ul>
+        <a href="tel:+34938690000" class="nav-cta desktop">Demana cita</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inici">
+
+    <!-- Tiseres decoratives de fons -->
+    <svg class="deco-scissors" style="top:15%;left:3%;width:180px;height:180px;" viewBox="0 0 100 100" fill="none" stroke="#C9A97A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Tiseres -->
+      <circle cx="28" cy="38" r="10"/>
+      <circle cx="72" cy="38" r="10"/>
+      <line x1="38" y1="42" x2="78" y2="72"/>
+      <line x1="62" y1="42" x2="22" y2="72"/>
+    </svg>
+    <svg class="deco-scissors" style="bottom:12%;right:4%;width:240px;height:240px;transform:rotate(30deg);" viewBox="0 0 100 100" fill="none" stroke="#C9A97A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="28" cy="38" r="10"/>
+      <circle cx="72" cy="38" r="10"/>
+      <line x1="38" y1="42" x2="78" y2="72"/>
+      <line x1="62" y1="42" x2="22" y2="72"/>
+    </svg>
+
+    <div class="container">
+      <div class="hero-inner">
+        <!-- Text -->
+        <div class="hero-text">
+          <p class="hero-eyebrow reveal">Perruqueria · Calaf, Anoia</p>
+          <h1 class="hero-name reveal rd1">
+            Anna<br>
+            <span class="line2">Roldán</span>
+          </h1>
+          <p class="hero-tagline reveal rd2">"El teu cabell, la nostra passió"</p>
+          <p class="hero-desc reveal rd3">
+            A la Perruqueria Anna Roldán de Calaf et rebem amb els braços oberts. Més de deu anys cuidant el cabell de les persones d'aquesta terra amb el tracte proper de sempre i l'exigència d'una professional.
+          </p>
+          <div class="hero-actions reveal rd4">
+            <a href="tel:+34938690000" class="btn-primary">Demana cita</a>
+            <a href="#serveis" class="btn-outline">Veure serveis</a>
+          </div>
+          <div class="hero-stats reveal rd5">
+            <div class="stat-item">
+              <div class="stat-num">+10</div>
+              <div class="stat-label">Anys d'experiència</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Clients satisfets</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">5★</div>
+              <div class="stat-label">Valoració</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="hero-visual reveal rd2">
+          <div class="hero-img-wrap">
+            <div class="hero-img-frame">
+              <!-- Il·lustració artística cabells -->
+              <svg class="hero-illustration" viewBox="0 0 480 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#C9A97A" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#7C5C4A" stop-opacity="0.10"/>
+                  </linearGradient>
+                </defs>
+                <!-- Silueta estilitzada / ambient perruqueria -->
+                <rect width="480" height="600" fill="url(#hg1)"/>
+                <!-- Ondes de cabell estilitzades -->
+                <path d="M60 180 Q120 140 180 180 Q240 220 300 180 Q360 140 420 180" stroke="#C9A97A" stroke-width="2" stroke-opacity="0.4" fill="none"/>
+                <path d="M60 210 Q120 170 180 210 Q240 250 300 210 Q360 170 420 210" stroke="#C9A97A" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+                <path d="M60 240 Q120 200 180 240 Q240 280 300 240 Q360 200 420 240" stroke="#C9A97A" stroke-width="1.5" stroke-opacity="0.25" fill="none"/>
+                <path d="M80 290 Q140 255 200 290 Q260 325 320 290 Q380 255 440 290" stroke="#7C5C4A" stroke-width="1.5" stroke-opacity="0.2" fill="none"/>
+                <path d="M80 320 Q140 285 200 320 Q260 355 320 320 Q380 285 440 320" stroke="#7C5C4A" stroke-width="1.5" stroke-opacity="0.18" fill="none"/>
+                <!-- Cercles decoratius -->
+                <circle cx="240" cy="120" r="65" stroke="#C9A97A" stroke-width="1" stroke-opacity="0.18" fill="rgba(201,169,122,0.07)"/>
+                <circle cx="240" cy="120" r="40" stroke="#C9A97A" stroke-width="1.5" stroke-opacity="0.25" fill="rgba(201,169,122,0.12)"/>
+                <!-- Element tiseres -->
+                <g transform="translate(200,390) scale(1.4)" stroke="#C9A97A" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.35">
+                  <circle cx="15" cy="20" r="7"/>
+                  <circle cx="45" cy="20" r="7"/>
+                  <line x1="22" y1="23" x2="52" y2="43"/>
+                  <line x1="38" y1="23" x2="8" y2="43"/>
+                </g>
+                <!-- Estrella decorativa -->
+                <g transform="translate(360,80)" opacity="0.3">
+                  <circle cx="20" cy="20" r="3" fill="#C9A97A"/>
+                  <circle cx="30" cy="10" r="2" fill="#C9A97A"/>
+                  <circle cx="10" cy="30" r="1.5" fill="#C9A97A"/>
+                  <circle cx="35" cy="30" r="2.5" fill="#C9A97A"/>
+                </g>
+                <!-- Ondes inferiors -->
+                <path d="M0 480 Q80 460 160 480 Q240 500 320 480 Q400 460 480 480 L480 600 L0 600 Z" fill="rgba(201,169,122,0.07)"/>
+                <path d="M0 520 Q80 500 160 520 Q240 540 320 520 Q400 500 480 520 L480 600 L0 600 Z" fill="rgba(201,169,122,0.05)"/>
+              </svg>
+            </div>
+
+            <!-- Targeta flotant -->
+            <div class="hero-float-card">
+              <div class="float-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <div class="float-text-top">Avui obrim</div>
+                <div class="float-text-main">9h – 19h</div>
+              </div>
+            </div>
+
+            <!-- Punts decoratius -->
+            <div class="hero-dots">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVEIS
+  ============================================================ -->
+  <section class="serveis" id="serveis">
+    <div class="container">
+      <div class="serveis-header">
+        <p class="section-label reveal">El que oferim</p>
+        <div class="sep-or reveal rd1"></div>
+        <h2 class="section-title reveal rd2">Tots els serveis per<br><em>al teu cabell</em></h2>
+        <p class="section-desc reveal rd3">Tant si vols un canvi radical com mantenir el que t'ha funcionat sempre, tenim el servei que necessites.</p>
+      </div>
+
+      <div class="serveis-grid">
+
+        <!-- 1. Tall i estil -->
+        <div class="servei-card reveal rd1">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+              <path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+              <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+              <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Tall i Estil</h3>
+          <p class="servei-desc">Des de talls clàssics fins a les darreres tendències. Anàlisi de la forma del rostre i assessorament personalitzat perquè el tall s'adapti a tu.</p>
+          <div class="servei-preu">Des de 20 €</div>
+        </div>
+
+        <!-- 2. Coloració i mèxes — FEATURED -->
+        <div class="servei-card featured reveal rd2">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Coloració i Mèxes</h3>
+          <p class="servei-desc">Tenyides globals, mèxes clàssiques, balayage, babylights i degradats. Productes professionals respectuosos amb el cabell per un color vibrant i durador.</p>
+          <div class="servei-preu" style="color:var(--or);">Des de 45 €</div>
+        </div>
+
+        <!-- 3. Tractaments capil·lars -->
+        <div class="servei-card reveal rd3">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Tractaments Capil·lars</h3>
+          <p class="servei-desc">Màscares nutritives, queratina, tractament antiencrespament i reconstructors intensius per a cabells danyats, secs o amb falta de brillantor.</p>
+          <div class="servei-preu">Des de 30 €</div>
+        </div>
+
+        <!-- 4. Pentinats i recollits -->
+        <div class="servei-card reveal rd1">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+              <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Pentinats i Recollits</h3>
+          <p class="servei-desc">Per a casaments, comunions, festes o qualsevol ocasió especial. Pentinats romanços, recollits moderns i ondulacions. Reserva amb antelació.</p>
+          <div class="servei-preu">Des de 35 €</div>
+        </div>
+
+        <!-- 5. Permanent i allisat -->
+        <div class="servei-card reveal rd2">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 6h18M3 12h18M3 18h18"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Permanent i Allisat</h3>
+          <p class="servei-desc">Permanent clàssica per donar cos i volum, o allisat japonès per a un acabat llis i sedós de llarga durada. Assessorament previ inclòs.</p>
+          <div class="servei-preu">Des de 55 €</div>
+        </div>
+
+        <!-- 6. Extensions -->
+        <div class="servei-card reveal rd3">
+          <div class="servei-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+          </div>
+          <h3 class="servei-nom">Extensions</h3>
+          <p class="servei-desc">Extensions de cabell natural amb tècniques de nano-anella, fusió en calent o cintes adhesives. Guanya llargada i volum amb un resultat completament natural.</p>
+          <div class="servei-preu">Consulta pressupost</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOBRE NOSALTRES
+  ============================================================ -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+
+        <!-- Visual esquerra -->
+        <div class="sobre-visual reveal">
+          <div class="sobre-frame-main">
+            <svg class="sobre-illustration" viewBox="0 0 400 530" fill="none">
+              <defs>
+                <linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#C9A97A" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#7C5C4A" stop-opacity="0.08"/>
+                </linearGradient>
+              </defs>
+              <rect width="400" height="530" fill="url(#sg1)"/>
+              <!-- Silueta interior -->
+              <ellipse cx="200" cy="160" rx="70" ry="80" stroke="#C9A97A" stroke-width="1.5" stroke-opacity="0.3" fill="rgba(201,169,122,0.08)"/>
+              <!-- Ondes decoratives -->
+              <path d="M40 280 Q100 255 160 280 Q220 305 280 280 Q340 255 390 275" stroke="#C9A97A" stroke-width="1.5" stroke-opacity="0.3" fill="none"/>
+              <path d="M40 305 Q100 280 160 305 Q220 330 280 305 Q340 280 390 300" stroke="#C9A97A" stroke-width="1" stroke-opacity="0.22" fill="none"/>
+              <path d="M40 330 Q100 305 160 330 Q220 355 280 330 Q340 305 390 325" stroke="#7C5C4A" stroke-width="1" stroke-opacity="0.18" fill="none"/>
+              <!-- Flors/punts decoratius -->
+              <g opacity="0.25" fill="#C9A97A">
+                <circle cx="60" cy="60" r="3"/>
+                <circle cx="80" cy="45" r="2"/>
+                <circle cx="50" cy="80" r="2.5"/>
+                <circle cx="340" cy="440" r="3"/>
+                <circle cx="360" cy="460" r="2"/>
+                <circle cx="320" cy="455" r="2.5"/>
+              </g>
+              <!-- Línia ornamental inferior -->
+              <path d="M80 480 Q200 460 320 480" stroke="#C9A97A" stroke-width="1" stroke-opacity="0.2" fill="none"/>
+            </svg>
+          </div>
+
+          <div class="sobre-frame-small">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#C9A97A" stroke-linecap="round">
+              <!-- Ornament floral simple -->
+              <circle cx="50" cy="50" r="25"/>
+              <path d="M50 25 Q55 40 50 50 Q45 40 50 25"/>
+              <path d="M50 75 Q55 60 50 50 Q45 60 50 75"/>
+              <path d="M25 50 Q40 55 50 50 Q40 45 25 50"/>
+              <path d="M75 50 Q60 55 50 50 Q60 45 75 50"/>
+            </svg>
+          </div>
+
+          <div class="sobre-badge">
+            <div class="sobre-badge-num">10+</div>
+            <div class="sobre-badge-text">Anys a Calaf</div>
+          </div>
+        </div>
+
+        <!-- Text dreta -->
+        <div class="sobre-text">
+          <p class="section-label reveal">Qui som</p>
+          <div class="sep-or reveal rd1"></div>
+          <h2 class="section-title reveal rd2">La perruqueria<br>de tota la vida,<br><em>amb l'estil d'avui</em></h2>
+
+          <blockquote class="sobre-quote reveal rd3">
+            "Cada persona que entra per la porta és única, i el seu cabell mereix una atenció igual d'única."
+          </blockquote>
+
+          <p class="sobre-body reveal rd3">
+            La Perruqueria Anna Roldán és un racó de Calaf on el temps va una mica més a poc a poc. Fa més d'una dècada que acollim les veïnes i veïns de l'Anoia amb un somriure i les mans posades al cabell. Hem après el nom de les vostres filles, hem preparat pentinats per a casaments i primeres comunions, i hem estat aquí quan necessitàveu un canvi que us fes sentir bé.
+          </p>
+          <p class="sobre-body reveal rd4">
+            La nostra formació és contínua: cada temporada explorem les noves tendències per poder oferir-vos el millor, sense perdre mai l'atenció personal que ens distingeix. No som un gran centre, i no volem ser-ho: som la vostra perruqueria.
+          </p>
+
+          <div class="sobre-valors reveal rd4">
+            <div class="valor-item">
+              <div class="valor-dot"></div>
+              <p class="valor-text"><strong>Atenció personalitzada</strong> — t'assessorem sense pressa fins trobar el que t'escau.</p>
+            </div>
+            <div class="valor-item">
+              <div class="valor-dot"></div>
+              <p class="valor-text"><strong>Productes de qualitat</strong> — treballem amb marques professionals per cuidar el teu cabell.</p>
+            </div>
+            <div class="valor-item">
+              <div class="valor-dot"></div>
+              <p class="valor-text"><strong>Arrelades al territori</strong> — som Calaf, coneixem les nostres clientes i elles ens coneixen a nosaltres.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COM TREBALLEM
+  ============================================================ -->
+  <section class="proces" id="proces">
+    <div class="container">
+      <div class="proces-header">
+        <p class="section-label reveal">El nostre mètode</p>
+        <div class="sep-or reveal rd1"></div>
+        <h2 class="section-title reveal rd2">Com treballem<br><em>amb tu</em></h2>
+        <p class="section-desc reveal rd3">Un procés pensat per a la teva comoditat des que truques fins que surts per la porta.</p>
+      </div>
+
+      <div class="proces-steps">
+        <div class="pas reveal rd1">
+          <div class="pas-num">01</div>
+          <h3 class="pas-titol">Demanes cita</h3>
+          <p class="pas-desc">Per telèfon o Instagram. T'assignem l'hora que millor t'encaixi.</p>
+        </div>
+        <div class="pas reveal rd2">
+          <div class="pas-num">02</div>
+          <h3 class="pas-titol">Consulta prèvia</h3>
+          <p class="pas-desc">Parlem del que vols, analitzem el teu cabell i t'assessorem sense compromís.</p>
+        </div>
+        <div class="pas reveal rd3">
+          <div class="pas-num">03</div>
+          <h3 class="pas-titol">El teu servei</h3>
+          <p class="pas-desc">Treballem amb cura i atenció. Cafè, música i bona conversa inclosos.</p>
+        </div>
+        <div class="pas reveal rd4">
+          <div class="pas-num">04</div>
+          <h3 class="pas-titol">Surts radianta</h3>
+          <p class="pas-desc">T'expliquem com mantenir el resultat a casa i et reservem per a la propera vegada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIS
+  ============================================================ -->
+  <section class="testimonis" id="testimonis">
+    <div class="container">
+      <div class="testimonis-header">
+        <p class="section-label reveal">El que diuen</p>
+        <div class="sep-or reveal rd1"></div>
+        <h2 class="section-title reveal rd2">Les nostres clientes<br><em>parlen per nosaltres</em></h2>
+      </div>
+
+      <div class="testimonis-grid">
+
+        <div class="testimoni-card reveal rd1">
+          <div class="estrelles">
+            <span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span>
+          </div>
+          <span class="testimoni-cometes">"</span>
+          <p class="testimoni-text">
+            Porto anys anant a la perruqueria de l'Anna i mai m'ha fallat. Sempre escolta el que vull i el resultat és exactament el que imagino. A Calaf no hi ha ningú que tingui les mans com ella per les mèxes.
+          </p>
+          <div class="testimoni-autor">
+            <div class="autor-avatar">M</div>
+            <div>
+              <div class="autor-nom">Montserrat Pujol</div>
+              <div class="autor-lloc">Calaf</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card reveal rd2">
+          <div class="estrelles">
+            <span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span>
+          </div>
+          <span class="testimoni-cometes">"</span>
+          <p class="testimoni-text">
+            Vaig anar per a la comunió de la meva filla i va quedar preciosa. L'Anna és molt pacient amb les nenes i el recolliment va durar tot el dia. Tornaré per al casament de la gran!
+          </p>
+          <div class="testimoni-autor">
+            <div class="autor-avatar">N</div>
+            <div>
+              <div class="autor-nom">Neus Viladomiu</div>
+              <div class="autor-lloc">Prats de Rei</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card reveal rd3">
+          <div class="estrelles">
+            <span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span><span class="estrella">★</span>
+          </div>
+          <span class="testimoni-cometes">"</span>
+          <p class="testimoni-text">
+            Feia temps que volia un balayage però no m'atrevia. L'Anna m'ho va explicar tot pas a pas, em va proposar uns tons que ni jo sabia que m'anirien tan bé i el resultat és espectacular. Totalment recomanada.
+          </p>
+          <div class="testimoni-autor">
+            <div class="autor-avatar">R</div>
+            <div>
+              <div class="autor-nom">Roser Castelltort</div>
+              <div class="autor-lloc">Sant Pere Sallavinera</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERIA
+  ============================================================ -->
+  <section class="galeria" id="galeria">
+    <div class="container">
+      <div class="galeria-header">
+        <p class="section-label reveal">El nostre treball</p>
+        <div class="sep-or reveal rd1"></div>
+        <h2 class="section-title reveal rd2">Resultats que<br><em>parlen sols</em></h2>
+      </div>
+
+      <div class="galeria-grid">
+
+        <div class="galeria-item large reveal rd1">
+          <div class="g-inner" style="background:linear-gradient(145deg,#ddd3c2,#c8b89a);">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#C9A97A" stroke-width="1.2">
+              <path d="M20 60 Q30 40 40 50 Q50 40 60 60"/>
+              <path d="M15 70 Q27 50 40 60 Q53 50 65 70"/>
+              <circle cx="40" cy="25" r="12" stroke-opacity="0.6"/>
+            </svg>
+            <div class="g-overlay"><span class="g-overlay-text">Tall i estil</span></div>
+          </div>
+        </div>
+
+        <div class="galeria-item reveal rd2">
+          <div class="g-inner" style="background:linear-gradient(145deg,#e0d2be,#ccb898);">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#C9A97A" stroke-width="1.2">
+              <path d="M25 20 Q40 10 55 20 Q65 35 55 55 Q40 70 25 55 Q15 35 25 20Z"/>
+            </svg>
+            <div class="g-overlay"><span class="g-overlay-text">Balayage</span></div>
+          </div>
+        </div>
+
+        <div class="galeria-item reveal rd3">
+          <div class="g-inner" style="background:linear-gradient(145deg,#cfc0aa,#bfab8e);">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#C9A97A" stroke-width="1.2">
+              <circle cx="40" cy="30" r="15"/>
+              <path d="M25 45 Q20 65 40 70 Q60 65 55 45"/>
+            </svg>
+            <div class="g-overlay"><span class="g-overlay-text">Mèxes</span></div>
+          </div>
+        </div>
+
+        <div class="galeria-item reveal rd2">
+          <div class="g-inner" style="background:linear-gradient(145deg,#d4c6b0,#c2af92);">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#C9A97A" stroke-width="1.2">
+              <path d="M40 15 Q55 20 60 35 Q65 50 55 60 Q45 70 30 65 Q15 60 15 45 Q15 25 40 15Z"/>
+              <circle cx="40" cy="40" r="8" stroke-opacity="0.5"/>
+            </svg>
+            <div class="g-overlay"><span class="g-overlay-text">Coloració</span></div>
+          </div>
+        </div>
+
+        <div class="galeria-item reveal rd1">
+          <div class="g-inner" style="background:linear-gradient(145deg,#e5dace,#d5c5b0);">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#C9A97A" stroke-width="1.2">
+              <path d="M20 15 Q40 5 60 15 L65 65 Q40 75 15 65 Z"/>
+              <path d="M30 30 Q40 25 50 30 Q55 40 50 50 Q40 55 30 50 Q25 40 30 30Z"/>
+            </svg>
+            <div class="g-overlay"><span class="g-overlay-text">Tractament</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSTAGRAM STRIP
+  ============================================================ -->
+  <section class="instagram-strip">
+    <div class="container">
+      <p class="ig-label reveal">Segueix-nos</p>
+      <h2 class="ig-handle reveal rd1"><a href="https://instagram.com/perruqueria_anna_roldan" target="_blank" rel="noopener">@perruqueria_anna_roldan</a></h2>
+
+      <div class="ig-grid reveal rd2">
+        <div class="ig-item" style="background:linear-gradient(135deg,#e0d2be,#cbbfa8);">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><rect x="6" y="6" width="36" height="36" rx="8"/></svg>
+        </div>
+        <div class="ig-item" style="background:linear-gradient(135deg,#d5c8b4,#c4b49c);">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><rect x="6" y="6" width="36" height="36" rx="8"/></svg>
+        </div>
+        <div class="ig-item" style="background:linear-gradient(135deg,#cbbfa8,#bba98e);">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><rect x="6" y="6" width="36" height="36" rx="8"/></svg>
+        </div>
+        <div class="ig-item" style="background:linear-gradient(135deg,#c4b49c,#b3a185);">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><rect x="6" y="6" width="36" height="36" rx="8"/></svg>
+        </div>
+        <div class="ig-item" style="background:linear-gradient(135deg,#d8ccb8,#c9baa0);">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><rect x="6" y="6" width="36" height="36" rx="8"/></svg>
+        </div>
+      </div>
+
+      <a href="https://instagram.com/perruqueria_anna_roldan" target="_blank" rel="noopener" class="btn-outline reveal rd3">Veure Instagram</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HORARIS I CONTACTE
+  ============================================================ -->
+  <section class="contacte" id="contacte">
+    <div class="container">
+      <div class="contacte-inner">
+
+        <!-- Esquerra — info -->
+        <div class="contacte-info">
+          <p class="section-label reveal">On trobar-nos</p>
+          <div class="sep-or reveal rd1"></div>
+          <h2 class="section-title reveal rd2">Vine a veure'ns<br><em style="color:var(--or)">a Calaf</em></h2>
+          <p class="section-desc reveal rd3">Estem al cor de Calaf, esperant-te amb cita prèvia. No t'oblidis de trucar!</p>
+
+          <div class="contacte-dades reveal rd3">
+
+            <div class="dada-item">
+              <div class="dada-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="dada-label">Adreça</div>
+                <div class="dada-valor">Carrer Major, 14<br>08280 Calaf, Anoia</div>
+              </div>
+            </div>
+
+            <div class="dada-item">
+              <div class="dada-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="dada-label">Telèfon</div>
+                <div class="dada-valor"><a href="tel:+34938690000">938 69 00 00</a></div>
+              </div>
+            </div>
+
+            <div class="dada-item">
+              <div class="dada-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div>
+                <div class="dada-label">Instagram</div>
+                <div class="dada-valor"><a href="https://instagram.com/perruqueria_anna_roldan" target="_blank" rel="noopener">@perruqueria_anna_roldan</a></div>
+              </div>
+            </div>
+
+            <div class="dada-item">
+              <div class="dada-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="dada-label">Correu</div>
+                <div class="dada-valor"><a href="mailto:anrope22@hotmail.com">anrope22@hotmail.com</a></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Dreta — horaris -->
+        <div class="reveal rd2">
+          <div class="horaris-box">
+            <h3 class="horaris-titol">Horaris</h3>
+            <p class="horaris-subtitol">Amb cita prèvia — Truqueu o escriviu per Instagram</p>
+
+            <div class="horaris-list">
+              <div class="horari-row">
+                <span class="horari-dia">Dilluns</span>
+                <span class="horari-hora tancat">Tancat</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Dimarts</span>
+                <span class="horari-hora">9:00 – 19:00</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Dimecres</span>
+                <span class="horari-hora">9:00 – 19:00</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Dijous</span>
+                <span class="horari-hora">9:00 – 19:00</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Divendres</span>
+                <span class="horari-hora">9:00 – 19:00</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Dissabte</span>
+                <span class="horari-hora">9:00 – 14:00</span>
+              </div>
+              <div class="horari-row">
+                <span class="horari-dia">Diumenge</span>
+                <span class="horari-hora tancat">Tancat</span>
+              </div>
+            </div>
+
+            <a href="tel:+34938690000" class="horaris-cta">Truca i demana cita</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">Anna <span>Roldán</span></div>
+          <div class="footer-tagline">"El teu cabell, la nostra passió"</div>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#serveis">Serveis</a></li>
+          <li><a href="#sobre">Sobre nosaltres</a></li>
+          <li><a href="#testimonis">Opinions</a></li>
+          <li><a href="#contacte">Contacte</a></li>
+        </ul>
+
+        <div class="footer-social">
+          <a href="https://instagram.com/perruqueria_anna_roldan" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="tel:+34938690000" class="social-link" aria-label="Telèfon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="mailto:anrope22@hotmail.com" class="social-link" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Perruqueria Anna Roldán · Calaf</p>
+        <p class="footer-calaf">Calaf, Anoia · Catalunya</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Smooth anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Horaris — destacar dia actual
+    const dies = ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'];
+    const avui = dies[new Date().getDay()];
+    document.querySelectorAll('.horari-row').forEach(row => {
+      if (row.querySelector('.horari-dia')?.textContent.trim() === avui) {
+        row.style.background = 'rgba(201,169,122,0.08)';
+        row.style.borderRadius = '8px';
+        row.style.padding = '12px 10px';
+        row.querySelector('.horari-dia').style.color = 'rgba(255,255,255,0.9)';
+      }
+    });
+
+    // Targeta flotant hero — si avui és dilluns o diumenge, mostra Tancat
+    const diaNum = new Date().getDay();
+    const floatMain = document.querySelector('.float-text-main');
+    const floatTop = document.querySelector('.float-text-top');
+    if (diaNum === 0 || diaNum === 1) {
+      floatMain.textContent = 'Tancat avui';
+      floatTop.textContent = 'Descansem';
+    } else if (diaNum === 6) {
+      floatMain.textContent = '9h – 14h';
+      floatTop.textContent = 'Dissabte obrim';
+    }
+  </script>
+
+</body>
+</html>
