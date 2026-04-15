@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Amadeus — Capellades</title>
+  <meta name="description" content="Restaurant familiar a Capellades (Anoia). Cuina de mercat honesta amb producte de proximitat. Reserva la teva taula." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:          #F5ECD7;
+      --bg-dark:     #2C1A0E;
+      --bg-card:     #EDE3CC;
+      --bg-card-alt: #E8D9BE;
+      --primary:     #C8860A;
+      --secondary:   #4A6741;
+      --text:        #1C1008;
+      --text-muted:  #6B5040;
+      --text-light:  #C8B89A;
+      --radius:      14px;
+      --radius-lg:   22px;
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+    /* TEXTURA DE PAPER SUBTIL */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─────────────────────────────
+       NAV
+    ───────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(44, 26, 14, 0.95);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      border-bottom: 1px solid rgba(200, 134, 10, 0.25);
+      transition: padding var(--transition);
+    }
+
+    nav.scrolled {
+      padding: 0.75rem 3rem;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #F5ECD7;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #C8B89A;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      background: #a86d08 !important;
+      transform: translateY(-1px);
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #F5ECD7;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* MOBILE MENU */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-dark);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #F5ECD7;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--primary);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: #F5ECD7;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* ─────────────────────────────
+       HERO
+    ───────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--bg-dark);
+      overflow: hidden;
+    }
+
+    /* Gradient fons hero inspirat en llum de ciri */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200, 134, 10, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 100% 80% at 20% 80%, rgba(74, 103, 65, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #1C1008 0%, #2C1A0E 50%, #1C1008 100%);
+      z-index: 0;
+    }
+
+    /* Ornament superior */
+    .hero-ornament {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 1.5rem 6rem;
+      max-width: 820px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--primary);
+      opacity: 0.6;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 700;
+      color: #F5ECD7;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--primary);
+      margin: 1.8rem auto;
+      border-radius: 2px;
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.45rem);
+      color: #C8B89A;
+      margin-bottom: 2.8rem;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.9rem 2.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(200, 134, 10, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #a86d08;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 134, 10, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #F5ECD7;
+      border: 1.5px solid rgba(245, 236, 215, 0.35);
+      padding: 0.9rem 2.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(200, 134, 10, 0.06);
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(200, 184, 154, 0.55);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200, 134, 10, 0.6), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; }
+      50% { opacity: 1; }
+    }
+
+    /* ─────────────────────────────
+       SECTIONS BASE
+    ───────────────────────────── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      margin-top: 1rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sep {
+      width: 48px;
+      height: 2px;
+      background: var(--primary);
+      margin: 1.2rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ─────────────────────────────
+       SOBRE NOSALTRES
+    ───────────────────────────── */
+    .about {
+      padding: 7rem 0;
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-frame {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(200, 134, 10, 0.15);
+      box-shadow: 0 20px 60px rgba(28, 16, 8, 0.12);
+      position: relative;
+    }
+
+    /* Placeholder artístic per la imatge */
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 40% 35%, rgba(200, 134, 10, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 70% 70%, rgba(74, 103, 65, 0.06) 0%, transparent 60%);
+    }
+
+    .about-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-img-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .about-img-placeholder p {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.2rem;
+      right: -1.2rem;
+      background: var(--bg-dark);
+      color: #F5ECD7;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 2px solid rgba(200, 134, 10, 0.4);
+      box-shadow: 0 8px 30px rgba(28, 16, 8, 0.25);
+    }
+
+    .about-badge strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .about-badge span {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 0.2rem;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text h2 em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .about-value {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(200, 134, 10, 0.1);
+    }
+
+    .about-value-icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-value h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .about-value p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* ─────────────────────────────
+       CARTA
+    ───────────────────────────── */
+    .menu {
+      padding: 7rem 0;
+      background: var(--bg-card);
+    }
+
+    /* Franja decorativa superior */
+    .menu::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 134, 10, 0.3), transparent);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .menu-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(200, 134, 10, 0.12);
+      box-shadow: 0 4px 24px rgba(28, 16, 8, 0.07);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(28, 16, 8, 0.13);
+      border-color: rgba(200, 134, 10, 0.3);
+    }
+
+    .menu-card-visual {
+      height: 200px;
+      background: var(--bg-card-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    .menu-card-visual.carn::before {
+      background: radial-gradient(ellipse at 40% 40%, rgba(200, 134, 10, 0.15) 0%, transparent 70%),
+                  radial-gradient(ellipse at 70% 70%, rgba(44, 26, 14, 0.1) 0%, transparent 60%);
+    }
+
+    .menu-card-visual.peix::before {
+      background: radial-gradient(ellipse at 50% 40%, rgba(74, 103, 65, 0.15) 0%, transparent 70%),
+                  radial-gradient(ellipse at 30% 70%, rgba(200, 134, 10, 0.08) 0%, transparent 60%);
+    }
+
+    .menu-card-visual.postres::before {
+      background: radial-gradient(ellipse at 50% 40%, rgba(200, 134, 10, 0.18) 0%, transparent 70%),
+                  radial-gradient(ellipse at 70% 60%, rgba(74, 103, 65, 0.08) 0%, transparent 60%);
+    }
+
+    .menu-card-emoji {
+      font-size: 3.5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 12px rgba(28, 16, 8, 0.2));
+    }
+
+    .menu-card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--bg-dark);
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid rgba(200, 134, 10, 0.3);
+    }
+
+    .menu-card-body {
+      padding: 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .menu-card-body p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .menu-card-footer {
+      padding: 1rem 1.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(200, 134, 10, 0.1);
+    }
+
+    .menu-card-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .menu-card-tag {
+      font-size: 0.76rem;
+      color: var(--secondary);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .menu-note {
+      text-align: center;
+      margin-top: 3rem;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .menu-note a {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 134, 10, 0.4);
+      transition: border-color var(--transition);
+    }
+
+    .menu-note a:hover {
+      border-color: var(--primary);
+    }
+
+    /* ─────────────────────────────
+       TESTIMONIALS
+    ───────────────────────────── */
+    .testimonials {
+      padding: 7rem 0;
+      background: var(--bg);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid rgba(200, 134, 10, 0.1);
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(28, 16, 8, 0.1);
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--primary);
+      opacity: 0.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    .testimonial-stars {
+      color: var(--primary);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(200, 134, 10, 0.12);
+    }
+
+    .testimonial-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+      flex-shrink: 0;
+      border: 1.5px solid rgba(200, 134, 10, 0.25);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .testimonial-location {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─────────────────────────────
+       HORARIS
+    ───────────────────────────── */
+    .hours {
+      padding: 7rem 0;
+      background: var(--bg-dark);
+      color: #F5ECD7;
+    }
+
+    .hours::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hours .section-title {
+      color: #F5ECD7;
+    }
+
+    .hours .section-tag {
+      color: var(--primary);
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(245, 236, 215, 0.08);
+    }
+
+    .hours-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .hours-table td {
+      padding: 0.85rem 0;
+      font-size: 0.95rem;
+    }
+
+    .hours-table td:first-child {
+      color: rgba(200, 184, 154, 0.8);
+      width: 40%;
+    }
+
+    .hours-table td:last-child {
+      color: #F5ECD7;
+      font-weight: 500;
+    }
+
+    .hours-table .closed td {
+      color: rgba(200, 184, 154, 0.4);
+      text-decoration: line-through;
+      text-decoration-color: rgba(200, 134, 10, 0.4);
+    }
+
+    .hours-table .closed td:last-child {
+      text-decoration: none;
+      color: rgba(200, 134, 10, 0.6);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    .hours-sessions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .hours-session {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(200, 134, 10, 0.12);
+      border: 1px solid rgba(200, 134, 10, 0.2);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.88rem;
+      color: var(--primary);
+      font-weight: 500;
+      align-self: flex-start;
+    }
+
+    .contact-block {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(200, 134, 10, 0.12);
+      border-radius: 8px;
+      border: 1px solid rgba(200, 134, 10, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .contact-info strong {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(200, 184, 154, 0.6);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-info span {
+      font-size: 0.97rem;
+      color: #F5ECD7;
+    }
+
+    /* MAPA */
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 280px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200, 134, 10, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .map-placeholder {
+      text-align: center;
+      color: rgba(200, 184, 154, 0.5);
+    }
+
+    .map-placeholder svg {
+      width: 40px;
+      height: 40px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 1.5;
+      opacity: 0.4;
+      margin-bottom: 0.8rem;
+    }
+
+    .map-placeholder p {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────
+       RESERVA
+    ───────────────────────────── */
+    .reserva {
+      padding: 7rem 0;
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    .reserva::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 134, 10, 0.25), transparent);
+    }
+
+    .reserva-box {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .reserva-box p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .reserva-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg);
+      border: 1.5px solid rgba(200, 134, 10, 0.18);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-submit {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(200, 134, 10, 0.25);
+      letter-spacing: 0.02em;
+    }
+
+    .form-submit:hover {
+      background: #a86d08;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 134, 10, 0.35);
+    }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    footer {
+      background: var(--bg-dark);
+      color: #F5ECD7;
+      padding: 4rem 0 2rem;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 236, 215, 0.08);
+    }
+
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #F5ECD7;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-brand h3 span {
+      color: var(--primary);
+    }
+
+    .footer-brand .tagline {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: rgba(200, 184, 154, 0.6);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-brand p {
+      color: rgba(200, 184, 154, 0.65);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col ul li {
+      font-size: 0.9rem;
+      color: rgba(200, 184, 154, 0.65);
+    }
+
+    .footer-col ul li a {
+      color: rgba(200, 184, 154, 0.65);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      padding-top: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: rgba(200, 184, 154, 0.4);
+    }
+
+    .footer-ig {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(200, 184, 154, 0.5);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-ig:hover {
+      color: var(--primary);
+    }
+
+    .footer-ig svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    /* ─────────────────────────────
+       REVEAL ANIMATIONS
+    ───────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section-inner {
+        padding: 0 1.25rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-visual {
+        order: -1;
+      }
+
+      .about-img-frame {
+        aspect-ratio: 3/2;
+      }
+
+      .about-values {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-content {
+        padding: 7rem 1rem 5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary, .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#inici" class="nav-logo">Amadeus<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#nosaltres">Nosaltres</a></li>
+      <li><a href="#carta">La Carta</a></li>
+      <li><a href="#horaris">Horaris</a></li>
+      <li><a href="#reserva" class="nav-cta">Reserva taula</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Tancar">✕</button>
+    <a href="#nosaltres" class="mobile-link">Nosaltres</a>
+    <a href="#carta" class="mobile-link">La Carta</a>
+    <a href="#horaris" class="mobile-link">Horaris</a>
+    <a href="#reserva" class="mobile-link">Reserva taula</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inici">
+    <div class="hero-bg"></div>
+    <div class="hero-ornament"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Capellades · Anoia · Des de 1998</p>
+      <h1 class="hero-title">Restaurant<br><em>Amadeus</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Cuina de mercat, arrels de la Conca.<br>On cada plat explica una història d'aquesta terra.</p>
+      <div class="hero-actions">
+        <a href="#reserva" class="btn-primary">Reserva la teva taula</a>
+        <a href="#carta" class="btn-outline">Descobreix la carta</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>descobreix</span>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSALTRES -->
+  <section class="about" id="nosaltres">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-img-frame">
+            <div class="about-img-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              <p>Fotografia del restaurant</p>
+            </div>
+          </div>
+          <div class="about-badge">
+            <strong>26</strong>
+            <span>anys</span>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p class="section-tag reveal">La nostra història</p>
+          <h2 class="reveal reveal-delay-1">Una cuina feta <em>amb les mans</em> i el cor</h2>
+          <p class="reveal reveal-delay-2">
+            L'Amadeus va néixer el 1998 quan en Jordi Puigdomènech i la Montse Coll van decidir convertir el seu amor per la cuina de la Conca en el negoci familiar que Capellades mereixia. Vint-i-sis anys de focs encesos, matins al mercat d'Igualada i nits que s'allarguen entre rialles de taula.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Cuinem amb el que ens dóna la temporada: bolets de la Conca, verdures del Penedès, carns de ramaders de confiança i peixos frescos que arriben cada matí. No hi ha secrets ni artificis — només producte honest, receptes heretades i el saber fer que s'aprèn en una cuina familiar.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Cada plat que surt de la nostra cuina porta l'olor del mas, la paciència de l'àvia i el respecte de qui estima la seva terra.
+          </p>
+
+          <div class="about-values">
+            <div class="about-value reveal reveal-delay-3">
+              <div class="about-value-icon">🌿</div>
+              <h4>Producte de proximitat</h4>
+              <p>Proveïdors locals de l'Anoia i el Penedès</p>
+            </div>
+            <div class="about-value reveal reveal-delay-3">
+              <div class="about-value-icon">🔥</div>
+              <h4>Cuina de temporada</h4>
+              <p>La carta canvia amb l'estació i el mercat</p>
+            </div>
+            <div class="about-value reveal reveal-delay-4">
+              <div class="about-value-icon">👨‍👩‍👧</div>
+              <h4>Negoci familiar</h4>
+              <p>Tres generacions cuinant per a la comarca</p>
+            </div>
+            <div class="about-value reveal reveal-delay-4">
+              <div class="about-value-icon">📜</div>
+              <h4>Tradició i creativitat</h4>
+              <p>Receptes d'arrel amb tocs contemporanis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="menu" id="carta">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag reveal">Els nostres plats</span>
+        <h2 class="section-title reveal reveal-delay-1">La carta d'<em>Amadeus</em></h2>
+        <div class="sep reveal reveal-delay-2"></div>
+        <p class="section-subtitle reveal reveal-delay-2">Selecció de temporada. Fem servir el millor producte de la contrada per crear experiències que no s'obliden.</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <!-- PLAT DE CARN -->
+        <div class="menu-card reveal">
+          <div class="menu-card-visual carn">
+            <span class="menu-card-emoji">🥩</span>
+            <span class="menu-card-badge">Plat principal</span>
+          </div>
+          <div class="menu-card-body">
+            <h3>Llom de vedella de la Conca amb bolets de temporada</h3>
+            <p>
+              Vedella de ramat lliure criada als prats de l'Anoia, rostida lentament fins a la tendresa ideal. Acompanyada de rovellons i trompetes de la mort saltats amb all i julivert, reducció de vi negre de la bodega del costat i puré de patata grossa trufat amb oli de primera.
+            </p>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">24,50 €</span>
+            <span class="menu-card-tag">🌿 Producte local</span>
+          </div>
+        </div>
+
+        <!-- PLAT DE VERDURA / PEIX -->
+        <div class="menu-card reveal reveal-delay-1">
+          <div class="menu-card-visual peix">
+            <span class="menu-card-emoji">🐟</span>
+            <span class="menu-card-badge">Recomanació</span>
+          </div>
+          <div class="menu-card-body">
+            <h3>Bacallà a la lllauna amb escalivada de pebrots del Penedès</h3>
+            <p>
+              Llom de bacallà dessalat durant 48 hores, confitat en oli d'oliva verge extra i cuit a foc lent amb tomàquets de penjar, all, farigola i llorer de jardí propi. Servit sobre una cama d'escalivada feta a les brases, amb all negre i julivert fresc.
+            </p>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">21,00 €</span>
+            <span class="menu-card-tag">🔥 Cuina lenta</span>
+          </div>
+        </div>
+
+        <!-- POSTRES -->
+        <div class="menu-card reveal reveal-delay-2">
+          <div class="menu-card-visual postres">
+            <span class="menu-card-emoji">🍮</span>
+            <span class="menu-card-badge">Postres</span>
+          </div>
+          <div class="menu-card-body">
+            <h3>Crema catalana caramel·litzada amb melmelada de figues del mas</h3>
+            <p>
+              La nostra crema, recepta de la Montse des del primer dia. Infusionada amb canyella i pell de llimona de l'hort, caramel·litzada al moment amb sucre morè. Servida freda amb una cullerada generosa de melmelada de figues que fem cada agost al mas familiar.
+            </p>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">7,50 €</span>
+            <span class="menu-card-tag">🏡 Recepta de la casa</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="menu-note reveal">
+        La carta completa i els menús del dia podeu consultar-los trucant o passant per casa.
+        <br>Demanem alèrgies a tothom: cuinem per a tothom.
+      </p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag reveal">El que diuen de nosaltres</span>
+        <h2 class="section-title reveal reveal-delay-1">La millor <em>recomanació</em></h2>
+        <div class="sep reveal reveal-delay-2"></div>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">
+            Fa anys que hi anem cada divendres. La crema catalana és la millor de la comarca, i el llom de vedella que posen a l'hivern... impagable. Un restaurant on te sents a casa des del primer minut.
+          </p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <p class="testimonial-name">Mireia Rossell</p>
+              <p class="testimonial-location">Igualada</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">
+            Vam celebrar aquí el 50è aniversari dels meus pares i va ser una nit perfecta. La cuina és honest, generosa i feta amb amor. El tracte de la família Puigdomènech és d'aquells que no es troben a tot arreu.
+          </p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JV</div>
+            <div>
+              <p class="testimonial-name">Joan Vilaró</p>
+              <p class="testimonial-location">Capellades</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">
+            Venim des de Manresa expressament. El bacallà és un altre nivell, i el menú del diumenge val cada euro. Producte fresc, porcions generoses i una carta de vins de la zona que completa perfectament l'experiència.
+          </p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">NF</div>
+            <div>
+              <p class="testimonial-name">Núria Figueras</p>
+              <p class="testimonial-location">Manresa</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIS I CONTACTE -->
+  <section class="hours" id="horaris">
+    <div class="section-inner">
+      <div class="hours-grid">
+
+        <div>
+          <span class="section-tag reveal">Quan ens trobareu</span>
+          <h2 class="section-title reveal reveal-delay-1">Horaris i<br><em>sessions</em></h2>
+
+          <table class="hours-table reveal reveal-delay-2">
+            <tbody>
+              <tr class="closed">
+                <td>Dilluns</td>
+                <td>Tancat</td>
+              </tr>
+              <tr>
+                <td>Dimarts – Divendres</td>
+                <td>
+                  <div class="hours-sessions">
+                    <span class="hours-session">🕐 13:00 – 15:30</span>
+                    <span class="hours-session">🕗 20:00 – 22:30</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Dissabte</td>
+                <td>
+                  <div class="hours-sessions">
+                    <span class="hours-session">🕐 13:00 – 15:30</span>
+                    <span class="hours-session">🕗 20:00 – 22:30</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Diumenge</td>
+                <td>
+                  <div class="hours-sessions">
+                    <span class="hours-session">🕐 13:00 – 15:30</span>
+                    <span class="hours-session">🕗 20:00 – 22:30</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <span class="section-tag reveal">On som</span>
+          <h2 class="section-title reveal reveal-delay-1">Vine a <em>trobar-nos</em></h2>
+
+          <div class="contact-block reveal reveal-delay-2">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-info">
+                <strong>Adreça</strong>
+                <span>Carrer del Molí, 14 · 08786 Capellades, Anoia</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-info">
+                <strong>Telèfon</strong>
+                <span>+34 938 80 12 47</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div class="contact-info">
+                <strong>Instagram</strong>
+                <span>@restaurantamadeuskp</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-info">
+                <strong>Correu</strong>
+                <span>hola@restaurantamadeus.cat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-container reveal reveal-delay-3">
+            <div class="map-placeholder">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>Capellades, Anoia</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVA -->
+  <section class="reserva" id="reserva">
+    <div class="section-inner">
+      <div class="reserva-box">
+        <div class="section-header">
+          <span class="section-tag reveal">Reserva</span>
+          <h2 class="section-title reveal reveal-delay-1">Reserva la teva <em>taula</em></h2>
+          <div class="sep reveal reveal-delay-2"></div>
+        </div>
+        <p class="reveal reveal-delay-2">
+          Reserva la teva taula en dos minuts. Si tens alguna necessitat especial — cel·lebracions, al·lèrgies, grups — indica-ho i ho preparem tot perquè el sopar sigui perfecte.
+        </p>
+        <form class="reserva-form reveal reveal-delay-3" onsubmit="handleReserva(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom i cognoms</label>
+              <input type="text" id="nom" placeholder="Anna Garcia" required />
+            </div>
+            <div class="form-group">
+              <label for="tel">Telèfon</label>
+              <input type="tel" id="tel" placeholder="+34 600 000 000" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="data">Data</label>
+              <input type="date" id="data" required />
+            </div>
+            <div class="form-group">
+              <label for="hora">Sessió</label>
+              <select id="hora">
+                <option value="13:00">Dinar — 13:00</option>
+                <option value="20:00">Sopar — 20:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="persones">Nombre de persones</label>
+              <select id="persones">
+                <option>1 persona</option>
+                <option>2 persones</option>
+                <option>3 persones</option>
+                <option>4 persones</option>
+                <option>5 persones</option>
+                <option>6 persones</option>
+                <option>Grup de 7 o més</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ocasio">Ocasió</label>
+              <select id="ocasio">
+                <option>Dinar/sopar habitual</option>
+                <option>Aniversari</option>
+                <option>Celebració familiar</option>
+                <option>Reunió de feina</option>
+                <option>Altra ocasió especial</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes o al·lèrgies (opcional)</label>
+            <textarea id="notes" placeholder="Intoleràncies, al·lèrgies, decoració especial..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar reserva</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Restaurant <span>Amadeus</span></h3>
+          <p class="tagline">Cuina de mercat, arrels de la Conca.</p>
+          <p>Cuina familiar honesta al cor de Capellades des de 1998. Producte de proximitat, receptes d'arrel i la calidesa d'una taula de casa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegació</h4>
+          <ul>
+            <li><a href="#inici">Inici</a></li>
+            <li><a href="#nosaltres">Nosaltres</a></li>
+            <li><a href="#carta">La Carta</a></li>
+            <li><a href="#horaris">Horaris</a></li>
+            <li><a href="#reserva">Reserva</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacte</h4>
+          <ul>
+            <li>C/ del Molí, 14</li>
+            <li>08786 Capellades</li>
+            <li>+34 938 80 12 47</li>
+            <li>hola@restaurantamadeus.cat</li>
+            <li>@restaurantamadeuskp</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Restaurant Amadeus — Tots els drets reservats</p>
+        <a href="https://www.instagram.com/restaurantamadeuskp" target="_blank" rel="noopener" class="footer-ig">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @restaurantamadeuskp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAV SCROLL
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // HAMBURGER
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    mobileClose.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // REVEAL ON SCROLL
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // FORM
+    function handleReserva(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      const original = btn.textContent;
+      btn.textContent = 'Reserva enviada! Ens posem en contacte aviat.';
+      btn.style.background = '#4A6741';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+
+    // SMOOTH SCROLL FOR ALL ANCHOR LINKS
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
