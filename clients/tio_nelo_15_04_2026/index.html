@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tio Nelo — Restaurant | La Pobla de Claramunt</title>
+  <meta name="description" content="Restaurant Tio Nelo a La Pobla de Claramunt. Cuina de mercat, productes de l'Anoia i sabor de sempre. Reserva la teva taula ara." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================
+       RESET & BASE
+    ============================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cafe-fosc:    #2C1810;
+      --terrissa:     #8B4513;
+      --terrissa-hov: #A0522D;
+      --pa-pages:     #F5E6C8;
+      --herba-camp:   #6B7C3F;
+      --tovallola:    #F2F0EB;
+      --text-fosc:    #1A0F09;
+      --text-mig:     #4A3728;
+
+      --font-titol: 'Playfair Display', Georgia, serif;
+      --font-cos:   'Lato', system-ui, sans-serif;
+
+      --max-w: 1140px;
+      --radius: 4px;
+      --trans: 0.25s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-cos);
+      color: var(--text-fosc);
+      background: var(--tovallola);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Paper texture overlay on light sections */
+    .tex::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .tex > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================
+       LAYOUT HELPERS
+    ============================ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: var(--font-cos);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terrissa);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-titol);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--cafe-fosc);
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--text-mig);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-cos);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--terrissa);
+      color: var(--tovallola);
+    }
+
+    .btn-primary:hover {
+      background: var(--terrissa-hov);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(139, 69, 19, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--tovallola);
+      border: 2px solid rgba(242, 240, 235, 0.55);
+    }
+
+    .btn-outline:hover {
+      background: rgba(242, 240, 235, 0.12);
+      border-color: var(--tovallola);
+      transform: translateY(-2px);
+    }
+
+    /* ============================
+       NAVBAR
+    ============================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--cafe-fosc);
+      border-bottom: 1px solid rgba(242, 240, 235, 0.08);
+      padding: 0 24px;
+      transition: box-shadow var(--trans);
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+    }
+
+    .navbar__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .navbar__logo {
+      font-family: var(--font-titol);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--tovallola);
+      letter-spacing: 0.5px;
+    }
+
+    .navbar__logo span {
+      color: var(--terrissa);
+    }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .navbar__links a {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(242, 240, 235, 0.75);
+      transition: color var(--trans);
+    }
+
+    .navbar__links a:hover {
+      color: var(--tovallola);
+    }
+
+    .navbar__cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .navbar__tel {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(242, 240, 235, 0.6);
+      letter-spacing: 0.5px;
+      transition: color var(--trans);
+    }
+
+    .navbar__tel:hover {
+      color: var(--tovallola);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--tovallola);
+      border-radius: 2px;
+      display: block;
+      transition: var(--trans);
+    }
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cafe-fosc);
+      position: relative;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    /* Warm gradient overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 60%, rgba(139,69,19,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(107,124,63,0.09) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Decorative lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(242,240,235,0.03) 79px,
+          rgba(242,240,235,0.03) 80px
+        );
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 64px 24px;
+      max-width: 820px;
+    }
+
+    .hero__pretitle {
+      font-family: var(--font-cos);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terrissa);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .hero__title {
+      font-family: var(--font-titol);
+      font-size: clamp(56px, 10vw, 104px);
+      font-weight: 700;
+      color: var(--tovallola);
+      line-height: 1.0;
+      margin-bottom: 8px;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--pa-pages);
+    }
+
+    .hero__lema {
+      font-family: var(--font-titol);
+      font-size: clamp(18px, 3vw, 26px);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(242, 240, 235, 0.7);
+      margin-bottom: 48px;
+      line-height: 1.4;
+    }
+
+    .hero__lema strong {
+      color: rgba(242, 240, 235, 0.95);
+      font-weight: 600;
+    }
+
+    .hero__btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(242, 240, 235, 0.35);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: var(--font-cos);
+      font-weight: 700;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(242,240,235,0.35), transparent);
+      animation: scrollLine 2s ease infinite;
+    }
+
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ============================
+       STRIP — dades rapides
+    ============================ */
+    .strip {
+      background: var(--terrissa);
+      padding: 18px 24px;
+    }
+
+    .strip__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .strip__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--tovallola);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .strip__icon {
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    .strip__sep {
+      width: 1px;
+      height: 20px;
+      background: rgba(242,240,235,0.3);
+    }
+
+    /* ============================
+       NOSALTRES
+    ============================ */
+    .nosaltres {
+      background: var(--pa-pages);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nosaltres__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .nosaltres__text .section-subtitle {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .nosaltres__text p + p {
+      margin-top: 16px;
+    }
+
+    .nosaltres__quote {
+      font-family: var(--font-titol);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--cafe-fosc);
+      border-left: 3px solid var(--terrissa);
+      padding-left: 24px;
+      margin-top: 32px;
+      line-height: 1.5;
+    }
+
+    .nosaltres__visual {
+      position: relative;
+    }
+
+    .nosaltres__img-wrap {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .nosaltres__img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 50%, rgba(44,24,16,0.25));
+    }
+
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+    }
+
+    .img-placeholder--nos {
+      background: linear-gradient(135deg, #C4956A 0%, #8B4513 40%, #5C3010 100%);
+    }
+
+    .img-placeholder--carta1 {
+      background: linear-gradient(135deg, #8B4513 0%, #6B3010 60%, #3D1A08 100%);
+    }
+    .img-placeholder--carta2 {
+      background: linear-gradient(135deg, #6B7C3F 0%, #4A5A2A 60%, #2E3A18 100%);
+    }
+    .img-placeholder--carta3 {
+      background: linear-gradient(135deg, #C4956A 0%, #A0724A 60%, #7A5030 100%);
+    }
+
+    .nosaltres__deco {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid var(--terrissa);
+      border-radius: 2px;
+      opacity: 0.3;
+    }
+
+    .nosaltres__deco2 {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--herba-camp);
+      border-radius: 50%;
+      opacity: 0.25;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .badge {
+      background: var(--cafe-fosc);
+      color: var(--tovallola);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+
+    .badge--green {
+      background: var(--herba-camp);
+    }
+
+    /* ============================
+       CARTA DESTACADA
+    ============================ */
+    .carta {
+      background: var(--tovallola);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carta__head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .carta__head .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .carta__grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .plat {
+      background: var(--pa-pages);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--trans), box-shadow var(--trans);
+      position: relative;
+    }
+
+    .plat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(44,24,16,0.15);
+    }
+
+    .plat__img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plat__img .img-placeholder {
+      aspect-ratio: 4/3;
+      font-size: 56px;
+      transition: transform 0.4s ease;
+    }
+
+    .plat:hover .plat__img .img-placeholder {
+      transform: scale(1.04);
+    }
+
+    .plat__tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--terrissa);
+      color: var(--tovallola);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .plat__body {
+      padding: 28px 28px 32px;
+    }
+
+    .plat__nom {
+      font-family: var(--font-titol);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--cafe-fosc);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .plat__desc {
+      font-size: 14px;
+      color: var(--text-mig);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .plat__preu {
+      font-family: var(--font-titol);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--terrissa);
+    }
+
+    .plat__preu span {
+      font-family: var(--font-cos);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-mig);
+      margin-left: 4px;
+    }
+
+    .carta__cta {
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    .carta__cta .btn-primary {
+      color: var(--tovallola);
+    }
+
+    /* ============================
+       DIVIDER — element decoratiu
+    ============================ */
+    .divider {
+      background: var(--cafe-fosc);
+      padding: 64px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(139,69,19,0.2) 0%, transparent 70%);
+    }
+
+    .divider__inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider__text {
+      font-family: var(--font-titol);
+      font-size: clamp(28px, 5vw, 48px);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--tovallola);
+      max-width: 700px;
+      margin: 0 auto 16px;
+      line-height: 1.3;
+    }
+
+    .divider__sub {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terrissa);
+    }
+
+    .divider__ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .divider__ornament-line {
+      width: 60px;
+      height: 1px;
+      background: rgba(242,240,235,0.25);
+    }
+
+    .divider__ornament-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--terrissa);
+      border-radius: 50%;
+    }
+
+    /* ============================
+       HORARIS
+    ============================ */
+    .horaris {
+      background: var(--pa-pages);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .horaris__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .horaris__table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+    }
+
+    .horaris__table tr {
+      border-bottom: 1px solid rgba(44,24,16,0.1);
+    }
+
+    .horaris__table tr:last-child {
+      border-bottom: none;
+    }
+
+    .horaris__table td {
+      padding: 14px 0;
+      font-size: 15px;
+    }
+
+    .horaris__table td:first-child {
+      font-weight: 700;
+      color: var(--cafe-fosc);
+      width: 160px;
+    }
+
+    .horaris__table td:last-child {
+      color: var(--text-mig);
+    }
+
+    .horaris__table .tancat {
+      color: var(--terrissa);
+      font-weight: 700;
+    }
+
+    .horaris__table .avui {
+      background: rgba(139,69,19,0.07);
+    }
+
+    .horaris__table .avui td:first-child {
+      color: var(--terrissa);
+    }
+
+    .horaris__info {
+      margin-top: 32px;
+    }
+
+    .horaris__info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(44,24,16,0.1);
+    }
+
+    .horaris__info-item:last-child {
+      border-bottom: none;
+    }
+
+    .horaris__info-icon {
+      font-size: 22px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .horaris__info-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cafe-fosc);
+      margin-bottom: 2px;
+    }
+
+    .horaris__info-text span {
+      font-size: 14px;
+      color: var(--text-mig);
+    }
+
+    /* ============================
+       TESTIMONIS
+    ============================ */
+    .testimonis {
+      background: var(--cafe-fosc);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 20% 50%, rgba(139,69,19,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 80% 40%, rgba(107,124,63,0.07) 0%, transparent 55%);
+    }
+
+    .testimonis__head {
+      text-align: center;
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonis__head .section-label {
+      color: var(--terrissa);
+    }
+
+    .testimonis__head .section-title {
+      color: var(--tovallola);
+    }
+
+    .testimonis__grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimoni {
+      background: rgba(242, 240, 235, 0.05);
+      border: 1px solid rgba(242, 240, 235, 0.1);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: background var(--trans), border-color var(--trans);
+    }
+
+    .testimoni:hover {
+      background: rgba(242, 240, 235, 0.08);
+      border-color: rgba(242, 240, 235, 0.18);
+    }
+
+    .testimoni__quote-mark {
+      font-family: var(--font-titol);
+      font-size: 64px;
+      line-height: 0.5;
+      color: var(--terrissa);
+      opacity: 0.6;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .testimoni__text {
+      font-size: 15px;
+      color: rgba(242, 240, 235, 0.8);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .testimoni__autor {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimoni__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--terrissa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-titol);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--tovallola);
+      flex-shrink: 0;
+    }
+
+    .testimoni__nom {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tovallola);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .testimoni__lloc {
+      font-size: 12px;
+      color: rgba(242, 240, 235, 0.45);
+      letter-spacing: 0.5px;
+    }
+
+    .testimoni__stars {
+      color: #D4A017;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ============================
+       CONTACTE
+    ============================ */
+    .contacte {
+      background: var(--tovallola);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contacte__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contacte__info {
+      margin-top: 40px;
+    }
+
+    .contacte__item {
+      display: flex;
+      gap: 18px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(44,24,16,0.1);
+    }
+
+    .contacte__item:last-child {
+      border-bottom: none;
+    }
+
+    .contacte__icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contacte__label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terrissa);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .contacte__val {
+      font-size: 15px;
+      color: var(--text-fosc);
+      font-weight: 400;
+    }
+
+    .contacte__val a {
+      color: var(--terrissa);
+      transition: color var(--trans);
+    }
+
+    .contacte__val a:hover {
+      color: var(--terrissa-hov);
+    }
+
+    .mapa {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(44,24,16,0.12);
+      box-shadow: 0 8px 32px rgba(44,24,16,0.1);
+    }
+
+    .mapa iframe {
+      display: block;
+      width: 100%;
+      height: 380px;
+    }
+
+    .mapa__caption {
+      background: var(--cafe-fosc);
+      color: var(--tovallola);
+      padding: 14px 20px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ============================
+       RESERVA FORM
+    ============================ */
+    .reserva {
+      background: var(--cafe-fosc);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reserva::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,69,19,0.15) 0%, transparent 60%);
+    }
+
+    .reserva__inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reserva__inner .section-title {
+      color: var(--tovallola);
+    }
+
+    .reserva__inner .section-subtitle {
+      color: rgba(242,240,235,0.65);
+      margin: 0 auto 48px;
+    }
+
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form__group--full {
+      grid-column: 1 / -1;
+    }
+
+    .form label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(242,240,235,0.55);
+    }
+
+    .form input,
+    .form select,
+    .form textarea {
+      background: rgba(242,240,235,0.07);
+      border: 1px solid rgba(242,240,235,0.15);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-family: var(--font-cos);
+      font-size: 15px;
+      color: var(--tovallola);
+      transition: border-color var(--trans), background var(--trans);
+      outline: none;
+      width: 100%;
+    }
+
+    .form input::placeholder,
+    .form textarea::placeholder {
+      color: rgba(242,240,235,0.3);
+    }
+
+    .form input:focus,
+    .form select:focus,
+    .form textarea:focus {
+      border-color: var(--terrissa);
+      background: rgba(242,240,235,0.1);
+    }
+
+    .form select option {
+      background: var(--cafe-fosc);
+      color: var(--tovallola);
+    }
+
+    .form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form__submit {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+    }
+
+    .form__submit .btn-primary {
+      width: 100%;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    .form__nota {
+      grid-column: 1 / -1;
+      font-size: 12px;
+      color: rgba(242,240,235,0.35);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    .footer {
+      background: #1A0C07;
+      padding: 64px 24px 32px;
+      border-top: 1px solid rgba(242,240,235,0.06);
+    }
+
+    .footer__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(242,240,235,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer__brand .navbar__logo {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .footer__brand p {
+      font-size: 14px;
+      color: rgba(242,240,235,0.45);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .footer__social a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(242,240,235,0.15);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: rgba(242,240,235,0.55);
+      transition: border-color var(--trans), color var(--trans), background var(--trans);
+    }
+
+    .footer__social a:hover {
+      border-color: var(--terrissa);
+      color: var(--tovallola);
+      background: rgba(139,69,19,0.15);
+    }
+
+    .footer__col h4 {
+      font-family: var(--font-cos);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terrissa);
+      margin-bottom: 20px;
+    }
+
+    .footer__col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__col ul li a {
+      font-size: 14px;
+      color: rgba(242,240,235,0.5);
+      transition: color var(--trans);
+    }
+
+    .footer__col ul li a:hover {
+      color: var(--tovallola);
+    }
+
+    .footer__col ul li span {
+      font-size: 14px;
+      color: rgba(242,240,235,0.5);
+    }
+
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer__copy {
+      font-size: 12px;
+      color: rgba(242,240,235,0.25);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer__legal a {
+      font-size: 12px;
+      color: rgba(242,240,235,0.25);
+      transition: color var(--trans);
+    }
+
+    .footer__legal a:hover {
+      color: rgba(242,240,235,0.55);
+    }
+
+    /* ============================
+       SCROLL REVEAL
+    ============================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 900px) {
+      .navbar__links,
+      .navbar__tel {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nosaltres__inner,
+      .horaris__inner,
+      .contacte__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .nosaltres__visual {
+        order: -1;
+      }
+
+      .carta__grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+
+      .testimonis__grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .footer__top {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .form__group--full {
+        grid-column: 1;
+      }
+
+      .form__submit {
+        grid-column: 1;
+      }
+
+      .form__nota {
+        grid-column: 1;
+      }
+
+      .strip__sep {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero__btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 260px;
+        text-align: center;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       NAVBAR
+  ========================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">Tio <span>Nelo</span></a>
+      <ul class="navbar__links">
+        <li><a href="#nosaltres">El Restaurant</a></li>
+        <li><a href="#carta">La Carta</a></li>
+        <li><a href="#horaris">Horaris</a></li>
+        <li><a href="#contacte">Contacte</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="tel:+34938080123" class="navbar__tel">938 080 123</a>
+        <a href="#reserva" class="btn btn-primary" style="padding: 10px 22px; font-size: 12px;">Reservar</a>
+      </div>
+      <button class="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================
+       HERO
+  ========================= -->
+  <section class="hero" id="inici">
+    <div class="hero__content">
+      <span class="hero__pretitle">La Pobla de Claramunt · Anoia · Des de 1987</span>
+      <h1 class="hero__title">Tio <em>Nelo</em></h1>
+      <p class="hero__lema">Cuina de mercat, <strong>sabor de sempre.</strong></p>
+      <div class="hero__btns">
+        <a href="#reserva" class="btn btn-primary">Reserva taula</a>
+        <a href="#carta" class="btn btn-outline">Veure la carta</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span>Descobreix</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========================
+       STRIP
+  ========================= -->
+  <div class="strip">
+    <div class="strip__inner">
+      <div class="strip__item">
+        <span class="strip__icon">🕐</span>
+        <span>Obert de dimarts a diumenge</span>
+      </div>
+      <div class="strip__sep"></div>
+      <div class="strip__item">
+        <span class="strip__icon">🍽️</span>
+        <span>Cuina de producte local</span>
+      </div>
+      <div class="strip__sep"></div>
+      <div class="strip__item">
+        <span class="strip__icon">📞</span>
+        <span>Reserva: 938 080 123</span>
+      </div>
+      <div class="strip__sep"></div>
+      <div class="strip__item">
+        <span class="strip__icon">📍</span>
+        <span>La Pobla de Claramunt</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       NOSALTRES
+  ========================= -->
+  <section class="nosaltres tex" id="nosaltres">
+    <div class="nosaltres__inner">
+      <div class="nosaltres__text reveal">
+        <span class="section-label">El Restaurant</span>
+        <h2 class="section-title">Una taula com la de casa,<br>però millor.</h2>
+        <p class="section-subtitle">
+          El Tio Nelo va obrir les portes el 1987 al cor de La Pobla de Claramunt.
+          Tres generacions de cuina familiar, productes de la comarca de l'Anoia i
+          la recepta de sempre: bons ingredients, foc lent i ganes d'agradar.
+        </p>
+        <p class="section-subtitle">
+          Treballem amb pagesos de la zona, escollim el que porta el mercat cada matí
+          i cuinem sense gaires complicacions. Aquí no hi ha misteris: el que no
+          posem a taula per als nostres no ho posem per a ningú.
+        </p>
+        <blockquote class="nosaltres__quote">
+          "Si la sopa de ceba és bona, és que algú s'ha llevat d'hora."
+        </blockquote>
+        <div class="badge-list">
+          <span class="badge">Producte Km0</span>
+          <span class="badge badge--green">Temporada</span>
+          <span class="badge">Cuina de mercat</span>
+          <span class="badge">Des de 1987</span>
+        </div>
+      </div>
+      <div class="nosaltres__visual reveal reveal-delay-2">
+        <div class="nosaltres__img-wrap">
+          <div class="img-placeholder img-placeholder--nos">🍷</div>
+        </div>
+        <div class="nosaltres__deco"></div>
+        <div class="nosaltres__deco2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       CARTA DESTACADA
+  ========================= -->
+  <section class="carta" id="carta">
+    <div class="carta__head reveal">
+      <span class="section-label">La Carta</span>
+      <h2 class="section-title">Plats que no fallen</h2>
+      <p class="section-subtitle">
+        Cada dia, carta curta i triada. El que no és de temporada, no hi és.
+        Pregunte al cambrer quins plats han entrat avui.
+      </p>
+    </div>
+    <div class="carta__grid">
+
+      <!-- Plat 1 — Carn -->
+      <article class="plat reveal reveal-delay-1">
+        <div class="plat__img">
+          <div class="img-placeholder img-placeholder--carta1">🐇</div>
+          <span class="plat__tag">Especialitat</span>
+        </div>
+        <div class="plat__body">
+          <h3 class="plat__nom">Conill al forn amb all i romaní</h3>
+          <p class="plat__desc">
+            Conill de pagès de la comarca, rostit a foc lent amb all, romaní
+            fresc i un raig de vi blanc de l'Anoia. Servit amb patates confitades
+            i allioli casolà.
+          </p>
+          <div class="plat__preu">14,50 € <span>/ persona</span></div>
+        </div>
+      </article>
+
+      <!-- Plat 2 — Arròs -->
+      <article class="plat reveal reveal-delay-2">
+        <div class="plat__img">
+          <div class="img-placeholder img-placeholder--carta2">🥘</div>
+          <span class="plat__tag">De cuina</span>
+        </div>
+        <div class="plat__body">
+          <h3 class="plat__nom">Arròs de verdures de temporada</h3>
+          <p class="plat__desc">
+            Arròs en cassola amb les verdures que porta el mercat: carbassó,
+            carxofa, pebre vermell i bolets de bosc quan és la temporada.
+            Cuit a poc a poc, com pertoca.
+          </p>
+          <div class="plat__preu">12,00 € <span>/ persona</span></div>
+        </div>
+      </article>
+
+      <!-- Plat 3 — Postres -->
+      <article class="plat reveal reveal-delay-3">
+        <div class="plat__img">
+          <div class="img-placeholder img-placeholder--carta3">🍮</div>
+          <span class="plat__tag">Postres</span>
+        </div>
+        <div class="plat__body">
+          <h3 class="plat__nom">Crema catalana de la Pepa</h3>
+          <p class="plat__desc">
+            La recepta de la Pepa, que porta cinquanta anys fent-la igual.
+            Ous de corral, llet fresca, sucre cremat al moment i una mica
+            de canyella que no es nota però es nota.
+          </p>
+          <div class="plat__preu">4,50 € <span>/ persona</span></div>
+        </div>
+      </article>
+
+    </div>
+    <div class="carta__cta reveal">
+      <a href="#reserva" class="btn btn-primary">Reserva la teva taula</a>
+    </div>
+  </section>
+
+  <!-- ========================
+       DIVIDER QUOTE
+  ========================= -->
+  <div class="divider">
+    <div class="divider__inner">
+      <div class="divider__ornament">
+        <div class="divider__ornament-line"></div>
+        <div class="divider__ornament-dot"></div>
+        <div class="divider__ornament-line"></div>
+      </div>
+      <p class="divider__text">"El diumenge al migdia aquí no hi ha cap taula lliure. I si no hi creus, truca dimarts."</p>
+      <span class="divider__sub">Tio Nelo — La Pobla de Claramunt</span>
+    </div>
+  </div>
+
+  <!-- ========================
+       HORARIS
+  ========================= -->
+  <section class="horaris tex" id="horaris">
+    <div class="horaris__inner">
+      <div class="reveal">
+        <span class="section-label">Quan estem oberts</span>
+        <h2 class="section-title">Horaris</h2>
+        <table class="horaris__table">
+          <tbody>
+            <tr>
+              <td>Dilluns</td>
+              <td class="tancat">Tancat</td>
+            </tr>
+            <tr>
+              <td>Dimarts</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Dimecres</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Dijous</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Divendres</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Dissabte</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Diumenge</td>
+              <td>13:00 – 16:00 &nbsp;·&nbsp; 20:00 – 23:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="horaris__info reveal reveal-delay-2">
+        <span class="section-label">Com trobar-nos</span>
+        <h2 class="section-title">Vine a taula</h2>
+        <div class="horaris__info-item">
+          <span class="horaris__info-icon">📍</span>
+          <div class="horaris__info-text">
+            <strong>Adreça</strong>
+            <span>Carrer Major, 14<br>08787 La Pobla de Claramunt, Anoia</span>
+          </div>
+        </div>
+        <div class="horaris__info-item">
+          <span class="horaris__info-icon">📞</span>
+          <div class="horaris__info-text">
+            <strong>Telèfon</strong>
+            <span><a href="tel:+34938080123" style="color:var(--terrissa)">938 080 123</a></span>
+          </div>
+        </div>
+        <div class="horaris__info-item">
+          <span class="horaris__info-icon">✉️</span>
+          <div class="horaris__info-text">
+            <strong>Correu</strong>
+            <span><a href="mailto:tionelo.restaurant@gmail.com" style="color:var(--terrissa)">tionelo.restaurant@gmail.com</a></span>
+          </div>
+        </div>
+        <div class="horaris__info-item">
+          <span class="horaris__info-icon">🅿️</span>
+          <div class="horaris__info-text">
+            <strong>Aparcament</strong>
+            <span>Pàrquing gratuït a la Plaça de la Vila, a 2 minuts a peu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TESTIMONIS
+  ========================= -->
+  <section class="testimonis" id="testimonis">
+    <div class="testimonis__head">
+      <span class="section-label">Qui ens visita</span>
+      <h2 class="section-title" style="color:var(--tovallola)">El que diuen els clients</h2>
+    </div>
+    <div class="testimonis__grid">
+
+      <div class="testimoni reveal reveal-delay-1">
+        <span class="testimoni__quote-mark">"</span>
+        <p class="testimoni__text">
+          Vaig venir un diumenge amb la família i vam sortir amb la panxa plena i el cor content.
+          El conill al forn és d'aquells plats que et fan tancar els ulls. I la crema catalana, de
+          manual. Tornarem segur.
+        </p>
+        <div class="testimoni__autor">
+          <div class="testimoni__avatar">MV</div>
+          <div>
+            <span class="testimoni__nom">Montserrat Viladomat</span>
+            <span class="testimoni__lloc">Igualada</span>
+            <span class="testimoni__stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimoni reveal reveal-delay-2">
+        <span class="testimoni__quote-mark">"</span>
+        <p class="testimoni__text">
+          Fa anys que hi anem cada aniversari. Tracte proper, preu honest i cuina de veritat.
+          L'arròs de verdures és una sorpresa nova cada vegada perquè canvia amb el mercat.
+          És el tipus de restaurant que ja no queden gaires.
+        </p>
+        <div class="testimoni__autor">
+          <div class="testimoni__avatar" style="background:var(--herba-camp)">JC</div>
+          <div>
+            <span class="testimoni__nom">Jordi Campistol</span>
+            <span class="testimoni__lloc">La Pobla de Claramunt</span>
+            <span class="testimoni__stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimoni reveal reveal-delay-3">
+        <span class="testimoni__quote-mark">"</span>
+        <p class="testimoni__text">
+          Vam descobrir el Tio Nelo per recomanació d'uns amics i va ser un encert total.
+          Local acollidor, servei sense presses i una sopa de ceba que m'ha perseguit tota
+          la setmana. Ja hem reservat per al mes vinent.
+        </p>
+        <div class="testimoni__autor">
+          <div class="testimoni__avatar" style="background:#7B5E45">NP</div>
+          <div>
+            <span class="testimoni__nom">Núria Pons</span>
+            <span class="testimoni__lloc">Capellades</span>
+            <span class="testimoni__stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACTE + MAPA
+  ========================= -->
+  <section class="contacte" id="contacte">
+    <div class="contacte__inner">
+      <div class="reveal">
+        <span class="section-label">Troba'ns</span>
+        <h2 class="section-title">On som</h2>
+        <p class="section-subtitle">
+          Estem al centre de La Pobla de Claramunt. Si vens amb cotxe,
+          el pàrquing de la Plaça de la Vila és just al costat.
+        </p>
+        <div class="contacte__info">
+          <div class="contacte__item">
+            <span class="contacte__icon">📍</span>
+            <div>
+              <span class="contacte__label">Adreça</span>
+              <div class="contacte__val">Carrer Major, 14<br>08787 La Pobla de Claramunt (Anoia)</div>
+            </div>
+          </div>
+          <div class="contacte__item">
+            <span class="contacte__icon">📞</span>
+            <div>
+              <span class="contacte__label">Telèfon</span>
+              <div class="contacte__val"><a href="tel:+34938080123">938 080 123</a></div>
+            </div>
+          </div>
+          <div class="contacte__item">
+            <span class="contacte__icon">✉️</span>
+            <div>
+              <span class="contacte__label">Correu</span>
+              <div class="contacte__val"><a href="mailto:tionelo.restaurant@gmail.com">tionelo.restaurant@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contacte__item">
+            <span class="contacte__icon">📸</span>
+            <div>
+              <span class="contacte__label">Instagram</span>
+              <div class="contacte__val"><a href="https://instagram.com/tio_nelo" target="_blank" rel="noopener">@tio_nelo</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mapa reveal reveal-delay-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2987.512345!2d1.599!3d41.553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4e6b1234abcde%3A0xabcdef1234567890!2sLa%20Pobla%20de%20Claramunt!5e0!3m2!1sca!2ses!4v1713175200000!5m2!1sca!2ses"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicació del Restaurant Tio Nelo"
+        ></iframe>
+        <div class="mapa__caption">
+          <span>📍</span>
+          <span>Carrer Major, 14 · La Pobla de Claramunt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       RESERVA
+  ========================= -->
+  <section class="reserva" id="reserva">
+    <div class="reserva__inner">
+      <span class="section-label" style="color:var(--terrissa)">Reserves</span>
+      <h2 class="section-title reveal">Reserva la teva taula</h2>
+      <p class="section-subtitle reveal">
+        Omple el formulari i et confirmem la reserva per telèfon o correu
+        en menys de 24 hores.
+      </p>
+      <form class="form reveal" onsubmit="handleForm(event)">
+        <div class="form__group">
+          <label for="nom">Nom i cognom</label>
+          <input type="text" id="nom" placeholder="Martina Garcia" required />
+        </div>
+        <div class="form__group">
+          <label for="tel">Telèfon</label>
+          <input type="tel" id="tel" placeholder="600 000 000" required />
+        </div>
+        <div class="form__group">
+          <label for="data">Data</label>
+          <input type="date" id="data" required />
+        </div>
+        <div class="form__group">
+          <label for="torn">Torn</label>
+          <select id="torn">
+            <option value="">Selecciona torn</option>
+            <option value="mig">Migdia (13:00 – 16:00)</option>
+            <option value="nit">Nit (20:00 – 23:00)</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="comensals">Nombre de comensals</label>
+          <select id="comensals">
+            <option value="1">1 persona</option>
+            <option value="2" selected>2 persones</option>
+            <option value="3">3 persones</option>
+            <option value="4">4 persones</option>
+            <option value="5">5 persones</option>
+            <option value="6">6 persones</option>
+            <option value="7+">7 o més</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="email">Correu (opcional)</label>
+          <input type="email" id="email" placeholder="martina@exemple.com" />
+        </div>
+        <div class="form__group form__group--full">
+          <label for="notes">Notes o al·lèrgies</label>
+          <textarea id="notes" placeholder="Alguna al·lèrgia, petició especial o celebració..."></textarea>
+        </div>
+        <div class="form__submit">
+          <button type="submit" class="btn btn-primary">Enviar reserva</button>
+        </div>
+        <p class="form__nota">Et contactarem en menys de 24 hores per confirmar la reserva.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+  ========================= -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="navbar__logo">Tio <span>Nelo</span></span>
+          <p>Restaurant familiar al cor de La Pobla de Claramunt. Cuina de mercat, productes de l'Anoia i la calidesa d'una taula de sempre.</p>
+          <div class="footer__social">
+            <a href="https://instagram.com/tio_nelo" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+            <a href="mailto:tionelo.restaurant@gmail.com" aria-label="Email">✉️</a>
+            <a href="tel:+34938080123" aria-label="Telèfon">📞</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>El Restaurant</h4>
+          <ul>
+            <li><a href="#nosaltres">Qui som</a></li>
+            <li><a href="#carta">La Carta</a></li>
+            <li><a href="#horaris">Horaris</a></li>
+            <li><a href="#testimonis">Opinions</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contacte</h4>
+          <ul>
+            <li><span>Carrer Major, 14</span></li>
+            <li><span>La Pobla de Claramunt</span></li>
+            <li><a href="tel:+34938080123">938 080 123</a></li>
+            <li><a href="#reserva">Reserva ara</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 Restaurant Tio Nelo · Tots els drets reservats</span>
+        <div class="footer__legal">
+          <a href="#">Avís legal</a>
+          <a href="#">Política de privacitat</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================
+       JS
+  ========================= -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // Set today in the date input
+    const dataInput = document.getElementById('data');
+    if (dataInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dataInput.min = tomorrow.toISOString().split('T')[0];
+      dataInput.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    // Form submit (demo)
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.textContent;
+      btn.textContent = 'Sol·licitud enviada ✓';
+      btn.style.background = 'var(--herba-camp)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+        const dataInput = document.getElementById('data');
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dataInput.value = tomorrow.toISOString().split('T')[0];
+      }, 4000);
+    }
+
+    // Hamburger menu (mobile)
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.navbar__links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? '' : 'flex';
+      if (!open) {
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '68px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.background = 'var(--cafe-fosc)';
+        navLinks.style.padding = '20px 24px';
+        navLinks.style.gap = '20px';
+        navLinks.style.borderTop = '1px solid rgba(242,240,235,0.08)';
+        navLinks.style.borderBottom = '1px solid rgba(242,240,235,0.08)';
+        navLinks.style.zIndex = '99';
+      }
+    });
+
+    // Close menu on link click
+    document.querySelectorAll('.navbar__links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.style.display = '';
+      });
+    });
+  </script>
+
+</body>
+</html>
