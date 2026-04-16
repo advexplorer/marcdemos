@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Women — Manresa</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Futura,+Trebuchet+MS,+sans-serif&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --negre: #1C1C1C;
+      --or: #C4A882;
+      --cru: #F8F5F0;
+      --beix: #E8DDD0;
+      --text: #1c1c1c;
+      --gris: #8a8278;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cru);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: rgba(248, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,168,130,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--text);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gris);
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 10rem 3rem 6rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--negre);
+    }
+    .hero-cover {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%; height: 100%;
+      background: linear-gradient(135deg, #2a2520 0%, #1c1c1c 100%);
+    }
+    .hero-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--negre), transparent);
+    }
+    .hero-cover-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20rem;
+      font-weight: 300;
+      color: rgba(196,168,130,0.04);
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 600px;
+    }
+    .hero-season {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 9vw, 7rem);
+      font-weight: 300;
+      color: var(--cru);
+      line-height: 0.95;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 em { font-style: italic; }
+    .hero-location {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,245,240,0.35);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 200;
+      color: rgba(248,245,240,0.55);
+      line-height: 2;
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-or {
+      background: var(--or);
+      color: var(--negre);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-or:hover { background: #d8bc96; }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(248,245,240,0.6);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: 1px solid rgba(248,245,240,0.15);
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--or); color: var(--or); }
+
+    /* COLLECTIONS STRIP */
+    .strip {
+      background: var(--beix);
+      padding: 1.2rem 3rem;
+      display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;
+      border-top: 1px solid rgba(196,168,130,0.2);
+      border-bottom: 1px solid rgba(196,168,130,0.2);
+    }
+    .strip-item {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gris);
+      font-weight: 300;
+    }
+    .strip-sep { color: var(--or); font-size: 0.5rem; }
+
+    /* COL·LECCIONS */
+    .section {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 300;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .section-sub { font-size: 0.9rem; font-weight: 200; color: var(--gris); line-height: 2; max-width: 480px; margin-bottom: 4rem; }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0;
+      border: 1px solid rgba(196,168,130,0.2);
+    }
+    .col-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(196,168,130,0.2);
+      border-bottom: 1px solid rgba(196,168,130,0.2);
+      transition: background 0.3s;
+    }
+    .col-card:hover { background: var(--beix); }
+    .col-season {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .col-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+    .col-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+    .col-desc { font-size: 0.85rem; font-weight: 200; color: var(--gris); line-height: 1.8; }
+
+    /* SOBRE */
+    .sobre {
+      background: var(--negre);
+      padding: 7rem 3rem;
+      color: var(--cru);
+    }
+    .sobre-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 7rem; align-items: center;
+    }
+    .sobre-left .section-tag { color: var(--or); }
+    .sobre-left .section-title { color: var(--cru); margin-bottom: 2rem; }
+    .sobre-left p { font-size: 0.9rem; font-weight: 200; color: rgba(248,245,240,0.55); line-height: 2; margin-bottom: 1.2rem; }
+    .sobre-right { display: flex; flex-direction: column; gap: 0; }
+    .sobre-row {
+      display: flex; align-items: flex-start; gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(196,168,130,0.1);
+    }
+    .sobre-row:first-child { padding-top: 0; }
+    .sr-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: rgba(196,168,130,0.15);
+      font-weight: 300;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 50px;
+    }
+    .sr-title { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 0.5rem; font-weight: 300; }
+    .sr-text { font-size: 0.85rem; font-weight: 200; color: rgba(248,245,240,0.5); line-height: 1.8; }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contacte-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .c-items { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(196,168,130,0.2); }
+    .c-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.3rem 1.5rem;
+      border-bottom: 1px solid rgba(196,168,130,0.15);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      transition: background 0.3s;
+    }
+    .c-item:last-child { border-bottom: none; }
+    .c-item:hover { background: var(--beix); }
+    .c-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    footer {
+      background: var(--negre);
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      color: var(--or);
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(248,245,240,0.3); letter-spacing: 0.1em; }
+
+    @media (max-width: 900px) {
+      .sobre-inner, .contacte-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-cover { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">PM Women</div>
+    <ul class="nav-links">
+      <li><a href="#coleccions">Col·leccions</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-cover">
+      <div class="hero-cover-text">PM</div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-season">Col·lecció Primavera — Estiu 2025</span>
+      <h1>PM<br><em>Women</em></h1>
+      <p class="hero-location">Moda Femenina · Manresa</p>
+      <p class="hero-sub">Boutique de moda femenina al cor de Manresa. Peces seleccionades, edicions limitades i estil que et representa.</p>
+      <div class="hero-cta">
+        <a href="#coleccions" class="btn-or">Veure col·leccions</a>
+        <a href="#contacte" class="btn-ghost">Contactar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <span class="strip-item">Noves Arribades</span>
+    <span class="strip-sep">◆</span>
+    <span class="strip-item">Col·lecció Primavera</span>
+    <span class="strip-sep">◆</span>
+    <span class="strip-item">Edicions Limitades</span>
+    <span class="strip-sep">◆</span>
+    <span class="strip-item">Mida Inclusiva</span>
+    <span class="strip-sep">◆</span>
+    <span class="strip-item">Estilisme Personalitzat</span>
+  </div>
+
+  <!-- COL·LECCIONS -->
+  <section class="section" id="coleccions">
+    <span class="section-tag">— Col·leccions</span>
+    <h2 class="section-title">Peces que<br>et defineixen</h2>
+    <p class="section-sub">A PM Women trobaràs peces de moda femenina contemporània seleccionades amb criteri editorial. Qualitat, feminitat i personalitat.</p>
+    <div class="collections-grid">
+      <div class="col-card">
+        <span class="col-season">Essencials</span>
+        <span class="col-icon">👗</span>
+        <div class="col-name">Vestits</div>
+        <div class="col-desc">Vestits de dia, de nit i d'ocasió. Des dels clàssics atemporals fins a les tendències de la temporada.</div>
+      </div>
+      <div class="col-card">
+        <span class="col-season">Atemporals</span>
+        <span class="col-icon">🧥</span>
+        <div class="col-name">Jaquetes i Abrics</div>
+        <div class="col-desc">Americana blazer, trinxeres i abrics de temporada. Peces que duren i es combinen amb tot el teu armari.</div>
+      </div>
+      <div class="col-card">
+        <span class="col-season">Basics</span>
+        <span class="col-icon">👚</span>
+        <div class="col-name">Tops i Camises</div>
+        <div class="col-desc">Tops de seda, camises de lli, jerseis de caixmir i els basics que mai falten a un armari ben curat.</div>
+      </div>
+      <div class="col-card">
+        <span class="col-season">Baix</span>
+        <span class="col-icon">👖</span>
+        <div class="col-name">Pantalons i Faldilles</div>
+        <div class="col-desc">Pantalons de tela, wide leg, faldilles midi i mini. Totes les silhuetes, totes les personalitats.</div>
+      </div>
+      <div class="col-card">
+        <span class="col-season">Complementos</span>
+        <span class="col-icon">👜</span>
+        <div class="col-name">Complements</div>
+        <div class="col-desc">Bosses, cinturons, mocadors i bijuteria seleccionada per completar cada look de manera impecable.</div>
+      </div>
+      <div class="col-card">
+        <span class="col-season">Especial</span>
+        <span class="col-icon">✨</span>
+        <div class="col-name">Edicions Limitades</div>
+        <div class="col-desc">Peces úniques i edicions limitades per a les que busquen quelcom exclusiu. Arriben poques unitats.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-left">
+        <span class="section-tag">— Sobre PM Women</span>
+        <h2 class="section-title">Moda editorial<br>a Manresa</h2>
+        <p>PM Women és una boutique de moda femenina al centre de Manresa. El nostre ull editorial selecciona cada peça pensant en la dona contemporània: independent, segura i amb estil propi.</p>
+        <p>No seguim tendències — les interpretem. Cada temporada curem una col·lecció que mescla clàssics atemporals amb novetats que valen la pena.</p>
+      </div>
+      <div class="sobre-right">
+        <div class="sobre-row">
+          <div class="sr-num">01</div>
+          <div>
+            <div class="sr-title">Selecció curada</div>
+            <div class="sr-text">Cada peça és escollida a mà. No tenim tot — tenim el millor per a tu.</div>
+          </div>
+        </div>
+        <div class="sobre-row">
+          <div class="sr-num">02</div>
+          <div>
+            <div class="sr-title">Estilisme personalitzat</div>
+            <div class="sr-text">T'ajudem a combinar, a trobar el teu estil i a crear looks que funcionin.</div>
+          </div>
+        </div>
+        <div class="sobre-row">
+          <div class="sr-num">03</div>
+          <div>
+            <div class="sr-title">Talla inclusiva</div>
+            <div class="sr-text">Mides de la XS a la XXL. La moda és per a tothom, sense excepcions.</div>
+          </div>
+        </div>
+        <div class="sobre-row">
+          <div class="sr-num">04</div>
+          <div>
+            <div class="sr-title">Al centre de Manresa</div>
+            <div class="sr-text">Fàcil d'arribar, ambient acollidor i atenció professional sense pressions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="contacte-inner">
+      <div>
+        <span class="section-tag">— Contacte</span>
+        <h2 class="section-title">Vine a la<br>boutique</h2>
+        <p class="section-sub" style="max-width:100%;">Visita'ns a Manresa o contacta'ns per saber si tenim la teva mida o les darreres novetats. T'atenem personalment.</p>
+      </div>
+      <div class="c-items">
+        <a href="tel:+34938000000" class="c-item">
+          <span class="c-icon">📞</span> Truca per informació
+        </a>
+        <a href="https://wa.me/34938000000" class="c-item">
+          <span class="c-icon">💬</span> WhatsApp — Consultes i reserves
+        </a>
+        <a href="mailto:pmwomenmanresa@gmail.com" class="c-item">
+          <span class="c-icon">✉️</span> pmwomenmanresa@gmail.com
+        </a>
+        <div class="c-item">
+          <span class="c-icon">📍</span> Centre de Manresa
+        </div>
+        <div class="c-item">
+          <span class="c-icon">🕐</span> Dl–Dv: 10h–14h i 16:30h–20h · Ds: 10h–14h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">PM Women</div>
+    <div class="footer-copy">© 2025 PM Women · Manresa · Tots els drets reservats</div>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
