@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Catalans — Cuina Catalana a Olot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --marro: #5C3D2E;
+      --or: #A0784A;
+      --crema: #F2E8D9;
+      --crema-fosc: #E8D8C0;
+      --text-fosc: #2A1A10;
+      --text-mig: #6B4A2E;
+      --glass: rgba(92, 61, 46, 0.15);
+      --glass-border: rgba(160, 120, 74, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1A0E08;
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 14, 8, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--or);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--or); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(92, 61, 46, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(160, 120, 74, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(92, 61, 46, 0.3) 0%, transparent 60%),
+        linear-gradient(160deg, #1A0E08 0%, #2C1A0E 50%, #1A0E08 100%);
+    }
+
+    /* Volcà decoratiu SVG */
+    .volca-svg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      opacity: 0.12;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+      color: var(--or);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.1;
+      color: var(--crema);
+      margin-bottom: 0.3rem;
+      animation: fadeDown 0.9s ease both 0.1s;
+    }
+
+    .hero-title span { color: var(--or); font-style: italic; }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--or);
+      margin-bottom: 1.5rem;
+      animation: fadeDown 1s ease both 0.2s;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(242, 232, 217, 0.75);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      animation: fadeDown 1s ease both 0.3s;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--or), var(--marro));
+      color: var(--crema);
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeDown 1s ease both 0.4s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(160, 120, 74, 0.4);
+    }
+
+    /* SECTION BASE */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--crema);
+      margin-bottom: 1rem;
+    }
+
+    .section-title span { color: var(--or); font-style: italic; }
+
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--or), transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* SERVEIS */
+    .serveis { background: linear-gradient(180deg, #1A0E08 0%, #20120A 100%); }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .servei-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .servei-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--or);
+    }
+
+    .servei-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .servei-card:nth-child(2) .servei-icon { animation-delay: 0.5s; }
+    .servei-card:nth-child(3) .servei-icon { animation-delay: 1s; }
+    .servei-card:nth-child(4) .servei-icon { animation-delay: 1.5s; }
+
+    .servei-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--crema);
+      margin-bottom: 0.6rem;
+    }
+
+    .servei-desc {
+      font-size: 0.9rem;
+      color: rgba(242, 232, 217, 0.65);
+      line-height: 1.6;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: linear-gradient(180deg, #20120A 0%, #2C1A0E 50%, #20120A 100%);
+    }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+      height: 380px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .sobre-visual-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(160, 120, 74, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(92, 61, 46, 0.5) 0%, transparent 55%),
+        linear-gradient(135deg, #2C1A0E, #1A0E08);
+    }
+
+    .sobre-visual-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .sobre-visual-text .big-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .sobre-visual-text p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--crema);
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .sobre-text p {
+      font-size: 1rem;
+      color: rgba(242, 232, 217, 0.8);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .sobre-stat {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--or);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(242, 232, 217, 0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* CONTACTE */
+    .contacte {
+      background: linear-gradient(180deg, #20120A 0%, #1A0E08 100%);
+      text-align: center;
+    }
+
+    .contacte-box {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contacte-box p {
+      font-size: 1rem;
+      color: rgba(242, 232, 217, 0.75);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contacte-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--or), var(--marro));
+      color: var(--crema);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(160, 120, 74, 0.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1.5px solid var(--or);
+      color: var(--or);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--or);
+      color: var(--crema);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0F0804;
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: rgba(242, 232, 217, 0.35);
+    }
+
+    footer span { color: var(--or); }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 280px; }
+      .hero-cta { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Restaurant Catalans</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Carta</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inici">
+    <div class="hero-bg"></div>
+    <svg class="volca-svg" viewBox="0 0 900 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 300 L200 300 L350 100 L450 200 L500 80 L550 200 L700 100 L900 300 Z" fill="rgba(160,120,74,0.8)"/>
+      <path d="M0 300 L180 300 L340 120 L440 220 L500 100 L560 220 L680 120 L900 300 Z" fill="rgba(92,61,46,0.6)"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-badge">🌋 Olot · La Garrotxa</div>
+      <h1 class="hero-title">Restaurant <span>Catalans</span></h1>
+      <p class="hero-sub">Cuina catalana de la terra volcànica</p>
+      <p class="hero-desc">A la Garrotxa, on els volcans han forjat la terra més fèrtil de Catalunya. Cuina honesta, de producte local, amb l'ànima d'una família que estima el que fa.</p>
+      <a href="#contacte" class="hero-cta">🍽 Fes una reserva</a>
+    </div>
+  </section>
+
+  <!-- SERVEIS / CARTA -->
+  <section class="serveis" id="serveis">
+    <div class="container">
+      <p class="section-label">La nostra proposta</p>
+      <h2 class="section-title">Cuina de <span>la Garrotxa</span></h2>
+      <div class="divider"></div>
+      <div class="serveis-grid">
+        <div class="servei-card">
+          <span class="servei-icon">🥘</span>
+          <h3 class="servei-nom">Cuina Catalana</h3>
+          <p class="servei-desc">Escudella, carn d'olla, trinxat de la Cerdanya. Els plats de sempre, fets com toca.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🌿</span>
+          <h3 class="servei-nom">Producte de Temporada</h3>
+          <p class="servei-desc">Verdures de la plana volcànica, bolets de la fageda i carn de pagès local.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🍷</span>
+          <h3 class="servei-nom">Vins de la Terra</h3>
+          <p class="servei-desc">Selecció de vins catalans i garnatxes de l'Empordà per maridar cada plat.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🎉</span>
+          <h3 class="servei-nom">Grups i Celebracions</h3>
+          <p class="servei-desc">Menjadors privats per a celebracions familiars, aniversaris i àpats d'empresa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-visual">
+          <div class="sobre-visual-bg"></div>
+          <div class="sobre-visual-text">
+            <div class="big-emoji">🏔</div>
+            <p>"Cuinem amb el que ens dóna la terra de la Garrotxa. Res més, res menys."</p>
+          </div>
+        </div>
+        <div class="sobre-text">
+          <p class="section-label">La nostra història</p>
+          <h2 class="section-title">Arrelats a <span>Olot</span></h2>
+          <div class="divider"></div>
+          <p>Al Restaurant Catalans duem anys cuinant amb productes de la comarca. La Garrotxa és una terra única: el sòl volcànic dóna verdures d'un sabor inigualable i els boscos de fageda ofereixen bolets que cap altra comarca pot igualar.</p>
+          <p>No seguim modes. Cuinem el que sempre s'ha cuinat aquí, amb cura i amb orgull. Si vens a tastar, t'assegurem una experiència autèntica.</p>
+          <div class="sobre-stat">
+            <div class="stat">
+              <span class="stat-num">🌋</span>
+              <span class="stat-label">Sòl volcànic</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Producte local</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">Km0</span>
+              <span class="stat-label">Proveïdors locals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="container">
+      <p class="section-label">Vine a tastar-nos</p>
+      <h2 class="section-title" style="margin-bottom:2.5rem">Fes una <span>Reserva</span></h2>
+      <div class="contacte-box">
+        <p>Truca'ns o escriu-nos un correu per reservar taula. Estem a Olot, al cor de la Garrotxa, esperant-te amb la cuina encesa.</p>
+        <div class="contacte-btns">
+          <a href="mailto:catalansecologic@gmail.com" class="btn-primary">✉️ Envia un correu</a>
+          <a href="https://maps.google.com/?q=Olot,Garrotxa" target="_blank" class="btn-outline">📍 Com arribar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 <span>Restaurant Catalans</span> · Olot, La Garrotxa · Tots els drets reservats</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+
+</body>
+</html>
