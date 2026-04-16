@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Núria Estètica — Cornellà de Llobregat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivori: #F8F4F0;
+      --rosa: #E8C4B8;
+      --or-vell: #C4956A;
+      --or-fosc: #9B7050;
+      --text: #3A2A20;
+      --text-muted: #6B5048;
+      --bg: var(--ivori);
+      --glass: rgba(196, 149, 106, 0.08);
+      --glass-border: rgba(196, 149, 106, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.3rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(248, 244, 240, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--or-vell); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or-vell); }
+
+    .nav-cta {
+      background: var(--or-vell) !important;
+      color: #fff !important;
+      padding: 0.5rem 1.3rem;
+      font-weight: 400 !important;
+    }
+    .nav-cta:hover { background: var(--or-fosc) !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5rem 5rem;
+      background: linear-gradient(135deg, var(--ivori) 60%, #efe8e0 100%);
+      position: relative;
+      overflow: hidden;
+      gap: 4rem;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 196, 184, 0.4), transparent 65%);
+      bottom: -100px; right: -100px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--glass-border);
+      color: var(--or-vell);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.2rem;
+      margin-bottom: 2rem;
+      background: var(--glass);
+    }
+
+    .hero-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title strong {
+      font-weight: 600;
+      color: var(--or-vell);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-gold {
+      background: var(--or-vell);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-gold:hover { background: var(--or-fosc); transform: translateY(-2px); }
+
+    .btn-line {
+      background: transparent;
+      color: var(--or-vell);
+      border: 1px solid var(--or-vell);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-line:hover { background: var(--or-vell); color: #fff; }
+
+    .hero-visual {
+      background: linear-gradient(135deg, var(--rosa) 0%, #f0d5c5 50%, var(--or-vell) 100%);
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 7rem;
+      position: relative;
+      z-index: 1;
+      border-radius: 2px;
+    }
+
+    .hero-visual-text {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 300;
+    }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-label {
+      text-align: center;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or-vell);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .section-title strong { font-weight: 600; color: var(--or-vell); }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* SERVEIS */
+    #serveis { background: #fefcfa; }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servei-card {
+      background: var(--ivori);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem 2rem;
+      transition: all 0.3s;
+    }
+    .servei-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--or-vell);
+      box-shadow: 0 8px 32px rgba(196,149,106,0.15);
+    }
+
+    .servei-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--or-vell);
+      margin-bottom: 1.5rem;
+    }
+
+    .servei-nom {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .servei-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .servei-preu {
+      margin-top: 1.25rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: var(--or-vell);
+      font-weight: 400;
+    }
+
+    /* SOBRE */
+    #sobre {
+      background: var(--ivori);
+    }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-img {
+      background: linear-gradient(145deg, var(--rosa), #e8d4c8);
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      border-radius: 2px;
+    }
+
+    .sobre-text h2 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .sobre-text h2 strong { font-weight: 600; color: var(--or-vell); }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-vals {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .sobre-val {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .sobre-val .num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--or-vell);
+    }
+    .sobre-val .label { font-size: 0.8rem; font-weight: 300; color: var(--text-muted); letter-spacing: 0.05em; }
+
+    /* CONTACTE */
+    #contacte { background: #fefcfa; }
+
+    .contacte-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: var(--ivori);
+      border: 1px solid var(--glass-border);
+      padding: 3.5rem 3rem;
+      margin-top: 3rem;
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or-vell); font-weight: 400; }
+    .c-val { font-size: 0.9rem; font-weight: 300; color: var(--text); }
+
+    .btn-final {
+      display: inline-block;
+      margin-top: 2.5rem;
+      background: var(--or-vell);
+      color: #fff;
+      padding: 0.9rem 2.5rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-final:hover { background: var(--or-fosc); }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ivori);
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo strong { font-weight: 600; color: var(--rosa); }
+    footer p { font-size: 0.75rem; color: rgba(248,244,240,0.5); font-weight: 300; letter-spacing: 0.05em; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; gap: 2.5rem; }
+      .hero-visual { height: 260px; font-size: 5rem; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-img { height: 220px; font-size: 5rem; }
+      .sobre-vals { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Núria <span>Estètica</span></div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div>
+      <div class="hero-tag">Estètica Professional · Cornellà de Llobregat</div>
+      <h1 class="hero-title">
+        Cura<br>
+        <strong>personal</strong><br>
+        de qualitat
+      </h1>
+      <p class="hero-desc">Tractaments estètics professionals en un ambient tranquil i personal. Perquè mereixem el millor benestar, sempre.</p>
+      <div class="hero-ctas">
+        <a href="#contacte" class="btn-gold">Reserva cita</a>
+        <a href="#serveis" class="btn-line">Veure serveis</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      🌿
+      <div class="hero-visual-text">Benestar · Qualitat · Cura</div>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-label">El que oferim</div>
+    <h2 class="section-title">Els nostres <strong>serveis</strong></h2>
+    <p class="section-sub">Tractaments professionals adaptats a cada client</p>
+    <div class="serveis-grid">
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Tractaments Facials</div>
+        <div class="servei-desc">Neteges facials, hidratació profunda, tractaments anti-edat i antipigmentació. Pell sana i lluminosa.</div>
+        <div class="servei-preu">Des de 35 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Depilació</div>
+        <div class="servei-desc">Depilació corporal i facial amb cera calenta, sucre i fils. Resultats duradors i pell suau.</div>
+        <div class="servei-preu">Des de 10 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Manicura & Pedicura</div>
+        <div class="servei-desc">Tractament complet de mans i peus, semipermanent, gel i nail art per a qualsevol ocasió.</div>
+        <div class="servei-preu">Des de 18 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Tractaments Corporals</div>
+        <div class="servei-desc">Massatges, tractaments reductors, drenatge limfàtic i envoltaments per al benestar total.</div>
+        <div class="servei-preu">Des de 45 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Pestanyes & Celles</div>
+        <div class="servei-desc">Extensions de pestanyes, laminat, tint de celles i microblading per a una mirada perfecta.</div>
+        <div class="servei-preu">Des de 25 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-dot"></div>
+        <div class="servei-nom">Maquillatge</div>
+        <div class="servei-desc">Maquillatge professional per a events, nuvis i sessions especials. Llum i elegància garantides.</div>
+        <div class="servei-preu">Des de 40 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-img">💆‍♀️</div>
+      <div class="sobre-text">
+        <h2>Professionalitat<br><strong>i cura personal</strong></h2>
+        <p>La Núria porta anys dedicant-se a l'estètica amb una filosofia simple: cada client és especial i mereix el millor tracte i els millors resultats.</p>
+        <p>A Cornellà de Llobregat, el centre Núria Estètica és el lloc de confiança per a les dones de l'àrea metropolitana de Barcelona que busquen qualitat sense estridències.</p>
+        <p>Un espai net, tranquil i professional on el benestar és la prioritat absoluta.</p>
+        <div class="sobre-vals">
+          <div class="sobre-val"><div class="num">10+</div><div class="label">Anys d'experiència</div></div>
+          <div class="sobre-val"><div class="num">100%</div><div class="label">Cita personalitzada</div></div>
+          <div class="sobre-val"><div class="num">1ª</div><div class="label">Marques premium</div></div>
+          <div class="sobre-val"><div class="num">★★★★★</div><div class="label">Satisfacció client</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-label">On som</div>
+      <h2 class="section-title">Vine a <strong>visitar-nos</strong></h2>
+      <p class="section-sub">Cornellà de Llobregat · Baix Llobregat</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Cornellà de Llobregat</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">esteticanuria@gmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Divendres</span><span class="c-val">09:30 – 20:00</span></div>
+        <div class="c-row"><span class="c-key">Dissabte</span><span class="c-val">09:30 – 14:00</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">Tancat</span></div>
+        <a href="mailto:esteticanuria@gmail.com" class="btn-final">Sol·licitar cita</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Núria <strong>Estètica</strong></div>
+    <p>Estètica Professional · Cornellà de Llobregat · Baix Llobregat</p>
+    <p>© 2025 Núria Estètica. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Armand Carnisseria — Girona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vermell: #8B1A1A;
+      --vermell-fosc: #5C0F0F;
+      --crema: #F2E6D0;
+      --crema-fosc: #DDD0B5;
+      --marró: #4A2C12;
+      --marró-clar: #6B4020;
+      --glass: rgba(139, 26, 26, 0.12);
+      --glass-border: rgba(139, 26, 26, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #1a0a0a;
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.2rem;
+      color: var(--crema);
+      letter-spacing: 0.03em;
+    }
+    .nav-logo .casa { color: var(--crema-fosc); font-weight: 400; font-style: italic; }
+    .nav-logo .armand { color: var(--crema); font-weight: 700; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--crema-fosc);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--crema); }
+
+    .nav-cta {
+      background: var(--vermell) !important;
+      color: var(--crema) !important;
+      padding: 0.5rem 1.3rem;
+      font-weight: 500 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(180deg, #1a0a0a 0%, #2a0d0d 50%, #1a0a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(139, 26, 26, 0.04) 60px,
+        rgba(139, 26, 26, 0.04) 61px
+      );
+    }
+
+    .hero-ornament {
+      width: 60px;
+      height: 3px;
+      background: var(--vermell);
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--vermell);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--crema);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--crema-fosc);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--crema-fosc);
+      max-width: 500px;
+      margin: 1.5rem auto 2.5rem;
+      line-height: 1.8;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: var(--vermell);
+      color: var(--crema);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary:hover { background: var(--vermell-fosc); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--crema-fosc);
+      border: 1px solid rgba(242, 230, 208, 0.3);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--vermell); color: var(--crema); }
+
+    .hero-banner {
+      margin-top: 5rem;
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .banner-icon { font-size: 2rem; }
+    .banner-text { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crema-fosc); }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .ornament-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .ornament-title span { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermell); }
+    .ornament-title::before, .ornament-title::after {
+      content: '';
+      display: block;
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    .section-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--crema);
+    }
+    .section-title em { font-style: italic; color: var(--crema-fosc); }
+    .section-sub {
+      text-align: center;
+      color: var(--crema-fosc);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* PRODUCTES */
+    #productes { background: #1a0a0a; }
+
+    .productes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .producte-card {
+      background: linear-gradient(145deg, #2a1010, #1a0808);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .producte-card:hover { transform: translateY(-3px); border-color: var(--vermell); }
+
+    .producte-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .producte-nom {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .producte-desc { font-size: 0.9rem; color: var(--crema-fosc); line-height: 1.7; font-weight: 300; }
+
+    /* SOBRE */
+    #sobre { background: #200d0d; }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-text h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--crema);
+      line-height: 1.2;
+    }
+    .sobre-text h2 em { font-style: italic; color: var(--crema-fosc); }
+
+    .sobre-text p {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--crema-fosc);
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-text .firma {
+      margin-top: 2rem;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--vermell);
+    }
+
+    .sobre-visual {
+      background: linear-gradient(145deg, #2a1010, #1a0808);
+      border: 1px solid var(--glass-border);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 6rem;
+    }
+    .sobre-visual .year {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--vermell);
+    }
+
+    /* MERCAT */
+    #mercat { background: #1a0a0a; }
+
+    .mercat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .mercat-item {
+      background: linear-gradient(145deg, #2a1010, #1a0808);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .mercat-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+    .mercat-nom {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 0.3rem;
+    }
+    .mercat-detail { font-size: 0.8rem; color: var(--crema-fosc); font-weight: 300; }
+
+    /* CONTACTE */
+    #contacte { background: #200d0d; }
+
+    .contacte-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: linear-gradient(145deg, #2a1010, #1a0808);
+      border: 1px solid var(--glass-border);
+      padding: 3rem 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .info-bloc {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-fila {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .info-etiqueta { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--vermell); margin-bottom: 0.2rem; font-weight: 500; }
+    .info-valor { font-size: 0.95rem; color: var(--crema); font-weight: 400; }
+
+    .divider { border: none; border-top: 1px solid var(--glass-border); margin: 1.5rem 0; }
+
+    .horari-taula { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .horari-taula td { padding: 0.4rem 0; }
+    .horari-taula .dia { color: var(--crema-fosc); font-weight: 300; text-align: left; }
+    .horari-taula .hora { color: var(--crema); font-weight: 500; text-align: right; }
+
+    /* FOOTER */
+    footer {
+      background: #0d0303;
+      border-top: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.3rem;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo em { font-style: italic; color: var(--crema-fosc); }
+    footer p { font-size: 0.8rem; color: var(--crema-fosc); font-weight: 300; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 220px; font-size: 4rem; }
+      .mercat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo"><span class="casa">Casa </span><span class="armand">Armand</span></div>
+    <ul class="nav-links">
+      <li><a href="#productes">Productes</a></li>
+      <li><a href="#sobre">Història</a></li>
+      <li><a href="#mercat">Especialitats</a></li>
+      <li><a href="#contacte" class="nav-cta">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div>
+      <div class="hero-ornament"></div>
+      <div class="hero-eyebrow">Carnisseria Artesanal · Girona</div>
+      <h1 class="hero-title">La qualitat<br><em>de sempre</em></h1>
+      <p class="hero-sub">Carnisseria de barri amb generacions de tradició. Producte fresc, honest i de proximitat. Perquè el bon menjar comença en el tall.</p>
+      <div class="hero-btns">
+        <a href="#productes" class="btn-primary">Veure productes</a>
+        <a href="#contacte" class="btn-outline">Com arribar</a>
+      </div>
+      <div class="hero-banner">
+        <div class="banner-item"><span class="banner-icon">🥩</span><span class="banner-text">Carn fresca diària</span></div>
+        <div class="banner-item"><span class="banner-icon">🌿</span><span class="banner-text">Producte local</span></div>
+        <div class="banner-item"><span class="banner-icon">👨‍👩‍👧</span><span class="banner-text">Negoci familiar</span></div>
+        <div class="banner-item"><span class="banner-icon">🔪</span><span class="banner-text">Tall a mida</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="productes">
+    <div class="ornament-title"><span>Els nostres productes</span></div>
+    <h2 class="section-title">Carnisseria <em>de mercat</em></h2>
+    <p class="section-sub">Selecció rigorosa de proveïdors locals. Sempre fresc, sempre de qualitat.</p>
+    <div class="productes-grid">
+      <div class="producte-card">
+        <div class="producte-icon">🥩</div>
+        <div class="producte-nom">Vedella de proximitat</div>
+        <div class="producte-desc">Vedella de granges catalanes seleccionades. Tall a demanda: entrecots, filets, llom, cuixes i peces especials.</div>
+      </div>
+      <div class="producte-card">
+        <div class="producte-icon">🐖</div>
+        <div class="producte-nom">Porc i derivats</div>
+        <div class="producte-desc">Llonzes, costellam, cansalada, botifarra fresca i cured. Elaboració pròpia amb receptes de família.</div>
+      </div>
+      <div class="producte-card">
+        <div class="producte-icon">🐔</div>
+        <div class="producte-nom">Pollastre i aus</div>
+        <div class="producte-desc">Pollastre de pagès i aus de corral. Sencer, a quarts o a peces. Fresc del dia.</div>
+      </div>
+      <div class="producte-card">
+        <div class="producte-icon">🌭</div>
+        <div class="producte-nom">Embotits artesans</div>
+        <div class="producte-desc">Botifarra negra, blanca, d'ou i d'all. Llonganisses i fuets elaborats amb la recepta de la casa.</div>
+      </div>
+      <div class="producte-card">
+        <div class="producte-icon">🫙</div>
+        <div class="producte-nom">Preparats i marinats</div>
+        <div class="producte-desc">Peces preparades per cuinar: pinxos, brochetes, carns marinades i preparats per a la barbacoa.</div>
+      </div>
+      <div class="producte-card">
+        <div class="producte-icon">🐑</div>
+        <div class="producte-nom">Xai i altres</div>
+        <div class="producte-desc">Xai de temporada, fetge, menuts i altres peces especials. Consulta disponibilitat.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <h2>Una família,<br>una <em>tradició</em></h2>
+        <p>Casa Armand és molt més que una carnisseria. Aquí la paraula "qualitat" no és màrqueting: és la manera com hem treballat des del primer dia.</p>
+        <p>Cada peça que entra al nostre mostrador ha passat pel criteri exigent de qui ha après l'ofici d'una generació a l'altra. Coneixem als nostres proveïdors pel nom, i ells saben el que esperem d'ells.</p>
+        <p>A Girona, carnisseria és sinònim de Casa Armand per a les famílies que valoren saber d'on ve el que mengen.</p>
+        <div class="firma">— La família Armand</div>
+      </div>
+      <div class="sobre-visual">
+        🏪
+        <div class="year">· Girona · Artesania ·</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mercat">
+    <div class="ornament-title"><span>Les nostres especialitats</span></div>
+    <h2 class="section-title">Orgull <em>de la casa</em></h2>
+    <p class="section-sub">El que ens fa únics al barri de Girona</p>
+    <div class="mercat-grid">
+      <div class="mercat-item">
+        <span class="mercat-icon">🌭</span>
+        <div class="mercat-nom">Botifarra de l'àvia</div>
+        <div class="mercat-detail">Recepta familiar de tres generacions</div>
+      </div>
+      <div class="mercat-item">
+        <span class="mercat-icon">🥓</span>
+        <div class="mercat-nom">Llard casolà</div>
+        <div class="mercat-detail">Elaborat a mà, sense conservants</div>
+      </div>
+      <div class="mercat-item">
+        <span class="mercat-icon">🔪</span>
+        <div class="mercat-nom">Tall a mida</div>
+        <div class="mercat-detail">Com ho voleu, com ho necessiteu</div>
+      </div>
+      <div class="mercat-item">
+        <span class="mercat-icon">📦</span>
+        <div class="mercat-nom">Comandes especials</div>
+        <div class="mercat-detail">Per a celebracions i events</div>
+      </div>
+      <div class="mercat-item">
+        <span class="mercat-icon">🌿</span>
+        <div class="mercat-nom">Producte de Girona</div>
+        <div class="mercat-detail">Km0 sempre que és possible</div>
+      </div>
+      <div class="mercat-item">
+        <span class="mercat-icon">💬</span>
+        <div class="mercat-nom">Consell d'expert</div>
+        <div class="mercat-detail">Et diem com cuinar cada tall</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="ornament-title"><span>On som</span></div>
+      <h2 class="section-title">Vine a <em>Casa Armand</em></h2>
+      <p class="section-sub">La carnisseria de sempre, al barri de sempre</p>
+      <div class="contacte-card">
+        <div class="info-bloc">
+          <div class="info-fila">
+            <span class="info-icon">📍</span>
+            <div>
+              <div class="info-etiqueta">Adreça</div>
+              <div class="info-valor">Girona</div>
+            </div>
+          </div>
+          <div class="info-fila">
+            <span class="info-icon">✉️</span>
+            <div>
+              <div class="info-etiqueta">Email</div>
+              <div class="info-valor">infocasaarmand@gmail.com</div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider">
+        <table class="horari-taula">
+          <tr><td class="dia">Dilluns – Divendres</td><td class="hora">08:00 – 14:00 / 17:00 – 20:00</td></tr>
+          <tr><td class="dia">Dissabte</td><td class="hora">08:00 – 14:00</td></tr>
+          <tr><td class="dia">Diumenge</td><td class="hora">Tancat</td></tr>
+        </table>
+        <hr class="divider">
+        <a href="mailto:infocasaarmand@gmail.com" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Escriu-nos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo"><em>Casa </em>Armand</div>
+    <p>Carnisseria Artesanal · Girona · Des de fa generacions</p>
+    <p style="margin-top:0.5rem;">© 2025 Casa Armand. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

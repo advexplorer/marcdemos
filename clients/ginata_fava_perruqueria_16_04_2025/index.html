@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ginata Favà Perruqueria — Tortosa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa: #B87B8E;
+      --rosa-clar: #D4A0B0;
+      --rosa-fosc: #8A5A6A;
+      --crema: #F5EDF0;
+      --crema-fosc: #E8D5DC;
+      --morat: #7A4A5A;
+      --text: #3A2030;
+      --text-muted: #6A4A55;
+      --glass: rgba(184, 123, 142, 0.1);
+      --glass-border: rgba(184, 123, 142, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--crema);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(245, 237, 240, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--morat);
+      letter-spacing: 0.03em;
+    }
+    .nav-logo span { color: var(--rosa); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--rosa); }
+
+    .nav-cta {
+      background: var(--rosa) !important;
+      color: #fff !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(160deg, #fff5f7 0%, var(--crema) 40%, #f0e0e8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 123, 142, 0.2), transparent 65%);
+      top: -100px; right: -100px;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 160, 176, 0.2), transparent 65%);
+      bottom: -50px; left: -50px;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--glass-border);
+      color: var(--rosa-fosc);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--morat);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title .name { color: var(--rosa); display: block; }
+
+    .hero-sub-title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-rosa {
+      background: var(--rosa);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(184,123,142,0.35);
+    }
+    .btn-rosa:hover { background: var(--rosa-fosc); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,123,142,0.45); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--rosa);
+      border: 2px solid var(--rosa);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { background: var(--rosa); color: #fff; }
+
+    .hero-feats {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .feat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .feat-icon { font-size: 1.2rem; }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-label {
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rosa);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      color: var(--morat);
+      margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--rosa); }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* SERVEIS */
+    #serveis { background: #fff8f9; }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servei-card {
+      background: #fff;
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(184,123,142,0.08);
+    }
+    .servei-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(184,123,142,0.2);
+      border-color: var(--rosa);
+    }
+
+    .servei-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .servei-nom {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--morat);
+      margin-bottom: 0.5rem;
+    }
+    .servei-desc { font-size: 0.875rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
+    .servei-preu { margin-top: 1rem; font-weight: 700; color: var(--rosa); font-size: 0.95rem; }
+
+    /* SOBRE */
+    #sobre { background: var(--crema); }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-img {
+      background: linear-gradient(145deg, #f0d8e0, var(--crema-fosc));
+      border-radius: 20px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 7rem;
+      border: 1px solid var(--glass-border);
+    }
+
+    .sobre-tag {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rosa-fosc);
+      font-weight: 700;
+    }
+
+    .sobre-text h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--morat);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    .sobre-text h2 span { color: var(--rosa); }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .pill {
+      background: rgba(184,123,142,0.12);
+      border: 1px solid var(--glass-border);
+      color: var(--rosa-fosc);
+      font-size: 0.78rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    /* CONTACTE */
+    #contacte { background: #fff8f9; }
+
+    .contacte-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: #fff;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      margin-top: 2.5rem;
+      box-shadow: 0 4px 24px rgba(184,123,142,0.1);
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rosa); }
+    .c-val { font-size: 0.9rem; font-weight: 400; color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: var(--morat);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo span { color: var(--rosa-clar); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.6); font-weight: 300; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-img { height: 220px; font-size: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Ginata <span>Favà</span></div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🌸 Perruqueria · Tortosa · Baix Ebre</div>
+      <h1 class="hero-title">
+        La teva perruqueria<br>
+        <span class="name">de confiança</span>
+      </h1>
+      <div class="hero-sub-title">Ginata Favà · Tortosa</div>
+      <p class="hero-desc">Un tracte proper i professional, amb tota la calidesa del mediterrani. Perquè sortir de la perruqueria és un moment especial.</p>
+      <div class="hero-btns">
+        <a href="#contacte" class="btn-rosa">Demana cita</a>
+        <a href="#serveis" class="btn-ghost">Veure serveis</a>
+      </div>
+      <div class="hero-feats">
+        <div class="feat"><span class="feat-icon">💇‍♀️</span>Tall personalitzat</div>
+        <div class="feat"><span class="feat-icon">🎨</span>Coloració expert</div>
+        <div class="feat"><span class="feat-icon">🌊</span>Ambient mediterrani</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-label">Els nostres serveis</div>
+    <h2 class="section-title">Tot el que <span>necessites</span></h2>
+    <p class="section-sub">Serveis de perruqueria professionals amb productes de primera qualitat</p>
+    <div class="serveis-grid">
+      <div class="servei-card">
+        <span class="servei-icon">✂️</span>
+        <div class="servei-nom">Tall & Pentinat</div>
+        <div class="servei-desc">Tall adaptat al teu estil i forma de rostre. Acabat amb assecador i productes professionals.</div>
+        <div class="servei-preu">Des de 18 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">🎨</span>
+        <div class="servei-nom">Coloració</div>
+        <div class="servei-desc">Coloració permanent, mechas, balayage i degradat. Colors naturals o atrevits, tu decideixes.</div>
+        <div class="servei-preu">Des de 40 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">✨</span>
+        <div class="servei-nom">Tractaments</div>
+        <div class="servei-desc">Nutrició i reparació capilar, màscares i tractaments específics per a cada tipus de cabell.</div>
+        <div class="servei-preu">Des de 22 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">💍</span>
+        <div class="servei-nom">Pentinats Nupcials</div>
+        <div class="servei-desc">Pentinats per a nuvis, comunions i celebracions especials. El teu dia, perfecte.</div>
+        <div class="servei-preu">Des de 55 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-img">
+        🌸
+        <div class="sobre-tag">Tortosa · Baix Ebre</div>
+      </div>
+      <div class="sobre-text">
+        <h2>Calidesa i <span>professionalitat</span></h2>
+        <p>La Ginata porta anys fent que les seves clientes surtin de la perruqueria amb un somriure. I és que un bon tall no és només una qüestió tècnica: és confiança, escolta i connexió.</p>
+        <p>A Tortosa, el Baix Ebre té el seu propi ritme. I la Ginata Favà l'entén: tracte proper, qualitat mediterrània i un ambient que fa que tornis.</p>
+        <div class="sobre-pills">
+          <span class="pill">Tortosa, Baix Ebre</span>
+          <span class="pill">Especialista en color</span>
+          <span class="pill">Pentinats d'event</span>
+          <span class="pill">Tracte personalitzat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-label">On som</div>
+      <h2 class="section-title">Vine a <span>veure'ns</span></h2>
+      <p class="section-sub">Tortosa · Baix Ebre · Terres de l'Ebre</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Tortosa, Baix Ebre</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">mginata@hotmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Divendres</span><span class="c-val">09:00 – 19:30</span></div>
+        <div class="c-row"><span class="c-key">Dissabte</span><span class="c-val">09:00 – 14:00</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">Tancat</span></div>
+        <a href="mailto:mginata@hotmail.com" class="btn-rosa" style="display:inline-block;margin-top:2rem;">Escriu-nos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Ginata <span>Favà</span></div>
+    <p>Perruqueria · Tortosa · Baix Ebre · Terres de l'Ebre</p>
+    <p>© 2025 Ginata Favà Perruqueria. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

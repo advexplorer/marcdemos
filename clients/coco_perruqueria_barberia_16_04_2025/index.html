@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COCO Perruqueria i Barberia — Amposta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --marró: #3D2B1F;
+      --terracota: #C4956A;
+      --terracota-clar: #E8B88A;
+      --crema: #F8EFE6;
+      --crema-fosc: #EDD8C0;
+      --text: #1A0E08;
+      --text-muted: #5A3A25;
+      --glass: rgba(196, 149, 106, 0.12);
+      --glass-border: rgba(196, 149, 106, 0.3);
+      --tropicol: rgba(196, 149, 106, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--marró);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(61, 43, 31, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.6rem;
+      color: var(--terracota);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(248,239,230,0.65);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--terracota); }
+
+    .nav-cta {
+      background: var(--terracota) !important;
+      color: var(--marró) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+    }
+    .nav-cta:hover { background: var(--terracota-clar) !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(160deg, #2a1a10 0%, var(--marró) 40%, #2a1a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-deco-1 {
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.08;
+      top: 10%; left: 5%;
+      transform: rotate(-15deg);
+      animation: float1 6s ease-in-out infinite;
+    }
+    .hero-deco-2 {
+      position: absolute;
+      font-size: 6rem;
+      opacity: 0.08;
+      top: 20%; right: 8%;
+      transform: rotate(10deg);
+      animation: float2 8s ease-in-out infinite;
+    }
+    .hero-deco-3 {
+      position: absolute;
+      font-size: 5rem;
+      opacity: 0.06;
+      bottom: 15%; left: 10%;
+      animation: float1 7s ease-in-out infinite reverse;
+    }
+    .hero-deco-4 {
+      position: absolute;
+      font-size: 7rem;
+      opacity: 0.07;
+      bottom: 10%; right: 5%;
+      transform: rotate(20deg);
+      animation: float2 9s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: rotate(-15deg) translateY(0); }
+      50% { transform: rotate(-15deg) translateY(-20px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: rotate(10deg) translateY(0); }
+      50% { transform: rotate(10deg) translateY(-15px); }
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,149,106,0.15), transparent 65%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--terracota);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 1.4rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(5rem, 12vw, 10rem);
+      color: var(--crema);
+      line-height: 0.9;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 4px 24px rgba(196,149,106,0.3);
+    }
+
+    .hero-tagline {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      color: var(--terracota);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(248,239,230,0.65);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-coco {
+      background: var(--terracota);
+      color: var(--marró);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(196,149,106,0.4);
+    }
+    .btn-coco:hover { background: var(--terracota-clar); transform: translateY(-3px); box-shadow: 0 6px 28px rgba(196,149,106,0.5); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--crema);
+      border: 2px solid rgba(248,239,230,0.3);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--terracota); color: var(--terracota); }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(248,239,230,0.55);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* SERVEIS */
+    #serveis { background: #2e1e14; }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servei-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .servei-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(196,149,106,0.2);
+      border-color: var(--terracota);
+    }
+
+    .servei-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .servei-nom {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .servei-nom span { color: var(--terracota); }
+    .servei-desc { font-size: 0.875rem; font-weight: 300; color: rgba(248,239,230,0.6); line-height: 1.75; }
+    .servei-preu { margin-top: 1.25rem; font-weight: 700; color: var(--terracota); font-size: 1rem; }
+
+    /* SOBRE */
+    #sobre { background: var(--marró); }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      background: linear-gradient(145deg, #2a1a10, #1e1008);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-visual-emoji { font-size: 5rem; }
+
+    .sobre-visual-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.5rem;
+      color: var(--terracota);
+      line-height: 1;
+    }
+
+    .sobre-visual-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(196,149,106,0.6);
+      font-weight: 500;
+    }
+
+    .sobre-text h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    .sobre-text h2 span { color: var(--terracota); }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(248,239,230,0.65);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--terracota);
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    /* CONTACTE */
+    #contacte { background: #2e1e14; }
+
+    .contacte-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3.5rem 3rem;
+      margin-top: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(196,149,106,0.12);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracota); font-weight: 600; }
+    .c-val { font-size: 0.9rem; font-weight: 400; color: var(--crema); }
+
+    /* FOOTER */
+    footer {
+      background: #1a0e08;
+      border-top: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: var(--terracota);
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.8rem; color: rgba(248,239,230,0.35); font-weight: 300; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 260px; }
+      .hero-deco-1, .hero-deco-2, .hero-deco-3, .hero-deco-4 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">COCO</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-deco-1">🌴</div>
+    <div class="hero-deco-2">🥥</div>
+    <div class="hero-deco-3">✂️</div>
+    <div class="hero-deco-4">🌺</div>
+    <div class="hero-content">
+      <div class="hero-badge">🥥 Perruqueria · Barberia · Amposta · Delta de l'Ebre</div>
+      <h1 class="hero-title">COCO</h1>
+      <div class="hero-tagline">Perruqueria · Barberia · Amposta</div>
+      <p class="hero-desc">Tropical i atrevit, amb personalitat pròpia. COCO és la perruqueria i barberia d'Amposta que et fa sentir que estàs a un lloc especial.</p>
+      <div class="hero-btns">
+        <a href="#contacte" class="btn-coco">Reserva cita</a>
+        <a href="#serveis" class="btn-ghost">Veure serveis</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-label">El que fem</div>
+    <h2 class="section-title">Serveis</h2>
+    <p class="section-sub">Perruqueria i barberia amb personalitat tropical</p>
+    <div class="serveis-grid">
+      <div class="servei-card">
+        <span class="servei-icon">💇‍♀️</span>
+        <div class="servei-nom">Tall <span>& Pentinat</span></div>
+        <div class="servei-desc">Tall personalitzat per a cada estil. Assecador professional i productes de qualitat.</div>
+        <div class="servei-preu">Des de 20 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">🎨</span>
+        <div class="servei-nom">Color <span>& Mechas</span></div>
+        <div class="servei-desc">Coloració, balayage, mechas i decoloració. Colors brillants i lluminosos.</div>
+        <div class="servei-preu">Des de 45 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">💈</span>
+        <div class="servei-nom"><span>Barberia</span> COCO</div>
+        <div class="servei-desc">Tall de cabell, arreglat de barba i afaitada. L'home tropical sempre perfecte.</div>
+        <div class="servei-preu">Des de 15 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">✨</span>
+        <div class="servei-nom">Tractaments <span>Capilars</span></div>
+        <div class="servei-desc">Hidratació, nutrició i reparació. El teu cabell sempre sa i lluent.</div>
+        <div class="servei-preu">Des de 25 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">💍</span>
+        <div class="servei-nom">Nuvis <span>& Events</span></div>
+        <div class="servei-desc">Pentinats per a casaments, comunions i festes. El teu dia, sense estrès.</div>
+        <div class="servei-preu">Des de 55 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">🥥</span>
+        <div class="servei-nom">Pack <span>COCO</span></div>
+        <div class="servei-desc">Tall + color + tractament. L'experiència completa COCO per a un canvi total.</div>
+        <div class="servei-preu">Des de 75 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-visual">
+        <div class="sobre-visual-emoji">🌴</div>
+        <div class="sobre-visual-title">COCO</div>
+        <div class="sobre-visual-sub">Amposta · Delta de l'Ebre</div>
+      </div>
+      <div class="sobre-text">
+        <h2>Tropical &<br><span>atrevit</span></h2>
+        <p>COCO no és una perruqueria qualsevol. Amb majúscules i amb personalitat, COCO és una marca amb caràcter, nascuda a Amposta, al cor del Delta de l'Ebre.</p>
+        <p>Inspirat en l'exuberància tropical i l'energia del delta —la terra de l'arròs, les aus i el gran riu— COCO ha creat un espai diferent, fresc i únic on cada visita és una experiència.</p>
+        <p>Perruqueria per a tothom, barberia per als qui es cuiden. Benvinguts al COCO.</p>
+        <div class="sobre-tags">
+          <span class="tag">Amposta · Montsià</span>
+          <span class="tag">Delta de l'Ebre</span>
+          <span class="tag">Perruqueria & Barberia</span>
+          <span class="tag">Personalitat pròpia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-label">On som</div>
+      <h2 class="section-title">COCO</h2>
+      <p class="section-sub">Amposta · Montsià · Delta de l'Ebre</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Amposta, Montsià (Tarragona)</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">cocopbi@hotmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Divendres</span><span class="c-val">09:00 – 20:00</span></div>
+        <div class="c-row"><span class="c-key">Dissabte</span><span class="c-val">09:00 – 14:00</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">Tancat</span></div>
+        <a href="mailto:cocopbi@hotmail.com" class="btn-coco" style="display:inline-block;margin-top:2.5rem;">Escriu-nos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">COCO</div>
+    <p>Perruqueria i Barberia · Amposta · Montsià · Delta de l'Ebre</p>
+    <p>© 2025 COCO Perruqueria i Barberia. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

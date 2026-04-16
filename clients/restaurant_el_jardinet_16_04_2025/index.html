@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Jardinet — Restaurant · Rubí</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verd: #3A5E3A;
+      --verd-clar: #5A8A5A;
+      --verd-fosc: #253E25;
+      --crema: #F2E8D0;
+      --crema-fosc: #DDD0B0;
+      --or: #8B6914;
+      --or-clar: #C49A30;
+      --text: #1A2A1A;
+      --text-muted: #4A5A3A;
+      --glass: rgba(58, 94, 58, 0.12);
+      --glass-border: rgba(58, 94, 58, 0.25);
+      --glass-or: rgba(139, 105, 20, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #0f1a0f;
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 26, 15, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--crema);
+      letter-spacing: 0.03em;
+    }
+    .nav-logo em { font-style: italic; color: var(--or-clar); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(242,232,208,0.65);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or-clar); }
+
+    .nav-cta {
+      background: var(--or) !important;
+      color: var(--crema) !important;
+      padding: 0.5rem 1.3rem;
+      font-weight: 700 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(160deg, #0f1a0f 0%, #1a2e1a 40%, #0f1a0f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,94,58,0.25) 0%, transparent 65%);
+      top: -150px; left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(58,94,58,0.03) 80px,
+        rgba(58,94,58,0.03) 81px
+      );
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--verd-clar);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--or-clar); display: block; }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(242,232,208,0.6);
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(242,232,208,0.6);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-verd {
+      background: var(--verd);
+      color: var(--crema);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-verd:hover { background: var(--verd-clar); transform: translateY(-2px); }
+
+    .btn-or {
+      background: transparent;
+      color: var(--or-clar);
+      border: 1px solid var(--or);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-or:hover { background: var(--glass-or); border-color: var(--or-clar); }
+
+    .hero-feats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .feat { text-align: center; }
+    .feat-icon { font-size: 2rem; display: block; margin-bottom: 0.4rem; }
+    .feat-text { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(242,232,208,0.5); font-weight: 700; }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-ornament span { font-size: 1.2rem; }
+    .section-ornament::before, .section-ornament::after {
+      content: '';
+      display: block;
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--verd-clar));
+    }
+    .section-ornament::after { background: linear-gradient(270deg, transparent, var(--verd-clar)); }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--or-clar); }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(242,232,208,0.55);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* CARTA */
+    #carta { background: #162016; }
+
+    .carta-categories {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .carta-cat-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--or-clar);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .carta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .carta-item {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .carta-item:hover { border-color: var(--or); }
+
+    .carta-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--crema);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+    .carta-desc { font-size: 0.85rem; font-weight: 300; color: rgba(242,232,208,0.6); line-height: 1.6; }
+    .carta-preu { margin-top: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; color: var(--or-clar); }
+
+    /* SOBRE */
+    #sobre { background: #0f1a0f; }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      background: linear-gradient(145deg, #162016, #0a140a);
+      border: 1px solid var(--glass-border);
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 7rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(58,94,58,0.2), transparent 65%);
+    }
+
+    .sobre-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--or-clar);
+      position: relative; z-index: 1;
+    }
+
+    .sobre-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .sobre-text h2 em { font-style: italic; color: var(--or-clar); }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(242,232,208,0.65);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .sobre-icon-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: rgba(242,232,208,0.55); }
+    .sobre-icon-item::before { content: '🌿'; }
+
+    /* CONTACTE */
+    #contacte { background: #162016; }
+
+    .contacte-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 3.5rem 3rem;
+      margin-top: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(58,94,58,0.2);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--verd-clar); font-weight: 700; }
+    .c-val { font-size: 0.9rem; font-weight: 300; color: var(--crema); }
+
+    /* FOOTER */
+    footer {
+      background: #0a120a;
+      border-top: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo em { font-style: italic; color: var(--or-clar); }
+    footer p { font-size: 0.8rem; color: rgba(242,232,208,0.4); font-weight: 300; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 220px; font-size: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo"><em>El</em> Jardinet</div>
+    <ul class="nav-links">
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag">🌿 Restaurant · Rubí · Vallès Occidental</div>
+      <h1 class="hero-title">El<br><em>Jardinet</em></h1>
+      <div class="hero-sub">Cuina de mercat · Rubí</div>
+      <p class="hero-desc">Un restaurant amb l'ànima d'un jardí. Cuina mediterrània fresca, ingredients de proximitat i un ambient que convida a gaudir de la vida.</p>
+      <div class="hero-btns">
+        <a href="#contacte" class="btn-verd">Fes una reserva</a>
+        <a href="#carta" class="btn-or">Veure la carta</a>
+      </div>
+      <div class="hero-feats">
+        <div class="feat"><span class="feat-icon">🥗</span><span class="feat-text">Cuina de mercat</span></div>
+        <div class="feat"><span class="feat-icon">🌱</span><span class="feat-text">Producte fresc</span></div>
+        <div class="feat"><span class="feat-icon">🍷</span><span class="feat-text">Vins catalans</span></div>
+        <div class="feat"><span class="feat-icon">🌺</span><span class="feat-text">Terrassa jardí</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carta">
+    <div class="section-ornament"><span>🌿</span></div>
+    <h2 class="section-title">La nostra <em>carta</em></h2>
+    <p class="section-sub">Cuina mediterrània amb productes del mercat i tocs creatius</p>
+    <div class="carta-categories">
+      <div>
+        <div class="carta-cat-title">Entrants</div>
+        <div class="carta-grid">
+          <div class="carta-item">
+            <div class="carta-nom">Amanida de temporada</div>
+            <div class="carta-desc">Verdures fresques de mercat, vinagreta de mel i mostassa, formatge de cabra</div>
+            <div class="carta-preu">9 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Croquetes de bacallà</div>
+            <div class="carta-desc">Croquetes casolanes de bacallà amb mel d'arbre i pebre vermell</div>
+            <div class="carta-preu">10 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Pa amb tomàquet artesà</div>
+            <div class="carta-desc">Pa de forn de llenya, tomàquet de penjar, oli d'oliva verge extra, sal en flocs</div>
+            <div class="carta-preu">5 €</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-cat-title">Plats Principals</div>
+        <div class="carta-grid">
+          <div class="carta-item">
+            <div class="carta-nom">Arròs del jardí</div>
+            <div class="carta-desc">Arròs de verdures de temporada, brou de pollastre de pagès, romaní fresc</div>
+            <div class="carta-preu">14 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Bacallà a la llauna</div>
+            <div class="carta-desc">Bacallà desalat, patates, pebrot, oli d'oliva, pebrots de Padrón</div>
+            <div class="carta-preu">16 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Botifarra de pagès</div>
+            <div class="carta-desc">Botifarra del Vallès a la brasa, mongetes del ganxet, allioli de llimona</div>
+            <div class="carta-preu">15 €</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-cat-title">Postres</div>
+        <div class="carta-grid">
+          <div class="carta-item">
+            <div class="carta-nom">Crema catalana</div>
+            <div class="carta-desc">La clàssica, feta a casa, amb caramel cremat al moment</div>
+            <div class="carta-preu">5 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Fruita de temporada</div>
+            <div class="carta-desc">Fruita fresca de temporada amb mel i nous</div>
+            <div class="carta-preu">4 €</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-nom">Pastís de xocolata</div>
+            <div class="carta-desc">Pastís casolà, gelat de vainilla de Bourbon, fruits vermells</div>
+            <div class="carta-preu">6 €</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-visual">
+        🌺
+        <div class="sobre-caption">Rubí · Vallès Occidental</div>
+      </div>
+      <div class="sobre-text">
+        <h2>La cuina del <em>jardí</em></h2>
+        <p>El Jardinet és el restaurant que Rubí necessitava: un lloc on la cuina mediterrània, les verdures fresques i l'ambient de jardí es fonen en una experiència memorable.</p>
+        <p>Cada dia el mercat dicta la carta. Cada ingredient té nom i procedència. Aquí no hi ha congelats ni intermediaris: cuina honesta, de la terra al plat.</p>
+        <p>La terrassa, envoltada de verd, és el lloc perfecte per gaudir d'un dinar tranquil o d'un sopar especial.</p>
+        <div class="sobre-icons">
+          <div class="sobre-icon-item">Cuina de mercat diària</div>
+          <div class="sobre-icon-item">Producte km0</div>
+          <div class="sobre-icon-item">Vins catalans</div>
+          <div class="sobre-icon-item">Terrassa-jardí</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-ornament"><span>🌿</span></div>
+      <h2 class="section-title"><em>El Jardinet</em> t'espera</h2>
+      <p class="section-sub">Rubí · Vallès Occidental · Barcelona</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Rubí, Vallès Occidental</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">foch90@gmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Dijous</span><span class="c-val">13:00 – 16:00 / 20:00 – 23:00</span></div>
+        <div class="c-row"><span class="c-key">Divendres – Dissabte</span><span class="c-val">13:00 – 16:30 / 20:00 – 23:30</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">13:00 – 16:30</span></div>
+        <a href="mailto:foch90@gmail.com" class="btn-verd" style="display:inline-block;margin-top:2.5rem;">Reserva taula</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo"><em>El</em> Jardinet</div>
+    <p>Restaurant de Cuina Mediterrània · Rubí · Vallès Occidental</p>
+    <p>© 2025 El Jardinet. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

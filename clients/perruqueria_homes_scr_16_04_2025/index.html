@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCR Perruqueria d'Homes — Barberia a Tarragona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #1C1C1C;
+      --gold: #B8963E;
+      --gold-light: #D4AF60;
+      --cream: #F5F0E8;
+      --cream-dark: #E0D5C0;
+      --glass: rgba(184, 150, 62, 0.1);
+      --glass-border: rgba(184, 150, 62, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Oswald', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(28, 28, 28, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--black) !important;
+      padding: 0.5rem 1.5rem;
+      font-weight: 700 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      background: #111111;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 30px,
+        rgba(184, 150, 62, 0.04) 30px,
+        rgba(184, 150, 62, 0.04) 32px
+      );
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 7vw, 6.5rem);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+    .hero-title .gold { color: var(--gold); }
+
+    .hero-desc {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--cream-dark);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245, 240, 232, 0.4);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-visual {
+      background: linear-gradient(145deg, #2a2a2a, #111111);
+      border: 1px solid var(--glass-border);
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      position: relative;
+    }
+
+    .hero-visual::after {
+      content: 'EST. 2021 · TARRAGONA';
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--cream-dark);
+      font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 3.5rem;
+    }
+
+    /* SERVEIS */
+    #serveis { background: #161616; }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1px;
+      max-width: 1100px;
+      margin: 0 auto;
+      border: 1px solid var(--glass-border);
+    }
+
+    .servei-card {
+      background: #1C1C1C;
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      border: 1px solid transparent;
+    }
+    .servei-card:hover { background: var(--glass); border-color: var(--glass-border); }
+
+    .servei-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--glass-border);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .servei-nom {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .servei-desc { font-weight: 300; font-size: 0.9rem; color: var(--cream-dark); line-height: 1.7; }
+    .servei-preu { margin-top: 1rem; font-weight: 700; font-size: 1rem; color: var(--cream); }
+
+    /* SOBRE */
+    #sobre { background: var(--black); }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-img {
+      background: linear-gradient(145deg, #2a2a2a 0%, #111 100%);
+      border: 1px solid var(--glass-border);
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      position: relative;
+    }
+
+    .sobre-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(184, 150, 62, 0.08));
+    }
+
+    .sobre-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .sobre-text h2 span { color: var(--gold); }
+
+    .sobre-text p {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--cream-dark);
+      margin-bottom: 1rem;
+    }
+
+    .valors {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .valor {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .valor::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* CONTACTE */
+    #contacte { background: #111111; }
+
+    .contacte-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .contacte-block {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+    }
+
+    .cb-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .cb-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.08em; }
+
+    .horari-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .horari-list li { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 300; }
+    .horari-list .dia { color: var(--cream-dark); }
+    .horari-list .hora { color: var(--cream); font-weight: 500; }
+
+    .cta-box {
+      grid-column: 1 / -1;
+      background: var(--gold);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .cta-box p {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+
+    .cta-box a {
+      background: var(--black);
+      color: var(--gold);
+      padding: 0.8rem 2.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .cta-box a:hover { background: #2a2a2a; }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.15em; }
+    .footer-copy { font-size: 0.8rem; color: var(--cream-dark); font-weight: 300; }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-img { height: 220px; font-size: 5rem; }
+      .contacte-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">SCR</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Reserva</a></li>
+      <li><a href="#contacte" class="nav-cta">Cita Prèvia</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Barberia Premium · Tarragona</div>
+        <h1 class="hero-title">L'art <span class="gold">del</span><br>tall perfecte</h1>
+        <p class="hero-desc">Barberia clàssica americana amb toc modern. Navalla, cuir i miralls de fusta. Aquí l'estil és cosa sèria.</p>
+        <div class="hero-btns">
+          <a href="#contacte" class="btn-gold">Reserva cita</a>
+          <a href="#serveis" class="btn-outline">Veure serveis</a>
+        </div>
+      </div>
+      <div class="hero-visual">✂️</div>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-eyebrow">Els nostres serveis</div>
+    <h2 class="section-title">Artesania en cada tall</h2>
+    <p class="section-sub">Serveis professionals per a l'home d'avui</p>
+    <div class="serveis-grid" style="max-width:1100px;margin:0 auto;">
+      <div class="servei-card">
+        <div class="servei-num">01</div>
+        <div class="servei-nom">Tall de cabell</div>
+        <div class="servei-desc">Tall clàssic o modern adaptat a la forma del teu rostre. Acabat amb navalla i productes premium.</div>
+        <div class="servei-preu">Des de 15 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-num">02</div>
+        <div class="servei-nom">Afaitada clàssica</div>
+        <div class="servei-desc">Afaitada amb navalla recta, tovallola calenta, mousse artesanal i productes hidratants de qualitat.</div>
+        <div class="servei-preu">Des de 18 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-num">03</div>
+        <div class="servei-nom">Tall + Barba</div>
+        <div class="servei-desc">Pack complet: tall de cabell i arreglat de barba professional. El combo de l'home modern.</div>
+        <div class="servei-preu">Des de 28 €</div>
+      </div>
+      <div class="servei-card">
+        <div class="servei-num">04</div>
+        <div class="servei-nom">Arreglat de barba</div>
+        <div class="servei-desc">Perfil de barba, perfeccionat amb navalla. De la barba de tres dies a la barba plena.</div>
+        <div class="servei-preu">Des de 12 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-img">💈</div>
+      <div class="sobre-text">
+        <h2>Tradició i <span>qualitat</span><br>des del primer dia</h2>
+        <p>A SCR creiem que una bona perruqueria no és només un lloc on tallar-se els cabells. És un ritual, un moment per a tu.</p>
+        <p>Inspirats en les grans barberies americanes dels anys 50, combinem tècniques clàssiques amb les tendències actuals. Cadascun dels nostres serveis és executat amb precisió, cura i els millors productes del mercat.</p>
+        <p>Tarragona, la nostra casa. El teu look, la nostra obsessió.</p>
+        <div class="valors">
+          <div class="valor">Tècnics amb formació professional certificada</div>
+          <div class="valor">Productes premium nacionals i internacionals</div>
+          <div class="valor">Atenció personalitzada i sense presses</div>
+          <div class="valor">Ambient tranquil i professional</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-eyebrow">Troba'ns</div>
+      <h2 class="section-title">Vine a la barberia</h2>
+      <p class="section-sub">Cita prèvia recomanada · Tarragona</p>
+      <div class="contacte-grid">
+        <div class="contacte-block">
+          <div class="cb-label">Contacte</div>
+          <div class="cb-val">scrperruqueriahomes@gmail.com</div>
+        </div>
+        <div class="contacte-block">
+          <div class="cb-label">Horari</div>
+          <ul class="horari-list">
+            <li><span class="dia">Dilluns – Divendres</span><span class="hora">09:00 – 20:00</span></li>
+            <li><span class="dia">Dissabte</span><span class="hora">09:00 – 14:00</span></li>
+            <li><span class="dia">Diumenge</span><span class="hora">Tancat</span></li>
+          </ul>
+        </div>
+        <div class="cta-box">
+          <p>Reserva la teva cita ara</p>
+          <a href="mailto:scrperruqueriahomes@gmail.com">Escriu-nos un email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">SCR PERRUQUERIA D'HOMES</div>
+    <div class="footer-copy">© 2025 SCR · Barberia Professional · Tarragona</div>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

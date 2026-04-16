@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perruqueria Lourdes — Figueres</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa: #E8C4D0;
+      --rosa-fosc: #A0607A;
+      --rosa-mig: #C8889A;
+      --crema: #F9F3F5;
+      --crema-fosc: #EDE0E5;
+      --text: #2E1520;
+      --text-muted: #6A4055;
+      --glass: rgba(232, 196, 208, 0.15);
+      --glass-border: rgba(232, 196, 208, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--crema);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(249, 243, 245, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--rosa-fosc);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--rosa-fosc); }
+
+    .nav-cta {
+      background: var(--rosa-fosc) !important;
+      color: #fff !important;
+      padding: 0.5rem 1.3rem;
+      font-weight: 500 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      background: linear-gradient(160deg, var(--crema) 0%, #f5e8ed 50%, var(--crema-fosc) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,136,154,0.15), transparent 65%);
+      bottom: -200px; right: -200px;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,196,208,0.2), transparent 65%);
+      top: 100px; left: -100px;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-signature {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      font-weight: 400;
+      color: var(--rosa-fosc);
+      line-height: 0.9;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-title-sub {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--rosa-mig);
+      margin: 1.5rem auto;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--rosa-fosc);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: #8a506a; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--rosa-fosc);
+      border: 1px solid var(--rosa-fosc);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { background: var(--rosa-fosc); color: #fff; }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-ornament::before, .section-ornament::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: var(--rosa-mig);
+    }
+    .section-ornament span { font-size: 1rem; color: var(--rosa-mig); }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--rosa-fosc); }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* SERVEIS */
+    #serveis { background: #fff; }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servei-card {
+      background: var(--crema);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .servei-card:hover { border-color: var(--rosa-mig); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(160,96,122,0.1); }
+
+    .servei-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+    .servei-nom {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .servei-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .servei-preu {
+      margin-top: 1.25rem;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--rosa-fosc);
+      font-size: 1rem;
+    }
+
+    /* SOBRE */
+    #sobre { background: var(--crema); }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      background: linear-gradient(145deg, var(--crema-fosc), #f0d8e0);
+      border: 1px solid var(--glass-border);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 7rem;
+    }
+
+    .sobre-visual-caption {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .sobre-text h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .sobre-text h2 em { font-style: italic; color: var(--rosa-fosc); }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-firma {
+      margin-top: 1.5rem;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--rosa-fosc);
+    }
+
+    /* CONTACTE */
+    #contacte { background: #fff; }
+
+    .contacte-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: var(--crema);
+      border: 1px solid var(--glass-border);
+      padding: 3.5rem 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-family: 'Raleway', sans-serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rosa-mig); font-weight: 600; }
+    .c-val { font-size: 0.9rem; font-weight: 400; color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: var(--rosa-fosc);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.8rem; color: rgba(249,243,245,0.65); font-weight: 300; margin-top: 0.3rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 220px; font-size: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Lourdes</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-signature">Lourdes</div>
+      <div class="hero-title-sub">Perruqueria · Figueres · Alt Empordà</div>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">La perruqueria de barri amb el nom que et fa confiar des del primer dia. Qualitat, calidesa i un tracte de tota la vida a Figueres.</p>
+      <div class="hero-btns">
+        <a href="#contacte" class="btn-primary">Reserva cita</a>
+        <a href="#serveis" class="btn-secondary">Veure serveis</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-ornament"><span>✦</span></div>
+    <h2 class="section-title">Els nostres <em>serveis</em></h2>
+    <p class="section-sub">Perruqueria professional amb tota l'atenció que mereixeu</p>
+    <div class="serveis-grid">
+      <div class="servei-card">
+        <span class="servei-icon">✂️</span>
+        <div class="servei-nom">Tall & Pentinat</div>
+        <div class="servei-desc">Tall personalitzat, assecador i pentinat. Resultat garantit per a qualsevol ocasió.</div>
+        <div class="servei-preu">Des de 18 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">🎨</span>
+        <div class="servei-nom">Coloració</div>
+        <div class="servei-desc">Tints permanents, mechas, reflexos i tècniques modernes. Colors naturals i lluminosos.</div>
+        <div class="servei-preu">Des de 38 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">💆‍♀️</span>
+        <div class="servei-nom">Tractaments</div>
+        <div class="servei-desc">Hidratació, reparació i nutrició capilar. El cabell que sempre has desitjat.</div>
+        <div class="servei-preu">Des de 22 €</div>
+      </div>
+      <div class="servei-card">
+        <span class="servei-icon">💍</span>
+        <div class="servei-nom">Nuvis & Especials</div>
+        <div class="servei-desc">Pentinats per a casaments, comunions i celebracions. El dia especial, perfectament acabat.</div>
+        <div class="servei-preu">Des de 55 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <h2>Una perruqueria<br><em>de tota la vida</em></h2>
+        <p>A Figueres, la Perruqueria Lourdes és una d'aquelles coses que no canvien: qualitat de sempre, tracte familiar i resultats que parlen per si mateixos.</p>
+        <p>La Lourdes coneix les seves clientes, el seu cabell, les seves preferències. Aquí no ets un número: ets la Mireia, la Montserrat, l'Anna — la de sempre.</p>
+        <p>L'Alt Empordà té el seu encant, i la Perruqueria Lourdes en forma part.</p>
+        <div class="sobre-firma">— La Lourdes i el seu equip</div>
+      </div>
+      <div class="sobre-visual">
+        🌷
+        <div class="sobre-visual-caption">Figueres · Alt Empordà</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-ornament"><span>✦</span></div>
+      <h2 class="section-title">Vine a <em>Lourdes</em></h2>
+      <p class="section-sub">Figueres · Alt Empordà · Girona</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Figueres, Alt Empordà</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">perruquerialourdes5@gmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Divendres</span><span class="c-val">09:00 – 19:30</span></div>
+        <div class="c-row"><span class="c-key">Dissabte</span><span class="c-val">09:00 – 14:00</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">Tancat</span></div>
+        <a href="mailto:perruquerialourdes5@gmail.com" class="btn-primary" style="display:inline-block;margin-top:2rem;">Escriu-nos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Perruqueria Lourdes</div>
+    <p>Perruqueria Clàssica · Figueres · Alt Empordà</p>
+    <p>© 2025 Perruqueria Lourdes. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>

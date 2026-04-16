@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alba Solé — Perruqueria & Barberia · Artesa de Segre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --antracita: #2C2C2C;
+      --or: #C8A45A;
+      --or-clar: #E8D5A0;
+      --or-fosc: #A07830;
+      --crema: #F8F3E8;
+      --text-fosc: #1A1A1A;
+      --text-muted: #5A5040;
+      --glass: rgba(200, 164, 90, 0.1);
+      --glass-border: rgba(200, 164, 90, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--antracita);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(44, 44, 44, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-name {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--crema);
+    }
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-top: 0.1rem;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(248,243,232,0.65);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or); }
+
+    .nav-cta {
+      background: var(--or) !important;
+      color: var(--antracita) !important;
+      padding: 0.5rem 1.3rem;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--antracita);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 3rem 5rem 5rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, var(--antracita) 100%);
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; right: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--or), transparent);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 5rem 5rem 3rem;
+      background: linear-gradient(135deg, var(--antracita) 0%, #1e1a10 100%);
+    }
+
+    .hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    .hero-left .hero-label { color: rgba(248,243,232,0.5); }
+    .hero-right .hero-label { color: var(--or); }
+
+    .hero-title-l {
+      font-family: 'Crimson Text', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1;
+      color: var(--crema);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title-r {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--or);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .hero-left .hero-desc { color: rgba(248,243,232,0.6); }
+    .hero-right .hero-desc { color: rgba(200,164,90,0.7); }
+
+    .btn-crema {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid rgba(248,243,232,0.4);
+      color: var(--crema);
+      padding: 0.85rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-crema:hover { border-color: var(--crema); background: rgba(248,243,232,0.1); }
+
+    .btn-or {
+      display: inline-block;
+      background: var(--or);
+      border: none;
+      color: var(--antracita);
+      padding: 0.85rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-or:hover { background: var(--or-clar); transform: translateY(-2px); }
+
+    /* SECCIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      color: var(--crema);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .section-title .or { color: var(--or); }
+    .section-title em {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.2em;
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(248,243,232,0.55);
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* SERVEIS - dual */
+    #serveis { background: #222222; }
+
+    .serveis-dual {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .serveis-divider { background: var(--glass-border); }
+
+    .serveis-col { padding: 0 2.5rem; }
+
+    .serveis-col-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .serveis-col-icon { font-size: 2rem; }
+    .serveis-col-name {
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .serveis-col-name.crema { color: var(--crema); }
+    .serveis-col-name.or { color: var(--or); }
+
+    .servei-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(200,164,90,0.08);
+    }
+    .servei-row:last-child { border-bottom: none; }
+    .servei-row-nom { font-size: 0.9rem; font-weight: 600; color: var(--crema); }
+    .servei-row-preu { font-family: 'Crimson Text', serif; font-style: italic; font-size: 1rem; color: var(--or); }
+    .servei-row-desc { font-size: 0.8rem; color: rgba(248,243,232,0.5); margin-top: 0.2rem; }
+
+    /* SOBRE */
+    #sobre { background: var(--antracita); }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      background: linear-gradient(145deg, #222, #1a1a10);
+      border: 1px solid var(--glass-border);
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 6rem;
+      position: relative;
+    }
+
+    .sobre-visual::before {
+      content: 'PERRUQUERIA';
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: rgba(248,243,232,0.3);
+      white-space: nowrap;
+    }
+
+    .sobre-visual::after {
+      content: 'BARBERIA';
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--or);
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+
+    .sobre-text h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+    .sobre-text h2 .or { color: var(--or); }
+    .sobre-text h2 em {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.15em;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: var(--crema);
+      display: block;
+    }
+
+    .sobre-text p {
+      font-size: 0.95rem;
+      color: rgba(248,243,232,0.6);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .sobre-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .pill {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--or);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* CONTACTE */
+    #contacte { background: #1a1a1a; }
+
+    .contacte-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contacte-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 3rem 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .c-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(200,164,90,0.1);
+    }
+    .c-row:last-of-type { border-bottom: none; }
+    .c-key { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--or); font-weight: 600; }
+    .c-val { font-size: 0.9rem; color: var(--crema); font-weight: 400; }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      border-top: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-name { font-family: 'Crimson Text', serif; font-style: italic; font-size: 1.4rem; color: var(--crema); }
+    .footer-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); }
+    footer .copy { font-size: 0.8rem; color: rgba(248,243,232,0.35); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 2rem 2rem; }
+      .hero-right { padding: 2rem; }
+      .hero-left::after { display: none; }
+      .serveis-dual { grid-template-columns: 1fr; }
+      .serveis-divider { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { height: 220px; font-size: 5rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-name">Alba Solé</div>
+      <div class="nav-logo-sub">Perruqueria · Barberia</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+      <li><a href="#contacte" class="nav-cta">Reserva</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-label">Perruqueria · Artesa de Segre</div>
+      <h1 class="hero-title-l">L'art del<br>cabell perfecte</h1>
+      <p class="hero-desc">Elegància i precisió per a cada client. Tallats, coloració i tractaments de la mà de l'Alba Solé.</p>
+      <a href="#contacte" class="btn-crema">Reserva perruqueria</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-label">Barberia · Artesa de Segre</div>
+      <h2 class="hero-title-r">Tall &<br>Afaitada</h2>
+      <p class="hero-desc">Barberia de precisió. Navalla, cabell curt, arreglat de barba. L'home modern, perfecte.</p>
+      <a href="#contacte" class="btn-or">Reserva barberia</a>
+    </div>
+  </section>
+
+  <section id="serveis">
+    <div class="section-label">La nostra oferta completa</div>
+    <h2 class="section-title"><em>Serveis</em> <span class="or">Dual</span></h2>
+    <p class="section-sub">Perruqueria per a tothom · Barberia per a ells</p>
+    <div class="serveis-dual">
+      <div class="serveis-col">
+        <div class="serveis-col-title">
+          <span class="serveis-col-icon">💇‍♀️</span>
+          <div class="serveis-col-name crema">Perruqueria</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Tall & Pentinat</div>
+            <div class="servei-row-desc">Adaptat al teu estil i fisionomia</div>
+          </div>
+          <div class="servei-row-preu">Des de 20 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Coloració & Mechas</div>
+            <div class="servei-row-desc">Coloració permanent i tècniques modernes</div>
+          </div>
+          <div class="servei-row-preu">Des de 45 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Tractaments Capilars</div>
+            <div class="servei-row-desc">Nutrició, hidratació i reparació</div>
+          </div>
+          <div class="servei-row-preu">Des de 28 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Nuvis & Celebracions</div>
+            <div class="servei-row-desc">Pentinats per a ocasions especials</div>
+          </div>
+          <div class="servei-row-preu">Des de 55 €</div>
+        </div>
+      </div>
+      <div class="serveis-divider"></div>
+      <div class="serveis-col">
+        <div class="serveis-col-title">
+          <span class="serveis-col-icon">💈</span>
+          <div class="serveis-col-name or">Barberia</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Tall de Cabell</div>
+            <div class="servei-row-desc">Clàssic o modern, acabat amb navalla</div>
+          </div>
+          <div class="servei-row-preu">Des de 15 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Arreglat de Barba</div>
+            <div class="servei-row-desc">Perfil i acabat professional</div>
+          </div>
+          <div class="servei-row-preu">Des de 12 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Pack Tall + Barba</div>
+            <div class="servei-row-desc">El combo complet de l'home</div>
+          </div>
+          <div class="servei-row-preu">Des de 25 €</div>
+        </div>
+        <div class="servei-row">
+          <div>
+            <div class="servei-row-nom">Afaitada Clàssica</div>
+            <div class="servei-row-desc">Tovallola calenta i navalla recta</div>
+          </div>
+          <div class="servei-row-preu">Des de 18 €</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-visual">✂️</div>
+      <div class="sobre-text">
+        <h2><span class="or">Alba Solé</span><br><em>Artesa de Segre</em></h2>
+        <p>Artesa de Segre, a la Noguera lleidatana, és un lloc on els negocis locals marquen la diferència. L'Alba Solé ho entén: perruqueria i barberia sota un mateix sostre, amb la identitat clara d'algú que sap el que fa.</p>
+        <p>La combinació de sensibilitat femenina en la perruqueria i rigor professional en la barberia crea un espai únic on cada client rep exactament el que necessita.</p>
+        <p>Modern en el rural. Professional en el tracte. Precís en el resultat.</p>
+        <div class="sobre-pills">
+          <span class="pill">Artesa de Segre · Noguera</span>
+          <span class="pill">Perruqueria & Barberia</span>
+          <span class="pill">Dual · Femení & Masculí</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacte">
+    <div class="contacte-inner">
+      <div class="section-label">Vine a veure'ns</div>
+      <h2 class="section-title"><em>Alba Solé</em></h2>
+      <p class="section-sub">Artesa de Segre · Noguera · Lleida</p>
+      <div class="contacte-card">
+        <div class="c-row"><span class="c-key">Ubicació</span><span class="c-val">Artesa de Segre, Noguera (Lleida)</span></div>
+        <div class="c-row"><span class="c-key">Email</span><span class="c-val">albasoleperruqueria@gmail.com</span></div>
+        <div class="c-row"><span class="c-key">Dilluns – Divendres</span><span class="c-val">09:00 – 20:00</span></div>
+        <div class="c-row"><span class="c-key">Dissabte</span><span class="c-val">09:00 – 14:00</span></div>
+        <div class="c-row"><span class="c-key">Diumenge</span><span class="c-val">Tancat</span></div>
+        <a href="mailto:albasoleperruqueria@gmail.com" class="btn-or" style="display:inline-block;margin-top:2rem;">Sol·licita cita</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <div class="footer-name">Alba Solé</div>
+      <div class="footer-sub">Perruqueria · Barberia · Artesa de Segre</div>
+    </div>
+    <div class="copy">© 2025 Alba Solé. Tots els drets reservats.</div>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
