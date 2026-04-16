@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Selva Floristeria — Terrassa</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verd: #2D5A27;
+      --verd-clar: #8FBC45;
+      --blanc: #F5F8EC;
+      --blanc-pur: #ffffff;
+      --text: #1a2e18;
+      --gris: #6a7a65;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--blanc);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(245, 248, 236, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(45, 90, 39, 0.1);
+    }
+    .nav-logo {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.4rem;
+      color: var(--verd);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--verd-clar); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gris);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--verd); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 2.5rem 5rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #e8f0d8 0%, #d4e8b8 40%, #c8e0a8 100%);
+    }
+    .hero-leafs {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .leaf {
+      position: absolute;
+      opacity: 0.15;
+      font-size: 4rem;
+      animation: drift 8s ease-in-out infinite;
+    }
+    .leaf:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; font-size: 5rem; }
+    .leaf:nth-child(2) { top: 20%; right: 8%; animation-delay: 2s; font-size: 3rem; }
+    .leaf:nth-child(3) { top: 60%; left: 3%; animation-delay: 4s; }
+    .leaf:nth-child(4) { top: 70%; right: 5%; animation-delay: 1s; font-size: 6rem; }
+    .leaf:nth-child(5) { top: 40%; right: 15%; animation-delay: 3s; font-size: 2rem; }
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(45,90,39,0.1);
+      border: 1px solid rgba(45,90,39,0.2);
+      color: var(--verd);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 1;
+      color: var(--verd);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 .light { color: var(--verd-clar); }
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--gris);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-forest {
+      background: var(--verd);
+      color: white;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      border-radius: 100px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 24px rgba(45,90,39,0.25);
+    }
+    .btn-forest:hover { background: #3a7030; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--verd);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      border-radius: 100px;
+      border: 2px solid var(--verd);
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--verd); color: white; }
+
+    /* STATS */
+    .stats {
+      background: var(--verd);
+      padding: 2.5rem;
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; color: white; }
+    .stat-num {
+      font-family: 'Abril Fatface', serif;
+      font-size: 2.5rem;
+      color: var(--verd-clar);
+      display: block;
+    }
+    .stat-label { font-size: 0.8rem; opacity: 0.7; margin-top: 0.2rem; letter-spacing: 0.08em; }
+
+    /* SECCIONS */
+    .section {
+      padding: 6rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--verd-clar);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--verd);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 1rem; font-weight: 300; color: var(--gris); line-height: 1.8; max-width: 500px; margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--blanc-pur);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(143,188,69,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(45,90,39,0.1); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .service-name {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.2rem;
+      color: var(--verd);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--gris); line-height: 1.7; font-weight: 300; }
+    .service-price {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(143,188,69,0.15);
+      color: var(--verd);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* SOBRE */
+    .sobre-section {
+      background: var(--verd);
+      padding: 6rem 2.5rem;
+    }
+    .sobre-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .sobre-text {}
+    .sobre-text .section-tag { color: var(--verd-clar); }
+    .sobre-text .section-title { color: white; }
+    .sobre-text p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.9; font-weight: 300; margin-bottom: 1.2rem; }
+    .sobre-pills {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+    }
+    .pill {
+      background: rgba(143,188,69,0.2);
+      color: var(--verd-clar);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .sobre-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sobre-circle-outer {
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(143,188,69,0.1);
+      border: 2px solid rgba(143,188,69,0.2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .sobre-circle-inner {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--verd-clar), var(--verd));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 6rem 2.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contacte-card {
+      background: linear-gradient(135deg, var(--verd), #3a7030);
+      border-radius: 30px;
+      padding: 4rem 3rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .contacte-card::before {
+      content: '🌿';
+      position: absolute;
+      font-size: 8rem;
+      bottom: -1rem; right: -1rem;
+      opacity: 0.08;
+    }
+    .contacte-card h2 {
+      font-family: 'Abril Fatface', serif;
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    .contacte-card p {
+      font-size: 1rem; font-weight: 300; opacity: 0.8; line-height: 1.7; margin-bottom: 2rem; position: relative;
+    }
+    .contacte-items { display: flex; flex-direction: column; gap: 0.8rem; position: relative; }
+    .c-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s;
+    }
+    .c-item:hover { background: rgba(255,255,255,0.2); }
+    .c-item span { font-size: 1.2rem; }
+
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; }
+      .sobre-visual { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">La <span>Selva</span> 🌿</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-leafs">
+      <span class="leaf">🍃</span>
+      <span class="leaf">🌿</span>
+      <span class="leaf">🍃</span>
+      <span class="leaf">🌱</span>
+      <span class="leaf">🍃</span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🌸 Floristeria · Terrassa</div>
+      <h1>La <span class="light">Selva</span></h1>
+      <p class="hero-sub">
+        Floristeria amb ànima de bosc i jardí. Flors fresques, plantes vives, rams artesans i decoració floral per a cada moment especial.
+      </p>
+      <div class="hero-cta">
+        <a href="#contacte" class="btn-forest">Contactar ara</a>
+        <a href="#serveis" class="btn-outline">Veure serveis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">+20</span>
+      <span class="stat-label">Anys a Terrassa</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">365</span>
+      <span class="stat-label">Dies de flors fresques</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Artesà i natural</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5★</span>
+      <span class="stat-label">Satisfacció</span>
+    </div>
+  </div>
+
+  <!-- SERVEIS -->
+  <section class="section" id="serveis">
+    <span class="section-tag">— El nostre jardí</span>
+    <h2 class="section-title">Serveis i<br>propostes florals</h2>
+    <p class="section-sub">Des de flors del dia fins a decoració per a grans esdeveniments. Cada peça, feta amb amor per la natura.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">💐</span>
+        <div class="service-name">Rams Artesans</div>
+        <div class="service-desc">Rams personalitzats per a regals, aniversaris, declaracions i qualsevol moment que vulguis fer especial.</div>
+        <div class="service-price">Des de 15€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💍</span>
+        <div class="service-name">Flors de Noces</div>
+        <div class="service-desc">Ram de núvia, centres de taula, decoració de cerimònia i banquet. El teu dia, florit com mai.</div>
+        <div class="service-price">Pressupost personalitzat</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌱</span>
+        <div class="service-name">Plantes d'Interior</div>
+        <div class="service-desc">Selecció de plantes d'interior per a casa o oficina. Assessorament sobre cura i manteniment inclòs.</div>
+        <div class="service-price">Des de 8€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🪴</span>
+        <div class="service-name">Jardí i Terrassa</div>
+        <div class="service-desc">Plantes d'exterior, jardineres, substrats i productes de jardineria. Per a terrassos i balcons plens de vida.</div>
+        <div class="service-price">Des de 12€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎄</span>
+        <div class="service-name">Decoració de Temporada</div>
+        <div class="service-desc">Nadal, Setmana Santa, Halloween i cada festivitat amb decoració floral i ornamental única.</div>
+        <div class="service-price">Des de 20€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏢</span>
+        <div class="service-name">Serveis d'Empresa</div>
+        <div class="service-desc">Decoració floral setmanal per a oficines, hotels i restaurants. Subscripció mensual amb manteniment.</div>
+        <div class="service-price">A consultar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre-section" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <span class="section-tag">— Sobre La Selva</span>
+        <h2 class="section-title">Natura, cura<br>i passió floral</h2>
+        <p>La Selva és molt més que una floristeria. És un espai on la natura entra per la porta i surt de les nostres mans feta art. Portem més de 20 anys fent feina a Terrassa amb la mateixa passió del primer dia.</p>
+        <p>Cada flor que entra al nostre taller és seleccionada amb cura per garantir la màxima frescor i durada. Treballem amb proveïdors locals i holandesos de primera qualitat.</p>
+        <div class="sobre-pills">
+          <span class="pill">🌸 Flors fresques diàries</span>
+          <span class="pill">🌿 Plantes de qualitat</span>
+          <span class="pill">💚 Proveïdors seleccionats</span>
+          <span class="pill">✂️ Composicions artesanes</span>
+          <span class="pill">📦 Entregues a Terrassa</span>
+        </div>
+      </div>
+      <div class="sobre-visual">
+        <div class="sobre-circle-outer">
+          <div class="sobre-circle-inner">🌺</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <span class="section-tag" style="display:block;margin-bottom:0.5rem;">— Contacte</span>
+    <h2 class="section-title" style="text-align:center;margin-bottom:0.5rem;">Truca'ns o vine a veure'ns</h2>
+    <p class="section-sub" style="max-width:100%;text-align:center;margin:0 auto 2.5rem;">Vine a la botiga a escollir les teves flors o comanda per telèfon. T'atenem amb tota la cura.</p>
+    <div class="contacte-card">
+      <h2>La Selva Floristeria</h2>
+      <p>A Terrassa, rodejats de vida i color. Visita'ns!</p>
+      <div class="contacte-items">
+        <a href="tel:+34937000000" class="c-item">
+          <span>📞</span> Truca per encomanar
+        </a>
+        <a href="https://wa.me/34937000000" class="c-item">
+          <span>💬</span> WhatsApp — Envia'ns una foto de referència
+        </a>
+        <a href="mailto:Laselva11@gmail.com" class="c-item">
+          <span>✉️</span> Laselva11@gmail.com
+        </a>
+        <div class="c-item">
+          <span>🕐</span> Dl–Dv: 9h–13:30h i 16:30h–20h · Ds: 9h–14h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>La Selva Floristeria</strong> · Terrassa · © 2025 Tots els drets reservats
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
