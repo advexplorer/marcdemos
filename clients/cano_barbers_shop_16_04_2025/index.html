@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CANO Barbers Shop — Vilanova i la Geltrú</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --negre: #1A1A1A;
+      --or: #C8A050;
+      --cru: #E8DCC8;
+      --fosc: #0f0f0f;
+      --gris: #888878;
+      --or-light: rgba(200,160,80,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--negre);
+      color: var(--cru);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,160,80,0.12);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.3em;
+      color: var(--or);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gris);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding: 0 3rem 6rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(170deg, #0f0f0f 0%, #1a1208 50%, #1a1a1a 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,160,80,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,160,80,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,160,80,0.07), transparent 60%);
+      top: 50%; right: -100px;
+      transform: translateY(-50%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .eyebrow-line { width: 60px; height: 1px; background: var(--or); }
+    .eyebrow-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.85;
+      letter-spacing: 0.1em;
+      color: var(--cru);
+      margin-bottom: 2rem;
+    }
+    .hero h1 .or { color: var(--or); }
+    .hero-bottom {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--gris);
+      letter-spacing: 0.05em;
+      max-width: 400px;
+      line-height: 1.8;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-shrink: 0; }
+    .btn-or {
+      background: var(--or);
+      color: var(--fosc);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-or:hover { background: #d8b060; }
+    .btn-border {
+      background: transparent;
+      color: var(--cru);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(232,220,200,0.3);
+      transition: all 0.3s;
+    }
+    .btn-border:hover { border-color: var(--or); color: var(--or); }
+
+    /* STATS */
+    .stats {
+      border-top: 1px solid rgba(200,160,80,0.1);
+      border-bottom: 1px solid rgba(200,160,80,0.1);
+      padding: 2rem 3rem;
+      display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap;
+      background: rgba(255,255,255,0.02);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      color: var(--or);
+      display: block;
+    }
+    .stat-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); }
+
+    /* SERVEIS */
+    .section {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 0.1em;
+      color: var(--cru);
+      line-height: 0.95;
+      margin-bottom: 2rem;
+    }
+    .section-sub { font-size: 0.9rem; font-weight: 300; color: var(--gris); line-height: 1.9; max-width: 480px; }
+
+    .services-list {
+      margin-top: 3rem;
+      display: flex; flex-direction: column;
+      border-top: 1px solid rgba(200,160,80,0.12);
+    }
+    .service-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(200,160,80,0.12);
+      gap: 2rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-row:hover { padding-left: 1rem; }
+    .service-row-left { display: flex; align-items: center; gap: 2rem; }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: rgba(200,160,80,0.4);
+      letter-spacing: 0.1em;
+      min-width: 40px;
+    }
+    .service-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      color: var(--cru);
+    }
+    .service-desc { font-size: 0.82rem; color: var(--gris); font-weight: 300; line-height: 1.6; margin-top: 0.2rem; max-width: 350px; }
+    .service-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--or);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(200,160,80,0.08);
+      border-bottom: 1px solid rgba(200,160,80,0.08);
+      padding: 7rem 3rem;
+    }
+    .sobre-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
+    }
+    .sobre-left {}
+    .sobre-left .section-sub { max-width: 100%; margin-top: 1.5rem; }
+    .sobre-values { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+    .sobre-value {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(200,160,80,0.08);
+    }
+    .sobre-value:last-child { border-bottom: none; }
+    .sv-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .sv-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.1em; color: var(--or); }
+    .sv-text { font-size: 0.82rem; color: var(--gris); font-weight: 300; line-height: 1.6; margin-top: 0.2rem; }
+    .sobre-right { position: relative; }
+    .sobre-bigtext {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14rem;
+      line-height: 1;
+      letter-spacing: 0.1em;
+      color: rgba(200,160,80,0.05);
+      position: absolute;
+      top: -3rem; left: -2rem;
+    }
+    .sobre-box {
+      position: relative; z-index: 1;
+      border: 1px solid rgba(200,160,80,0.2);
+      padding: 3rem;
+    }
+    .sobre-quote {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--cru);
+      line-height: 1.9;
+      font-style: italic;
+    }
+    .sobre-quote-or {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--or);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contacte-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .contacte-items { display: flex; flex-direction: column; gap: 1rem; }
+    .c-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(200,160,80,0.15);
+      text-decoration: none;
+      color: var(--cru);
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: all 0.3s;
+    }
+    .c-item:hover { border-color: var(--or); color: var(--or); }
+    .c-item-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+    footer {
+      border-top: 1px solid rgba(200,160,80,0.1);
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.2em; color: var(--or); }
+    .footer-copy { font-size: 0.75rem; color: var(--gris); letter-spacing: 0.08em; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner, .contacte-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero h1 { font-size: 4rem; }
+      .sobre-bigtext { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">CANO</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Barbers Shop · Vilanova i la Geltrú</span>
+      </div>
+      <h1><span class="or">CANO</span><br>BARBERS</h1>
+      <div class="hero-bottom">
+        <p class="hero-sub">Sofisticat, urbà i precís. L'estètica masculina elevada a art a Vilanova i la Geltrú.</p>
+        <div class="hero-cta">
+          <a href="#contacte" class="btn-or">Reservar cita</a>
+          <a href="#serveis" class="btn-border">Serveis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">8+</span>
+      <span class="stat-label">Anys al Garraf</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">600+</span>
+      <span class="stat-label">Clients mensuals</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5★</span>
+      <span class="stat-label">Valoració Google</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">0</span>
+      <span class="stat-label">Esperes amb cita</span>
+    </div>
+  </div>
+
+  <!-- SERVEIS -->
+  <section class="section" id="serveis">
+    <span class="section-tag">— Serveis</span>
+    <h2 class="section-title">EL MILLOR<br>DELS TALLATS</h2>
+    <p class="section-sub">Cada visita a CANO és una experiència. El nostre equip et garanteix precisió, qualitat i un resultat que et farà tornar.</p>
+    <div class="services-list">
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">01</span>
+          <span class="service-icon">✂️</span>
+          <div>
+            <div class="service-name">TALL DE CABELL</div>
+            <div class="service-desc">Tall clàssic o modern amb tisores i maquineta. Rentat, assecament i estilitzat inclosos.</div>
+          </div>
+        </div>
+        <div class="service-price">15€</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">02</span>
+          <span class="service-icon">🪒</span>
+          <div>
+            <div class="service-name">ARREGLAT DE BARBA</div>
+            <div class="service-desc">Perfilat i tallat de barba amb navalla, tovallola calenta i aftershave premium.</div>
+          </div>
+        </div>
+        <div class="service-price">12€</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">03</span>
+          <span class="service-icon">👑</span>
+          <div>
+            <div class="service-name">PACK COMPLET</div>
+            <div class="service-desc">Tall de cabell + barba. El look complert per sortir d'aquí com un nou.</div>
+          </div>
+        </div>
+        <div class="service-price">25€</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">04</span>
+          <span class="service-icon">💎</span>
+          <div>
+            <div class="service-name">EXPERIÈNCIA PREMIUM</div>
+            <div class="service-desc">Pack complet + afaitada clàssica amb navalla + hidratació facial. El màxim del benestar masculí.</div>
+          </div>
+        </div>
+        <div class="service-price">40€</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">05</span>
+          <span class="service-icon">🎨</span>
+          <div>
+            <div class="service-name">COLOR I MATISAT</div>
+            <div class="service-desc">Tint, dissimulat de canes i matisat de color per a un resultat completament natural.</div>
+          </div>
+        </div>
+        <div class="service-price">25€</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-left">
+          <span class="service-num">06</span>
+          <span class="service-icon">👦</span>
+          <div>
+            <div class="service-name">TALL INFANTIL</div>
+            <div class="service-desc">Per als més petits de la família. Professionals pacients i un resultat que satisfarà tota la casa.</div>
+          </div>
+        </div>
+        <div class="service-price">10€</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-left">
+        <span class="section-tag">— Sobre CANO</span>
+        <h2 class="section-title">ARTESANS<br>DEL TALL</h2>
+        <p class="section-sub">CANO és una marca potent i precisa. Establerta a Vilanova i la Geltrú, al cor del Garraf, portem anys fent de la barberia una disciplina artística.</p>
+        <div class="sobre-values">
+          <div class="sobre-value">
+            <span class="sv-icon">✂️</span>
+            <div>
+              <div class="sv-title">PRECISIÓ ABSOLUTA</div>
+              <div class="sv-text">Cada tall es planifica. Cada línia, perfecta. Treballem amb les millors eines professionals del mercat.</div>
+            </div>
+          </div>
+          <div class="sobre-value">
+            <span class="sv-icon">🤝</span>
+            <div>
+              <div class="sv-title">TRACTE EXCLUSIU</div>
+              <div class="sv-text">Sistema de cita prèvia per garantir atenció individualitzada. Sense esperes, sense presses.</div>
+            </div>
+          </div>
+          <div class="sobre-value">
+            <span class="sv-icon">📍</span>
+            <div>
+              <div class="sv-title">AL COR DE VILANOVA</div>
+              <div class="sv-text">Situats en una zona cèntrica, fàcil d'arribar amb cotxe i transport públic.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right">
+        <div class="sobre-bigtext">C</div>
+        <div class="sobre-box">
+          <div class="sobre-quote-or">"</div>
+          <p class="sobre-quote">CANO no és només una barberia. És un ritual d'autocura masculina. Entres per un tall i surts amb una altra actitud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="contacte-inner">
+      <div>
+        <span class="section-tag">— Reserva</span>
+        <h2 class="section-title">RESERVA<br>LA TEVA CITA</h2>
+        <p style="font-size:0.9rem; color:var(--gris); font-weight:300; line-height:1.9; max-width:380px; margin-top:1rem;">Truca, escriu per WhatsApp o vine directament. El nostre equip t'atendrà amb la professionalitat que CANO representa.</p>
+      </div>
+      <div class="contacte-items">
+        <a href="tel:+34938000000" class="c-item">
+          <span class="c-item-icon">📞</span>
+          Truca per reservar
+        </a>
+        <a href="https://wa.me/34938000000" class="c-item">
+          <span class="c-item-icon">💬</span>
+          WhatsApp — Resposta ràpida
+        </a>
+        <a href="mailto:cano.perruqueriamasculina@gmail.com" class="c-item">
+          <span class="c-item-icon">✉️</span>
+          cano.perruqueriamasculina@gmail.com
+        </a>
+        <div class="c-item">
+          <span class="c-item-icon">🕐</span>
+          Dl–Ds: 9h–20h · Tancat diumenges
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">CANO</div>
+    <div class="footer-copy">© 2025 CANO Barbers Shop · Vilanova i la Geltrú · Tots els drets reservats</div>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
