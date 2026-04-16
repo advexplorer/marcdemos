@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sara — Perruqueria Unisex · Castellserà</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --malva: #D4A5C9;
+      --rosa: #F2E6F0;
+      --pruna: #7A5C6E;
+      --pruna-fosc: #3D2E38;
+      --pruna-mig: #5A3F52;
+      --bg: #1A0F18;
+      --bg-mig: #221624;
+      --glass: rgba(122, 92, 110, 0.15);
+      --glass-border: rgba(212, 165, 201, 0.25);
+      --text-light: rgba(242, 230, 240, 0.7);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--rosa);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 15, 24, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--malva);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--rosa);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--malva); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 50% 30%, rgba(122, 92, 110, 0.55) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 10% 75%, rgba(212, 165, 201, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 40% at 90% 60%, rgba(122, 92, 110, 0.25) 0%, transparent 55%),
+        linear-gradient(155deg, #1A0F18 0%, #221624 50%, #1A0F18 100%);
+    }
+
+    /* Cercles decoratius */
+    .cercle-deco {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 165, 201, 0.08);
+      pointer-events: none;
+    }
+
+    .cercle-1 {
+      width: 500px; height: 500px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: expandSlow 8s ease-in-out infinite;
+    }
+
+    .cercle-2 {
+      width: 700px; height: 700px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: expandSlow 8s ease-in-out infinite 2s;
+    }
+
+    .cercle-3 {
+      width: 900px; height: 900px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: expandSlow 8s ease-in-out infinite 4s;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 165, 201, 0.1);
+      border: 1px solid rgba(212, 165, 201, 0.3);
+      backdrop-filter: blur(8px);
+      color: var(--malva);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.4rem 1.4rem;
+      border-radius: 100px;
+      margin-bottom: 1.8rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      line-height: 1;
+      color: var(--rosa);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      animation: fadeDown 0.9s ease both 0.1s;
+    }
+
+    .hero-title span {
+      color: var(--malva);
+      font-weight: 700;
+    }
+
+    .hero-tagline {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--malva);
+      margin-bottom: 1.8rem;
+      animation: fadeDown 1s ease both 0.2s;
+    }
+
+    .hero-desc {
+      font-weight: 300;
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--text-light);
+      max-width: 460px;
+      margin: 0 auto 2.8rem;
+      animation: fadeDown 1s ease both 0.3s;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--malva), var(--pruna));
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeDown 1s ease both 0.4s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(212, 165, 201, 0.38);
+    }
+
+    /* CONTAINER + SECCIONS */
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--malva);
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--rosa);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .section-title strong {
+      font-weight: 700;
+      color: var(--malva);
+    }
+
+    .divider {
+      width: 50px; height: 1px;
+      background: linear-gradient(90deg, var(--malva), transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* SERVEIS */
+    .serveis {
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-mig) 100%);
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .servei-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servei-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--malva), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .servei-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 165, 201, 0.5);
+      background: rgba(122, 92, 110, 0.25);
+    }
+
+    .servei-card:hover::after { opacity: 1; }
+
+    .servei-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .servei-card:nth-child(2) .servei-icon { animation-delay: 0.7s; }
+    .servei-card:nth-child(3) .servei-icon { animation-delay: 1.4s; }
+    .servei-card:nth-child(4) .servei-icon { animation-delay: 2.1s; }
+
+    .servei-nom {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rosa);
+      margin-bottom: 0.7rem;
+    }
+
+    .servei-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    .servei-preu {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: var(--malva);
+      background: rgba(212, 165, 201, 0.1);
+      border: 1px solid rgba(212, 165, 201, 0.2);
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+    }
+
+    /* SOBRE */
+    .sobre {
+      padding: 5rem 2rem;
+      background: var(--bg-mig);
+    }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+      height: 420px;
+      border-radius: 100px 100px 20px 20px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .sobre-visual-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 45% 35%, rgba(212, 165, 201, 0.4) 0%, transparent 60%),
+        radial-gradient(ellipse at 60% 70%, rgba(122, 92, 110, 0.4) 0%, transparent 55%),
+        linear-gradient(145deg, #221624, #1A0F18);
+    }
+
+    .sobre-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .sobre-visual-inner .nom {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rosa);
+      margin-bottom: 0.3rem;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .sobre-visual-inner .rol {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--malva);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre-visual-inner .quote {
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: rgba(242, 230, 240, 0.7);
+      line-height: 1.7;
+    }
+
+    .sobre-text p {
+      font-weight: 300;
+      font-size: 0.97rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 1.3rem;
+    }
+
+    .sobre-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--malva);
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, var(--bg-mig) 0%, var(--bg) 100%);
+      text-align: center;
+    }
+
+    .contacte-box {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 4rem 2.5rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .contacte-box p {
+      font-weight: 300;
+      font-size: 0.98rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .contacte-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--malva), var(--pruna));
+      color: white;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(212, 165, 201, 0.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--glass-border);
+      color: var(--malva);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 165, 201, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0F0910;
+      border-top: 1px solid var(--glass-border);
+      padding: 2.2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: rgba(242, 230, 240, 0.25);
+    }
+
+    footer span { color: var(--malva); }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes expandSlow {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; }
+      .sobre-visual { height: 280px; border-radius: 50px 50px 16px 16px; }
+      .hero-cta { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Sara ✦</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Sara</a></li>
+      <li><a href="#contacte">Cita prèvia</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inici">
+    <div class="hero-bg"></div>
+    <div class="cercle-deco cercle-1"></div>
+    <div class="cercle-deco cercle-2"></div>
+    <div class="cercle-deco cercle-3"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Castellserà · Urgell · Lleida</div>
+      <h1 class="hero-title"><span>Sara</span></h1>
+      <p class="hero-tagline">Perruqueria Unisex · Castellserà</p>
+      <p class="hero-desc">La perruqueria de confiança de Castellserà. Tallats, color, tractaments i molta cura per a tota la família. Un lloc proper on et sentiràs bé.</p>
+      <a href="#contacte" class="hero-cta">✂️ Demana cita prèvia</a>
+    </div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section class="serveis" id="serveis">
+    <div class="container">
+      <p class="section-label">El que fem</p>
+      <h2 class="section-title">Serveis per a <strong>tothom</strong></h2>
+      <div class="divider"></div>
+      <div class="serveis-grid">
+        <div class="servei-card">
+          <span class="servei-icon">✂️</span>
+          <h3 class="servei-nom">Tallat</h3>
+          <p class="servei-desc">Tallat personalitzat per a home, dona i nens. T'assessorem per trobar l'estil que millor t'escaigui.</p>
+          <span class="servei-preu">Home · Dona · Nen</span>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🎨</span>
+          <h3 class="servei-nom">Color i Mecxes</h3>
+          <p class="servei-desc">Tints, mecxes, decoloració i balayage. Colors naturals o atrevits, sempre amb productes de qualitat.</p>
+          <span class="servei-preu">Consulta preu</span>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">💆</span>
+          <h3 class="servei-nom">Tractaments</h3>
+          <p class="servei-desc">Hidratació, queratina, tractaments antitrencament i cures específiques per a cada tipus de cabell.</p>
+          <span class="servei-preu">Personalitzat</span>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">👰</span>
+          <h3 class="servei-nom">Recollits i Nuvis</h3>
+          <p class="servei-desc">Pentinats especials per a comunions, casaments, graduacions i qualsevol ocasió especial.</p>
+          <span class="servei-preu">Cita prèvia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-visual">
+          <div class="sobre-visual-bg"></div>
+          <div class="sobre-visual-inner">
+            <div class="nom">Sara</div>
+            <div class="rol">Perruquera · Castellserà</div>
+            <p class="quote">"M'agrada que cada client surti de la cadira sentint-se millor. Aquí a Castellserà ens coneixem tots, i això es nota."</p>
+          </div>
+        </div>
+        <div class="sobre-text">
+          <p class="section-label">Qui soc</p>
+          <h2 class="section-title">La Sara de <strong>Castellserà</strong></h2>
+          <div class="divider"></div>
+          <p>Soc la Sara, perruquera a Castellserà des de fa anys. La meva perruqueria és unisex perquè crec que tothom mereix un espai proper on sentir-se còmode: homes, dones, nens i nenes.</p>
+          <p>Treballo amb cita prèvia per poder dedicar el temps necessari a cada persona. No hi ha presses. Aquí vine a taula i parlem del que vols aconseguir. Junts trobem el millor per al teu cabell.</p>
+          <div class="sobre-tags">
+            <span class="tag">✦ Unisex</span>
+            <span class="tag">✦ Cita prèvia</span>
+            <span class="tag">✦ Famílies</span>
+            <span class="tag">✦ Tracte personal</span>
+            <span class="tag">✦ Castellserà</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="container">
+      <p class="section-label">Cita prèvia</p>
+      <h2 class="section-title" style="margin-bottom:2.5rem">Reserva el teu <strong>moment</strong></h2>
+      <div class="contacte-box">
+        <p>Per demanar cita prèvia, escriu-me un email. T'respondré aviat per confirmar dia i hora. Estic a Castellserà i estic aquí per a tu.</p>
+        <div class="contacte-btns">
+          <a href="mailto:sara-gc86@hotmail.com" class="btn-primary">✉️ Escriu-me</a>
+          <a href="https://maps.google.com/?q=Castellsera,Urgell" target="_blank" class="btn-outline">📍 On som</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 <span>Sara Perruqueria Unisex</span> · Castellserà, Urgell · Tots els drets reservats</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+
+</body>
+</html>
