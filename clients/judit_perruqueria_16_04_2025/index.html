@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judit Perruqueria — Manresa</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa: #D4A8C0;
+      --clar: #FAF2F7;
+      --fosc: #9A5A7E;
+      --text: #3a2030;
+      --gris: #7a6070;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--clar);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem;
+      background: rgba(250, 242, 247, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 168, 192, 0.3);
+    }
+    .nav-logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--fosc);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--rosa); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gris);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--fosc); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #fdf6fa 0%, #f5e0ee 40%, #ecdaf1 100%);
+      z-index: 0;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+    }
+    .blob1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #D4A8C0, transparent);
+      top: -100px; right: -100px;
+    }
+    .blob2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, #9A5A7E, transparent);
+      bottom: 50px; left: -80px;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      text-align: center;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 168, 192, 0.25);
+      border: 1px solid rgba(154, 90, 126, 0.3);
+      color: var(--fosc);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .hero h1 .accent { color: var(--fosc); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--gris);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--fosc), #c470a0);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(154, 90, 126, 0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(154, 90, 126, 0.45); }
+    .btn-outline {
+      background: transparent;
+      color: var(--fosc);
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: 2px solid var(--fosc);
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--fosc); color: white; }
+
+    /* STATS */
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 3rem 2rem;
+      background: white;
+      border-top: 1px solid rgba(212, 168, 192, 0.2);
+      border-bottom: 1px solid rgba(212, 168, 192, 0.2);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--fosc);
+    }
+    .stat-label { font-size: 0.85rem; color: var(--gris); font-weight: 400; margin-top: 0.2rem; }
+
+    /* SERVEIS */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--fosc);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--gris);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 550px;
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: white;
+      border: 1px solid rgba(212, 168, 192, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--fosc), var(--rosa));
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(154, 90, 126, 0.12); }
+    .service-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .service-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--gris); line-height: 1.6; }
+    .service-price {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(212, 168, 192, 0.2);
+      color: var(--fosc);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: linear-gradient(135deg, #f9eef5 0%, #fff 100%);
+      padding: 5rem 2rem;
+    }
+    .sobre-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .sobre-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sobre-circle {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rosa), var(--fosc));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 20px 60px rgba(154, 90, 126, 0.25);
+      position: relative;
+    }
+    .sobre-circle::after {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 168, 192, 0.5);
+    }
+    .sobre-text {}
+    .sobre-text .section-sub { max-width: 100%; }
+    .sobre-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .sobre-list li {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.95rem; color: var(--gris);
+    }
+    .sobre-list li::before {
+      content: '✦';
+      color: var(--fosc);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 5rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contacte-card {
+      background: linear-gradient(135deg, var(--fosc) 0%, #c470a0 100%);
+      border-radius: 30px;
+      padding: 3.5rem 3rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .contacte-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1), transparent 60%);
+    }
+    .contacte-card h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    .contacte-card p {
+      font-size: 1rem;
+      opacity: 0.85;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .contacte-info {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative;
+    }
+    .contacte-item {
+      display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 0.9rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s;
+    }
+    .contacte-item:hover { background: rgba(255,255,255,0.25); }
+    .contacte-item span { font-size: 1.2rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { display: none; }
+      .stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Judit <span>Perruqueria</span></div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#sobre">Sobre mi</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Perruqueria a Manresa ✦</div>
+      <h1>Hola, sóc la <span class="accent">Judit</span></h1>
+      <p class="hero-subtitle">
+        Perruqueria de barri amb nom propi.<br>
+        Talls, colors i tractaments pensats per a tu.
+      </p>
+      <div class="hero-cta">
+        <a href="#contacte" class="btn-primary">Reserva cita</a>
+        <a href="#serveis" class="btn-outline">Veure serveis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">+15</div>
+      <div class="stat-label">Anys d'experiència</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Clientes fidels</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Personalitzat</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5★</div>
+      <div class="stat-label">Valoració mitjana</div>
+    </div>
+  </div>
+
+  <!-- SERVEIS -->
+  <section class="section" id="serveis">
+    <div class="section-tag">— Els meus serveis</div>
+    <h2 class="section-title">Tot el que necessita<br>el teu cabell</h2>
+    <p class="section-sub">Des d'un tall senzill fins a una transformació completa. Cada servei amb la cura i atenció que et mereixes.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <div class="service-name">Tall i Forma</div>
+        <div class="service-desc">Tall personalitzat adaptat a la forma del teu rostre i estil de vida. Rentat i assecament inclosos.</div>
+        <div class="service-price">Des de 18€</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Color i Mechas</div>
+        <div class="service-desc">Tints, mechas, balayage i degradats. Colors naturals i tendències actuals per a un resultat que t'encanti.</div>
+        <div class="service-price">Des de 35€</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💆</div>
+        <div class="service-name">Tractaments</div>
+        <div class="service-desc">Hidratació profunda, queratina, tractaments anticaiguda i de reparació per a un cabell sa i brillant.</div>
+        <div class="service-price">Des de 25€</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💍</div>
+        <div class="service-name">Peinats d'Ocasió</div>
+        <div class="service-desc">Noces, batejos, comunions i tot tipus d'actes especials. El dia que és teu, ha de ser perfecte.</div>
+        <div class="service-price">Des de 45€</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌿</div>
+        <div class="service-name">Permanent</div>
+        <div class="service-desc">Rinxolat o allisat permanent amb productes d'alta qualitat per a un resultat durador i suau.</div>
+        <div class="service-price">Des de 55€</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👧</div>
+        <div class="service-name">Tall Infantil</div>
+        <div class="service-desc">Tall per als més petits de casa amb tota la paciència i dolcesa que es mereixen.</div>
+        <div class="service-price">Des de 10€</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-visual">
+        <div class="sobre-circle">💇</div>
+      </div>
+      <div class="sobre-text">
+        <div class="section-tag">— Sobre mi</div>
+        <h2 class="section-title">La Judit, la teva perruquera de confiança</h2>
+        <p class="section-sub">Porto més de 15 anys fent feina a Manresa. M'agrada conèixer cada clienta, entendre com és el seu cabell i quin és el seu estil. Aquí no hi ha pressa — el teu cabell mereix temps i atenció.</p>
+        <ul class="sobre-list">
+          <li>Formació contínua en tendències i tècniques</li>
+          <li>Productes professionals de primera qualitat</li>
+          <li>Ambient acollidor i sense espera</li>
+          <li>Cita prèvia per garantir la teva atenció exclusiva</li>
+          <li>Situada al centre de Manresa, fàcil d'aparcar</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="section-tag" style="display:block; margin-bottom:0.5rem;">— Contacte</div>
+    <h2 class="section-title" style="margin-bottom:0.5rem;">Reserva la teva cita</h2>
+    <p class="section-sub" style="max-width:100%; margin: 0 auto 2.5rem; text-align:center;">Truca'm o escriu-me un WhatsApp i t'atendré personalment. M'encantarà conèixer-te!</p>
+    <div class="contacte-card">
+      <h2>Estem a Manresa</h2>
+      <p>Vine a veure'm o contacta'm directament. Sempre hi ha un moment per a tu.</p>
+      <div class="contacte-info">
+        <a href="tel:+34600000000" class="contacte-item">
+          <span>📞</span> Truca'm per reservar cita
+        </a>
+        <a href="https://wa.me/34600000000" class="contacte-item">
+          <span>💬</span> WhatsApp — Resposta ràpida
+        </a>
+        <a href="mailto:ainur2244@gmail.com" class="contacte-item">
+          <span>✉️</span> ainur2244@gmail.com
+        </a>
+        <div class="contacte-item">
+          <span>🕐</span> Dl–Dv: 9h–19h · Ds: 9h–14h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Judit Perruqueria</strong> · Manresa · Tots els drets reservats © 2025
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
