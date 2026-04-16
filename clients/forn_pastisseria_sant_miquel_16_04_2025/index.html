@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forn-Pastisseria Sant Miquel — Tarragona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crema: #F5E6C8;
+      --or: #C8A96E;
+      --marro: #6B4423;
+      --marro-fosc: #3D2410;
+      --marro-mig: #8B5A30;
+      --bg: #FBF3E4;
+      --glass: rgba(107, 68, 35, 0.08);
+      --glass-border: rgba(200, 169, 110, 0.35);
+      --text: #3D2410;
+      --text-mig: #6B4423;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--marro-fosc);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(61, 36, 16, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      color: var(--or);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--or); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 20%, rgba(200, 169, 110, 0.35) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 10% 90%, rgba(107, 68, 35, 0.4) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 90% 60%, rgba(139, 90, 48, 0.3) 0%, transparent 55%),
+        linear-gradient(160deg, #3D2410 0%, #4D2E16 40%, #3D2410 100%);
+    }
+
+    /* Pa decoratiu amb SVG */
+    .pa-deco {
+      position: absolute;
+      right: -60px;
+      bottom: 60px;
+      width: 320px;
+      height: 320px;
+      opacity: 0.07;
+      animation: rotateSlow 30s linear infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200, 169, 110, 0.15);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+      color: var(--or);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.15;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+      animation: fadeDown 0.9s ease both 0.1s;
+    }
+
+    .hero-title span { color: var(--or); }
+
+    .hero-sub {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--or);
+      margin-bottom: 1.5rem;
+      animation: fadeDown 1s ease both 0.2s;
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: rgba(245, 230, 200, 0.7);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      animation: fadeDown 1s ease both 0.3s;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--or), var(--marro));
+      color: var(--crema);
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeDown 1s ease both 0.4s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 169, 110, 0.38);
+    }
+
+    /* FRANJA DIURNA */
+    .franja {
+      background: linear-gradient(90deg, #4D2E16, #5A3518, #4D2E16);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .franja-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: rgba(245, 230, 200, 0.8);
+    }
+
+    .franja-item span:first-child { font-size: 1.2rem; }
+
+    /* SERVEIS */
+    .serveis {
+      background: linear-gradient(180deg, #3D2410 0%, #462A14 100%);
+      padding: 5rem 2rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--crema);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .section-title span { color: var(--or); }
+
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--or), transparent);
+      margin-bottom: 3rem;
+    }
+
+    .serveis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .servei-card {
+      background: rgba(200, 169, 110, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    }
+
+    .servei-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--or);
+      background: rgba(200, 169, 110, 0.13);
+    }
+
+    .servei-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.1rem;
+      display: block;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .servei-card:nth-child(2) .servei-icon { animation-delay: 0.6s; }
+    .servei-card:nth-child(3) .servei-icon { animation-delay: 1.2s; }
+    .servei-card:nth-child(4) .servei-icon { animation-delay: 1.8s; }
+
+    .servei-nom {
+      font-family: 'Merriweather', serif;
+      font-size: 1.15rem;
+      color: var(--crema);
+      margin-bottom: 0.7rem;
+    }
+
+    .servei-desc {
+      font-size: 0.88rem;
+      color: rgba(245, 230, 200, 0.6);
+      line-height: 1.65;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: linear-gradient(180deg, #462A14 0%, #3D2410 100%);
+      padding: 5rem 2rem;
+    }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .sobre-visual-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 35% 45%, rgba(200, 169, 110, 0.4) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 65%, rgba(107, 68, 35, 0.45) 0%, transparent 55%),
+        linear-gradient(135deg, #462A14, #2D1A0A);
+    }
+
+    .sobre-deco {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .sobre-deco .big-icon { font-size: 4.5rem; margin-bottom: 1rem; animation: float 4s ease-in-out infinite; }
+
+    .sobre-quote {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--crema);
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .sobre-text p {
+      font-size: 0.97rem;
+      color: rgba(245, 230, 200, 0.78);
+      line-height: 1.88;
+      margin-bottom: 1.2rem;
+    }
+
+    /* HORARIS */
+    .horaris {
+      margin-top: 1.5rem;
+      background: rgba(200, 169, 110, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .horaris h4 {
+      font-family: 'Merriweather', serif;
+      font-size: 0.95rem;
+      color: var(--or);
+      margin-bottom: 0.8rem;
+    }
+
+    .horari-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: rgba(245, 230, 200, 0.7);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(200, 169, 110, 0.1);
+    }
+
+    .horari-row:last-child { border-bottom: none; }
+
+    /* CONTACTE */
+    .contacte {
+      background: linear-gradient(180deg, #3D2410 0%, #2D1A0A 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .contacte-box {
+      background: rgba(200, 169, 110, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .contacte-box p {
+      font-size: 0.98rem;
+      color: rgba(245, 230, 200, 0.72);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contacte-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--or), var(--marro));
+      color: var(--crema);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(200, 169, 110, 0.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid var(--or);
+      color: var(--or);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--or);
+      color: var(--crema);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1E0E06;
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p { font-size: 0.83rem; color: rgba(245, 230, 200, 0.3); }
+    footer span { color: var(--or); }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; }
+      .sobre-visual { height: 260px; }
+      .franja { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">🥐 Forn-Pastisseria Sant Miquel</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Productes</a></li>
+      <li><a href="#sobre">El forn</a></li>
+      <li><a href="#contacte">Visita'ns</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inici">
+    <div class="hero-bg"></div>
+    <svg class="pa-deco" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" stroke="rgba(200,169,110,1)" stroke-width="2"/>
+      <circle cx="100" cy="100" r="60" stroke="rgba(200,169,110,1)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="40" stroke="rgba(200,169,110,1)" stroke-width="1"/>
+      <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(200,169,110,1)" stroke-width="1"/>
+      <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(200,169,110,1)" stroke-width="1"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-badge">🏛 Tarragona · Des de sempre</div>
+      <h1 class="hero-title">Forn-Pastisseria<br><span>Sant Miquel</span></h1>
+      <p class="hero-sub">Pa artesà, pastisseria de barri</p>
+      <p class="hero-desc">A Tarragona, hi ha forns i hi ha el Sant Miquel. Pa de cada dia cuit amb llenya i amor, pastisseria de temporada feta amb les mans.</p>
+      <a href="#contacte" class="hero-cta">🥖 Vine al forn</a>
+    </div>
+  </section>
+
+  <!-- FRANJA -->
+  <div class="franja">
+    <div class="franja-item"><span>🌅</span><span>Obert cada dia des de les 7h</span></div>
+    <div class="franja-item"><span>🤲</span><span>Pa artesà de massa mare</span></div>
+    <div class="franja-item"><span>📍</span><span>Tarragona, barri de tota la vida</span></div>
+  </div>
+
+  <!-- SERVEIS -->
+  <section class="serveis" id="serveis">
+    <div class="container">
+      <p class="section-label">El que fem cada dia</p>
+      <h2 class="section-title">Fets amb les <span>mans</span></h2>
+      <div class="divider"></div>
+      <div class="serveis-grid">
+        <div class="servei-card">
+          <span class="servei-icon">🍞</span>
+          <h3 class="servei-nom">Pa Artesà</h3>
+          <p class="servei-desc">Pa de pagès, pa de sèmola, pa de centeno. Tots de massa mare, fermentació lenta i forn de llenya.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🥐</span>
+          <h3 class="servei-nom">Pastisseria Diària</h3>
+          <p class="servei-desc">Croissants, ensaïmades, cocs i brioixeria. Frescos cada matí, fets la nit anterior.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🎂</span>
+          <h3 class="servei-nom">Pastisseria de Temporada</h3>
+          <p class="servei-desc">Panellets de Tots Sants, tortells de Reis, mones de Pasqua. Les tradicions no es perden aquí.</p>
+        </div>
+        <div class="servei-card">
+          <span class="servei-icon">🎁</span>
+          <h3 class="servei-nom">Encàrrecs</h3>
+          <p class="servei-desc">Pastissos de celebració, pa per a convits i encàrrecs personalitzats. Truca'ns i ho fem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-text">
+          <p class="section-label">El nostre forn</p>
+          <h2 class="section-title">El forn de <span>barri</span></h2>
+          <div class="divider"></div>
+          <p>Al Forn-Pastisseria Sant Miquel, el pa no és un producte, és un ofici. Cada dia comencem de matinada per tenir el pa llest quan el barri es desperta. No hi ha atajos: massa mare, fermentació lenta i el calor del forn de tota la vida.</p>
+          <p>La pastisseria de temporada és el nostre orgull. Cada festivitat és una ocasió per demostrar el que sabem fer: panellets fets a mà, tortells amb massapà de veritat i mones que fan il·lusió als grans i als petits.</p>
+          <div class="horaris">
+            <h4>⏰ Horari</h4>
+            <div class="horari-row"><span>Dilluns – Divendres</span><span>7:00 – 14:00 · 16:30 – 20:00</span></div>
+            <div class="horari-row"><span>Dissabte</span><span>7:00 – 14:00</span></div>
+            <div class="horari-row"><span>Diumenge</span><span>8:00 – 13:30</span></div>
+          </div>
+        </div>
+        <div class="sobre-visual">
+          <div class="sobre-visual-bg"></div>
+          <div class="sobre-deco">
+            <div class="big-icon">🍞</div>
+            <p class="sobre-quote">"El millor pa és el que surt del forn cada matí i arriba a taula encara calent."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="container">
+      <p class="section-label">Vine a veure'ns</p>
+      <h2 class="section-title" style="margin-bottom:2.5rem">Sempre <span>oberts</span> per a tu</h2>
+      <div class="contacte-box">
+        <p>Estem a Tarragona, al forn de tota la vida. Si vols fer un encàrrec especial o simplement preguntar-nos alguna cosa, escriu-nos i et respondrem aviat.</p>
+        <div class="contacte-btns">
+          <a href="mailto:santmiqueltgna@gmail.com" class="btn-primary">✉️ Escriu-nos</a>
+          <a href="https://maps.google.com/?q=Tarragona" target="_blank" class="btn-outline">📍 Com arribar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 <span>Forn-Pastisseria Sant Miquel</span> · Tarragona · Tots els drets reservats</p>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+
+</body>
+</html>
