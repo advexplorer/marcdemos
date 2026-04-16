@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assu Pelos — Perruqueria Canina · Lleida</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Poppins:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verd: #5C8A4A;
+      --taronja: #F4A040;
+      --clar: #FEF8EE;
+      --blanc: #ffffff;
+      --text: #2a3820;
+      --gris: #6a7860;
+      --taronja-light: rgba(244,160,64,0.12);
+      --verd-light: rgba(92,138,74,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--clar);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(254, 248, 238, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(92,138,74,0.12);
+    }
+    .nav-logo {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--verd);
+    }
+    .nav-logo span { color: var(--taronja); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gris);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--verd); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 2rem 5rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #e8f5e0 0%, #f0f8e8 40%, var(--clar) 100%);
+    }
+    .hero-shapes {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+    .s1 { width: 400px; height: 400px; background: var(--taronja); top: -100px; right: -80px; filter: blur(80px); }
+    .s2 { width: 300px; height: 300px; background: var(--verd); bottom: -50px; left: -60px; filter: blur(70px); }
+    .s3 { width: 200px; height: 200px; background: var(--taronja); bottom: 100px; right: 10%; filter: blur(60px); }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .hero-left {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(244,160,64,0.15);
+      border: 2px solid rgba(244,160,64,0.3);
+      color: #c07820;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 .taronja { color: var(--taronja); }
+    .hero h1 .verd { color: var(--verd); }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gris);
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-taronja {
+      background: var(--taronja);
+      color: white;
+      padding: 1rem 2.3rem;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      border-radius: 100px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 24px rgba(244,160,64,0.3);
+    }
+    .btn-taronja:hover { transform: translateY(-2px); background: #f5b050; box-shadow: 0 10px 35px rgba(244,160,64,0.4); }
+    .btn-verd {
+      background: transparent;
+      color: var(--verd);
+      padding: 1rem 2.3rem;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      border-radius: 100px;
+      border: 2px solid var(--verd);
+      transition: all 0.3s;
+    }
+    .btn-verd:hover { background: var(--verd); color: white; }
+    .hero-right {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .hero-dog-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(92,138,74,0.08);
+      border: 2px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .hero-dog-card:hover { border-color: var(--taronja); transform: translateY(-3px); }
+    .hdc-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+    .hdc-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* STATS */
+    .stats-bar {
+      background: var(--verd);
+      padding: 2rem;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; color: white; }
+    .stat-num {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--taronja);
+      display: block;
+    }
+    .stat-label { font-size: 0.78rem; opacity: 0.75; font-weight: 300; }
+
+    /* SECCIONS */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taronja);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 0.95rem; font-weight: 300; color: var(--gris); line-height: 1.8; max-width: 500px; margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      border: 2px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--taronja);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(244,160,64,0.12);
+    }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .service-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc { font-size: 0.87rem; color: var(--gris); line-height: 1.7; font-weight: 300; }
+    .service-price {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--taronja-light);
+      color: #c07820;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+    }
+
+    /* RACES */
+    .races-section {
+      background: linear-gradient(135deg, #e8f5e0, var(--clar));
+      padding: 5rem 2rem;
+    }
+    .races-inner { max-width: 1100px; margin: 0 auto; }
+    .races-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .race-pill {
+      background: white;
+      border: 2px solid rgba(92,138,74,0.2);
+      border-radius: 100px;
+      padding: 0.6rem 1.4rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+    .race-pill:hover { border-color: var(--verd); color: var(--verd); }
+
+    /* SOBRE */
+    .sobre {
+      background: var(--verd);
+      padding: 5rem 2rem;
+      color: white;
+    }
+    .sobre-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .sobre-left .section-tag { color: var(--taronja); }
+    .sobre-left .section-title { color: white; }
+    .sobre-left p { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 1.2rem; }
+    .sobre-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+    .sobre-list li {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 300;
+    }
+    .sobre-list li::before { content: '🐾'; font-size: 0.9rem; flex-shrink: 0; }
+    .sobre-visual {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .sobre-bigdog {
+      width: 260px; height: 260px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: linear-gradient(135deg, var(--taronja), #f8c870);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      animation: wobble 6s ease-in-out infinite;
+    }
+    @keyframes wobble {
+      0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+      50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 5rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contacte-card {
+      background: linear-gradient(135deg, var(--taronja), #e87820);
+      border-radius: 28px;
+      padding: 3.5rem 2.5rem;
+      color: white;
+      position: relative; overflow: hidden;
+    }
+    .contacte-card::before {
+      content: '🐾';
+      position: absolute;
+      font-size: 10rem;
+      bottom: -2rem; right: -1rem;
+      opacity: 0.08;
+    }
+    .contacte-card h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 0.7rem;
+      position: relative;
+    }
+    .contacte-card p { font-size: 0.9rem; font-weight: 300; opacity: 0.85; line-height: 1.8; margin-bottom: 2rem; position: relative; }
+    .c-items { display: flex; flex-direction: column; gap: 0.8rem; position: relative; }
+    .c-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.18);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      text-decoration: none; color: white;
+      transition: background 0.3s;
+    }
+    .c-item:hover { background: rgba(255,255,255,0.28); }
+    .c-item span { font-size: 1.2rem; }
+
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-visual { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Assu <span>Pelos</span> 🐾</div>
+    <ul class="nav-links">
+      <li><a href="#serveis">Serveis</a></li>
+      <li><a href="#races">Races</a></li>
+      <li><a href="#contacte">Cita prèvia</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-shapes">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+      <div class="shape s3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">🐾 Perruqueria Canina · Lleida</div>
+        <h1>Assu<br><span class="taronja">Pelos</span><br><span class="verd">Canina</span></h1>
+        <p class="hero-sub">El teu gos mereix veure's i sentir-se bé. A Assu Pelos el tractem com es mereix: amb professionalitat, amor i molt bon humor!</p>
+        <div class="hero-cta">
+          <a href="#contacte" class="btn-taronja">Demanar cita 🐶</a>
+          <a href="#serveis" class="btn-verd">Serveis</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-dog-card">
+          <span class="hdc-icon">🛁</span>
+          <div class="hdc-name">Bany i secat</div>
+        </div>
+        <div class="hero-dog-card">
+          <span class="hdc-icon">✂️</span>
+          <div class="hdc-name">Tall i estil</div>
+        </div>
+        <div class="hero-dog-card">
+          <span class="hdc-icon">💅</span>
+          <div class="hdc-name">Ungles i orelles</div>
+        </div>
+        <div class="hero-dog-card">
+          <span class="hdc-icon">✨</span>
+          <div class="hdc-name">Tractaments</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-num">+10</span>
+      <span class="stat-label">Anys a Lleida</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">300+</span>
+      <span class="stat-label">Gossos atesos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Races tractades</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5★</span>
+      <span class="stat-label">Valoració</span>
+    </div>
+  </div>
+
+  <!-- SERVEIS -->
+  <section class="section" id="serveis">
+    <span class="section-tag">— Serveis</span>
+    <h2 class="section-title">El teu gos,<br>net i feliç!</h2>
+    <p class="section-sub">Tractaments professionals per a gossos de totes les races i mides. Productes suaus, eines de qualitat i molt d'amor.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🛁</span>
+        <div class="service-name">Bany Complet</div>
+        <div class="service-desc">Bany amb xampú específic per a cada tipus de pèl, acondicionador, secat i posat. El teu gos sort radiant.</div>
+        <div class="service-price">Des de 20€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <div class="service-name">Tall i Arreglat</div>
+        <div class="service-desc">Tall a la raça o personalitzat, perfilat i estilitzat. Seguim els estàndards de cada raça o adaptem al teu gust.</div>
+        <div class="service-price">Des de 25€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💎</span>
+        <div class="service-name">Pack Complet</div>
+        <div class="service-desc">Bany + tall + ungles + neteja d'orelles + perfum. El pack total per a un gos impecable de cap a peus.</div>
+        <div class="service-price">Des de 40€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💅</span>
+        <div class="service-name">Ungles i Orelles</div>
+        <div class="service-desc">Retallada d'ungles, neteja d'orelles i higiene bàsica. Essencial per a la salut i benestar del teu gos.</div>
+        <div class="service-price">Des de 10€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <div class="service-name">Tractament Antipulces</div>
+        <div class="service-desc">Bany antipulces i antiopàrues amb productes segurs i eficaços. Protecció total sense irritació.</div>
+        <div class="service-price">Des de 25€</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">👶</span>
+        <div class="service-name">Primera Visita Cadell</div>
+        <div class="service-desc">Primera experiència a la perruqueria. Adaptació suau i positiva perquè el teu cadell s'acostumi sense por.</div>
+        <div class="service-price">Des de 15€</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RACES -->
+  <section class="races-section" id="races">
+    <div class="races-inner">
+      <span class="section-tag">— Especialitats</span>
+      <h2 class="section-title">Treballem amb<br>totes les races</h2>
+      <p class="section-sub" style="max-width:600px;">Tant si tens un Yorkshire com un Golden Retriever, sabem com tractar cada pèl. Experiència amb totes les races.</p>
+      <div class="races-grid">
+        <span class="race-pill">🐩 Caniche</span>
+        <span class="race-pill">🐕 Golden Retriever</span>
+        <span class="race-pill">🦴 Yorkshire</span>
+        <span class="race-pill">🐶 Labrador</span>
+        <span class="race-pill">🐾 Shih Tzu</span>
+        <span class="race-pill">🦮 Border Collie</span>
+        <span class="race-pill">🐕 Schnauzer</span>
+        <span class="race-pill">🐩 Bichon</span>
+        <span class="race-pill">🦴 Maltès</span>
+        <span class="race-pill">🐶 Teckel</span>
+        <span class="race-pill">🐾 Cocker</span>
+        <span class="race-pill">✨ I moltes més!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-left">
+        <span class="section-tag">— Sobre Assu Pelos</span>
+        <h2 class="section-title">Perquè el teu gos<br>és de la família</h2>
+        <p>"Assu Pelos" és desenfadat i memorable — com nosaltres. Portem més de 10 anys a Lleida tractant gossos de totes les races amb la mateixa dedicació.</p>
+        <p>Cada gos té la seva personalitat i el seu tipus de pèl. Ens adaptem a cadascun amb paciència, cura i els productes adequats.</p>
+        <ul class="sobre-list">
+          <li>Professionals amb formació específica en peluqueria canina</li>
+          <li>Productes naturals i hipoal·lergènics per a pells sensibles</li>
+          <li>Tracte afectuós que calma fins als gossos més nerviosos</li>
+          <li>Cita prèvia per evitar esperes i garantir atenció personalitzada</li>
+          <li>Situats a Lleida, fàcil accés i aparcament proper</li>
+        </ul>
+      </div>
+      <div class="sobre-visual">
+        <div class="sobre-bigdog">🐕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <span class="section-tag" style="display:block;margin-bottom:0.5rem;">— Cita prèvia</span>
+    <h2 class="section-title" style="text-align:center;margin-bottom:0.5rem;">Porta'ns el teu gos!</h2>
+    <p class="section-sub" style="max-width:100%;text-align:center;margin:0 auto 2.5rem;">Truca'ns o escriu per WhatsApp. T'ajudem a triar el servei adequat per al teu gos.</p>
+    <div class="contacte-card">
+      <h2>Assu Pelos · Lleida 🐾</h2>
+      <p>El teu gos sortirà net, penat i content. T'ho prometem!</p>
+      <div class="c-items">
+        <a href="tel:+34973000000" class="c-item">
+          <span>📞</span> Truca per demanar cita
+        </a>
+        <a href="https://wa.me/34973000000" class="c-item">
+          <span>💬</span> WhatsApp — Envia foto del teu gos!
+        </a>
+        <a href="mailto:assuparrot@hotmail.com" class="c-item">
+          <span>✉️</span> assuparrot@hotmail.com
+        </a>
+        <div class="c-item">
+          <span>🕐</span> Dl–Dv: 9h–19h · Ds: 9h–14h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Assu Pelos Perruqueria Canina</strong> · Lleida · © 2025 Tots els drets reservats
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
