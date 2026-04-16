@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant La Sal — Igualada</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blau: #1A3A4A;
+      --blau-mig: #5B8FA8;
+      --crema: #F0E8D0;
+      --crema-light: #FBF8F2;
+      --text: #1a2a35;
+      --gris: #6a7a85;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--crema-light);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(26, 58, 74, 0.95);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--crema);
+      letter-spacing: 0.1em;
+    }
+    .nav-logo span { color: var(--blau-mig); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(240,232,208,0.6);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--crema); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 2.5rem 5rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, var(--blau) 0%, #243f50 50%, #1e3545 100%);
+    }
+    .hero-wave {
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+    }
+    .hero-wave svg { width: 100%; height: auto; display: block; }
+    .hero-dots {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(91,143,168,0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-left {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(91,143,168,0.2);
+      border: 1px solid rgba(91,143,168,0.3);
+      color: var(--blau-mig);
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      color: var(--crema);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 em { font-style: italic; color: var(--blau-mig); }
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(240,232,208,0.7);
+      line-height: 1.9;
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-sea {
+      background: var(--blau-mig);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .btn-sea:hover { background: #6fa0ba; }
+    .btn-outline {
+      background: transparent;
+      color: var(--crema);
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(240,232,208,0.3);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--crema); }
+    .hero-right {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .hero-plat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(91,143,168,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .plat-icon { font-size: 2rem; flex-shrink: 0; }
+    .plat-info {}
+    .plat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--crema);
+    }
+    .plat-desc { font-size: 0.8rem; color: rgba(240,232,208,0.5); font-weight: 300; margin-top: 0.2rem; }
+
+    /* STRIP */
+    .strip {
+      background: var(--blau-mig);
+      padding: 1.5rem 2.5rem;
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .strip-item { text-align: center; color: white; }
+    .strip-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      display: block;
+    }
+    .strip-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.75; }
+
+    /* SECCIONS */
+    .section {
+      padding: 6rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blau-mig);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 0.95rem; font-weight: 300; color: var(--gris); line-height: 1.9;
+      max-width: 500px; margin-bottom: 3rem;
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
+    }
+    .menu-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 20px rgba(26,58,74,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(26,58,74,0.12); }
+    .menu-card-header {
+      background: linear-gradient(135deg, var(--blau), var(--blau-mig));
+      padding: 2rem;
+      text-align: center;
+      font-size: 3rem;
+    }
+    .menu-card-body { padding: 1.5rem; }
+    .menu-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .menu-card-desc { font-size: 0.85rem; color: var(--gris); line-height: 1.7; font-weight: 300; }
+    .menu-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(91,143,168,0.1);
+      color: var(--blau-mig);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: var(--blau);
+      padding: 6rem 2.5rem;
+      color: var(--crema);
+    }
+    .sobre-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .sobre-left {}
+    .sobre-left .section-tag { color: var(--blau-mig); }
+    .sobre-left .section-title { color: var(--crema); margin-bottom: 1.5rem; }
+    .sobre-left p { font-size: 0.95rem; color: rgba(240,232,208,0.7); line-height: 1.9; font-weight: 300; margin-bottom: 1.2rem; }
+    .sobre-values { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .sobre-value {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.9rem; color: rgba(240,232,208,0.7); font-weight: 300;
+    }
+    .sobre-value-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .sobre-right {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .sobre-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(91,143,168,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .sobre-box-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+    .sobre-box-text { font-size: 0.85rem; color: rgba(240,232,208,0.6); font-weight: 300; line-height: 1.6; }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 6rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contacte-inner {
+      background: white;
+      border-radius: 24px;
+      padding: 4rem;
+      box-shadow: 0 4px 40px rgba(26,58,74,0.08);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contacte-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .contacte-sub { font-size: 0.9rem; color: var(--gris); line-height: 1.8; font-weight: 300; }
+    .contacte-items { display: flex; flex-direction: column; gap: 1rem; }
+    .c-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--crema-light);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+    .c-item:hover { background: var(--crema); }
+    .c-item-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    footer {
+      background: var(--blau);
+      color: rgba(240,232,208,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(240,232,208,0.8); }
+
+    @media (max-width: 900px) {
+      .hero-content, .sobre-inner, .contacte-inner { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .nav-links { display: none; }
+      .sobre-right { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">La <span>Sal</span></div>
+    <ul class="nav-links">
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Reserves</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FBF8F2"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">🌊 Restaurant · Igualada</div>
+        <h1>Cuina honest<em>a</em><br>de producte</h1>
+        <p class="hero-sub">La Sal: l'ingredient essencial. Cuina mediterrània de mercat, productes de km0 i una carta que canvia amb les estacions.</p>
+        <div class="hero-cta">
+          <a href="#contacte" class="btn-sea">Reservar taula</a>
+          <a href="#carta" class="btn-outline">Veure la carta</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-plat">
+          <div class="plat-icon">🐟</div>
+          <div class="plat-info">
+            <div class="plat-name">Peix de llotja</div>
+            <div class="plat-desc">Directament de la peixateria local cada matí</div>
+          </div>
+        </div>
+        <div class="hero-plat">
+          <div class="plat-icon">🥗</div>
+          <div class="plat-info">
+            <div class="plat-name">Verdures de temporada</div>
+            <div class="plat-desc">Horta local, collida fresca diàriament</div>
+          </div>
+        </div>
+        <div class="hero-plat">
+          <div class="plat-icon">🫙</div>
+          <div class="plat-info">
+            <div class="plat-name">Elaboració pròpia</div>
+            <div class="plat-desc">Sauces, conserves i postres fetes a casa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item">
+      <span class="strip-num">Km0</span>
+      <span class="strip-label">Producte local</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">8+</span>
+      <span class="strip-label">Anys a Igualada</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">100%</span>
+      <span class="strip-label">Cuina de mercat</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">5★</span>
+      <span class="strip-label">Valoració Google</span>
+    </div>
+  </div>
+
+  <!-- CARTA -->
+  <section class="section" id="carta">
+    <span class="section-tag">— La nostra proposta</span>
+    <h2 class="section-title">Una carta amb ànima<br>i producte de qualitat</h2>
+    <p class="section-sub">Cada plat explica una història. Productes de proximitat, receptes honestes i tècnica al servei del sabor.</p>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-header">🐟</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Peixos i Mariscs</div>
+          <div class="menu-card-desc">Frescos de llotja, a la planxa o al forn. Sèpia, rap, musclos, gambes i el que doni la mar aquell dia.</div>
+          <div class="menu-tag">Llotja local</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">🥩</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Carns de Pagès</div>
+          <div class="menu-card-desc">Vedella, porc i pollastre de granges locals. Cuinats a foc lent per concentrar tot el sabor.</div>
+          <div class="menu-tag">Granges de la comarca</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">🍝</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Pasta i Arrossos</div>
+          <div class="menu-card-desc">Fideuàs, arrossos melosos i pastes elaborades amb productes del territori. El confort food de La Sal.</div>
+          <div class="menu-tag">Receptes de la casa</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">🥗</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Verdures i Entrants</div>
+          <div class="menu-card-desc">Amanides, escalivada, croquetes casolanes i calçots de temporada. La millor manera de començar.</div>
+          <div class="menu-tag">Horta local</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">🍮</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Postres Casolans</div>
+          <div class="menu-card-desc">Crema catalana, pastís del dia i macedònia de fruita de temporada. Tot elaborat a la cuina.</div>
+          <div class="menu-tag">Elaboració pròpia</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">🍷</div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Vins i Caves</div>
+          <div class="menu-card-desc">Selecció de vins de la Penedès, Priorat i Conca de Barberà. Caves Cava DO inclosos.</div>
+          <div class="menu-tag">DO Catalunya</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-left">
+        <span class="section-tag">— Sobre nosaltres</span>
+        <h2 class="section-title">L'essència de<br>la cuina honesta</h2>
+        <p>La Sal neix de la convicció que cuinar bé comença per triar bé. Cada matí anem al mercat, parlem amb els pagesos i decidim la carta del dia.</p>
+        <p>Portem més de 8 anys a Igualada construint una clientela fidel que ens visita perquè sap que aquí el que es menja és real, cuinat amb cura i servit amb ganes.</p>
+        <div class="sobre-values">
+          <div class="sobre-value">
+            <span class="sobre-value-icon">🌊</span>
+            <span>Producte de proximitat i km0 sempre que és possible</span>
+          </div>
+          <div class="sobre-value">
+            <span class="sobre-value-icon">👨‍🍳</span>
+            <span>Cuina de mercat: la carta canvia cada setmana</span>
+          </div>
+          <div class="sobre-value">
+            <span class="sobre-value-icon">🫀</span>
+            <span>Tracte proper i familiar, ens recordem de tu</span>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right">
+        <div class="sobre-box">
+          <span class="sobre-box-icon">🧂</span>
+          <div class="sobre-box-text">La sal és l'ingredient que ho canvia tot. Com el detall que fa gran un plat.</div>
+        </div>
+        <div class="sobre-box">
+          <span class="sobre-box-icon">📍</span>
+          <div class="sobre-box-text">Al cor d'Igualada, accessible per a tothom i amb aparcament proper.</div>
+        </div>
+        <div class="sobre-box">
+          <span class="sobre-box-icon">👨‍👩‍👧</span>
+          <div class="sobre-box-text">Restaurant familiar, ideal per a dinars d'empresa, aniversaris i celebracions.</div>
+        </div>
+        <div class="sobre-box">
+          <span class="sobre-box-icon">🌱</span>
+          <div class="sobre-box-text">Compromesos amb la sostenibilitat i la reducció del malbaratament alimentari.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="contacte-inner">
+      <div>
+        <h2 class="contacte-title">Reserva la teva taula</h2>
+        <p class="contacte-sub">Tant per dinar com per sopar, fes la teva reserva amb antelació i t'assegures la plaça. Grups i celebracions amb carta especial.</p>
+      </div>
+      <div class="contacte-items">
+        <a href="tel:+34938000000" class="c-item">
+          <span class="c-item-icon">📞</span>
+          Truca per reservar
+        </a>
+        <a href="https://wa.me/34938000000" class="c-item">
+          <span class="c-item-icon">💬</span>
+          WhatsApp — Reserva ràpida
+        </a>
+        <a href="mailto:lasal.igualada@gmail.com" class="c-item">
+          <span class="c-item-icon">✉️</span>
+          lasal.igualada@gmail.com
+        </a>
+        <div class="c-item">
+          <span class="c-item-icon">🕐</span>
+          Dl–Dv: 13h–16h i 20h–23h · Ds: 13h–23h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Restaurant La Sal</strong> · Igualada · © 2025 Tots els drets reservats
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
