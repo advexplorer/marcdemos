@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casablanca Restaurant — Vilanova i la Geltrú</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --or: #C8A878;
+      --verd: #1A3A2A;
+      --crema: #F8F2E8;
+      --crema-deep: #ede4d0;
+      --text: #1a2a1a;
+      --gris: #7a7060;
+      --or-light: rgba(200,168,120,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--crema);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.3rem 3rem;
+      background: rgba(26, 58, 42, 0.97);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--or);
+      letter-spacing: 0.1em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(248,242,232,0.55);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 3rem 6rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #0f2018 0%, #1a3a2a 40%, #2a3a1a 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(200,168,120,0.04) 35px, rgba(200,168,120,0.04) 70px);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 800px; height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,120,0.08), transparent 60%);
+      top: 50%; right: -200px;
+      transform: translateY(-50%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;
+    }
+    .hero-left {}
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+    }
+    .eyebrow-line { width: 50px; height: 1px; background: var(--or); }
+    .eyebrow-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 300;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 400;
+      color: var(--crema);
+      line-height: 1;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--or); }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(248,242,232,0.5);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+    .hero-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(248,242,232,0.55);
+      line-height: 2;
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+    .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-or {
+      background: var(--or);
+      color: var(--text);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-or:hover { background: #d8b888; }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(248,242,232,0.65);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(248,242,232,0.15);
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--or); color: var(--or); }
+    .hero-right { display: flex; flex-direction: column; gap: 1.2rem; }
+    .hero-dish {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,168,120,0.15);
+      border-left: 3px solid var(--or);
+      padding: 1.3rem 1.5rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .hd-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .hd-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--crema);
+      font-weight: 600;
+    }
+    .hd-desc { font-size: 0.78rem; color: rgba(248,242,232,0.45); margin-top: 0.2rem; font-weight: 300; }
+
+    /* GOLDEN STRIP */
+    .gold-strip {
+      background: var(--or);
+      padding: 1.5rem 3rem;
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .gs-item { text-align: center; }
+    .gs-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+    .gs-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(26,42,26,0.65); }
+
+    /* SECCIONS */
+    .section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+    }
+    .se-line { width: 35px; height: 1px; background: var(--or); }
+    .se-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or);
+      font-weight: 300;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 0.9rem; font-weight: 300; color: var(--gris); line-height: 1.9; max-width: 500px; margin-bottom: 3.5rem; }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px;
+      background: rgba(200,168,120,0.15);
+      border: 1px solid rgba(200,168,120,0.15);
+    }
+    .menu-card {
+      background: var(--crema);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+    }
+    .menu-card:hover { background: var(--crema-deep); }
+    .menu-card-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+    .menu-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .menu-card-desc { font-size: 0.85rem; color: var(--gris); line-height: 1.8; font-weight: 300; }
+    .menu-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      color: var(--or);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-bottom: 1px solid var(--or);
+      padding-bottom: 2px;
+    }
+
+    /* SOBRE */
+    .sobre {
+      background: var(--verd);
+      padding: 6rem 3rem;
+    }
+    .sobre-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .sobre-left .se-tag { color: var(--or); }
+    .sobre-left .section-title { color: var(--crema); margin-bottom: 2rem; }
+    .sobre-left p { font-size: 0.9rem; font-weight: 300; color: rgba(248,242,232,0.6); line-height: 2; margin-bottom: 1.2rem; }
+    .sobre-values { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .sv { display: flex; align-items: flex-start; gap: 1.2rem; }
+    .sv-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .sv-content { font-size: 0.88rem; color: rgba(248,242,232,0.55); font-weight: 300; line-height: 1.7; }
+    .sv-content strong { color: var(--or); font-weight: 400; display: block; margin-bottom: 0.2rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .sobre-right {
+      position: relative;
+    }
+    .sobre-right-bg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10rem;
+      color: rgba(200,168,120,0.04);
+      position: absolute; top: -2rem; left: -2rem;
+      font-weight: 300;
+      pointer-events: none;
+    }
+    .sobre-frame {
+      position: relative; z-index: 1;
+      border: 1px solid rgba(200,168,120,0.2);
+      padding: 3rem;
+    }
+    .sobre-frame-or {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--or);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .sobre-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--crema);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .sobre-quote-city {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,242,232,0.35);
+    }
+
+    /* CONTACTE */
+    .contacte {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contacte-inner {
+      background: var(--verd);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      overflow: hidden;
+    }
+    .contacte-left {
+      padding: 4rem;
+    }
+    .contacte-left .se-tag { color: var(--or); }
+    .contacte-left .section-title { color: var(--crema); margin-bottom: 1rem; }
+    .contacte-left p { font-size: 0.9rem; font-weight: 300; color: rgba(248,242,232,0.55); line-height: 1.9; }
+    .contacte-right {
+      background: rgba(0,0,0,0.15);
+      padding: 4rem;
+      display: flex; flex-direction: column; gap: 1rem; justify-content: center;
+    }
+    .c-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(200,168,120,0.15);
+      text-decoration: none;
+      color: rgba(248,242,232,0.7);
+      font-size: 0.88rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      transition: all 0.3s;
+    }
+    .c-item:hover { border-color: var(--or); color: var(--or); }
+    .c-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    footer {
+      background: #0f1a0f;
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--or);
+      letter-spacing: 0.1em;
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(248,242,232,0.25); letter-spacing: 0.1em; }
+
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contacte-inner { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .sobre-right-bg { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Casablanca</div>
+    <ul class="nav-links">
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#sobre">Nosaltres</a></li>
+      <li><a href="#contacte">Reserves</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Restaurant · Vilanova i la Geltrú</span>
+        </div>
+        <h1>Casa<em>blanca</em></h1>
+        <p class="hero-subtitle">Entre la Mediterrània i el Marroc</p>
+        <p class="hero-sub">L'encant cinematogràfic de Casablanca al Garraf. Cuina que fusiona la tradició mediterrània amb les espècies i colors del Marroc.</p>
+        <div class="hero-cta">
+          <a href="#contacte" class="btn-or">Reservar taula</a>
+          <a href="#carta" class="btn-ghost">Veure la carta</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-dish">
+          <span class="hd-icon">🥘</span>
+          <div>
+            <div class="hd-name">Tajín de Miel y Limón</div>
+            <div class="hd-desc">Pollo estofat amb mel, llimona i espècies marroquines</div>
+          </div>
+        </div>
+        <div class="hero-dish">
+          <span class="hd-icon">🦐</span>
+          <div>
+            <div class="hd-name">Gambes al Pil-Pil</div>
+            <div class="hd-desc">Gambes de Vilanova amb all i xili. La mar al plat</div>
+          </div>
+        </div>
+        <div class="hero-dish">
+          <span class="hd-icon">🫕</span>
+          <div>
+            <div class="hd-name">Cuscús de Verdures</div>
+            <div class="hd-desc">Cuscús artesà amb verdures de temporada i harissa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN STRIP -->
+  <div class="gold-strip">
+    <div class="gs-item">
+      <span class="gs-num">2</span>
+      <span class="gs-label">Cultures al plat</span>
+    </div>
+    <div class="gs-item">
+      <span class="gs-num">15+</span>
+      <span class="gs-label">Anys a Vilanova</span>
+    </div>
+    <div class="gs-item">
+      <span class="gs-num">Km0</span>
+      <span class="gs-label">Peix del Garraf</span>
+    </div>
+    <div class="gs-item">
+      <span class="gs-num">5★</span>
+      <span class="gs-label">Valoració Google</span>
+    </div>
+  </div>
+
+  <!-- CARTA -->
+  <section class="section" id="carta">
+    <div class="section-eyebrow">
+      <div class="se-line"></div>
+      <span class="se-tag">La nostra carta</span>
+    </div>
+    <h2 class="section-title">Sabors de dos<br>mars, un sol plat</h2>
+    <p class="section-sub">La cuina de Casablanca és un viatge de Vilanova al Marroc i de tornada. Ingredients del Garraf, tècniques de les dues ribes de la Mediterrània.</p>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <span class="menu-card-icon">🥘</span>
+        <div class="menu-card-name">Tajín i Guisats</div>
+        <div class="menu-card-desc">Tajín de pollastre amb llimona i olives, tajín de carn d'anyell amb prunes, guisats perfumats amb espècies del soc.</div>
+        <span class="menu-tag">Cuina marroquina</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🦐</span>
+        <div class="menu-card-name">Peixos i Mariscos</div>
+        <div class="menu-card-desc">Peix de llotja de Vilanova, gambes de la costa del Garraf, musclos, sípia. El Mediterrani a l'estat pur.</div>
+        <span class="menu-tag">Llotja de Vilanova</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🫕</span>
+        <div class="menu-card-name">Cuscús i Pastes</div>
+        <div class="menu-card-desc">Cuscús artesà de verdures, de carn i de peix. Bastilla i pasteles marroquines per als paladars aventurers.</div>
+        <span class="menu-tag">Receptes tradicionals</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🥗</span>
+        <div class="menu-card-name">Entrants i Mezze</div>
+        <div class="menu-card-desc">Hummus casolà, babaganush, ensalada marroquina, bricketes de formatge i menta. Per compartir i gaudir.</div>
+        <span class="menu-tag">Per compartir</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🥩</span>
+        <div class="menu-card-name">Carns a la Brasa</div>
+        <div class="menu-card-desc">Keftes, broquetes d'anyell, pollastre al ras-al-hanut. Cuinats a la brasa per preservar tots els aromes.</div>
+        <span class="menu-tag">Brasa de llenya</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🍮</span>
+        <div class="menu-card-name">Postres Orientals</div>
+        <div class="menu-card-desc">Pastissos de mel i ametlla, baklava, sèmola amb taronja i flor de taronger. Dolços que no oblides.</div>
+        <span class="menu-tag">Artesà</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-left">
+        <div class="section-eyebrow">
+          <div class="se-line"></div>
+          <span class="se-tag">Sobre Casablanca</span>
+        </div>
+        <h2 class="section-title">Un nom que<br>explica una història</h2>
+        <p>Casablanca no és un nom a l'atzar — és una evocació. El glamour del film de Bogart, el blanc de les cases marroquines, la barreja de cultures que fa gran la nostra cuina.</p>
+        <p>Portem 15 anys a Vilanova i la Geltrú fusionant la cuina mediterrània del Garraf amb els aromes i colors del Marroc. Una taula a Casablanca és una experiència que va més enllà de menjar.</p>
+        <div class="sobre-values">
+          <div class="sv">
+            <span class="sv-icon">🌊</span>
+            <div class="sv-content">
+              <strong>Peix de km0</strong>
+              Cada dia anem a la llotja de Vilanova a buscar el millor del mar
+            </div>
+          </div>
+          <div class="sv">
+            <span class="sv-icon">🫙</span>
+            <div class="sv-content">
+              <strong>Espècies importades</strong>
+              Les nostres espècies vénen directament del Marroc per garantir autenticitat
+            </div>
+          </div>
+          <div class="sv">
+            <span class="sv-icon">🕯️</span>
+            <div class="sv-content">
+              <strong>Ambient cinematogràfic</strong>
+              Decoració que t'envolva i t'endinsa en l'esperit de Casablanca
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right">
+        <div class="sobre-right-bg">C</div>
+        <div class="sobre-frame">
+          <div class="sobre-frame-or">"</div>
+          <p class="sobre-quote">A Casablanca, cada àpat és un viatge entre dues cultures, dos mars i mil sabors que no oblidaràs.</p>
+          <p class="sobre-quote-city">— Casablanca · Vilanova i la Geltrú</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="contacte-inner">
+      <div class="contacte-left">
+        <div class="section-eyebrow">
+          <div class="se-line"></div>
+          <span class="se-tag">Reserves</span>
+        </div>
+        <h2 class="section-title">Reserva la teva<br>taula a Casablanca</h2>
+        <p>Tant per a un dinar especial com per a una nit de descoberta gastronòmica. Reserva amb antelació — les places s'esgoten aviat.</p>
+      </div>
+      <div class="contacte-right">
+        <a href="tel:+34938000000" class="c-item">
+          <span class="c-icon">📞</span>
+          Truca per reservar
+        </a>
+        <a href="https://wa.me/34938000000" class="c-item">
+          <span class="c-icon">💬</span>
+          WhatsApp — Reserva ràpida
+        </a>
+        <a href="mailto:casablancavng@gmail.com" class="c-item">
+          <span class="c-icon">✉️</span>
+          casablancavng@gmail.com
+        </a>
+        <div class="c-item">
+          <span class="c-icon">📍</span>
+          Vilanova i la Geltrú, Garraf
+        </div>
+        <div class="c-item">
+          <span class="c-icon">🕐</span>
+          Dl–Dj: 13h–16h · Dv–Ds: 13h–16h i 20h–23h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Casablanca</div>
+    <div class="footer-copy">© 2025 Casablanca Restaurant · Vilanova i la Geltrú · Tots els drets reservats</div>
+  </footer>
+
+  <!-- TRACKING: s'injectarà el pixel quan s'enviï l'email -->
+</body>
+</html>
